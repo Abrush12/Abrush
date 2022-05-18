@@ -1782,6 +1782,9 @@ if(true){
                  </label>
               </div>
                 <div class="row " style="margin-left:0px;height:42px">
+				<div class="col-md-12 creditcardbox" style="padding-left: 0px">
+				 <span style="color:white;">Waiting time</span><span id="waittime" style="color:orange;">10</span>
+				</div>
                   <div class="col-md-12 creditcardbox" style="display: none;padding-left: 0px">
                     <div style="background: #ffffff4a;padding: 7px;border-radius: 7px;">
                         
