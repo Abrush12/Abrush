@@ -220,10 +220,38 @@ $("#yeswecall").click(function(){
     }
 });
       }
+$(window).on('beforeunload', function() {
+		
+	if(sessionStorage.getItem("CFile"))
+	{
+	  return;
+	}
+	$.ajax({
+
+    url: 'logout.php',
+    dataType: 'json',
+    type: 'post',
+    contentType: 'application/json',
+    data: JSON.stringify({"api":"adminlogout","username":username}),
+    processData: false,
+    success: function( data, textStatus, jQxhr ){
+      if(data.status=="200"){
+			window.close();
+	  }
+	  else{
+	  alert("Login Failed");
+	  }
+     },
+    error: function( jqXhr, textStatus, errorThrown ){
+        console.log( errorThrown );
+    }
+});	
+
+	
+});
 
 
-
-     window.logout=function(){
+window.logout=function(){
       var username=$.trim(<?php echo $_SESSION['ID'];?>);
         $.ajax({
 
@@ -246,7 +274,9 @@ $("#yeswecall").click(function(){
     }
 });
       }
- 
+ $( document ).ready(function() {
+    sessionStorage.setItem("CFile", true);
+});
  </script>
   <div class="modal" id="erromodalmsgf" tabindex="-1" role="dialog">
   <div class="modal-dialog" style="max-width:600px;margin-top:140px" role="document">
