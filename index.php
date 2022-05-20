@@ -151,7 +151,8 @@ if(isset($_SESSION['ISLOGIN'])){
 			 localStorage.setItem("id", data.data.id); 
         localStorage.setItem("fullname", data.data.fullname); 
          localStorage.setItem("login_status", data.data.login_status); 
-	  setsession(data.data.id,data.data.username,data.data.fullname);
+		 localStorage.setItem("countrycode", data.data.countrycode);
+	  setsession(data.data.id,data.data.username,data.data.fullname,data.data.countrycode);
 		  }
 		  else{
 			   alert("Already Login");
@@ -167,14 +168,14 @@ if(isset($_SESSION['ISLOGIN'])){
     }
 });
       }
-	  window.setsession = function(id,name,fullname,login_status){
+	  window.setsession = function(id,name,fullname,login_status,countrycode){
 		    $.ajax({
 
     url: 'setsession.php',
     dataType: 'json',
     type: 'post',
     contentType: 'application/json',
-    data: JSON.stringify({"id":id,"name":name,"fullname":fullname,"login_status":login_status}),
+    data: JSON.stringify({"id":id,"name":name,"fullname":fullname,"login_status":login_status,"countrycode":countrycode}),
     processData: false,
     success: function( data, textStatus, jQxhr ){
        

@@ -2045,7 +2045,7 @@ window.ll=function(xnj){
     regdate="";
   }
   else{  $("#loadinggif").show();}
-      myajax( {"api":"allappointmentsboth","controllerid":xcontrollername,"xall":xall,"xnormal":xnormal,"xautorikshaw":xautorikshaw,"xmotorbike":xmotorbike,"regdate":regdate,"status":"<?php echo $status; ?>","ddate":ddate,"ishighest":ishighest},function( data, textStatus, jQxhr ){
+      myajax( {"api":"allappointmentsboth","controllerid":xcontrollername,"xall":xall,"xnormal":xnormal,"xautorikshaw":xautorikshaw,"xmotorbike":xmotorbike,"regdate":regdate,"status":"<?php echo $status; ?>","ddate":ddate,"ishighest":ishighest,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
         $("#loadinggif").hide();
          $(".rowax,.rowspls").remove();
          var _clone;

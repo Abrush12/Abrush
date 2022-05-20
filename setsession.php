@@ -5,6 +5,7 @@ $_SESSION['ID'] =$postData->id;
 $_SESSION['NAME']= $postData->name;
 $_SESSION['FULLNAME']= $postData->fullname;
 $_SESSION['ISLOGIN']="1";
+$_SESSION['COUNTRYCODE']=$postData->countrycode;
 setcookie("ISLOGIN", "1", time() + (3600 * 1000), "/");
 echo json_encode(array("a"=>"1"));
 
