@@ -2605,6 +2605,7 @@ $(".xallocatedriver").hide();
        window._xobj["fishing"]=fishing;
        window._xobj["shopping"]=shopping;
        window._xobj["noofitems"]=noofitems;
+	   window._xobj["adminCountryCode"]="<?php echo $_SESSION['COUNTRYCODE']; ?>";
        window._xobj["size"]=size;
        window._xobj["howmany"]=howmany;
         window._xobj["lat"]=window.pickuplat;
@@ -6729,7 +6730,7 @@ $("#confirm,#edit,#cancel").hide();
          var mm = String(today.getMonth() + 1).padStart(2, '0');  
          var yyyy = today.getFullYear();
          var dt=dd + '-'+mm+"-"+ yyyy+" "+h_ + ":" + m_+":00";
-      myajax( {"api":"getactivebooking","datetime":dt},function( data, textStatus, jQxhr ){
+      myajax( {"api":"getactivebooking","datetime":dt,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
         var html="";
         window._joblist=data.data;
        $(data.data).each(function(x,y){
