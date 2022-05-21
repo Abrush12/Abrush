@@ -6551,7 +6551,7 @@ $("#confirm,#edit,#cancel,#runner,#nofare,#bandriver,#recover,#free").hide();
          var mm = String(today.getMonth() + 1).padStart(2, '0');  
          var yyyy = today.getFullYear();
          var dt=dd + '-'+mm+"-"+ yyyy+" "+h_ + ":" + m_+":00";
-      myajax( {"api":"getdispatchbooking","datetime":dt},function( data, textStatus, jQxhr ){
+      myajax( {"api":"getdispatchbooking","datetime":dt,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
         var html="";
         window._joblist=data.data;
        $(data.data).each(function(x,y){
