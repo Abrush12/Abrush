@@ -4824,7 +4824,7 @@ $(document).mouseup(function(e)
         container.hide();
     }
 });
-         myajax({"api":"getalljobdetails"},function( data, textStatus, jQxhr ){
+         myajax({"api":"getalljobdetails","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
            $("._tbcompletedjob").html("Completed : "+data.data.used);
             $("._tbcancelljob").html("Cancelled : "+data.data.rejected);
             $("._tbappjobs").html("App : "+data.data.app);  
@@ -6478,7 +6478,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
            }
 
  
-         myajax({"lat":lat,"lng":lng, "highvehicle":highvehicle,"lowvehicle":lowvehicle,"pram":pram,"pets":pets,"wheelchair":wheelchair,"iscapability":iscapability,"pdate":pickdate,"currentdate":getcurrentDateTime(),"status":"4","passengers":_passengers,"api":"getdriversbycallsign","dids":callsign},function( data, textStatus, jQxhr ){
+         myajax({"lat":lat,"lng":lng, "highvehicle":highvehicle,"lowvehicle":lowvehicle,"pram":pram,"pets":pets,"wheelchair":wheelchair,"iscapability":iscapability,"pdate":pickdate,"currentdate":getcurrentDateTime(),"status":"4","passengers":_passengers,"api":"getdriversbycallsign","dids":callsign,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
              $(".sectdriver").remove();
          var html="";
          window.driverlist=data.data.driverlist;
@@ -6628,7 +6628,7 @@ window.ccndr=function(){
             $("#loadingr").show();
             $(".relatedbookingtable").hide().find("._qqqq").remove();
             $("#rmmodal").modal("show");
-             myajax({"api":"getcommonbookings","commonbookingid":window.commonbookingid},function( data, textStatus, jQxhr ){
+             myajax({"api":"getcommonbookings","commonbookingid":window.commonbookingid,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
                   $("#loadingr").hide();
                   $(".relatedbookingtable").show();
                 $(data.data).each(function(x,y){
@@ -6708,7 +6708,7 @@ $("#confirm,#edit,#cancel").hide();
     
     window.jobid=0;
         $(function(){
-            myajax({"api":"getalljobdetails"},function( data, textStatus, jQxhr ){
+            myajax({"api":"getalljobdetails","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
            $("._tbcompletedjob").html("Completed : "+data.data.used);
             $("._tbcancelljob").html("Cancelled : "+data.data.rejected);
             $("._tbappjobs").html("App : "+data.data.app);  
