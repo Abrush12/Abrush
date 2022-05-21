@@ -1782,8 +1782,8 @@ if(true){
                  </label>
               </div>
                 <div class="row " style="margin-left:0px;height:42px">
-				<div class="col-md-12 creditcardbox" style="padding-left: 0px">
-				 <span style="color:white;">Waiting time</span><span id="waittime" style="color:orange;">10</span>
+				<div id="Owedshow" class="col-md-12 creditcardbox" style="padding-left: 10px;margin-top: 15px;">
+				
 				</div>
                   <div class="col-md-12 creditcardbox" style="display: none;padding-left: 0px">
                     <div style="background: #ffffff4a;padding: 7px;border-radius: 7px;">
@@ -2434,11 +2434,15 @@ $("#tbd tr").remove();
                 if(data.data.owedamount!=0){
 					 $("#amountowed").html("<b>Rs "+data.data.owedamount+" owed</b>");
                     blnk($("#amountowed"));
+	var counter_Owed = "0 Min";
+	if(data.data.owedamount<=10){counter_Owed="5 Min"; }else if(data.data.owedamount<=30){counter_Owed="10 Min"; } else if(data.data.owedamount<=60){counter_Owed="15 Min";}  else if(data.data.owedamount<=100){counter_Owed="20 Min"; } else if(data.data.owedamount<=150){counter_Owed="25 Min"; } else if(data.data.owedamount<=210){counter_Owed="30 Min";  }else if(data.data.owedamount<=280){counter_Owed="35 Min"; } else if(data.data.owedamount<=360){counter_Owed="40 Min";}  else {counter_Owed="0 Min";  }
+					$("#Owedshow").html("<span style=\"color:white;\">Waiting time</span>&nbsp;<span style=\"color:orange;\">"+counter_Owed+"</span>"+
+				  "&nbsp;<span style=\"color:white;\">+</span>&nbsp;<span style=\"color:orange;\">Rs "+data.data.owedamount+" </span>");
                 }
                 else{ 
 				 $("#amountowed").html("Rs "+data.data.owedamount+" owed");
                         $("#amountowed").css('visibility', 'visible');
-                     
+                     $("#Owedshow").html("&nbsp;");
                 }
                 window.owedcounter=data.data.owedcounter;
                 if(window.owedcounter==1){

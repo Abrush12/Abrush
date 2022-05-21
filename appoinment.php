@@ -1594,9 +1594,8 @@ $(document).mouseup(function(e)
 
 window.loadnoshow=function(){
    var regdate=$.trim($("#registrationdate").val());
-   
-    
-     myajax( {"api":"allappointmentsnoshow","ddate":regdate},function( data, textStatus, jQxhr ){
+
+     myajax( {"api":"allappointmentsnoshow","ddate":regdate,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
        
          var _clone;
          var tbd=$("#tbdnoshow");  
@@ -1690,8 +1689,7 @@ $("#name").keyup(function(){
           if(cc==0) {
             fromdate=todate="";
           }
-
-           myajax( {"api":"allappointments","fromdate":fromdate,"todate":todate,"status":"1","xall":xall,"xnormal":xnormal,"xautorikshaw":xautorikshaw,"xmotorbike":xmotorbike},function( data, textStatus, jQxhr ){
+           myajax( {"api":"allappointments","fromdate":fromdate,"todate":todate,"status":"1","xall":xall,"xnormal":xnormal,"xautorikshaw":xautorikshaw,"xmotorbike":xmotorbike,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
          $("#loadinggifdn").hide();
          var _clone;
          var tbd=$("#tbdappointment");  
@@ -2045,6 +2043,8 @@ window.ll=function(xnj){
     regdate="";
   }
   else{  $("#loadinggif").show();}
+  
+  
       myajax( {"api":"allappointmentsboth","controllerid":xcontrollername,"xall":xall,"xnormal":xnormal,"xautorikshaw":xautorikshaw,"xmotorbike":xmotorbike,"regdate":regdate,"status":"<?php echo $status; ?>","ddate":ddate,"ishighest":ishighest,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
         $("#loadinggif").hide();
          $(".rowax,.rowspls").remove();
@@ -2320,7 +2320,7 @@ window.ll=function(xnj){
          else if(jobvehicletype=="1") normal="1";
          else if(jobvehicletype=="2") autorikshaw="1";
          else if(jobvehicletype=="3") motorbike="1";
-      myajax( {"api":"gettbooking","datetimefrom":dt,"datetimeto":dto,"jobcallsign":jobcallsign,"ishighestjobprice":ishighestjobprice,"all":all,"normal":normal,"autorikshaw":autorikshaw,"motorbike":motorbike,"pickuplocation":pickuplocation,"droplocation":droplocation,"jobcolour":jobcolour,"jobmake":jobmake,"jobmodel":jobmodel,"jobreferencenumber":jobreferencenumber},function( data, textStatus, jQxhr ){ 
+      myajax( {"api":"gettbooking","datetimefrom":dt,"datetimeto":dto,"jobcallsign":jobcallsign,"ishighestjobprice":ishighestjobprice,"all":all,"normal":normal,"autorikshaw":autorikshaw,"motorbike":motorbike,"pickuplocation":pickuplocation,"droplocation":droplocation,"jobcolour":jobcolour,"jobmake":jobmake,"jobmodel":jobmodel,"jobreferencenumber":jobreferencenumber,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){ 
         $(data.data).each(function(x,y){
           var extras="";
      if(y.normal=="1") extras="Normal";
@@ -2390,9 +2390,8 @@ html+='<td>'+y.bdate+'</td>';
      lk(dt,fromtime,totime,ishighest); 
              }
      window.lk=function(dt,fromtime,totime,ishighest){
-      
        $("#tbdearnings .accdd").remove();
-      myajax( {"api":"getdriverearnings","datetime":dt,"fromtime":fromtime,"totime":totime,"ishighest":ishighest},function( data, textStatus, jQxhr ){
+      myajax( {"api":"getdriverearnings","datetime":dt,"fromtime":fromtime,"totime":totime,"ishighest":ishighest,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
         var html="";
     window._joblist=data.data;
     if(data.data.length==0){
