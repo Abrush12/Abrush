@@ -1838,7 +1838,7 @@ if(y.normal=="1")
         
 
         // $("#xcontrollername").append("<option value='0'>Select Controller</option>")
-          myajax( {"api":"getcontrollerlist" },function( data, textStatus, jQxhr ){
+          myajax( {"api":"getcontrollerlist","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>" },function( data, textStatus, jQxhr ){
             var _ctrlid=localStorage.getItem("id");
             $("#xcontrollername").append("<option    value='0'>All</option>")
             $(data.data).each(function(x,y){
