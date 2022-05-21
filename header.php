@@ -129,7 +129,7 @@ $("#yeswecall").click(function(){
     $("#xerrorppk").html('Do you want to confirm "No Fare"?');
  }
  window.getnoti=function(){
-      myajax( {"api":"getappointmentnotifications"},function( data, textStatus, jQxhr ){
+      myajax( {"api":"getappointmentnotifications","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
           if(data.data.notificationcounter.length!=0){
               $(".notificationax").show().html(data.data.notificationcounter.length);
             
