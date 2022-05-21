@@ -83,11 +83,11 @@ if(isset($_SESSION['ISLOGIN'])){
                     <span><img src="img/Artboard-14.png"></span>
                      <select id="company" style="width: 100%;  border: none; outline: none;">
                       <option value="0">Select Country</option>
-                      <option value="1">Pakistan</option>
-                      <option value="2">India </option>
-					 <option value="3">Dubai </option>
-					 option value="4">United Kindom	 </option>
-					 <option value="5">Turkey </option>
+                      <option value="PK">Pakistan</option>
+                      <option value="IN">India </option>
+					 <option value="DU">Dubai </option>
+					 <option value="UK">United Kindom	 </option>
+					 <option value="TU">Turkey </option>
                      </select>
                   </div> 
                   <div class="user_lg" style="margin-top:10px">
@@ -96,7 +96,7 @@ if(isset($_SESSION['ISLOGIN'])){
                   </div>
                   <div class="user_lg">
                     <span><img src="img/Artboard-15.png"></span>
-                    <input type="text" autocomplete="off"   onkeyup="adval(this,event,this.value)"  id="password" placeholder="Password">
+                    <input type="text" autocomplete="off" onkeyup="adval(this,event,this.value)"  id="password" placeholder="Password" >
                   </div>
                   <div class="login_btn">
                 <a href="javascript:void(0)" ><img onclick="login()" src="img/Artboard-7.png" id="lgn" style="margin-top:0px"></a>
@@ -135,7 +135,11 @@ if(isset($_SESSION['ISLOGIN'])){
      window.login=function(){
       var username=$.trim($("#username").val());
      var password=$.trim(window.pass);
-	 
+	 if($.trim($("#company").val()) == 0 || $.trim($("#company").val()) == "0")
+	 {
+		 alert("Select a valid Country Name");
+		 return;
+	 }
         $.ajax({
 
     url: 'loginapi.php',
@@ -146,13 +150,19 @@ if(isset($_SESSION['ISLOGIN'])){
     processData: false,
     success: function( data, textStatus, jQxhr ){
       if(data.status=="200"){
-		  
+		  if(($.trim($("#company").val()) != $.trim(data.data.countrycode)))
+			{
+				alert(data.data.username +" does not exist in selected country");
+				if(data.data.login_status=="0")
+				logout(data.data.id);
+				return;
+			}
 		  if(data.data.login_status=="0"){
 			 localStorage.setItem("id", data.data.id); 
-        localStorage.setItem("fullname", data.data.fullname); 
-         localStorage.setItem("login_status", data.data.login_status); 
-		 localStorage.setItem("countrycode", data.data.countrycode);
-	  setsession(data.data.id,data.data.username,data.data.fullname,data.data.countrycode);
+			 localStorage.setItem("fullname", data.data.fullname); 
+             localStorage.setItem("login_status", data.data.login_status); 
+		     localStorage.setItem("countrycode", data.data.countrycode);
+		     setsession(data.data.id,data.data.username,data.data.fullname,data.data.login_status,data.data.countrycode);
 		  }
 		  else{
 			   alert("Already Login");
@@ -168,6 +178,30 @@ if(isset($_SESSION['ISLOGIN'])){
     }
 });
       }
+	  
+window.logout=function(username){
+     
+        $.ajax({
+
+    url: 'api.php',
+    dataType: 'json',
+    type: 'post',
+    contentType: 'application/json',
+    data: JSON.stringify({"api":"adminlogout","username":username}),
+    processData: false,
+    success: function( data, textStatus, jQxhr ){
+      if(data.status=="200"){
+		//	window.location.href="index.php";
+	  }
+	  else{
+	  alert("Login Failed");
+	  }
+     },
+    error: function( jqXhr, textStatus, errorThrown ){
+        console.log( errorThrown );
+    }
+});
+}
 	  window.setsession = function(id,name,fullname,login_status,countrycode){
 		    $.ajax({
 
@@ -178,11 +212,10 @@ if(isset($_SESSION['ISLOGIN'])){
     data: JSON.stringify({"id":id,"name":name,"fullname":fullname,"login_status":login_status,"countrycode":countrycode}),
     processData: false,
     success: function( data, textStatus, jQxhr ){
-       
 	   window.location.href="new-booking.php";
 	  
      },
-    error: function( jqXhr, textStatus, errorThrown ){
+    error: function( jqXhr, textStatus, errorThrown ){ 
         console.log( errorThrown );
     }
 });
