@@ -2574,6 +2574,7 @@ window.getcutomerowedamount=function(mobile){
        window._xobj["fishing"]=fishing;
        window._xobj["shopping"]=shopping;
        window._xobj["noofitems"]=noofitems;
+	   window._xobj["adminCountryCode"]="<?php echo $_SESSION['COUNTRYCODE']; ?>";
        window._xobj["size"]=size;
        window._xobj["howmany"]=howmany;
     $(".xallocatedriver").show().find("p").remove();
@@ -4673,7 +4674,7 @@ $(document).mouseup(function(e)
         container.hide();
     }
 });
-         myajax({"api":"getalljobdetails"},function( data, textStatus, jQxhr ){
+         myajax({"api":"getalljobdetails","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
            $("._tbcompletedjob").html("Completed : "+data.data.used);
             $("._tbcancelljob").html("Cancelled : "+data.data.rejected);
             $("._tbappjobs").html("App : "+data.data.app);  
@@ -5022,7 +5023,7 @@ $("#timerx,#timerx1").clockpicker({
             $("#loadingr").show();
             $(".relatedbookingtable").hide().find("._qqqq").remove();
             $("#rmmodal").modal("show");
-             myajax({"api":"getcommonbookings","commonbookingid":window.commonbookingid},function( data, textStatus, jQxhr ){
+             myajax({"api":"getcommonbookings","commonbookingid":window.commonbookingid,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
                   $("#loadingr").hide();
                   $(".relatedbookingtable").show();
                 $(data.data).each(function(x,y){
@@ -6224,7 +6225,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
             iscapability="0";
              }
       var animaltype=($("#guarddog").is(":checked")?"1":($("#animaldog").is(":checked")?"2":"3"));
-      var obj={"animaltype":animaltype,"lat":window.pickuplat,"lng":window.pickuplng,"mobile":mobile,"highvehicle":highvehicle,"lowvehicle":lowvehicle,"pram":pram,"pets":pets,"wheelchair":wheelchair,"iscapability":iscapability,"pdate":pickdate,"currentdate":getcurrentDateTime(),"api":"getdrivers","status":"4","passengers":_passengers};
+      var obj={"animaltype":animaltype,"lat":window.pickuplat,"lng":window.pickuplng,"mobile":mobile,"highvehicle":highvehicle,"lowvehicle":lowvehicle,"pram":pram,"pets":pets,"wheelchair":wheelchair,"iscapability":iscapability,"pdate":pickdate,"currentdate":getcurrentDateTime(),"api":"getdrivers","status":"4","passengers":_passengers,,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"};
        obj["bicycle"]=bicycle;
        obj["items"]=items;
        obj["scooter"]=scooter;
@@ -6343,7 +6344,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
            }
 
  
-         myajax({"lat":lat,"lng":lng, "highvehicle":highvehicle,"lowvehicle":lowvehicle,"pram":pram,"pets":pets,"wheelchair":wheelchair,"iscapability":iscapability,"pdate":pickdate,"currentdate":getcurrentDateTime(),"status":"4","passengers":_passengers,"api":"getdriversbycallsign","dids":callsign},function( data, textStatus, jQxhr ){
+         myajax({"lat":lat,"lng":lng, "highvehicle":highvehicle,"lowvehicle":lowvehicle,"pram":pram,"pets":pets,"wheelchair":wheelchair,"iscapability":iscapability,"pdate":pickdate,"currentdate":getcurrentDateTime(),"status":"4","passengers":_passengers,"api":"getdriversbycallsign","dids":callsign,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
              $(".sectdriver").remove();
          var html="";
          window.driverlist=data.data.driverlist;
@@ -6528,7 +6529,7 @@ $(".btns_cnfrmcx").show();
 $("#confirm,#edit,#cancel,#runner,#nofare,#bandriver,#recover,#free").hide();
     }
         $(function(){
-            myajax({"api":"getalljobdetails"},function( data, textStatus, jQxhr ){
+            myajax({"api":"getalljobdetails","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
            $("._tbcompletedjob").html("Completed : "+data.data.used);
             $("._tbcancelljob").html("Cancelled : "+data.data.rejected);
             $("._tbappjobs").html("App : "+data.data.app);  

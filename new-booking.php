@@ -2863,6 +2863,7 @@ window.searchcallsign=function(val,e){
        window._xobj["fishing"]=fishing;
        window._xobj["shopping"]=shopping;
        window._xobj["noofitems"]=noofitems;
+	   window._xobj["adminCountryCode"]="<?php echo $_SESSION['COUNTRYCODE']; ?>";
        window._xobj["size"]=size;
        window._xobj["howmany"]=howmany;
        window._xobj["lat"]=window.pickuplat;
@@ -5124,7 +5125,7 @@ $(document).mouseup(function(e)
     
 
 });
-         myajax({"api":"getalljobdetails"},function( data, textStatus, jQxhr ){
+         myajax({"api":"getalljobdetails","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
            $("._tbcompletedjob").html("Completed : "+data.data.used);
             $("._tbcancelljob").html("Cancelled : "+data.data.rejected);
             $("._tbappjobs").html("App : "+data.data.app);  
@@ -6900,7 +6901,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
            }
 
 
-         myajax({ "highvehicle":highvehicle,"lowvehicle":lowvehicle,"pram":pram,"pets":pets,"wheelchair":wheelchair,"iscapability":iscapability,"pdate":pickdate,"currentdate":getcurrentDateTime(),"status":"4","passengers":_passengers,"api":"getdriversbycallsign","dids":callsign},function( data, textStatus, jQxhr ){
+         myajax({ "highvehicle":highvehicle,"lowvehicle":lowvehicle,"pram":pram,"pets":pets,"wheelchair":wheelchair,"iscapability":iscapability,"pdate":pickdate,"currentdate":getcurrentDateTime(),"status":"4","passengers":_passengers,"api":"getdriversbycallsign","dids":callsign,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
              $(".sectdriver").remove();
          var html="";
          window.driverlist=data.data.driverlist;
