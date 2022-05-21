@@ -6225,7 +6225,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
             iscapability="0";
              }
       var animaltype=($("#guarddog").is(":checked")?"1":($("#animaldog").is(":checked")?"2":"3"));
-      var obj={"animaltype":animaltype,"lat":window.pickuplat,"lng":window.pickuplng,"mobile":mobile,"highvehicle":highvehicle,"lowvehicle":lowvehicle,"pram":pram,"pets":pets,"wheelchair":wheelchair,"iscapability":iscapability,"pdate":pickdate,"currentdate":getcurrentDateTime(),"api":"getdrivers","status":"4","passengers":_passengers,,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"};
+      var obj={"animaltype":animaltype,"lat":window.pickuplat,"lng":window.pickuplng,"mobile":mobile,"highvehicle":highvehicle,"lowvehicle":lowvehicle,"pram":pram,"pets":pets,"wheelchair":wheelchair,"iscapability":iscapability,"pdate":pickdate,"currentdate":getcurrentDateTime(),"api":"getdrivers","status":"4","passengers":_passengers,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"};
        obj["bicycle"]=bicycle;
        obj["items"]=items;
        obj["scooter"]=scooter;
