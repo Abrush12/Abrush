@@ -223,7 +223,7 @@ $("#yeswecall").click(function(){
 function confirmExit() {
 	logout();
 	
-};
+}
 
  $(window).on('mouseover', (function () {
         window.onbeforeunload = null;
