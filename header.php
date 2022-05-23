@@ -220,35 +220,17 @@ $("#yeswecall").click(function(){
     }
 });
       }
-$(window).on('beforeunload', function() {
-		
-	if(sessionStorage.getItem("CFile"))
-	{
-	  return;
-	}
-	$.ajax({
-
-    url: 'logout.php',
-    dataType: 'json',
-    type: 'post',
-    contentType: 'application/json',
-    data: JSON.stringify({"api":"adminlogout","username":username}),
-    processData: false,
-    success: function( data, textStatus, jQxhr ){
-      if(data.status=="200"){
-			window.close();
-	  }
-	  else{
-	  alert("Login Failed");
-	  }
-     },
-    error: function( jqXhr, textStatus, errorThrown ){
-        console.log( errorThrown );
-    }
-});	
-
+function confirmExit() {
+	logout();
 	
-});
+};
+
+ $(window).on('mouseover', (function () {
+        window.onbeforeunload = null;
+    }));
+    $(window).on('mouseout', (function () {
+        window.onbeforeunload = confirmExit;
+    }));
 
 
 window.logout=function(){
@@ -274,9 +256,6 @@ window.logout=function(){
     }
 });
       }
- $( document ).ready(function() {
-    sessionStorage.setItem("CFile", true);
-});
  </script>
   <div class="modal" id="erromodalmsgf" tabindex="-1" role="dialog">
   <div class="modal-dialog" style="max-width:600px;margin-top:140px" role="document">
@@ -400,13 +379,14 @@ window.logout=function(){
                        <a class="dropdown-item" href="changepassword.php">Change Password</a>
 
                       <a class="dropdown-item" onclick="logout()"  >Logout</a>
+					 
                     </div>
                   </div>
                 </div>
-                
-              </nav>    
+                </nav>    
             </div>
           </div>
+<
         </div>
       </div>
     </section>
