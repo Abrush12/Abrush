@@ -386,7 +386,6 @@ window.logout=function(){
                 </nav>    
             </div>
           </div>
-<
         </div>
       </div>
     </section>
