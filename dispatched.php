@@ -2459,7 +2459,7 @@ window.selectjob=function(ref,jbcounter){
 window._cjob=job; 
 
 window.lojob(job);
-getcutomerowedamount(job.mobile);
+getcutomerowedamount(job.mobile,jobid);
 }
  
 window.intervalref=null;
@@ -2482,8 +2482,8 @@ window.intervalref=null;
         }    
     }, 500);
  }
-window.getcutomerowedamount=function(mobile){
-    myajax( {"api":"getcutomerowedamount","mobile":mobile},function( data, textStatus, jQxhr ){ 
+window.getcutomerowedamount=function(mobile,job_id){
+    myajax( {"api":"getcutomerowedamount","mobile":mobile,"jobid":job_id},function( data, textStatus, jQxhr ){ 
            
               if(window.intervalref!=null){
                         clearInterval(window.intervalref);
@@ -2494,20 +2494,25 @@ window.getcutomerowedamount=function(mobile){
                 if(data.data!=0){
 					 
 					 $("#amountowed").html("<b>Rs "+data.data+" owed</b>");
-                    blnk($("#amountowed"));
-					var counter_Owed = "0 Min";
-	if(data.data<=10){counter_Owed="5 Min"; }else if(data.data<=30){counter_Owed="10 Min"; } else if(data.data<=60){counter_Owed="15 Min";}  else if(data.data<=100){counter_Owed="20 Min"; } else if(data.data<=150){counter_Owed="25 Min"; } else if(data.data<=210){counter_Owed="30 Min";  }else if(data.data<=280){counter_Owed="35 Min"; } else if(data.data<=360){counter_Owed="40 Min";}  else {counter_Owed="0 Min";  
-	}
-					$("#Owedshow").html("<span style=\"color:white;\">Waiting time</span>&nbsp;<span style=\"color:orange;\"> "+counter_Owed+"</span>"+
-				  "&nbsp;<span style=\"color:white;\">+</span>&nbsp;<span style=\"color:orange;\">Rs "+data.data+" </span>");
-				  blink($("#Owedshow"));
+                     blnk($("#amountowed"));
                 }
                 else { 
 				 $("#amountowed").html("Rs "+data.data+" owed");
                         $("#amountowed").css('visibility', 'visible');
+					
+                     
+                }
+				 if(data.owed!=0){
+				   $("#Owedshow").html("<span style=\"color:white;\">Waiting time</span>&nbsp;<span style=\"color:orange;\"> "+data.counttimer+"</span>"+
+				  "&nbsp;<span style=\"color:white;\">+</span>&nbsp;<span style=\"color:orange;\">Rs "+data.owed+" </span>");
+				  blink($("#Owedshow"));
+                }
+                else { 
+				
 						 $("#Owedshow").html("&nbsp;");
                      
                 }
+				
 			
            });
 		  
