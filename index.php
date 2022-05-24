@@ -77,8 +77,9 @@ if(isset($_SESSION['ISLOGIN'])){
 	font-family: "Times New Roman", Times, serif;
     margin:0;
     font:bold 1.2em verdana,arial;
-    background-color:#3073BB;
+    background-color:#039697;
     color:#FFF;
+	text-align:center;
     border-bottom:1px solid #000;
     padding:2px 0 2px 5px;
 }
@@ -86,6 +87,7 @@ if(isset($_SESSION['ISLOGIN'])){
 #alertBox p {
 	font-family: Arial, Helvetica, sans-serif;
     height:50px;
+	font-size:20px;
     padding-left:5px;
 	margin-top:55px;
 	text-align:center;
@@ -98,11 +100,11 @@ if(isset($_SESSION['ISLOGIN'])){
     padding:7px;
     border:0 none;
     width:70px;
-    font:0.7em verdana,arial;
+    font:0.9em verdana,arial;
     text-transform:uppercase;
     text-align:center;
     color:#FFF;
-    background-color:#357EBD;
+    background-color:#039697;
     border-radius: 3px;
     text-decoration:none;
 }
