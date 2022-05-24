@@ -1878,6 +1878,9 @@ if(true){
                  </label>
               </div>
                 <div class="row  axdcvf" style="height:42px">
+				<div id="Owedshow" class="col-md-12" style="padding-left: 10px;margin-top: 5px;">
+				
+				</div>
                   <div class="col-md-12 creditcardbox" style="display: none;">
                     <div style="background: #ffffff4a;padding: 7px;border-radius: 7px;">
                         
@@ -2469,24 +2472,46 @@ window.intervalref=null;
         }    
     }, 500);
  }
+ window.intervalref2=null;
+  window.blink=function(elem){
+   window.intervalref2 =  setInterval(function() {
+        if (elem.css('visibility') == 'hidden') {
+            elem.css('visibility', 'visible');
+        } else {
+            elem.css('visibility', 'hidden');
+        }    
+    }, 500);
+ }
 window.getcutomerowedamount=function(mobile){
     myajax( {"api":"getcutomerowedamount","mobile":mobile},function( data, textStatus, jQxhr ){ 
            
               if(window.intervalref!=null){
                         clearInterval(window.intervalref);
                     }
+					if(window.intervalref2!=null){
+                        clearInterval(window.intervalref2);
+                    }
                 if(data.data!=0){
 					 
 					 $("#amountowed").html("<b>Rs "+data.data+" owed</b>");
                     blnk($("#amountowed"));
+					var counter_Owed = "0 Min";
+	if(data.data<=10){counter_Owed="5 Min"; }else if(data.data<=30){counter_Owed="10 Min"; } else if(data.data<=60){counter_Owed="15 Min";}  else if(data.data<=100){counter_Owed="20 Min"; } else if(data.data<=150){counter_Owed="25 Min"; } else if(data.data<=210){counter_Owed="30 Min";  }else if(data.data<=280){counter_Owed="35 Min"; } else if(data.data<=360){counter_Owed="40 Min";}  else {counter_Owed="0 Min";  
+	}
+					$("#Owedshow").html("<span style=\"color:white;\">Waiting time</span>&nbsp;<span style=\"color:orange;\"> "+counter_Owed+"</span>"+
+				  "&nbsp;<span style=\"color:white;\">+</span>&nbsp;<span style=\"color:orange;\">Rs "+data.data+" </span>");
+				  blink($("#Owedshow"));
                 }
-                else{ 
+                else { 
 				 $("#amountowed").html("Rs "+data.data+" owed");
                         $("#amountowed").css('visibility', 'visible');
+						 $("#Owedshow").html("&nbsp;");
                      
                 }
-				setTimeout(function(){ getcutomerowedamount(mobile)},2000);
+			
            });
+		  
+		//   setTimeout(function(){ getcutomerowedamount(mobile)},5000);
 }
  window._addvia=function( ){
 
