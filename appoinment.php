@@ -771,7 +771,7 @@ if(isset($_GET['status'])){
     <div class="main-box clearfix">
   <div id="tabs">
   <ul>
-    <li><a href="#tabs-1">Driver</a></li>
+    <li><a href="#tabs-1">Drivers</a></li>
     <li><a href="#tabs-2">Appointments</a></li> 
  
     <li><a href="#tabs-3">No Show</a></li> 	
