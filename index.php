@@ -44,6 +44,120 @@ if(isset($_SESSION['ISLOGIN'])){
     box-shadow: 1px 1px 5px #eaeaea;}
     a:focus{outline: 2px solid blue;
     border-radius: 40px;}
+	
+	
+
+#modalContainer {
+    background-color:rgba(0, 0, 0, 0.3);
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+    z-index:10000;
+    background-image:url(tp.png); /* required by MSIE to prevent actions on lower z-index elements */
+}
+
+#alertBox {
+    position:relative;
+    width:500px;
+    min-height:200px;
+    margin-top:350px;
+    border:1px solid #666;
+    background-color:#fff;
+    background-repeat:no-repeat;
+    background-position:20px 30px;
+}
+
+#modalContainer > #alertBox {
+    position:fixed;
+}
+
+#alertBox h1 {
+	font-family: "Times New Roman", Times, serif;
+    margin:0;
+    font:bold 1.2em verdana,arial;
+    background-color:#3073BB;
+    color:#FFF;
+    border-bottom:1px solid #000;
+    padding:2px 0 2px 5px;
+}
+
+#alertBox p {
+	font-family: Arial, Helvetica, sans-serif;
+    height:50px;
+    padding-left:5px;
+	margin-top:55px;
+	text-align:center;
+}
+
+#alertBox #closeBtn {
+    display:block;
+    position:relative;
+    margin:5px auto;
+    padding:7px;
+    border:0 none;
+    width:70px;
+    font:0.7em verdana,arial;
+    text-transform:uppercase;
+    text-align:center;
+    color:#FFF;
+    background-color:#357EBD;
+    border-radius: 3px;
+    text-decoration:none;
+}
+
+/* unrelated styles */
+
+#mContainer {
+    position:relative;
+    width:600px;
+    margin:auto;
+    padding:5px;
+    border-top:2px solid #000;
+    border-bottom:2px solid #000;
+    font:0.7em verdana,arial;
+}
+
+h1,h2 {
+    margin:0;
+    padding:4px;
+    font:bold 1.5em verdana;
+    border-bottom:1px solid #000;
+}
+
+code {
+    font-size:1.2em;
+    color:#069;
+}
+
+#credits {
+    position:relative;
+    margin:25px auto 0px auto;
+    width:350px; 
+    font:0.7em verdana;
+    border-top:1px solid #000;
+    border-bottom:1px solid #000;
+    height:90px;
+    padding-top:4px;
+}
+
+#credits img {
+    float:left;
+    margin:5px 10px 5px 0px;
+    border:1px solid #000000;
+    width:80px;
+    height:79px;
+}
+
+.important {
+    background-color:#F5FCC8;
+    padding:2px;
+}
+
+code span {
+    color:green;
+}
     </style>
 
   <title>Abrush Empire</title>
@@ -248,6 +362,54 @@ $("#password").keypress(function(e){
        
     });
     });
+	
+
+var ALERT_TITLE = "Alert!";
+var ALERT_BUTTON_TEXT = "Ok";
+
+if(document.getElementById) {
+    window.alert = function(txt) {
+        createCustomAlert(txt);
+    }
+}
+
+function createCustomAlert(txt) {
+    d = document;
+
+    if(d.getElementById("modalContainer")) return;
+
+    mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
+    mObj.id = "modalContainer";
+    mObj.style.height = d.documentElement.scrollHeight + "px";
+
+    alertObj = mObj.appendChild(d.createElement("div"));
+    alertObj.id = "alertBox";
+    if(d.all && !window.opera) alertObj.style.top = document.documentElement.scrollTop + "px";
+    alertObj.style.left = (d.documentElement.scrollWidth - alertObj.offsetWidth)/2 + "px";
+    alertObj.style.visiblity="visible";
+
+    h1 = alertObj.appendChild(d.createElement("h1"));
+    h1.appendChild(d.createTextNode(ALERT_TITLE));
+
+    msg = alertObj.appendChild(d.createElement("p"));
+    //msg.appendChild(d.createTextNode(txt));
+    msg.innerHTML = txt;
+
+    btn = alertObj.appendChild(d.createElement("a"));
+    btn.id = "closeBtn";
+    btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
+    btn.href = "#";
+    btn.focus();
+    btn.onclick = function() { removeCustomAlert();return false; }
+
+    alertObj.style.display = "block";
+
+}
+
+function removeCustomAlert() {
+    document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
+}
+
 
     </script>
 
