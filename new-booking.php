@@ -133,7 +133,7 @@ background: transparent;}
  
     background: #0028a1;
 }
-.table_s .table tbody tr.prebooking td,.table_s .table tbody tr.prebooking:hover{background:#29adb3}
+.table_s .table tbody tr.prebooking td,.table_s .table tbody tr.prebooking:hover{background:#f1a906}
 
 .table_s .table tbody tr.quotation td,.table_s .table tbody tr.prebooking:hover{background:#f1a906}
 .repeatbookingedit{    width: 8px;
@@ -171,7 +171,12 @@ background: transparent;}
    cursor: default !important;
   }
   .ispermanent input{cursor: pointer;}
-.trselected td,.trselected:hover td,.trselected:hover{background: #000 !important;}
+  .trselected  {outline: 1px solid #000; }
+  .trselected  /*,table  #tbd > tr:hover*/{outline: .20em solid #FFD700 !important;border-left: 0.5em  solid #FFD700 !important;border-right:  0.5em  solid #FFD700 !important;border-bottom: 2px solid #FFD700 !important;;}
+ 
+  /*table  #tbd > tr:hover td   { background: #4169e1;}*/
+ .trselected td{background:#00b3b3 !important ;}
+/*.trselected td,.trselected:hover td,.trselected:hover{background: #000 !important;}*/
 .vbgtable tr th{padding: 8px 0px !important;}
 .vbgtable tr th i{background: #adadad;
     width: 1px;
@@ -4876,9 +4881,11 @@ $("#errormodal").modal("hide");
             var cardexpirydate=$.trim($("#cardexpirydate").val());
             var cardcvv=$.trim($("#cardcvv").val());
             var mobile=$.trim($("#mobile").val());
+			
               if(window.isedit){
                 mobile=$.trim($("#mobile").attr("data-mobile"))
             }
+
             var depositamount=$.trim($("#depositamount").val());
             if(!$("#deposit").is(":checked")){
                 depositamount="5.00";
@@ -5521,9 +5528,11 @@ $("#timerx,#timerx1").clockpicker({
             }
                var name=$.trim($("#fullname").val());
                var mobile=$.trim($("#mobile").val());
+		/*	  
                  if(window.isedit){
                 mobile=$.trim($("#mobile").attr("data-mobile"))
             }
+*/
                var email=$.trim($("#email").val());
                var sms=$.trim($("#sms").val());
                var isemail=$(".email").is(":checked")?"1":"0";
@@ -5641,9 +5650,9 @@ $("#timerx,#timerx1").clockpicker({
            }
                else
                obj["api"]="newbookingnew";
-            if(window.isedit){
+      /*      if(window.isedit){
                 mobile=$.trim($("#mobile").attr("data-mobile"))
-            }
+            }*/
           $("#xerrormsgs").hide();
           obj["bookingcountry"]="<?php echo $ovcountrycode; ?>";
           obj["issalooncheckparmanent"]=window.issalooncheckparmanent;
