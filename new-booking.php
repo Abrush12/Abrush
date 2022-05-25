@@ -2018,8 +2018,8 @@ window.bookingmileagetime=job.bookingmileagetime;
  var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = today.getFullYear(); 
-  $("#datepicker").val(window._daysname[today.getDay()]+", "+dd + '-'+mm+"-"+ yyyy);
-    $("#timerx").val(window.tConvert(job.btime));
+ // $("#datepicker").val(window._daysname[today.getDay()]+", "+dd + '-'+mm+"-"+ yyyy);
+  //  $("#timerx").val(window.tConvert(job.btime));
     $("#fullname").val(job.name);
     $("#addressax_").val(job.address);
     $("#pickuplocation").val(job.pickuplocation);
@@ -3922,7 +3922,7 @@ window.dropplaceid=window.pickupplaceid=window.axxplaceid="0";
 window.xattrytype=0;
 window.__xsetaddr="";
 window.viacountrpl=0;
-window.dddr=function(){
+window.dddr=function(){ 
     if($(".timer-box1").is(":visible")){
     var ampm=$("#demoam").hasClass("timeselected")?" AM":" PM";
                var _time = $("#bdemohour").val()+":"+$("#bdemominute").val()+ampm;
@@ -3935,6 +3935,7 @@ window.dddr=function(){
           var newDate = new Date( _date[2], _date[1] - 1, _date[0],_time[0],_time[1],0);
           window.istimeboxopen=false;
             $(".timer-box1").hide();
+			alert(newDate.getTime());
             if(newDate.getTime()>=dfgv()){
               
            $("#timerx").val($("#bdemohour").val()+":"+$("#bdemominute").val()+" "+ampm);

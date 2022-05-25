@@ -227,14 +227,14 @@ session_start();
                     <input type="text" readonly id="mobile" name="">
                   </div>
                 </div>
-
+<!--
                 <div class="rpeates_flds">
                   <div class="form_groups">
                     <label>Email</label>
                     <input type="text" id="email" name="">
                   </div>
                 </div>
-
+-->
                 <div class="rpeates_flds" style="display:none">
                   <div class="plates_bx">
                     <span class="labels_sp">Insurance</span>
@@ -1268,7 +1268,7 @@ myajax({"api":_apiax,"uid":uid},function( data, textStatus, jQxhr ){
            var db=obj.dateofbirth.split("-")
             $("#dob").val(db[2]+"-"+db[1]+"-"+db[0]);
             $("#address").val(firstCapitalAlwaysref(obj.address));
-          $("#email").val(obj.email.toLowerCase());
+        //  $("#email").val(obj.email.toLowerCase());
           $("#mobile").val(crypMobile(obj.mobile)).attr("data-mobile",obj.mobile);
           $("#profilepic") .attr("src",window._baseurl+obj.image).parent().parent().find("input[type=file]").remove();
           $("#plateno").val(firstCapitalAlwaysref(obj.platnotxt));
@@ -1532,7 +1532,7 @@ myajax({"api":_apiax,"uid":uid},function( data, textStatus, jQxhr ){
 				    $("#dob").val(obj.DOB);
 
 				    $("#address").val(obj.address+" "+obj.area);
-					$("#email").val(obj.email);
+				//	$("#email").val(obj.email);
 
 					$("#mobile").val(crypMobile(obj.phone)).attr("data-mobile",obj.mobile);
           
@@ -1621,7 +1621,7 @@ myajax({"api":_apiax,"uid":uid},function( data, textStatus, jQxhr ){
 			var badgeno = $.trim($("#badgeno").val());
 			var hackney= $.trim($("#hackney").val());
 			var mobile=$.trim($("#mobile").attr("data-mobile"));
-			var email=$.trim($("#email").val());
+		//	var email=$.trim($("#email").val());
 			var expirydate=$.trim($("#expirydate").val());
 			var drivinglicence=$.trim($("#drivinglicence").val());
 			var color=$.trim($("#color").val());
@@ -1741,7 +1741,7 @@ myajax({"api":_apiax,"uid":uid},function( data, textStatus, jQxhr ){
 			obj["badgenoimage"]=$("#badgenoimage").val();
 			obj["hackney"]=hackney;
 			obj["mobile"]=mobile;
-			obj["email"]=email;
+		//	obj["email"]=email;
 			obj["expirydate"]=expirydatex;
 			obj["backidimg"]=$("#backidimg").val();
 			obj["councillettertxt"]=$("#councillettertxt").val();
