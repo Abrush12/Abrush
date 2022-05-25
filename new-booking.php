@@ -131,7 +131,7 @@ session_start();
 background: transparent;}
 .table_s .table tbody tr.activebooking td,.table_s .table tbody tr.activebooking:hover td{
  
-    background: #29b360;
+    background: #0028a1;
 }
 .table_s .table tbody tr.prebooking td,.table_s .table tbody tr.prebooking:hover{background:#29adb3}
 
@@ -145,7 +145,7 @@ background: transparent;}
 #rttables tr td{color:#000;padding: 5px;}
 #rttables tr td input{border: 1px solid #eaeaea;}
 ._bnx{float: left;margin-left: 10px;color: #fff;font-size: 14px;}
-.crclgreen{width: 10px;height: 10px;border-radius: 10px;background: #29b360;float: left;
+.crclgreen{width: 10px;height: 10px;border-radius: 10px;background: #0028a1;float: left;
     margin-top: -5px;}
     .crcleblue{width: 10px;height: 10px;border-radius: 10px; float: left;
     margin-top: -5px;
@@ -2105,31 +2105,31 @@ var yyyy = today.getFullYear();
             $("#sizehowmany").val(job.boxeshowmany);
             $("#noofitems").val(job.noofitems=="0"?"":job.noofitems);
             $("#shopping") .prop('checked', (job.shopping=="1"));
-             if(window.firstselected==1){
+			if(window.firstselected==1){
                  $("#normal") .prop('checked', true); 
                  $("#_capabilityuj").html("Normal")
-               $("#motorbike,#autorikshaw").attr("disabled","true"); 
+              // $("#motorbike,#autorikshaw").attr("disabled","true"); 
                $(".xmapassengers li").remove();
          for(var  i = 0;i<=20;i++){
-             $(".xmapassengers").append("<li>"+i+"</li>");
+            $(".xmapassengers").append("<li onclick='_oppassenger(this)'>"+i+"</li>");
          }
             }
             else  if(window.firstselected==2){
                  $("#autorikshaw") .prop('checked', true); 
                   $("#_capabilityuj").html("Auto Rikshaw")
-               $("#motorbike,#normal").attr("disabled","true"); 
+             //  $("#motorbike,#normal").attr("disabled","true"); 
                $(".xmapassengers li").remove();
          for(var  i = 0;i<=6;i++){
-             $(".xmapassengers").append("<li>"+i+"</li>");
+             $(".xmapassengers").append("<li onclick='_oppassenger(this)'>"+i+"</li>");
          }
             }
               else  if(window.firstselected==3){
                  $("#motorbike") .prop('checked', true); 
                   $("#_capabilityuj").html("Motorbike")
-               $("#normal,#autorikshaw").attr("disabled","true"); 
+             //  $("#normal,#autorikshaw").attr("disabled","true"); 
                $(".xmapassengers li").remove();
          for(var  i = 0;i<=1;i++){
-             $(".xmapassengers").append("<li>"+i+"</li>");
+            $(".xmapassengers").append("<li onclick='_oppassenger(this)'>"+i+"</li>");
          }
             }
             /*  if(window.firstselected==1){

@@ -321,7 +321,7 @@ background: transparent;}
 #rttables tr td{color:#000;padding: 5px;}
 #rttables tr td input{border: 1px solid #eaeaea;}
 ._bnx{float: left;margin-left: 10px;color: #fff;font-size: 14px;}
-.crclgreen{width: 10px;height: 10px;border-radius: 10px;background: #29b360;float: left;
+.crclgreen{width: 10px;height: 10px;border-radius: 10px;background: #0028a1;float: left;
     margin-top: 5px;}
     .crcleblue{width: 10px;height: 10px;border-radius: 10px; float: left;
     margin-top: 5px;

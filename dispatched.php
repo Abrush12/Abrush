@@ -2483,7 +2483,9 @@ window.intervalref=null;
     }, 500);
  }
 window.getcutomerowedamount=function(mobile,job_id){
-    myajax( {"api":"getcutomerowedamount","mobile":mobile,"jobid":job_id},function( data, textStatus, jQxhr ){ 
+    
+ setInterval(function(){	
+	myajax( {"api":"getcutomerowedamount","mobile":mobile,"jobid":job_id},function( data, textStatus, jQxhr ){ 
            
               if(window.intervalref!=null){
                         clearInterval(window.intervalref);
@@ -2515,7 +2517,7 @@ window.getcutomerowedamount=function(mobile,job_id){
 				
 			
            });
-		  
+		  },5000);
 		//   setTimeout(function(){ getcutomerowedamount(mobile)},5000);
 }
  window._addvia=function( ){
