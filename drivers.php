@@ -1779,6 +1779,7 @@ myajax({"api":_apiax,"uid":uid},function( data, textStatus, jQxhr ){
 			obj["make"]=make;
 			obj["model"]=model;
 			obj["logbooktext"]=logbook;
+			obj["adminCountryCode"]="<?php echo $_SESSION['COUNTRYCODE']; ?>";
 			obj["logbookimage"]=$("#logbookimage").val();
 			obj["capability"]=wheelchair;
 			obj["outgoingnumber"]=outgoingnumber;
