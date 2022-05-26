@@ -871,7 +871,14 @@ function uploadProgressHandler(event) {
         $("#passengers option").remove();
 
         if($(this).val()=="motorbike"){
-          $("#ammtt").html("(Rs 1250)");
+			if("<?php echo $_SESSION['COUNTRYCODE']; ?>" == "IN")
+			{
+				 $("#ammtt").html("(Rs 600)");
+			}
+			else
+			{
+				 $("#ammtt").html("(Rs 1250)");
+			}
           $("._mqqw").html("Motorbike Pic Upload");
            <?php if(isset($_GET['ispending'])||isset($_GET['isview']))  {  } else { ?>
               $("#passengers").append("<option value='0'>Select Passengers</option>")
@@ -884,7 +891,15 @@ function uploadProgressHandler(event) {
           },400);
         }
         else if($(this).val()=="autorikshaw"){
-           $("#ammtt").html("(Rs 1875)");
+			if("<?php echo $_SESSION['COUNTRYCODE']; ?>" == "IN")
+			{
+				 $("#ammtt").html("(Rs 900)");
+			}
+			else
+			{
+				 $("#ammtt").html("(Rs 1875)");
+			}
+           
  $("._mqqw").html("Auto-Rikshaw Pic Upload");
    <?php if(isset($_GET['ispending'])||isset($_GET['isview']))  {  } else { ?>
               $("#passengers").append("<option value='0'>Select Passengers</option>")
@@ -900,7 +915,15 @@ function uploadProgressHandler(event) {
           },400);
         }
         else if($(this).val()=="normal"){
-           $("#ammtt").html("(Rs 2500)");
+			if("<?php echo $_SESSION['COUNTRYCODE']; ?>" == "IN")
+			{
+				 $("#ammtt").html("(Rs 1200)");
+			}
+			else
+			{
+				 $("#ammtt").html("(Rs 2500)");
+			}
+          
            $("._mqqw").html("Normal Pic Upload")
              <?php if(isset($_GET['ispending'])||isset($_GET['isview']))  {  } else { ?>
               $("#passengers").append("<option value='0'>Select Passengers</option>")
