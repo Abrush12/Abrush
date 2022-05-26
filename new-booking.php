@@ -3935,7 +3935,6 @@ window.dddr=function(){
           var newDate = new Date( _date[2], _date[1] - 1, _date[0],_time[0],_time[1],0);
           window.istimeboxopen=false;
             $(".timer-box1").hide();
-			alert(newDate.getTime());
             if(newDate.getTime()>=dfgv()){
               
            $("#timerx").val($("#bdemohour").val()+":"+$("#bdemominute").val()+" "+ampm);
