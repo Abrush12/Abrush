@@ -133,7 +133,7 @@ background: transparent;}
  
     background: #0028a1;
 }
-.table_s .table tbody tr.prebooking td,.table_s .table tbody tr.prebooking:hover{background:#f1a906}
+.table_s .table tbody tr.prebooking td,.table_s .table tbody tr.prebooking:hover{background:#b34b29}
 
 .table_s .table tbody tr.quotation td,.table_s .table tbody tr.prebooking:hover{background:#f1a906}
 .repeatbookingedit{    width: 8px;
@@ -149,7 +149,7 @@ background: transparent;}
     margin-top: -5px;}
     .crcleblue{width: 10px;height: 10px;border-radius: 10px; float: left;
     margin-top: -5px;
-      background: #29adb3;
+      background: #b34b29;
     }
     .crcleorange{width: 10px;height: 10px;border-radius: 10px; float: left;
     margin-top: -5px;
@@ -1986,10 +1986,12 @@ window.lojob=function(job){
 if(window._cjob.isbooking=="1"){
   $("#booking").prop("checked",true);
   $(".axdcvf,.amdriverbnv").removeClass("hdnn");
+  $("#fixedbx .fxtitle").html("Fixed");
 }
 else{
     $("#quotation").prop("checked",true);
 $(".axdcvf,.amdriverbnv").addClass("hdnn");
+$("#fixedbx .fxtitle").html("Quote");
 }
 
 $("#_startervia").find(".resulttry").html("").hide();
@@ -2337,7 +2339,7 @@ else{
 
 }
 window.issalooncheckparmanent=0;
-window.selectjob=function(ref,isview){
+window.selectjob=function(ref,isview,inActive){
      $("._cover").hide();
       $("#tbd tr").removeClass("trselected");
       window.ispickuplcvalid=window.isdropvalid=true;
@@ -2368,6 +2370,11 @@ window.selectjob=function(ref,isview){
 
 window._cjob=job; 
 window.lojob(job);
+if(inActive==1)
+{
+	 $(".xmapassengers").show().parent().find("._dropdown").addClass("active");
+	 window.amaddressref=true;
+}
 }
  window._addvia=function( ){
 
@@ -2519,7 +2526,7 @@ $("#tbd tr").remove();
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html='<tr class="activebooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html='<tr class="activebooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,0)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
          //html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
               // html+='<td>'+y.jobtype+'</td>';
 
@@ -2579,7 +2586,7 @@ $("#tbd tr").remove();
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html='<tr class="prebooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html='<tr class="prebooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,0)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
          //html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
                     //html+='<td>'+y.jobtype+'</td>';
 
@@ -2639,7 +2646,7 @@ $("#tbd tr").remove();
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html='<tr class="quotation" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html='<tr class="quotation" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,0)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
       //   html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
           //  html+='<td>'+y.jobtype+'</td>';
 
@@ -2654,7 +2661,7 @@ $("#tbd tr").remove();
    
 
           
-           html+='<td>Rs '+y.jobprice+'</td>';
+           html+='<td>Rs '+y.fixedprice+'</td>';
           html+='<td>'+(y.iscash=="1"?(y.cashtype=="0"?"Cash":"Money First"):"Pre-Paid")+'</td>';
              html+=' <td>'+y.callsign+'</td><td>'+(y.controllername==null?"":y.controllername)+'</td></tr>';
         $("#tbd").append(html);
@@ -2699,7 +2706,7 @@ $(data.data.historybooking).each(function(x,y){
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html='<tr  onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html='<tr onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,1)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
         // html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
           // html+='<td>'+y.jobtype+'</td>';
 
@@ -4240,7 +4247,7 @@ function checkKey(e) {
         }
      
     if(!window.amaddressref) return;
-    if (e.keyCode == '38') {
+    if (e.keyCode == '38') { 
          var classcounter=0;
         var hasclass=false;
         var xmpassengersx=$(".xmapassengers");
@@ -4397,7 +4404,7 @@ function checkKey(e) {
        }
 
     }
-    else if (e.keyCode == '40') {
+    else if (e.keyCode == '40') { 
         var classcounter=0;
         var hasclass=false;
          //alert($(".specialvehicle").is(":visible"));
@@ -4431,7 +4438,6 @@ function checkKey(e) {
       
             return;
         }
-
           if($(".specialvehicle").is(":visible")){ 
              var indx=-1;
               if($(".xmnormal").hasClass("active")){
@@ -4552,9 +4558,7 @@ function checkKey(e) {
                  $("#confirm").focus();
                 return;
             }
-
         if($(".xmapassengers").is(":visible")){
-
             e.preventDefault();
             $(".xmapassengers").hide().parent().find("._dropdown").removeClass("active");
              $(".xmmotorbike,.xmautorikshaw").show();
@@ -4564,13 +4568,15 @@ function checkKey(e) {
             else  if($(".xpassengersa").html()>1){
                 $(".xmmotorbike").hide();
             }
-            $(".specialvehicle").show().parent().find("._dropdown").addClass("active");;
-            
-            if($("#booking").is(":checked")){ }
+			
+            $(".specialvehicle").show().parent().find("._dropdown").addClass("active");
+			$("#normal").prop('checked', true);
+			$(".xmnormal").attr('selected',true);
+        /*    if($("#booking").is(":checked")){ }
             else{
                 $(".fixededitbox").show();
                  $("#fixedprice").focus();
-            }
+            }*/
           var pass=$(".xpassengersa").html();
              var rs=window.customerfixedprice.filter(function (entry) {
     return entry.passengers == pass && entry.lat==window.pickuplat && entry.lng==window.pickuplng;
@@ -4583,16 +4589,24 @@ function checkKey(e) {
             $("#fixedbx").attr("data-price","0").find("strong").html("");
              $("#fixedprice").val("");
            }
-            window.amaddressref=null;
+        //    window.amaddressref=null;
             return;
         }
         if($(".specialvehicle").is(":visible")){ 
             $(".specialvehicle").hide().parent().find("._dropdown").removeClass("active");
-            setTimeout(function(){ 
+			if($("#booking").is(":checked")){   
+			$("#confirm").focus();
+            $("._cover").hide(); 
+			}
+            else{
+                $(".fixededitbox").show();
+                 $("#fixedprice").focus();
+            }
+        /*  setTimeout(function(){ 
              $("#confirm").focus();
             $("._cover").hide();
-        },500);
-             window.amaddressref=null;
+       },5000);*/
+            window.amaddressref=null;
             return;
         }
         if(window.amaddressref==null) return;
@@ -4603,14 +4617,15 @@ function checkKey(e) {
             $(".lcdropdown").hide();
           
             if(window.amaddressref.find(".pickupdrpdn").length!=0&&window.ispickuplcvalid) {
-                if($("#quotation").is(":checked")){
+              /*  if($("#quotation").is(":checked")){
                     var vialln = ($(".vias > div").length);
                     window.viacountrpl=1;
                     $(".vias > div:nth-of-type("+window.viacountrpl+")").find("input").focus();
                 }
-                else{ $("#droplocation").focus().prev().hide();}
+                else{ $("#droplocation").focus().prev().hide();}*/
+				$("#droplocation").focus().prev().hide();
         }
-        else  if(window.amaddressref.find(".viaaz ").length!=0&&$("#quotation").is(":checked")){
+        else  if(window.amaddressref.find(".viaaz ").length!=0){
              var vialln = ($(".vias > div").length);
              window.viacountrpl++;
              if(window.viacountrpl>vialln){
@@ -5374,7 +5389,7 @@ $(".custom-menu li").click(function(){
     switch($(this).attr("data-action")) {
         
         // A case for each action. Your actions here
-        case "view": selectjob(window._jobref,1);  break; 
+        case "view": selectjob(window._jobref,1,0);  break; 
         case "bandriver": bandriver();  break; 
 
     }
@@ -5426,8 +5441,9 @@ $(".timer-box").hide();
   window.tofulltimedt=function(time){ 
     if(!time) return "";
 var hours = Number(time.match(/^(\d+)/)[1]);
+
 var minutes = Number(time.match(/:(\d+)/)[1]);
-var AMPM = time.match(/\s(.*)$/)[1];
+var AMPM = $.trim(time.match(/\s(.*)$/)[1]);
 if(AMPM == "PM" && hours<12) hours = hours+12;
 if(AMPM == "AM" && hours==12) hours = hours-12;
 var sHours = hours.toString();
@@ -5685,6 +5701,7 @@ $("#timerx,#timerx1").clockpicker({
        obj["droplat"]=window.droplat;
        obj["droplng"]=window.droplng;
        obj["currentdatetime"]=crtdatetime;
+	 
        obj["controllerid"]=localStorage.getItem("id");
        obj["ispermanent"]=$("#ispermanent").is(":checked")?"1":"0";
        obj["isblockbooking"]=$("#isblockbooking").is(":checked")?"1":"0";
@@ -6321,7 +6338,7 @@ $(".animalsbox").show();
                 $(".xmapassengers li").removeClass("active");
                 $(ref).parent().parent().find("._xmsg").html($(ref).html());
                 if($("#booking").is(":checked")){
-                 $(".specialvehicle").show().parent().find("._dropdown").addClass("active");;
+                 $(".specialvehicle").show().parent().find("._dropdown").addClass("active");
            
             }
             else{
