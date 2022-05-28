@@ -216,7 +216,7 @@ background: transparent;}
 .blink{
 	text-decoration: blink;
 	-webkit-animation-name: blinker;
-	-webkit-animation-duration: 0.6s;
+	-webkit-animation-duration: 1.6s;
 	-webkit-animation-iteration-count:infinite;
 	-webkit-animation-timing-function:ease-in-out;
 	-webkit-animation-direction: alternate;

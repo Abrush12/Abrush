@@ -4554,6 +4554,7 @@ function checkKey(e) {
                  $("#confirm").focus();
                 return;
             }
+		
         if($(".xmapassengers").is(":visible")){
             e.preventDefault();
             $(".xmapassengers").hide().parent().find("._dropdown").removeClass("active");
@@ -4591,20 +4592,22 @@ function checkKey(e) {
         if($(".specialvehicle").is(":visible")){ 
             $(".specialvehicle").hide().parent().find("._dropdown").removeClass("active");
 			if($("#booking").is(":checked")){   
-			$("#confirm").focus();
-            $("._cover").hide(); 
+			
 			}
             else{
                 $(".fixededitbox").show();
                  $("#fixedprice").focus();
             }
-        /*  setTimeout(function(){ 
+			if($("#booking").is(":checked")){  
+          setTimeout(function(){ 
              $("#confirm").focus();
             $("._cover").hide();
-       },5000);*/
+       },2000);
+			}
             window.amaddressref=null;
             return;
-        }
+        
+			}
         if(window.amaddressref==null) return;
 
 
@@ -5788,7 +5791,7 @@ $("#timerx,#timerx1").clockpicker({
            $("#loadingaxd").show();
            $(".btns_cnfrmcx").hide();
 
-                 myajax(obj,function( data, textStatus, jQxhr ){
+                 myajax(obj,function( data, textStatus, jQxhr )
                  if(data.status=="400"){
                      $("#loadingaxd").hide();
            $(".btns_cnfrmcx").show();
