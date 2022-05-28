@@ -2035,7 +2035,7 @@ window.ll=function(xnj){
     }
   }
          
-  if(xnj==0) {
+  if(xnj==0 && xall==0 && xnormal==0&& xautorikshaw==0 && xmotorbike==0) {
    //xcontrollername="0";
    regdate=xall=xnormal=xautorikshaw=xmotorbike="";
   } 
