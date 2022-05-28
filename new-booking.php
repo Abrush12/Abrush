@@ -2407,7 +2407,7 @@ if(inActive==1)
 window.searchbookingbymobile=function(val){
     val=$.trim(val);
     if(val.length==0){
-     
+     $("#tbd").html("");
         return;
     }
     val=val;
@@ -2447,10 +2447,6 @@ $("#tbd tr").remove();
                 if(data.data.owedamount!=0){
 					 $("#amountowed").html("<b>Rs "+data.data.owedamount+" owed</b>");
                     blnk($("#amountowed"));
-	/*var counter_Owed = "0 Min";
-	if(data.data.owedamount<=10){counter_Owed="5 Min"; }else if(data.data.owedamount<=30){counter_Owed="10 Min"; } else if(data.data.owedamount<=60){counter_Owed="15 Min";}  else if(data.data.owedamount<=100){counter_Owed="20 Min"; } else if(data.data.owedamount<=150){counter_Owed="25 Min"; } else if(data.data.owedamount<=210){counter_Owed="30 Min";  }else if(data.data.owedamount<=280){counter_Owed="35 Min"; } else if(data.data.owedamount<=360){counter_Owed="40 Min";}  else {counter_Owed="0 Min";  }
-					$("#Owedshow").html("<span style=\"color:white;\">Waiting time</span>&nbsp;<span style=\"color:orange;\">"+counter_Owed+"</span>"+
-				  "&nbsp;<span style=\"color:white;\">+</span>&nbsp;<span style=\"color:orange;\">Rs "+data.data.owedamount+" </span>");*/
                 }
                 else{ 
 				 $("#amountowed").html("Rs "+data.data.owedamount+" owed");
