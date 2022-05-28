@@ -75,6 +75,8 @@ $ovcountrycode= ip_info()["country_code"];
  <style>  ._xnopadding{padding: 0px !important;}
 body{   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important; } .xmcash li,.xaccount  li{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif, sans-serif !important;} .xmcash li,.xaccount li{font-weight: normal;} .xaccount  li:last-child{font-weight: bold;}
 #ntmessages a{border-bottom: 1px solid #eaeaea;}
+
+
 </style>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
@@ -256,6 +258,8 @@ window.logout=function(){
     }
 });
       }
+	  
+
  </script>
   <div class="modal" id="erromodalmsgf" tabindex="-1" role="dialog">
   <div class="modal-dialog" style="max-width:600px;margin-top:140px" role="document">
@@ -377,7 +381,7 @@ window.logout=function(){
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="fullname_name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['FULLNAME']; ?></button>
                     <div class="dropdown-menu" aria-labelledby="fullname_name"> 
                        <a class="dropdown-item" href="changepassword.php">Change Password</a>
-
+						 <a class="dropdown-item" href="changepassword.php">Sign-up</a>
                       <a class="dropdown-item" onclick="logout()"  >Logout</a>
 					 
                     </div>

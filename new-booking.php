@@ -4805,6 +4805,7 @@ setTimeout(function(){
 $(".axdcvf").addClass("hdnn");
 $("#fixedbx .fxtitle").html("Quote");
 $("#confirm").html("Save Quote");
+$("#confirm").css({"padding-left":"23px","padding-right":"23px"});
 $(".amdriverbnv").addClass("hdnn");
  
 $(".fixededitbox").show();
@@ -4816,6 +4817,7 @@ $("#pickuplocation").focus();
 $("#fixedbx .fxtitle").html("Fixed");
 $(".axdcvf").removeClass("hdnn");
 $("#confirm").html("Confirm");
+$("#confirm").css({"padding-left":"40px","padding-right":"40px"});
 $(".amdriverbnv").removeClass("hdnn");
 $("#fixedprice").attr("placeholder","Enter Fixed Price");
 $(".fixededitbox").hide();

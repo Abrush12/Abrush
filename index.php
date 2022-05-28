@@ -268,7 +268,7 @@ code span {
       if(data.status=="200"){
 		  if(($.trim($("#company").val()) != $.trim(data.data.countrycode)))
 			{
-				alert(data.data.username +" does not exist in selected country");
+				alert(firstCapitalAlways(data.data.username) +" does not exist in selected country");
 				if(data.data.login_status=="0")
 				logout(data.data.id);
 				return;
@@ -412,6 +412,12 @@ function removeCustomAlert() {
     document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
 }
 
+
+window.firstCapitalAlways= function (value) {
+    var val = value;
+    var firstLetterUpper = val[0] ? val[0].toUpperCase() : "";
+    return (firstLetterUpper + val.substr(1, val.length));
+}
 
     </script>
 
