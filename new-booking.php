@@ -1852,7 +1852,7 @@ if(true){
   <div class="_bnx"><div class="crclgreen"></div>&nbsp;&nbsp;Active</div>
    <div class="_bnx"><div class="crcleblue"></div>&nbsp;&nbsp;Pre-Booking</div>
    <div class="_bnx"><div class="crcleorange"></div>&nbsp;&nbsp;Quotation</div>
-    <div class="_bnx"><div class="crclegray"></div>&nbsp;&nbsp;History</div>
+    <div class="_bnx"><div class="crclegray"></div>&nbsp;&nbsp;Completed</div>
 </div>
 <div class="col-sm-6" style=" display: none; justify-content: flex-end;">
   <table class="_jobtable"><tr><td class="_tbcompletedjob">Completed : 0</td><td class="_tbcancelljob">Cancelled : 0</td><td class="_tbrunnerjobs">Runner : 0</td><td class="_tbappjobs">Call : 0 </td><td class="_tbcalljobs">App : 0</td></tr></table>

@@ -207,6 +207,20 @@ background: transparent;}
  <link rel="stylesheet" href="css/bootstrap-clockpicker.min.css">
 
        <style type="text/css">
+	   
+	   
+@-webkit-keyframes blinker {
+  from {opacity: 1.0;}
+  to {opacity: 0.0;}
+}
+.blink{
+	text-decoration: blink;
+	-webkit-animation-name: blinker;
+	-webkit-animation-duration: 0.6s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:ease-in-out;
+	-webkit-animation-direction: alternate;
+}
        @font-face {
        font-family: Butler;
        src: url('font/Butler_Bold.OTF');
@@ -1878,7 +1892,7 @@ if(true){
                  </label>
               </div>
                 <div class="row  axdcvf" style="height:42px">
-				<div id="Owedshow" class="col-md-12" style="padding-left: 10px;margin-top: 5px;">
+				<div id="Owedshow" class="col-md-12 blink" style="padding-left: 10px;margin-top: 5px;">
 				
 				</div>
                   <div class="col-md-12 creditcardbox" style="display: none;">
@@ -2459,56 +2473,35 @@ window.selectjob=function(ref,jbcounter){
 window._cjob=job; 
 
 window.lojob(job);
-getcutomerowedamount(job.mobile,jobid);
+if(window.intervalref2!=null)
+{
+  clearInterval(window.intervalref2);
 }
- 
-window.intervalref=null;
- window.blnk=function(elem){
-   window.intervalref =  setInterval(function() {
-        if (elem.css('visibility') == 'hidden') {
-            elem.css('visibility', 'visible');
-        } else {
-            elem.css('visibility', 'hidden');
-        }    
-    }, 500);
- }
- window.intervalref2=null;
-  window.blink=function(elem){
-   window.intervalref2 =  setInterval(function() {
-        if (elem.css('visibility') == 'hidden') {
-            elem.css('visibility', 'visible');
-        } else {
-            elem.css('visibility', 'hidden');
-        }    
-    }, 500);
- }
-window.getcutomerowedamount=function(mobile,job_id){
-    
- setInterval(function(){	
+getcutomerowedamount(job.mobile,window.jobid);
+}
+
+window.intervalref2=null;
+
+window.getcutomerowedamount= function(mobile,job_id){
+
+	 window.intervalref2 =  setInterval(function() {
 	myajax( {"api":"getcutomerowedamount","mobile":mobile,"jobid":job_id},function( data, textStatus, jQxhr ){ 
-           
-              if(window.intervalref!=null){
-                        clearInterval(window.intervalref);
-                    }
-					if(window.intervalref2!=null){
-                        clearInterval(window.intervalref2);
-                    }
+            
                 if(data.data!=0){
 					 
 					 $("#amountowed").html("<b>Rs "+data.data+" owed</b>");
-                     blnk($("#amountowed"));
+                     $("#amountowed").addClass("blink)");
                 }
                 else { 
 				 $("#amountowed").html("Rs "+data.data+" owed");
                         $("#amountowed").css('visibility', 'visible');
-					
+					 $("#amountowed").removeClass("blink)");
                      
                 }
 				 if(data.owed!=0){
 				   $("#Owedshow").html("<span style=\"color:white;\">Waiting time</span>&nbsp;<span style=\"color:orange;\"> "+data.counttimer+"</span>"+
 				  "&nbsp;<span style=\"color:white;\">+</span>&nbsp;<span style=\"color:orange;\">Rs "+data.owed+" </span>");
-				  blink($("#Owedshow"));
-                }
+				 }
                 else { 
 				
 						 $("#Owedshow").html("&nbsp;");
@@ -2517,9 +2510,10 @@ window.getcutomerowedamount=function(mobile,job_id){
 				
 			
            });
-		  },5000);
+	 },1000);
 		//   setTimeout(function(){ getcutomerowedamount(mobile)},5000);
 }
+
  window._addvia=function( ){
 
      window._crrvia++;
