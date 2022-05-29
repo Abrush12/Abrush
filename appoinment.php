@@ -1815,6 +1815,10 @@ if(y.normal=="1")
           }
         })
         $("input[name='xvehicletype']").change(function(){
+			if(window.intervalref2!=null)
+			{
+			  clearInterval(window.intervalref2);
+			}
           ll(1);
         });
          $("input[name='xvehicletypedm']").change(function(){
@@ -1825,7 +1829,10 @@ if(y.normal=="1")
           nj()
         });
             $("input[name='earningamountall'],#mkkearnings,#mkkvehicletype").change(function(){
-
+			if(window.intervalref2!=null)
+			{
+			  clearInterval(window.intervalref2);
+			}
           ll(1);
         });
            $("input[name='jobbyprice'],#jobvehicletype,#highestjobprice").change(function(){
@@ -1845,14 +1852,26 @@ if(y.normal=="1")
 
               $("#xcontrollername").append("<option    value='"+y.id+"'>"+y.fullname+"</option>")
             });
+			if(window.intervalref2!=null)
+			{
+			  clearInterval(window.intervalref2);
+			}
              ll(0);
               $("#xcontrollername").change(function(){
           window.xcontrollernamea=$(this).val();
+		  	if(window.intervalref2!=null)
+			{
+			  clearInterval(window.intervalref2);
+			}
           ll(1);
         });
           });
         $("#search").click(function(){
           $("#loadinggif").show();
+		  	if(window.intervalref2!=null)
+			{
+			  clearInterval(window.intervalref2);
+			}
           ll(1);
         });
          $("#searchdm").click(function(){
@@ -1869,6 +1888,10 @@ if(y.normal=="1")
        window.isdatechange=true;
       setTimeout(function(){
          loadnoshow();
+		 	if(window.intervalref2!=null)
+			{
+			  clearInterval(window.intervalref2);
+			}
         ll(1);
 
       },500)
@@ -1948,12 +1971,20 @@ if(y.normal=="1")
     if($(this).html()=="All"){
        $(".hlbx").hide();
       $(".rthg").html("Earnings");
+	  		if(window.intervalref2!=null)
+			{
+			  clearInterval(window.intervalref2);
+			}
       ll(1);
     }
     else if($(this).html()=="Credit"||$(this).html()=="Registration")
     {
       $(".hlbx").show();
       $(".rthg").html("Earnings");
+	  		if(window.intervalref2!=null)
+			{
+			  clearInterval(window.intervalref2);
+			}
       ll(1);
     }
     else if($(this).html()=="Appointments"){
@@ -2001,8 +2032,9 @@ if(y.normal=="1")
 
 window.timerref=null;
 window.alldriverlist=[];
+window.intervalref2=null;
 window.ll=function(xnj){ 
- setInterval(function(){
+ window.intervalref2 = setInterval(function(){
   var regdate=$.trim($("#registrationdate").val());
   var ddate=regdate;
   var xall= "0";//$("#xall").is(":checked")?"1":"0";

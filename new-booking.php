@@ -1155,8 +1155,9 @@ Do you want to remove saloon car as one time or permanently.<br>
                         <img src="img/maps.png" class="mapsx pickupmap" />
                     </div>
                     </div>
-                        <div class="resulttry" onclick="showinpfld(this)"></div>
+                        
                        <div class="plholder pickuplocation"><span>Pickup Location</span></div> 
+					   <div class="resulttry" onclick="showinpfld(this)"></div>
                       <input type="text"   onblur="reinitdbc(this,event)" style="margin-top:2px"  onkeyup="firstCapitalAlways(event);"  autocomplete="off" id="pickuplocation"  placeholder="Pickup Location"> 
                       <div class="lcdropdown pickupdrpdn"><div class="boldx allloading" style="display: none;">Loading...</div></div>
                       </div>
@@ -2312,10 +2313,10 @@ else{
        
 
 }
-   if(driveridx==""){
+   if(driveridx!=""){
   setTimeout(function(){
     window.getDriversByCallSign(driveridx,ismultiplevehicles,job.passengers);
-   },400);
+   },100);
  }
  else{
     $(".sectdriver").remove();
@@ -3462,6 +3463,22 @@ window.minhourbkdate=function(ref,idx){
 
       }
       
+	  window.datediff=function(idx){
+           var _date=$.trim($("#"+idx).val().split(",")[1]).split("-");              
+           var newDate = new Date( _date[2], _date[1] - 1, _date[0]);
+		   
+		    var today = new Date();
+            var _dateToday = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
+
+            if(newDate.getTime()>=dfgv()){
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		  	  
+	  }
       window.inchourbkdate=function(ref,idx){
          
         var dt=$.trim($(ref).parent().find(".default-value-holder").val());
@@ -3478,9 +3495,7 @@ window.minhourbkdate=function(ref,idx){
                 $((idx=="datepicker"?"#demoam":"#demoam2")).removeClass("timeselected");
                 $((idx=="datepicker"?"#demopm":"#demopm2")).addClass("timeselected")
             }
-             
-              $(ref).parent().parent().find(".demohour").val("12")
-              
+            
           }
            if(dt<10){
             dt="0"+dt
@@ -3572,7 +3587,7 @@ window.minhourbkdate=function(ref,idx){
            
            _time=window.tofulltimedt(_time).split(":");
            var _date=$.trim($("#"+idx).val().split(",")[1]).split("-");
-           
+          
 
           var newDate = new Date( _date[2], _date[1] - 1, _date[0],_time[0],_time[1],0);
             
@@ -3625,20 +3640,47 @@ window.minhourbkdate=function(ref,idx){
            
 
           } 
-             
-             if(hr==12 && dt==1) {  hr=12; $(ref).parent().parent().find(".demominute").val("01");  dt=1;
-              if(ampm=="AM"){
-                $((idx=="datepicker"?"#demoam":"#demoam2")).removeClass("timeselected");
-                $((idx=="datepicker"?"#demopm":"#demopm2")).addClass("timeselected")
-            }
-              }
-              else if(hr>12 && dt==1) {  hr=1; $(ref).parent().parent().find(".demominute").val("01");  dt=1;
-              if(ampm=="AM"){
-                $((idx=="datepicker"?"#demoam":"#demoam2")).removeClass("timeselected");
-                $((idx=="datepicker"?"#demopm":"#demopm2")).addClass("timeselected")
-            }
-              }
-              $(ref).parent().parent().find(".demohour").val(hr)
+             if(datediff(idx))
+			 {
+							   if(hr==12 && dt==1) {  hr=12; $(ref).parent().parent().find(".demominute").val("01");  dt=1;
+					  if(ampm=="AM"){
+						$((idx=="datepicker"?"#demoam":"#demoam2")).removeClass("timeselected");
+						$((idx=="datepicker"?"#demopm":"#demopm2")).addClass("timeselected")
+					}
+					  }
+					  else if(hr>12 && dt==1) {  hr=1; $(ref).parent().parent().find(".demominute").val("01");  dt=1;
+					  if(ampm=="AM"){
+						$((idx=="datepicker"?"#demoam":"#demoam2")).removeClass("timeselected");
+						$((idx=="datepicker"?"#demopm":"#demopm2")).addClass("timeselected")
+					}
+					  }
+			 }
+			 else
+			 {
+				 
+				 if(hr==12 && dt==1) {  
+					 hr=11; 
+				//	 $(ref).parent().parent().find(".demominute").val(""); 
+					 dt=59;
+					  if(ampm=="AM"){
+						$((idx=="datepicker"?"#demoam":"#demoam2")).removeClass("timeselected");
+						$((idx=="datepicker"?"#demopm":"#demopm2")).addClass("timeselected")
+					}
+					  }
+					  else if(hr>12 && dt==1) {  hr=1; 
+					  $(ref).parent().parent().find(".demominute").val("00");  
+					  dt=0;
+					  if(ampm=="AM"){
+						$((idx=="datepicker"?"#demoam":"#demoam2")).removeClass("timeselected");
+						$((idx=="datepicker"?"#demopm":"#demopm2")).addClass("timeselected")
+					}
+					  }
+				 
+				 
+				 
+				 
+			 }
+             $(ref).parent().parent().find(".demohour").val(hr)
           if(dt<10){
             dt="0"+dt
           }
@@ -4403,7 +4445,7 @@ function checkKey(e) {
     else if (e.keyCode == '40') { 
         var classcounter=0;
         var hasclass=false;
-         //alert($(".specialvehicle").is(":visible"));
+         
         var xmpassengersx=$(".xmapassengers");
         if(xmpassengersx.is(":visible")){
             var _lcchildlengthax= xmpassengersx.find("li").length;
@@ -5791,7 +5833,7 @@ $("#timerx,#timerx1").clockpicker({
            $("#loadingaxd").show();
            $(".btns_cnfrmcx").hide();
 
-                 myajax(obj,function( data, textStatus, jQxhr )
+                 myajax(obj,function( data, textStatus, jQxhr ){
                  if(data.status=="400"){
                      $("#loadingaxd").hide();
            $(".btns_cnfrmcx").show();

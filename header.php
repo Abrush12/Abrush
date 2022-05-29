@@ -381,7 +381,7 @@ window.logout=function(){
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="fullname_name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['FULLNAME']; ?></button>
                     <div class="dropdown-menu" aria-labelledby="fullname_name"> 
                        <a class="dropdown-item" href="changepassword.php">Change Password</a>
-						 <a class="dropdown-item" href="changepassword.php">Sign-up</a>
+						 <a class="dropdown-item" href="signup.php">Sign-up</a>
                       <a class="dropdown-item" onclick="logout()"  >Logout</a>
 					 
                     </div>
