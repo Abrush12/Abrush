@@ -3509,6 +3509,14 @@ window.minhourbkdate=function(ref,idx){
         var today = new Date();
         return new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), 0).getTime();
       }
+	   window.dfgv12pm=function(){
+        var today = new Date();
+		var time12 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 11, 59, 0).getTime();
+		if( time12 < dfgv())
+        return true;
+		else
+		return false;
+      }
       window.inchourrtdate=function(ref){
         var dt=$.trim($(ref).parent().find(".default-value-holder").html());
           dt++;
@@ -5130,7 +5138,7 @@ var postal_code=""
    
     if($(this).find(".timer-box").hasClass("timer-box1")){
          $(this).find(".timer-box").show();
-        $("#bdemohour").focus().addClass("llfocus");
+		$("#bdemohour").focus().addClass("llfocus");
     }
     else if($(this).find(".timer-box").hasClass("timer-box2")){
         if($.trim($("#datepicker1").val())==""){
@@ -5163,11 +5171,20 @@ var postal_code=""
         var tt=t[0].split(":");
         $(this).find(".demohour").val(tt[0]);
         $(this).find(".demominute").html(tt[1]);
+		 
+
+				
       }
      }
       
-         
-      
+         var idx = "datepicker";
+      if(!datediff(idx) && dfgv12pm())
+		{
+				 $(this).find(".demoam").hide();
+				
+		}
+		else
+		$(this).find(".demoam").show();
      window.istimeboxopen=true;
 
 });
@@ -6846,7 +6863,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
          var iscapability="1";
           if(!isDisabled&&lowvehicle=="0"&&highvehicle=="0"&&(wheelchair=="0"||pets=="0"||pram=="0")){
             iscapability="0";
-             }
+             }alert(normal+"..........."+autorikshaw+"..........."+motorbike);
       var animaltype=($("#guarddog").is(":checked")?"1":($("#animaldog").is(":checked")?"2":"3"));
       var obj={"normal":normal,"autorikshaw":autorikshaw,"motorbike":motorbike,"animaltype":animaltype,"lat":window.pickuplat,"lng":window.pickuplng,"mobile":mobile,"highvehicle":highvehicle,"lowvehicle":lowvehicle,"pram":pram,"pets":pets,"wheelchair":wheelchair,"iscapability":iscapability,"pdate":pickdate,"currentdate":getcurrentDateTime(),"api":"getdrivers","status":"4","passengers":_passengers,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"};
        obj["bicycle"]=bicycle;
