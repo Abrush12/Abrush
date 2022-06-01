@@ -1063,7 +1063,7 @@ Do you want to remove saloon car as one time or permanently.<br>
                             </div>
                              <div class="mtr-input-radio"> 
 <div style="margin-top: 32px;
-    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value">AM</span> <span class="radio demoam" id="demoam"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm"  ></span> </label></div></div>
+    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value divam" >AM</span> <span class="radio demoam" id="demoam"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm"  ></span> </label></div></div>
                             </div>
                           </div>
                           <div class="btns_cnfrm " style="margin-top:110px;justify-content: center;position: fixed;margin-left: 10px;">
@@ -1506,7 +1506,7 @@ if(true){
                             </div>
                              <div class="mtr-input-radio"> 
 <div style="margin-top: 32px;
-    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value">AM</span> <span class="radio demoam" id="demoam2"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm2"  ></span> </label></div></div>
+    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value divAM">AM</span> <span class="radio demoam" id="demoam2"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm2"  ></span> </label></div></div>
                             </div>
                           </div>
                           <div class="btns_cnfrm " style="margin-top:0px;justify-content: center;width: 100%;">
@@ -5181,10 +5181,12 @@ var postal_code=""
       if(!datediff(idx) && dfgv12pm())
 		{
 				 $(this).find(".demoam").hide();
-				
+				  $(this).find(".divam").hide();
 		}
-		else
-		$(this).find(".demoam").show();
+		else{
+			$(this).find(".demoam").show();
+			$(this).find(".divam").show();
+		}
      window.istimeboxopen=true;
 
 });
@@ -6863,7 +6865,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
          var iscapability="1";
           if(!isDisabled&&lowvehicle=="0"&&highvehicle=="0"&&(wheelchair=="0"||pets=="0"||pram=="0")){
             iscapability="0";
-             }alert(normal+"..........."+autorikshaw+"..........."+motorbike);
+             }
       var animaltype=($("#guarddog").is(":checked")?"1":($("#animaldog").is(":checked")?"2":"3"));
       var obj={"normal":normal,"autorikshaw":autorikshaw,"motorbike":motorbike,"animaltype":animaltype,"lat":window.pickuplat,"lng":window.pickuplng,"mobile":mobile,"highvehicle":highvehicle,"lowvehicle":lowvehicle,"pram":pram,"pets":pets,"wheelchair":wheelchair,"iscapability":iscapability,"pdate":pickdate,"currentdate":getcurrentDateTime(),"api":"getdrivers","status":"4","passengers":_passengers,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"};
        obj["bicycle"]=bicycle;
