@@ -3111,7 +3111,7 @@ window.minhourbkdate=function(ref,idx){
                 $((idx=="datepicker"?"#demopm":"#demopm2")).addClass("timeselected")
             }
              
-              $(ref).parent().parent().find(".demohour").val("12")
+       //       $(ref).parent().parent().find(".demohour").val("12")
               
           }
            if(dt<10){
@@ -3231,15 +3231,63 @@ window.minhourbkdate=function(ref,idx){
            window.settmx($(ref).parent().parent().parent().parent());
           }
       }
-        window.incminbkdate=function(ref,idx){
+window.incminbkdate=function(ref,idx){
         var dt=$.trim($(ref).parent().find(".default-value-holder").val());
+        var hr=$.trim($(ref).parent().parent().find(".demohour").val());
+         var ampm=$((idx=="datepicker"?"#demoam":"#demoam2")).hasClass("timeselected")?"AM":"PM";
           dt++;
           if(dt>59){
             dt=1;
-          }
+            hr++;
+           
+           
+
+          } 
+             if(datediff(idx))
+			 {
+							   if(hr==12 && dt==1) {  hr=12; $(ref).parent().parent().find(".demominute").val("01");  dt=1;
+					  if(ampm=="AM"){
+						$((idx=="datepicker"?"#demoam":"#demoam2")).removeClass("timeselected");
+						$((idx=="datepicker"?"#demopm":"#demopm2")).addClass("timeselected")
+					}
+					  }
+					  else if(hr>12 && dt==1) {  hr=1; $(ref).parent().parent().find(".demominute").val("01");  dt=1;
+					  if(ampm=="AM"){
+						$((idx=="datepicker"?"#demoam":"#demoam2")).removeClass("timeselected");
+						$((idx=="datepicker"?"#demopm":"#demopm2")).addClass("timeselected")
+					}
+					  }
+			 }
+			 else
+			 {
+				 
+				 if(hr==12 && dt==1) {  
+					 hr=11; 
+				//	 $(ref).parent().parent().find(".demominute").val(""); 
+					 dt=59;
+					  if(ampm=="AM"){
+						$((idx=="datepicker"?"#demoam":"#demoam2")).removeClass("timeselected");
+						$((idx=="datepicker"?"#demopm":"#demopm2")).addClass("timeselected")
+					}
+					  }
+					  else if(hr>12 && dt==1) {  hr=1; 
+					  $(ref).parent().parent().find(".demominute").val("00");  
+					  dt=0;
+					  if(ampm=="AM"){
+						$((idx=="datepicker"?"#demoam":"#demoam2")).removeClass("timeselected");
+						$((idx=="datepicker"?"#demopm":"#demopm2")).addClass("timeselected")
+					}
+					  }
+				 
+				 
+				 
+				 
+			 }
+             $(ref).parent().parent().find(".demohour").val(hr)
           if(dt<10){
             dt="0"+dt
           }
+
            kkr(ref,dt,idx);
 
       }
@@ -3322,7 +3370,7 @@ window.minhourbkdate=function(ref,idx){
         var mn=$(ref).find(".demominute").html();
          var ampm=$(ref).find(".demoam").hasClass("timeselected")?"AM":"PM";
         //$(ref).find("input[type=text]").val(hr+":"+mn+" "+ampm);
-        return hr+":"+mn+" "+ampm;
+        return hr+":"+mn+" "+$.trim(ampm);
       }
       window.demoam=function(ref){
         $(ref).parent().parent().parent().find(".demopm").removeClass("timeselected");
@@ -3437,7 +3485,7 @@ window.dddr=function(){
             $(".timer-box1").hide();
             if(newDate.getTime()>=dfgv()){
               
-           $("#timerx").val($("#bdemohour").val()+":"+$("#bdemominute").val()+" "+ampm);
+           $("#timerx").val($("#bdemohour").val()+":"+$("#bdemominute").val()+" "+$.trim(ampm));
          
           }
           else{
@@ -3466,7 +3514,7 @@ window.dddr=function(){
          
             if(newDate.getTime()>=dfgv()){
               
-           $("#timerx1").val($("#bdemohour2").val()+":"+$("#bdemominute2").val()+" "+ampm);
+           $("#timerx1").val($("#bdemohour2").val()+":"+$("#bdemominute2").val()+" "+$.trim(ampm));
          
           }
           else{
@@ -4527,17 +4575,50 @@ window._isdrpshown=true;
           $(this).find(".demopm") .addClass("timeselected");
         }
         var tt=t[0].split(":");
-        $(this).find(".demohour").html(tt[0]);
-        $(this).find(".demominute").html(tt[1]);
+        $(this).find(".demohour").val(tt[0]);
+        $(this).find(".demominute").val(tt[1]);
       }
      }
+	      var idx = "datepicker";
+      if(!datediff(idx) && dfgv12pm())
+		{
+				 $(this).find(".demoam").hide();
+				  $(this).find(".divam").hide();
+		}
+		else{
+			$(this).find(".demoam").show();
+			$(this).find(".divam").show();
+		}
      window.istimeboxopen=true;
 
 });
        $(".time").click(function(e){
     e.stopPropagation();
 });
+	    window.datediff=function(idx){
+           var _date=$.trim($("#"+idx).val().split(",")[1]).split("-");              
+           var newDate = new Date( _date[2], _date[1] - 1, _date[0]);
+		   
+		    var today = new Date();
+            var _dateToday = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
 
+            if(newDate.getTime()>=dfgv()){
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		  	  
+	  }
+	  window.dfgv12pm=function(){
+        var today = new Date();
+		var time12 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 11, 59, 0).getTime();
+		if( time12 < dfgv())
+        return true;
+		else
+		return false;
+      }  
 $(document).click(function(){
     $(".timer-box").hide();
     window.istimeboxopen=false;
@@ -4817,7 +4898,7 @@ $(".timer-box").hide();
     if(!time) return "";
 var hours = Number(time.match(/^(\d+)/)[1]);
 var minutes = Number(time.match(/:(\d+)/)[1]);
-var AMPM = time.match(/\s(.*)$/)[1];
+var AMPM = $.trim(time.match(/\s(.*)$/)[1]);
 if(AMPM == "PM" && hours<12) hours = hours+12;
 if(AMPM == "AM" && hours==12) hours = hours-12;
 var sHours = hours.toString();

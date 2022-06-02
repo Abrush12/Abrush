@@ -3848,7 +3848,7 @@ window.minhourbkdate=function(ref,idx){
         var mn=$(ref).find(".demominute").html();
          var ampm=$(ref).find(".demoam").hasClass("timeselected")?"AM":"PM";
         //$(ref).find("input[type=text]").val(hr+":"+mn+" "+ampm);
-        return hr+":"+mn+" "+ampm;
+        return hr+":"+mn+" "+$.trim(ampm);
       }
       window.demoam=function(ref){
         $(ref).parent().parent().parent().find(".demopm").removeClass("timeselected");
@@ -3990,7 +3990,7 @@ window.dddr=function(){
             $(".timer-box1").hide();
             if(newDate.getTime()>=dfgv()){
               
-           $("#timerx").val($("#bdemohour").val()+":"+$("#bdemominute").val()+" "+ampm);
+           $("#timerx").val($("#bdemohour").val()+":"+$("#bdemominute").val()+" "+$.trim(ampm));
          
           }
           else{
@@ -4001,7 +4001,7 @@ window.dddr=function(){
       }
       else  if($(".timer-box2").is(":visible")){
     var ampm=$("#demoam2").hasClass("timeselected")?" AM":" PM";
-               var _time = $("#bdemohour2").val()+":"+$("#bdemominute2").val()+ampm;
+               var _time = $("#bdemohour2").val()+":"+$("#bdemominute2").val()+" "+$.trim(ampm);
  
             $("#bdemominute2").removeClass("llfocus");
               _time=window.tofulltimedt(_time).split(":");
@@ -4019,7 +4019,7 @@ window.dddr=function(){
          
             if(newDate.getTime()>=dfgv()){
               
-           $("#timerx1").val($("#bdemohour2").val()+":"+$("#bdemominute2").val()+" "+ampm);
+           $("#timerx1").val($("#bdemohour2").val()+":"+$("#bdemominute2").val()+" "+$.trim(ampm));
          
           }
           else{
@@ -5170,7 +5170,7 @@ var postal_code=""
         }
         var tt=t[0].split(":");
         $(this).find(".demohour").val(tt[0]);
-        $(this).find(".demominute").html(tt[1]);
+        $(this).find(".demominute").val(tt[1]);
 		 
 
 				
