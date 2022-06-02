@@ -1097,7 +1097,7 @@ Do you want to remove saloon car as one off or permanently.
                             </div>
                              <div class="mtr-input-radio"> 
 <div style="margin-top: 32px;
-    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value">AM</span> <span class="radio demoam" id="demoam"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm"  ></span> </label></div></div>
+    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value divam">AM</span> <span class="radio demoam" id="demoam"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm"  ></span> </label></div></div>
                             </div>
                           </div>
                           <div class="btns_cnfrm " style="margin-top:0px;justify-content: center;">
@@ -1338,7 +1338,7 @@ Do you want to remove saloon car as one off or permanently.
                     <span  class=" xpassengers ddrrr"><i id="passengers" class="_xmsg xpassengersa" style="font-style:normal;">0</i>  <i class="fa fa-sort-desc down_arrow"  ></i>
 </span>
                   </span>
-                  <ul class="xdropdown">
+                  <ul class="xdropdown xmapassengers">
                     <li>0</li>
                     <li>1</li>
                     <li>2</li>
@@ -1546,7 +1546,7 @@ if(true){
                             </div>
                              <div class="mtr-input-radio"> 
 <div style="margin-top: 32px;
-    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value">AM</span> <span class="radio demoam" id="demoam2"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm2"  ></span> </label></div></div>
+    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value divam">AM</span> <span class="radio demoam" id="demoam2"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm2"  ></span> </label></div></div>
                             </div>
                           </div>
                           <div class="btns_cnfrm " style="margin-top:0px;justify-content: center;width: 100%;">
@@ -2126,7 +2126,7 @@ var yyyy = today.getFullYear();
                $("#motorbike,#autorikshaw").attr("disabled","true"); 
                $(".xmapassengers li").remove();
          for(var  i = 0;i<=20;i++){
-             $(".xmapassengers").append("<li>"+i+"</li>");
+             $(".xmapassengers").append("<li class='"+(job.passengers==i?"sctedd":"")+"' onclick='_oppassenger(this)'>"+i+"</li>");
          }
             }
             else  if(window.firstselected==2){
@@ -2135,7 +2135,7 @@ var yyyy = today.getFullYear();
                $("#motorbike,#normal").attr("disabled","true"); 
                $(".xmapassengers li").remove();
          for(var  i = 0;i<=6;i++){
-             $(".xmapassengers").append("<li>"+i+"</li>");
+             $(".xmapassengers").append("<li  class='"+(job.passengers==i?"sctedd":"")+"'  onclick='_oppassenger(this)'>"+i+"</li>");
          }
             }
               else  if(window.firstselected==3){
@@ -2144,7 +2144,7 @@ var yyyy = today.getFullYear();
                $("#normal,#autorikshaw").attr("disabled","true"); 
                $(".xmapassengers li").remove();
          for(var  i = 0;i<=1;i++){
-             $(".xmapassengers").append("<li>"+i+"</li>");
+             $(".xmapassengers").append("<li  class='"+(job.passengers==i?"sctedd":"")+"' onclick='_oppassenger(this)'>"+i+"</li>");
          }
             }
             /*
@@ -3243,7 +3243,7 @@ window.incminbkdate=function(ref,idx){
            
 
           } 
-             if(datediff(idx))
+             if(dateNext(idx))
 			 {
 							   if(hr==12 && dt==1) {  hr=12; $(ref).parent().parent().find(".demominute").val("01");  dt=1;
 					  if(ampm=="AM"){
@@ -4580,7 +4580,7 @@ window._isdrpshown=true;
       }
      }
 	      var idx = "datepicker";
-      if(!datediff(idx) && dfgv12pm())
+      if(!dateNext(idx) && dfgv12pm())
 		{
 				 $(this).find(".demoam").hide();
 				  $(this).find(".divam").hide();
@@ -4589,20 +4589,47 @@ window._isdrpshown=true;
 			$(this).find(".demoam").show();
 			$(this).find(".divam").show();
 		}
+		
+		if(datePrev(idx))
+		{ 
+			$(this).find(".demoam").show();
+			$(this).find(".divam").show();
+			  $(this).find(".demoam") .removeClass("timeselected");
+			  $(this).find(".demopm") .removeClass("timeselected");
+			  window.istimeboxopen=true;
+			  return;
+		}
      window.istimeboxopen=true;
 
 });
        $(".time").click(function(e){
     e.stopPropagation();
 });
-	    window.datediff=function(idx){
+
+window.datePrev=function(idx){
            var _date=$.trim($("#"+idx).val().split(",")[1]).split("-");              
            var newDate = new Date( _date[2], _date[1] - 1, _date[0]);
 		   
 		    var today = new Date();
             var _dateToday = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
 
-            if(newDate.getTime()>=dfgv()){
+            if(newDate.getTime()<_dateToday){
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		  	  
+	  }
+	    window.dateNext=function(idx){
+           var _date=$.trim($("#"+idx).val().split(",")[1]).split("-");              
+           var newDate = new Date( _date[2], _date[1] - 1, _date[0]);
+		   
+		    var today = new Date();
+            var _dateToday = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
+
+            if(newDate.getTime()>_dateToday){
 				return true;
 			}
 			else
@@ -5174,8 +5201,12 @@ $("#confirm").hide();
          }
                var obj=new Object();
                
-               obj["api"]="editbooking"; 
-                obj["cashtype"]=window.cashtype;
+            obj["api"]="editbooking"; 
+           obj["bookingid"]=window.jobid; 
+           obj["normal"] = $("#normal").is(":checked")?"1":"0";
+          obj["autorikshaw"]=$("#autorikshaw").is(":checked")?"1":"0";
+          obj["motorbike"]=$("#motorbike").is(":checked")?"1":"0";    
+		  obj["cashtype"]=window.cashtype;
           $("#xerrormsgs").hide();
           obj["iscard"]=window.__iscard;
           obj["issalooncheckparmanent"]=window.issalooncheckparmanent;
@@ -5321,7 +5352,7 @@ $("#confirm").hide();
                  else{
                       $("#loadingaxd").hide();
                          $("#errormodal").modal({"show":true});
-                      $("#amerrorbx").html(data.message=="success"?"Successfully Updated":data.message) 
+                      $("#amerrorbx").html(data.message=="success"?"Successfully Updated":data.message) ;
 
 
                      if(window.isedit){

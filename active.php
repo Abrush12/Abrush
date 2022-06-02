@@ -1135,7 +1135,7 @@ Do you want to remove saloon car as one time or permanently.<br>
                             </div>
                              <div class="mtr-input-radio"> 
 <div style="margin-top: 32px;
-    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value">AM</span> <span class="radio demoam" id="demoam"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm"  ></span> </label></div></div>
+    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value divam">AM</span> <span class="radio demoam" id="demoam"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm"  ></span> </label></div></div>
                             </div>
                           </div>
                           <div class="btns_cnfrm " style="margin-top:0px;justify-content: center;">
@@ -1580,7 +1580,7 @@ if(true){
                             </div>
                              <div class="mtr-input-radio"> 
 <div style="margin-top: 32px;
-    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value">AM</span> <span class="radio demoam" id="demoam2"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm2"  ></span> </label></div></div>
+    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value divam">AM</span> <span class="radio demoam" id="demoam2"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm2"  ></span> </label></div></div>
                             </div>
                           </div>
                           <div class="btns_cnfrm " style="margin-top:0px;justify-content: center;width: 100%;">
@@ -3267,7 +3267,7 @@ window.minhourbkdate=function(ref,idx){
            
 
           } 
-             if(datediff(idx))
+             if(dateNext(idx))
 			 {
 							   if(hr==12 && dt==1) {  hr=12; $(ref).parent().parent().find(".demominute").val("01");  dt=1;
 					  if(ampm=="AM"){
@@ -4851,7 +4851,7 @@ window._isdrpshown=true;
      }
 	 
 	      var idx = "datepicker";
-      if(!datediff(idx) && dfgv12pm())
+      if(!dateNext(idx) && dfgv12pm())
 		{
 				 $(this).find(".demoam").hide();
 				  $(this).find(".divam").hide();
@@ -4860,20 +4860,46 @@ window._isdrpshown=true;
 			$(this).find(".demoam").show();
 			$(this).find(".divam").show();
 		}
+		if(datePrev(idx))
+		{ 
+			$(this).find(".demoam").show();
+			$(this).find(".divam").show();
+			  $(this).find(".demoam") .removeClass("timeselected");
+			  $(this).find(".demopm") .removeClass("timeselected");
+			  window.istimeboxopen=true;
+			  return;
+		}
      window.istimeboxopen=true;
 
 });
       $(".time").click(function(e){
     e.stopPropagation();
 });
-	    window.datediff=function(idx){
+
+window.datePrev=function(idx){
            var _date=$.trim($("#"+idx).val().split(",")[1]).split("-");              
            var newDate = new Date( _date[2], _date[1] - 1, _date[0]);
 		   
 		    var today = new Date();
             var _dateToday = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
 
-            if(newDate.getTime()>=dfgv()){
+            if(newDate.getTime()<_dateToday){
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		  	  
+	  }
+	    window.dateNext=function(idx){
+           var _date=$.trim($("#"+idx).val().split(",")[1]).split("-");              
+           var newDate = new Date( _date[2], _date[1] - 1, _date[0]);
+		   
+		    var today = new Date();
+            var _dateToday = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
+
+            if(newDate.getTime()>_dateToday){
 				return true;
 			}
 			else
@@ -5366,7 +5392,7 @@ $("#timerx,#timerx1").clockpicker({
              if(window.driverid=="") obj["api"]="editbooking";
              else if(window.driverid=="0") obj["api"]="editbooking";
              else obj["api"]="editbookingmobilecustomer";
-              obj["bookingid"]=window.jobid;
+              obj["bookingid"]=window.jobid; 
                 obj["normal"] = $("#normal").is(":checked")?"1":"0";
           obj["autorikshaw"]=$("#autorikshaw").is(":checked")?"1":"0";
           obj["motorbike"]=$("#motorbike").is(":checked")?"1":"0"; 
@@ -5416,11 +5442,11 @@ $("#timerx,#timerx1").clockpicker({
                obj["pets"]=pets;
                obj["pram"]=pram;
             obj["ispet"]=window.ispet?"1":"0";
-         obj["firstselected"]=window.firstselected;
+			obj["firstselected"]=window.firstselected;
                obj["lowvehicle"]=lowvehicle;
                obj["highvehicle"]=highvehicle;
                obj["bookingdate"]=bookingdate;
-         obj["bookingtime"]=bookingtime;
+			obj["bookingtime"]=bookingtime;
                obj["name"]=name;
                obj["mobile"]=mobile;
                obj["email"]=email;
@@ -5486,7 +5512,7 @@ $("#timerx,#timerx1").clockpicker({
                      $("#loadingaxd").hide();
            $(".btns_cnfrmcx").show();
                $("#errormodal").modal({"show":true});
-            $("#amerrorbx").html(data.message) 
+            $("#amerrorbx").html(data.message) ;
              window.errortype="0";
             if(data.message=="Please Enter Contact Number"){
                 $("#mobile").addClass("errorbx").focus();
@@ -5515,7 +5541,7 @@ $("#timerx,#timerx1").clockpicker({
                  else{
                       $("#loadingaxd").hide();
                          $("#errormodal").modal({"show":true});
-                     $("#amerrorbx").html(data.message=="success"?"Successfully Updated":data.message) 
+                     $("#amerrorbx").html(data.message=="success"?"Successfully Updated":data.message) ;
 
                      
                         setTimeout(function(){

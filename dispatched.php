@@ -1632,7 +1632,7 @@ if(true){
                             </div>
                              <div class="mtr-input-radio"> 
 <div style="margin-top: 32px;
-    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value">AM</span> <span class="radio demoam" id="demoam2"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm2"  ></span> </label></div></div>
+    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value divam">AM</span> <span class="radio demoam" id="demoam2"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm2"  ></span> </label></div></div>
                             </div>
                           </div>
                           <div class="btns_cnfrm " style="margin-top:0px;justify-content: center;width: 100%;">
@@ -3249,14 +3249,31 @@ window.minhourbkdate=function(ref,idx){
            kkr(ref,dt,idx);
 
       }*/
-	    window.datediff=function(idx){
+	  
+	  window.datePrev=function(idx){
            var _date=$.trim($("#"+idx).val().split(",")[1]).split("-");              
            var newDate = new Date( _date[2], _date[1] - 1, _date[0]);
 		   
 		    var today = new Date();
             var _dateToday = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
 
-            if(newDate.getTime()>=dfgv()){
+            if(newDate.getTime()<_dateToday){
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		  	  
+	  }
+	    window.dateNext=function(idx){
+           var _date=$.trim($("#"+idx).val().split(",")[1]).split("-");              
+           var newDate = new Date( _date[2], _date[1] - 1, _date[0]);
+		   
+		    var today = new Date();
+            var _dateToday = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
+
+            if(newDate.getTime()>_dateToday){
 				return true;
 			}
 			else
@@ -3277,7 +3294,7 @@ window.minhourbkdate=function(ref,idx){
            
 
           } 
-             if(datediff(idx))
+             if(dateNext(idx))
 			 {
 							   if(hr==12 && dt==1) {  hr=12; $(ref).parent().parent().find(".demominute").val("01");  dt=1;
 					  if(ampm=="AM"){
@@ -4756,7 +4773,7 @@ window._isdrpshown=true;
       }
      }
 	    var idx = "datepicker";
-      if(!datediff(idx) && dfgv12pm())
+      if(!dateNext(idx) && dfgv12pm())
 		{
 				 $(this).find(".demoam").hide();
 				  $(this).find(".divam").hide();
@@ -4764,6 +4781,16 @@ window._isdrpshown=true;
 		else{
 			$(this).find(".demoam").show();
 			$(this).find(".divam").show();
+		}
+		
+		if(datePrev(idx))
+		{ 
+			$(this).find(".demoam").show();
+			$(this).find(".divam").show();
+			  $(this).find(".demoam") .removeClass("timeselected");
+			  $(this).find(".demopm") .removeClass("timeselected");
+			  window.istimeboxopen=true;
+			  return;
 		}
 	 
      window.istimeboxopen=true;
@@ -6828,7 +6855,7 @@ window.enbname=function(event) {
                             </div>
                             <div class="mtr-input-radio"> 
 <div style="margin-top: 32px;
-    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value">AM</span> <span class="radio demoam" onclick="demoam(this)"></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" onclick="demopm(this)"></span> </label></div></div>
+    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value divam">AM</span> <span class="radio demoam" onclick="demoam(this)"></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" onclick="demopm(this)"></span> </label></div></div>
                             </div>
                           </div>
                           <div class="clearfix"></div>
