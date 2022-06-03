@@ -88,6 +88,11 @@ body{   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important; 
             document.getElementById("myAudio").play();
         },10);
     })
+	$("#playalarm").click(function(){
+         setTimeout(function(){
+            document.getElementById("myAlarm").play();
+        },10);
+    })
       getnoti(); 
 	  updatelogin();
     <?php  if($basename=="appointmenta.php"){ ?>
@@ -131,6 +136,7 @@ $("#yeswecall").click(function(){
     $("#headermodalwecall").modal("show");
     $("#xerrorppk").html('Do you want to confirm "No Fare"?');
  }
+ 
  window.getnoti=function(){
       myajax( {"api":"getappointmentnotifications","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
           if(data.data.notificationcounter.length!=0){
@@ -270,6 +276,16 @@ window.updatelogin=function(){
            }); 
 	 setTimeout(updatelogin,15000);
     }
+	
+window.getprebookingAlarm=function(){ 
+	 var username=$.trim(<?php echo $_SESSION['ID'];?>); 
+	    myajax({"api":"getprebookingAlarm","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){ 
+              if(data.status=="200"){
+				  $("#playalarm").click();
+			  }
+           }); 
+	 setTimeout(getprebookingAlarm,25000);
+    }
 
 
 
@@ -314,6 +330,10 @@ window.updatelogin=function(){
  <button id="playaudio" style="position: absolute;left: -1000px;"></button>
  <audio id="myAudio"     style="background-color: rgb(0, 0, 0); position: absolute;  left: -1000px;"> 
   <source src="ny.mp3" type="audio/mpeg"> 
+</audio>
+ <button id="playalarm" style="position: absolute;left: -1000px;"></button>
+ <audio id="myAlarm"     style="background-color: rgb(0, 0, 0); position: absolute;  left: -1000px;"> 
+  <source src="na1.wav" type="audio/mpeg"> 
 </audio>
  <style> .nav-itemx:after{opacity: 0 !important;}
 .nav-itemx a{cursor: default;}
