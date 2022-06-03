@@ -89,6 +89,7 @@ body{   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important; 
         },10);
     })
       getnoti(); 
+	  updatelogin();
     <?php  if($basename=="appointmenta.php"){ ?>
 deletenoti();
 
@@ -161,6 +162,7 @@ $("#yeswecall").click(function(){
              $("#playaudio").click();upnotisound();
            }
           checknoti();
+		  
       });
  }
  window.deletenoti=function() {
@@ -229,9 +231,11 @@ function confirmExit() {
 
  $(window).on('mouseover', (function () {
         window.onbeforeunload = null;
+	
     }));
     $(window).on('mouseout', (function () {
         window.onbeforeunload = confirmExit;
+		
     }));
 
 
@@ -259,6 +263,22 @@ window.logout=function(){
 });
       }
 	  
+window.updatelogin=function(){ 
+	 var username=$.trim(<?php echo $_SESSION['ID'];?>); 
+	    myajax({"api":"updatelogin","username":username},function( data, textStatus, jQxhr ){ 
+              if(data.status=="200"){
+	  }
+	  else{
+	 // alert("Login Failed");
+	  }   
+	  
+           }); 
+	 setTimeout(updatelogin,15000);
+    }
+
+
+
+ 
 
  </script>
   <div class="modal" id="erromodalmsgf" tabindex="-1" role="dialog">
