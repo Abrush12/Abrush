@@ -94,7 +94,7 @@ body{   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important; 
         },10);
     })
       getnoti(); 
-	  updatelogin();
+	  updatelogin();getprebookingAlarm();
     <?php  if($basename=="appointmenta.php"){ ?>
 deletenoti();
 
@@ -280,11 +280,12 @@ window.updatelogin=function(){
 window.getprebookingAlarm=function(){ 
 	 var username=$.trim(<?php echo $_SESSION['ID'];?>); 
 	    myajax({"api":"getprebookingAlarm","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){ 
-              if(data.status=="200"){
+              if(data.status=="200"){ 
 				  $("#playalarm").click();
 			  }
+			 
            }); 
-	 setTimeout(getprebookingAlarm,25000);
+	 setTimeout(getprebookingAlarm,40000);
     }
 
 
