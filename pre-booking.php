@@ -609,6 +609,43 @@ input {
     text-align: center;
 }
 .sctedd{background: #d5d5d5;}
+
+.redccr{width: 14px;
+    height: 14px;
+    background: red;
+    position: absolute;
+    border-radius: 40px;
+    margin-top: 2px;
+    margin-left: 12px;}
+.blackccr{width: 14px;
+    height: 14px;
+    background: black;
+    position: absolute;
+    border-radius: 40px;
+    margin-top: 2px;
+    margin-left: 30px;}
+.greenccr{width: 14px;
+    height: 14px;
+    background: #14d914;
+    position: absolute;
+    border-radius: 40px;
+    margin-top: 2px;
+    margin-left: 12px;}
+    .redccra{width: 14px;
+    height: 14px;
+    background: red;
+    float: left;
+    border-radius: 40px;
+    margin-top: 3px;
+    margin-right: 7px;}
+.greenccra{width: 14px;
+    height: 14px;
+    background: #14d914;
+    float: left;
+    border-radius: 40px;
+    margin-top: 3px;
+    margin-right: 7px;}
+    .sxdc{cursor: pointer;}
 </style>
 <script >
    
@@ -2618,8 +2655,17 @@ $("#confirm").show().focus();
                 $(".xallocatedriver #loading").hide();
 
         $(window.searchdriverlist).each(function(x,y){
-            $("#dxlist").append("<p onclick='allocatedr("+y.driverid+",1)' data-id='"+y.driverid+"' data-callsign='"+y.callsign+"'>"+y.callsign+"<span>"+y.name+"</span></p>");
-        
+			var dlist_sign= "<p onclick='allocatedr("+y.driverid+",1)' data-id='"+y.driverid+"' data-callsign='"+y.callsign+"'>"+y.callsign;
+			if(y.isonline == "1")
+				dlist_sign+= "<span class='greenccr'></span>";
+			else
+				dlist_sign+= "<span class='redccr'></span>";
+			
+			if(y.creditamount <= 0)
+				dlist_sign+= "<span class='blackccr'></span>";
+				
+			 dlist_sign+="<span>"+y.name+"</span></p>";
+            $("#dxlist").append(dlist_sign);
         });
     }
     else{

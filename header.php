@@ -265,13 +265,8 @@ window.logout=function(){
 	  
 window.updatelogin=function(){ 
 	 var username=$.trim(<?php echo $_SESSION['ID'];?>); 
-	    myajax({"api":"updatelogin","username":username},function( data, textStatus, jQxhr ){ 
-              if(data.status=="200"){
-	  }
-	  else{
-	 // alert("Login Failed");
-	  }   
-	  
+	    myajax({"api":"updatelogin","username":username,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){ 
+              
            }); 
 	 setTimeout(updatelogin,15000);
     }
