@@ -262,7 +262,7 @@ code span {
     dataType: 'json',
     type: 'post',
     contentType: 'application/json',
-    data: JSON.stringify({"api":"adminlogin","username":username,"password":password}),
+    data: JSON.stringify({"api":"adminlogin","username":username,"password":password,"adminCountryCode":$.trim($("#company").val())}),
     processData: false,
     success: function( data, textStatus, jQxhr ){
       if(data.status=="200"){
@@ -278,7 +278,7 @@ code span {
 			 localStorage.setItem("fullname", data.data.fullname); 
              localStorage.setItem("login_status", data.data.login_status); 
 		     localStorage.setItem("countrycode", data.data.countrycode);
-		     setsession(data.data.id,data.data.username,data.data.fullname,data.data.login_status,data.data.countrycode);
+		     setsession(data.data.id,data.data.username,data.data.fullname,data.data.login_status,data.data.countrycode,data.data.rights);
 		  }
 		  else{
 			   alert("Already Login");
@@ -318,14 +318,14 @@ window.logout=function(username){
     }
 });
 }
-	  window.setsession = function(id,name,fullname,login_status,countrycode){
+	  window.setsession = function(id,name,fullname,login_status,countrycode,rights){
 		    $.ajax({
 
     url: 'setsession.php',
     dataType: 'json',
     type: 'post',
     contentType: 'application/json',
-    data: JSON.stringify({"id":id,"name":name,"fullname":fullname,"login_status":login_status,"countrycode":countrycode}),
+    data: JSON.stringify({"id":id,"name":name,"fullname":fullname,"login_status":login_status,"countrycode":countrycode,"rights":rights}),
     processData: false,
     success: function( data, textStatus, jQxhr ){
 	   window.location.href="new-booking.php";
