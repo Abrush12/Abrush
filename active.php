@@ -215,6 +215,11 @@ background: transparent;}
     border-radius: 40px;
     margin-top: 2px;
     margin-left: 12px;}
+.credit{width: 140px;
+    height: 14px;
+	position: absolute;
+    margin-top: 2px;
+    margin-left: 50px;}
 .blackccr{width: 14px;
     height: 14px;
     background: black;
@@ -1837,7 +1842,7 @@ if(true){
               
 
               <div class="atm_b">
-                <div class="_cover"  style="height: 85px;"></div>
+                <div class="_cover"  style="height: 85px;z-index:-1;""></div>
                  <div class="row axdcvf" style=" margin-left:0px;">
                 <label class="col-sm-2 ccpaymenttype dmnkcash"  style="flex: 0 0 18.666667%;  max-width: 18.666667%;" >
                   <div class="covercashcheck"></div>
@@ -2006,6 +2011,7 @@ window.isedit=false;
 window.isallocatedriverex=false;
 window.jobid="0";
 window._cjob=null;
+window._jobprice = null;
  function crypMobile(mobile){
     if((mobile).length>8){
       a = mobile.substr(0,3);
@@ -2449,6 +2455,7 @@ window.selectjob=function(ref,jbcounter){
 })[0];
 window._cjob=job; 
 window.lojob(job);
+window._jobprice=job.jobprice;
 getcutomerowedamount(job.mobile);
 }
 window.intervalref=null;
@@ -2671,15 +2678,26 @@ $(".xallocatedriver").hide();
                 $(".xallocatedriver #loading").hide();
 
         $(window.searchdriverlist).each(function(x,y){
-           var dlist_sign= "<p onclick='allocatedr("+y.driverid+",1)' data-id='"+y.driverid+"' data-callsign='"+y.callsign+"'>"+y.callsign;
+			
+			var dlist_sign= "<p onclick='allocatedr("+y.driverid+")' data-id='"+y.driverid+"' data-callsign='"+y.callsign+"'>"+y.callsign;
 			if(y.isonline == "1")
 				dlist_sign+= "<span class='greenccr'></span>";
 			else
 				dlist_sign+= "<span class='redccr'></span>";
-			
-			if(y.creditamount <= 0)
+			if(window._jobprice !=null){
+			var diff=(y.creditamount-window._jobprice);
+			if(diff <= 0){
 				dlist_sign+= "<span class='blackccr'></span>";
-				
+				dlist_sign+= "<span class='credit'>(Rs. "+diff+")</span>";
+			}
+			}
+			else
+			{
+				if(y.creditamount <= 0){
+				dlist_sign+= "<span class='blackccr'></span>";
+				dlist_sign+= "<span class='credit'>(Rs. "+y.creditamount+")</span>";
+				}
+			}
 			 dlist_sign+="<span>"+y.name+"</span></p>";
             $("#dxlist").append(dlist_sign);
         });

@@ -217,6 +217,11 @@ background: transparent;}
     border-radius: 40px;
     margin-top: 2px;
     margin-left: 30px;}
+.credit{width: 140px;
+    height: 14px;
+	position: absolute;
+    margin-top: 2px;
+    margin-left: 50px;}
 .greenccr{width: 14px;
     height: 14px;
     background: #14d914;
@@ -1887,8 +1892,8 @@ if(true){
 </div>
               
 
-              <div class="atm_b">
-                <div class="_cover"  style="height: 85px;"></div>
+              <div class="atm_b" style="z-index:-1">
+                <div class="_cover"  style="height: 85px;z-index:-1"></div>
                  <div class="row axdcvf" style=" margin-left:0px;">
                 <label class="col-sm-2 ccpaymenttype dmnkcash" style="flex: 0 0 18.666667%;  max-width: 18.666667%;" >
                   <div class="covercashcheck"></div>
@@ -1927,11 +1932,11 @@ if(true){
                 </div>
                  </label>
               </div>
-                <div class="row  axdcvf" style="height:42px">
-				<div id="Owedshow" class="col-md-12 blink" style="padding-left: 10px;margin-top: 5px;">
+                <div class="row  axdcvf" style="height:42px;z-index:-1">
+				<div id="Owedshow" class="col-md-12 blink" style="padding-left: 10px;margin-top: 5px;z-index:-1">
 				
 				</div>
-                  <div class="col-md-12 creditcardbox" style="display: none;">
+                  <div class="col-md-12 creditcardbox" style="display: none;z-index:-1">
                     <div style="background: #ffffff4a;padding: 7px;border-radius: 7px;">
                         
                         <div class="row"><div class="col-sm-12">
@@ -2062,6 +2067,7 @@ window._joblist=[];
 window.isedit=false;
 window.jobid="0";
 window._cjob=null;
+window._jobprice = null;
  function crypMobile(mobile){
     if((mobile).length>8){
       a = mobile.substr(0,3);
@@ -2471,7 +2477,7 @@ window.selectjobax=function(ref){
     return entry.id == jobid;
 })[0];
 window._cjob=job; 
-
+window._jobprice=job.jobprice;
 window.lojob(job);
 }
 window.issalooncheckparmanent=0;
@@ -2507,7 +2513,7 @@ window.selectjob=function(ref,jbcounter){
     return entry.id == jobid;
 })[0];
 window._cjob=job; 
-
+window._jobprice=job.jobprice;
 window.lojob(job);
 if(window.intervalref2!=null)
 {
@@ -2546,7 +2552,7 @@ window.getcutomerowedamount= function(mobile,job_id){
 				
 			
            });
-	 },1000);
+	 },5000);
 		//   setTimeout(function(){ getcutomerowedamount(mobile)},5000);
 }
 
@@ -2660,16 +2666,26 @@ window.getcutomerowedamount= function(mobile,job_id){
                 $(".xallocatedriver #loading").hide();
 
         $(window.searchdriverlist).each(function(x,y){
-			var dlist_sign= "<p onclick='allocatedr("+y.driverid+")' data-id='"+y.driverid+"' data-callsign='"+y.callsign+"'>"+y.callsign;
+				var dlist_sign= "<p onclick='allocatedr("+y.driverid+")' data-id='"+y.driverid+"' data-callsign='"+y.callsign+"'>"+y.callsign;
 			if(y.isonline == "1")
 				dlist_sign+= "<span class='greenccr'></span>";
 			else
 				dlist_sign+= "<span class='redccr'></span>";
-			
-			if(y.creditamount <= 0)
+			if(window._jobprice !=null){
+			var diff=(y.creditamount-window._jobprice);
+			if(diff <= 0){
 				dlist_sign+= "<span class='blackccr'></span>";
-				
-			 dlist_sign+="<span>"+y.name+"</span></p>";
+				dlist_sign+= "<span class='credit'>(Rs. "+diff+")</span>";
+			}
+			}
+			else
+			{
+				if(y.creditamount <= 0){
+				dlist_sign+= "<span class='blackccr'></span>";
+				dlist_sign+= "<span class='credit'>(Rs. "+y.creditamount+")</span>";
+				}
+			}
+			dlist_sign+="<span>"+y.name+"</span></p>";
             $(".xallocatedriver").append(dlist_sign);
            
         
