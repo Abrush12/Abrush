@@ -6880,23 +6880,14 @@ $("#confirm,#edit,#cancel").hide();
                 }
 }
   
-    
-    
-    window.jobid=0;
-        $(function(){
-            myajax({"api":"getalljobdetails","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
-           $("._tbcompletedjob").html("Completed : "+data.data.used);
-            $("._tbcancelljob").html("Cancelled : "+data.data.rejected);
-            $("._tbappjobs").html("App : "+data.data.app);  
-               $("._tbcalljobs").html("Call : "+data.data.call); 
-            $("._tbrunnerjobs").html("Runner : "+data.data.running);        
-              
-           });
-     
-         
-    
-       
-      const today = new Date();
+ window.activebooking = function()
+{
+	
+	$('#tbd').find("tr").each(function(){
+		$('#tbd').find("tr").remove();
+	});
+						
+	const today = new Date();
          let h_ = today.getHours();
          let m_ = today.getMinutes();
          let s_ = today.getSeconds();
@@ -6994,6 +6985,24 @@ $("#confirm,#edit,#cancel").hide();
        },900);
    }
     });
+
+}						
+    
+    window.jobid=0;
+        $(function(){
+            myajax({"api":"getalljobdetails","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
+           $("._tbcompletedjob").html("Completed : "+data.data.used);
+            $("._tbcancelljob").html("Cancelled : "+data.data.rejected);
+            $("._tbappjobs").html("App : "+data.data.app);  
+               $("._tbcalljobs").html("Call : "+data.data.call); 
+            $("._tbrunnerjobs").html("Runner : "+data.data.running);        
+              
+           });
+     
+         
+    activebooking();
+       
+      
   });
         window.mncv=function(ref){
           vl=$.trim(ref.value);

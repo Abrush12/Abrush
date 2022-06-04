@@ -282,6 +282,15 @@ window.getprebookingAlarm=function(){
 	    myajax({"api":"getprebookingAlarm","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){ 
               if(data.status=="200"){ 
 				  $("#playalarm").click();
+				  if(window.location.href.includes("pre-booking.php"))
+				  {
+					  
+					  prebooking();
+				  }
+				  else  if(window.location.href.includes("active.php"))
+				  {
+					  activebooking();
+				  }
 			  }
 			 
            }); 
