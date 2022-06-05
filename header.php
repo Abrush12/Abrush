@@ -230,9 +230,10 @@ $("#yeswecall").click(function(){
     }
 });
       }
-function confirmExit() {
+
+function confirmExit() { 
+
 	logout();
-	
 }
 
  $(window).on('mouseover', (function () {

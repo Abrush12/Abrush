@@ -2151,7 +2151,26 @@ var yyyy = today.getFullYear();
     }
      setTimeout(function(){
      window.ispet=(job.ispet=="1");
-            window.firstselected=job.firstselected;
+            $("#normal") .prop('checked', false); 
+				 $("#autorikshaw") .prop('checked', false); 
+				  $("#motorbike") .prop('checked', false);
+			window.ispet=(job.ispet=="1");
+			if(job.normal ==1)
+			{
+				window.firstselected=1;
+			}
+			else if(job.autorikshaw ==1)
+			{
+				window.firstselected=2;
+			}
+			else if(job.motorbike ==1)
+			{
+				window.firstselected=3;
+			}
+			else
+			{
+				window.firstselected=job.firstselected;
+			}
             $("#sizetype").val(job.boxessize);
             $("#sizehowmany").val(job.boxeshowmany);
             $("#noofitems").val(job.noofitems=="0"?"":job.noofitems);
@@ -2951,7 +2970,7 @@ window.searchcallsign=function(val,e){
 			else
 				dlist_sign+= "<span class='redccr'></span>";
 			if(window._jobprice !=null){
-			var diff=(y.creditamount-window._jobprice);
+			var diff=(y.creditamount-(window._jobprice*0.2));
 			if(diff <= 0){
 				dlist_sign+= "<span class='blackccr'></span>";
 				dlist_sign+= "<span class='credit'>(Rs. "+diff+")</span>";

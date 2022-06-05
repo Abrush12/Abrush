@@ -1455,9 +1455,9 @@ if(true){
                       
                       </div>
                         <ul class="xdropdown  specialvehicle" style="width: calc(100% - 60px); max-height: 285px; margin-top:27px">
-                            <li class="specialrequestimgchld specialrequestimg xmnormal"><img src="img/Artboard 17 copy 14.png" ><span>Normal</span> <input type="checkbox" class="chkcb"   id="normal"> <div class="mnbox"></div></li>
-                             <li class="specialrequestimgchld specialrequestimg xmautorikshaw"><img src="img/Artboard 17 copy 14.png" ><span>Auto Rikshaw</span> <input type="checkbox" class="chkcb"   id="autorikshaw"> <div class="mnbox"></div></li>
-                             <li class="specialrequestimgchld specialrequestimg xmmotorbike"><img src="img/Artboard 17 copy 14.png" ><span>Motorbike</span> <input type="checkbox" class="chkcb"   id="motorbike"> <div class="mnbox"></div></li>
+                            <li class="specialrequestimgchld specialrequestimg xmnormal"><img src="img/anormal.png" ><span>Normal</span> <input type="checkbox" class="chkcb"   id="normal"> <div class="mnbox"></div></li>
+                             <li class="specialrequestimgchld specialrequestimg xmautorikshaw"><img src="img/aautorikshaw.png" ><span>Auto Rikshaw</span> <input type="checkbox" class="chkcb"   id="autorikshaw"> <div class="mnbox"></div></li>
+                             <li class="specialrequestimgchld specialrequestimg xmmotorbike"><img src="img/amotorbike.png" ><span>Motorbike</span> <input type="checkbox" class="chkcb"   id="motorbike"> <div class="mnbox"></div></li>
                             <div style="display: none;">
                          <li class="specialrequestimg"><img src="img/Artboard 17 copy 14.png" ><span>Wheelchair</span> <input type="checkbox" class="chkcb"   id="wheelchair"> <div class="mnbox"></div></li>
                          <li class="specialrequestimg _xpets"><img src="img/Artboard 17 copy 16.png" ><span>Pets</span> <input type="checkbox"  class="chkcb"   id="pets">  <div class="mnbox"></div>
@@ -2174,16 +2174,36 @@ var yyyy = today.getFullYear();
       $(".creditcardbox").show();
     }
 
-     setTimeout(function(){
-     window.ispet=(job.ispet=="1");
-            window.firstselected=job.firstselected;
+				$("#normal") .prop('checked', false); 
+				 $("#autorikshaw") .prop('checked', false); 
+				  $("#motorbike") .prop('checked', false);
+			window.ispet=(job.ispet=="1");
+			if(job.normal ==1)
+			{
+				window.firstselected=1;
+			}
+			else if(job.autorikshaw ==1)
+			{
+				window.firstselected=2;
+			}
+			else if(job.motorbike ==1)
+			{
+				window.firstselected=3;
+			}
+			else
+			{
+				window.firstselected=job.firstselected;
+			}
+			
+			
+            
             $("#sizetype").val(job.boxessize);
             $("#sizehowmany").val(job.boxeshowmany);
             $("#noofitems").val(job.noofitems=="0"?"":job.noofitems);
             $("#shopping") .prop('checked', (job.shopping=="1"));
              if(window.firstselected==1){
                  $("#normal") .prop('checked', true); 
-                 $("#_capabilityuj").html("Normal")
+				 $("#_capabilityuj").html("Normal")
                //$("#motorbike,#autorikshaw").attr("disabled","true"); 
                $(".xmapassengers li").remove();
          for(var  i = 0;i<=20;i++){
@@ -2296,7 +2316,7 @@ var yyyy = today.getFullYear();
                 $("#cat").prop("checked",true);
               }
             }
-          },400);
+      
        var t="";
        $(job.pickuplocation.split(",")).each(function(x,y){
         if(x==0)
@@ -2660,7 +2680,6 @@ $(".xallocatedriver").hide();
     $(".xallocatedriver").show().find("p").remove();
     $(".xallocatedriver #loading").show().html("Loading...");
     $(".driverbox").hide();
-
     window.xhr = $.ajax({
     url: 'api.php',
     dataType: 'json',
@@ -2674,7 +2693,8 @@ $(".xallocatedriver").hide();
         /*if(window.searchdriverlist.length==1){
             allocatedr(window.searchdriverlist[0].driverid);
 
-        }else*/ if(window.searchdriverlist.length>0){
+        }else*/ 
+		if(window.searchdriverlist.length>0){
                 $(".xallocatedriver #loading").hide();
 
         $(window.searchdriverlist).each(function(x,y){
@@ -2685,7 +2705,7 @@ $(".xallocatedriver").hide();
 			else
 				dlist_sign+= "<span class='redccr'></span>";
 			if(window._jobprice !=null){
-			var diff=(y.creditamount-window._jobprice);
+			var diff=(y.creditamount-(window._jobprice*0.2));
 			if(diff <= 0){
 				dlist_sign+= "<span class='blackccr'></span>";
 				dlist_sign+= "<span class='credit'>(Rs. "+diff+")</span>";
@@ -4101,11 +4121,11 @@ window.dcounter=0;
              }
              else{
                  var jbcounter=window.jobcounter;
-                jbcounter++;
+               // jbcounter++;
                 $("#fixedbx strong").html(jbcounter+" "+$(".mntblsk").get(0).scrollHeight);
-                var amn=Math.round(($(".mntblsk").height()-46)/28);
+                var amn=window._joblist.length-Math.round(($(".mntblsk").height()-46)/28);
                  if(jbcounter<=amn){
-                 window.scrooltp = (26*jbcounter)-$(".mntblsk").get(0).scrollHeight;
+                 window.scrooltp = (26*jbcounter); 
                $(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
              }
              }
@@ -4256,7 +4276,8 @@ window.dcounter=0;
         if((!$(".lcdropdown").is(":visible")||_lcchildlength==0)&&!window.isallocatedriverex){
              window.jobcounter++;
               
-             if(window.jobcounter==window._joblist.length){
+             if(window.jobcounter>=window._joblist.length){
+				 window.jobcounter=window._joblist.length;
                // window.jobcounter=0;
                 // $(".mntblsk").animate({scrollTop:  '0px'}, 100);
 				 return;

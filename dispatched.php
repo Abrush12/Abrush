@@ -1506,9 +1506,9 @@ if(true){
                       
                       </div>
                         <ul class="xdropdown  specialvehicle" style="width: calc(100% - 60px); max-height: 285px; margin-top:27px">
-                         <li class="specialrequestimg xmnormal"><img src="img/Artboard 17 copy 14.png" ><span>Normal</span> <input type="checkbox" class="chkcb"   id="normal"> <div class="mnbox"></div></li>
-                             <li class="specialrequestimg xmautorikshaw"><img src="img/Artboard 17 copy 14.png" ><span>Auto Rikshaw</span> <input type="checkbox" class="chkcb"   id="autorikshaw"> <div class="mnbox"></div></li>
-                             <li class="specialrequestimg xmmotorbike"><img src="img/Artboard 17 copy 14.png" ><span>Motorbike</span> <input type="checkbox" class="chkcb"   id="motorbike"> <div class="mnbox"></div></li>
+                         <li class="specialrequestimg xmnormal"><img src="img/anormal.png" ><span>Normal</span> <input type="checkbox" class="chkcb"   id="normal"> <div class="mnbox"></div></li>
+                             <li class="specialrequestimg xmautorikshaw"><img src="img/aautorikshaw.png" ><span>Auto Rikshaw</span> <input type="checkbox" class="chkcb"   id="autorikshaw"> <div class="mnbox"></div></li>
+                             <li class="specialrequestimg xmmotorbike"><img src="img/amotorbike.png" ><span>Motorbike</span> <input type="checkbox" class="chkcb"   id="motorbike"> <div class="mnbox"></div></li>
                         <div style="display: none;">
                          <li class="specialrequestimg"><img src="img/Artboard 17 copy 14.png" ><span>Wheelchair</span> <input type="checkbox" class="chkcb"   id="wheelchair"> <div class="mnbox"></div></li>
                          <li class="specialrequestimg _xpets"><img src="img/Artboard 17 copy 16.png" ><span>Pets</span> <input type="checkbox"  class="chkcb"   id="pets">  <div class="mnbox"></div>
@@ -2231,7 +2231,22 @@ var yyyy = today.getFullYear();
   
      setTimeout(function(){
      window.ispet=(job.ispet=="1");
-            window.firstselected=job.firstselected;
+           if(job.normal ==1)
+			{
+				window.firstselected=1;
+			}
+			else if(job.autorikshaw ==1)
+			{
+				window.firstselected=2;
+			}
+			else if(job.motorbike ==1)
+			{
+				window.firstselected=3;
+			}
+			else
+			{
+				window.firstselected=job.firstselected;
+			}
             $("#sizetype").val(job.boxessize);
             $("#sizehowmany").val(job.boxeshowmany);
             $("#noofitems").val(job.noofitems=="0"?"":job.noofitems);
@@ -2672,7 +2687,7 @@ window.getcutomerowedamount= function(mobile,job_id){
 			else
 				dlist_sign+= "<span class='redccr'></span>";
 			if(window._jobprice !=null){
-			var diff=(y.creditamount-window._jobprice);
+			var diff=(y.creditamount-(window._jobprice*0.2));
 			if(diff <= 0){
 				dlist_sign+= "<span class='blackccr'></span>";
 				dlist_sign+= "<span class='credit'>(Rs. "+diff+")</span>";
@@ -4049,20 +4064,20 @@ window.scrooltp=0;
         }
         if(!$(".lcdropdown").is(":visible")||_lcchildlength==0){
              window.jobcounter--;
-              
              if(window.jobcounter<0){
-                window.jobcounter=window._joblist.length;
-                window.jobcounter--; 
+					window.jobcounter=0;
+                /* window.jobcounter--; 
                  var objDiv = document.querySelector(".mntblsk");
-                 objDiv.scrollTop = objDiv.scrollHeight
+                 objDiv.scrollTop = objDiv.scrollHeight*/
+				 return ;
              }
              else{
                  var jbcounter=window.jobcounter;
-                jbcounter++;
+               // jbcounter++;
                 $("#fixedbx strong").html(jbcounter+" "+$(".mntblsk").get(0).scrollHeight);
-                var amn=Math.round(($(".mntblsk").height()-46)/28);
+                var amn=window._joblist.length-Math.round(($(".mntblsk").height()-46)/28);
                  if(jbcounter<=amn){
-                 window.scrooltp = (24*jbcounter)-$(".mntblsk").get(0).scrollHeight;
+                 window.scrooltp = (26*jbcounter); 
                $(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
              }
              }
@@ -4167,9 +4182,11 @@ window.scrooltp=0;
         if(!$(".lcdropdown").is(":visible")||_lcchildlength==0){
              window.jobcounter++;
               
-             if(window.jobcounter==window._joblist.length){
-                window.jobcounter=0;
-                 $(".mntblsk").animate({scrollTop:  '0px'}, 100);
+             if(window.jobcounter>=window._joblist.length){
+				 window.jobcounter=window._joblist.length;
+               // window.jobcounter=0;
+                // $(".mntblsk").animate({scrollTop:  '0px'}, 100);
+				 return;
              }
              else{
                 var jbcounter=window.jobcounter;
