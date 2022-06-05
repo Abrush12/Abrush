@@ -2679,7 +2679,7 @@ $(".xallocatedriver").hide();
 
         $(window.searchdriverlist).each(function(x,y){
 			
-			var dlist_sign= "<p onclick='allocatedr("+y.driverid+")' data-id='"+y.driverid+"' data-callsign='"+y.callsign+"'>"+y.callsign;
+			var dlist_sign= "<p onclick='allocatedr("+y.driverid+",1)' data-id='"+y.driverid+"' data-callsign='"+y.callsign+"'>"+y.callsign;
 			if(y.isonline == "1")
 				dlist_sign+= "<span class='greenccr'></span>";
 			else
