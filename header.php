@@ -285,11 +285,11 @@ window.getprebookingAlarm=function(){
 				  if(window.location.href.includes("pre-booking.php"))
 				  {
 					  
-					  prebooking();
+					setTimeout( prebooking, 30000);
 				  }
 				  else  if(window.location.href.includes("active.php"))
 				  {
-					  activebooking();
+					setTimeout( activebooking, 30000);
 				  }
 			  }
 			 

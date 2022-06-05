@@ -1422,9 +1422,9 @@ if(true){
                       
                       </div>
                         <ul class="xdropdown  specialvehicle" style="width: calc(100% - 60px); max-height: 285px; margin-top:34px">
-                          <li class="specialrequestimg xmnormal"><img src="img/Artboard 17 copy 14.png" ><span>Normal</span> <input type="checkbox" class="chkcb"   id="normal"> <div class="mnbox"></div></li>
-                             <li class="specialrequestimg xmautorikshaw"><img src="img/Artboard 17 copy 14.png" ><span>Auto Rikshaw</span> <input type="checkbox" class="chkcb"   id="autorikshaw"> <div class="mnbox"></div></li>
-                             <li class="specialrequestimg xmmotorbike"><img src="img/Artboard 17 copy 14.png" ><span>Motorbike</span> <input type="checkbox" class="chkcb"   id="motorbike"> <div class="mnbox"></div></li>
+                          <li class="specialrequestimg xmnormal"><img src="img/anormal.png" ><span>Normal</span> <input type="checkbox" class="chkcb"   id="normal"> <div class="mnbox"></div></li>
+                             <li class="specialrequestimg xmautorikshaw"><img src="img/aautorikshaw.png" ><span>Auto Rikshaw</span> <input type="checkbox" class="chkcb"   id="autorikshaw"> <div class="mnbox"></div></li>
+                             <li class="specialrequestimg xmmotorbike"><img src="img/amotorbike.png" ><span>Motorbike</span> <input type="checkbox" class="chkcb"   id="motorbike"> <div class="mnbox"></div></li>
                         <div style="display: none;">
                          <li class="specialrequestimg"><img src="img/Artboard 17 copy 14.png" ><span>Wheelchair</span> <input type="checkbox" class="chkcb"   id="wheelchair"> <div class="mnbox"></div></li>
                          <li class="specialrequestimg _xpets"><img src="img/Artboard 17 copy 16.png" ><span>Pets</span> <input type="checkbox"  class="chkcb"   id="pets">  <div class="mnbox"></div>
@@ -6574,7 +6574,7 @@ window.isclicked=false;
 window.prebooking = function()
 {
 	
-					$('#tbd').find("tr").each(function(){
+				$('#tbd').find("tr").each(function(){
 							$('#tbd').find("tr").remove();
 						});
 	//$("#tbd").html("");
@@ -6672,8 +6672,8 @@ window.prebooking = function()
               
            });
      
-         
-    prebooking();
+         prebooking();
+   // setInterval(prebooking,5000);
        
      
   });
