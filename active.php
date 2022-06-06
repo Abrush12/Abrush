@@ -681,7 +681,7 @@ input {
 }
 .sctedd{background: #d5d5d5;}
 </style><script >
-   
+  window.firstd = 0;
  window.distancearr=[];
   window.METERS_IN_MILE = 1609.344;
 
@@ -890,6 +890,7 @@ function GetLatlong(address) {
     }
   });
 }
+
 </script>
     <title>Abrush Empire</title>
     <link rel="shortcut icon" href="img/Artboard-10.png" />
@@ -4114,6 +4115,7 @@ window.dcounter=0;
               
              if(window.jobcounter<0){
 					window.jobcounter=0;
+					window.firstd = 0;
                 /* window.jobcounter--; 
                  var objDiv = document.querySelector(".mntblsk");
                  objDiv.scrollTop = objDiv.scrollHeight*/
@@ -4121,14 +4123,27 @@ window.dcounter=0;
              }
              else{
                  var jbcounter=window.jobcounter;
-               // jbcounter++;
+                //jbcounter++;
+				
                 $("#fixedbx strong").html(jbcounter+" "+$(".mntblsk").get(0).scrollHeight);
                 var amn=window._joblist.length-Math.round(($(".mntblsk").height()-46)/28);
-                 if(jbcounter<=amn){
+                 if(jbcounter%17==0){ //alert(jbcounter)
+					//  if(jbcounter%17==0){ 
+                 window.scrooltp = (26*(jbcounter-14)); 
+				 
+					window.firstd = 1;
+						$(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
+				 
+             }
+			 if(jbcounter<=amn && window.firstd == 0){ //alert(jbcounter)
+					//  if(jbcounter%17==0){ 
                  window.scrooltp = (26*jbcounter); 
-               $(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
+				 window.firstd = 1;
+			
+						$(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
+				 
              }
-             }
+			 }
 
              selectjob($("#tbd").children().eq(window.jobcounter),window.jobcounter);
          return; 
@@ -4278,6 +4293,7 @@ window.dcounter=0;
               
              if(window.jobcounter>=window._joblist.length){
 				 window.jobcounter=window._joblist.length;
+				 window.firstd = 0;
                // window.jobcounter=0;
                 // $(".mntblsk").animate({scrollTop:  '0px'}, 100);
 				 return;
@@ -4285,9 +4301,13 @@ window.dcounter=0;
              else{
                 var jbcounter=window.jobcounter;
                 jbcounter++;
-                 if(jbcounter>=Math.round(($(".mntblsk").height()-46)/28)){
+				var amn=Math.round(($(".mntblsk").height()-46)/28);
+             //    if(jbcounter>=amn){
+			if(jbcounter%17==0){
                  window.scrooltp = (26*jbcounter);
+				
                $(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
+				
              }
              }
  
