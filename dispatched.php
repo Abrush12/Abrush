@@ -1982,15 +1982,15 @@ if(true){
             </div>
 <img src="img/load.gif" style="width: 57px;position: absolute;display: none;" id="loadingaxd">
                 <div class="btns_cnfrm btns_cnfrmcx" style="margin-left: 0px;">
-                   <button type="button"   id="resetjob" style="display:none">Undo</button>
-                  <button type="button" class="confrm" id="confirm" style=" display:none; font-weight: bold;">Confirm</button>
-              <button type="button" class="confrm" style="display:none"  id="edit">Edit</button>
-               <button type="button" id="cancel_" style="margin-left:5px;display: none;padding:0px;width:115px"  >Delete Job</button>
-                <button type="button" id="free" style="display:none;background:rgb(207, 80, 80)">Free</button>
-  <button type="button" id="runner" style="display:none">Tramp</button>
-                  <button type="button" class="confrm" id="nofare" style="display:none;background: #0011db;">No Fare</button>
-                   <button type="button"  id="bandriver" style="display:none;background:#a514bf">Ban Driver</button>
-                   <button type="button"  id="recover" class="confrm"  style="display:none;background:#db0000">Recover</button>
+                   <button type="button"   id="resetjob" style="display:none;width:125px">Undo</button>
+                  <button type="button" class="confrm" id="confirm" style=" display:none; font-weight: bold;width:125px">Confirm</button>
+              <button type="button" class="confrm" style="display:none;width:125px"  id="edit">Edit</button>
+               <button type="button" id="cancel_" style="margin-left:5px;display: none;padding:0px;width:125px"  >Delete Job</button>
+                <button type="button" id="free" style="display:none;width:125px;background:rgb(207, 80, 80)">Free</button>
+  <button type="button" id="runner" style="display:none;width:125px;">Tramp</button>
+                  <button type="button" class="confrm" id="nofare" style="display:none;background: #0011db;width:125px;">No Fare</button>
+                   <button type="button"  id="bandriver" style="display:none;width:125px;background:#a514bf">Ban Driver</button>
+                   <button type="button"  id="recover" class="confrm"  style="display:none;width:125px;background:#db0000">Recover</button>
                 </div>
                 <span id="xerrormsgs"></span>
               </div>

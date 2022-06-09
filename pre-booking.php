@@ -1894,10 +1894,10 @@ if(true){
             </div>
 <img src="img/load.gif" style="width: 57px;position: absolute;display: none;" id="loadingaxd">
                 <div class="btns_cnfrm btns_cnfrmcx" style="margin-left: 0px;">
-                   <button type="button"   id="resetjob" style="padding: 0px;width: 115px;display:none">Undo</button>
-                  <button type="button" class="confrm" id="confirm" style="padding: 0px;width: 115px;display:none;margin-left: -5px;font-weight: bold;">Confirm</button>
-              <button type="button" class="confrm" style="display:none"  id="edit">Edit</button>
-               <button type="button" id="cancel" style="margin-left:5px;display: none;padding:0px;width:115px"  >Delete Booking</button>
+                   <button type="button"   id="resetjob" style="padding: 0px; width:125px;display:none">Undo</button>
+                  <button type="button" class="confrm" id="confirm" style="padding: 0px;width:125px;display:none;margin-left: -5px;font-weight: bold;">Confirm</button>
+              <button type="button" class="confrm" style="display:none;width:125px"  id="edit">Edit</button>
+               <button type="button" id="cancel" style="margin-left:15px;display: none;padding:0px;width:125px;"  >Delete Booking</button>
 
                 </div>
                 <span id="xerrormsgs"></span>

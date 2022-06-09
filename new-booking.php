@@ -1880,7 +1880,7 @@ if(true){
                 <div class="btns_cnfrm btns_cnfrmcx">
                   <button type="button" id="cancel">Cancel</button>
                   <button type="button" class="confrm" id="confirm"  >Confirm</button>
-              <button type="button" class="confrm" style="display:none"| id="audit">Audit</button>
+              <button type="button" class="confrm" style="display:none" id="audit">Audit</button>
                
 
                 </div>
