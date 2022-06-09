@@ -1159,7 +1159,7 @@ Do you want to remove saloon car as one time or permanently.<br>
 
                        <input type="text" style="width:38%;margin-top:0px;font-weight: bold;font-size: 13px;margin-right: 10px;height: 22px;"  placeholder="--:--" onkeypress="formatTime(this)" MaxLength="8"    id="timerx">
                          <img id="clockx" src="img/clock.png" style="width:18px;position:absolute;margin:3px 5px 4px 10px;height: auto;"> 
-                         <div class="timer-box mtr-datepicker timer-box1">
+                         <div class="timer-box mtr-datepicker timer-box1" style="min-height:150px;">
                           <div class="mtr-row">
                             <div class="mtr-input-slider">
                               <div class="arrow up" id="barrowup" onclick="inchourbkdate(this,'datepicker')"><span></span></div>
@@ -1177,11 +1177,11 @@ Do you want to remove saloon car as one time or permanently.<br>
 
                             </div>
                              <div class="mtr-input-radio"> 
-<div style="margin-top: 32px;
+<div id="divampm" style="margin-top: 32px;
     margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value divam">AM</span> <span class="radio demoam" id="demoam"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm"  ></span> </label></div></div>
                             </div>
                           </div>
-                          <div class="btns_cnfrm " style="margin-top:0px;justify-content: center;">
+                          <div class="btns_cnfrm " style="margin-top:110px;justify-content: center;position: fixed;margin-left: 10px;">
                           <button type="button" style="margin-left: 35px" onclick="clopitimer(this,event)" class="amclose" >Ok</button>
                       </div>
                          </div>
@@ -4956,24 +4956,28 @@ window._isdrpshown=true;
      }
 	 
 	      var idx = "datepicker";
-      if(!dateNext(idx) && dfgv12pm())
+		if(datePrev(idx))
+		{ 
+			$(this).find("#divampm").hide();
+			/*$(this).find(".demoam").show();
+			$(this).find(".divam").show();
+			  $(this).find(".demoam") .removeClass("timeselected");
+			  $(this).find(".demopm") .removeClass("timeselected");*/
+			  window.istimeboxopen=true;
+			  return;
+		}
+      else if(!dateNext(idx) && dfgv12pm())
 		{
+				$(this).find("#divampm").show();
 				 $(this).find(".demoam").hide();
 				  $(this).find(".divam").hide();
 		}
 		else{
+			$(this).find("#divampm").show();
 			$(this).find(".demoam").show();
 			$(this).find(".divam").show();
 		}
-		if(datePrev(idx))
-		{ 
-			$(this).find(".demoam").show();
-			$(this).find(".divam").show();
-			  $(this).find(".demoam") .removeClass("timeselected");
-			  $(this).find(".demopm") .removeClass("timeselected");
-			  window.istimeboxopen=true;
-			  return;
-		}
+	
      window.istimeboxopen=true;
 
 });
