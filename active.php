@@ -681,6 +681,7 @@ input {
 }
 .sctedd{background: #d5d5d5;}
 </style><script >
+var JOBAMOUNT =100;
   window.firstd = 0;
  window.distancearr=[];
   window.METERS_IN_MILE = 1609.344;
@@ -5612,6 +5613,21 @@ $("#timerx,#timerx1").clockpicker({
                obj["isprepaid"]=$("#prepaid").is(":checked")?"1":($("#deposit").is(":checked")?"1":"0");
                obj["isdeposit"]=$("#deposit").is(":checked")?"1":"0";
                obj["prepaidamount"]=window.prepaidamount;
+			   if(obj["api"]="editbooking")
+			   {
+				   if(obj["normal"] =="1" || (obj["autorikshaw"]=="1" && obj["passengers"] >=4))
+				   {
+					   obj["jobprice"]=JOBAMOUNT;
+				   }
+				   else if(obj["autorikshaw"]=="1")
+				   {
+					   obj["jobprice"]=JOBAMOUNT*0.75;
+				   }
+				   else if( obj["motorbike"]=="1")
+				   {
+					   obj["jobprice"]=JOBAMOUNT*0.50;
+				   }
+			   }
              if($("#selectmultiplevehicles").is(":checked")){
           obj["ismultiplevehicles"]="1";
           var callsignar=[];
@@ -6901,7 +6917,7 @@ window.ccndr=function(){
             $("#confirmcancelmodal").modal("hide");
                $("#loadingaxd").show();
            $(".btns_cnfrmcx").hide();
-                   myajax({"api":"updatejobstatus","type":"3","jobid":window.jobid},function( data, textStatus, jQxhr ){
+                   myajax({"api":"updatejobstatus","status":"3","jobid":window.jobid},function( data, textStatus, jQxhr ){
                                    $("#loadingaxd").hide();
                       // $("#xerrormsgs").html("Success").show();
                      //  window.location.reload();  

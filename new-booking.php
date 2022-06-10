@@ -1949,6 +1949,7 @@ if(true){
    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>  
  
 <script>
+var JOBAMOUNT =100;
 window.xhr=null;
 window._xobj=null;
 window.searchdriverlist=[];
@@ -2036,6 +2037,7 @@ else{
     $("#quotation").prop("checked",true);
 $(".axdcvf,.amdriverbnv").addClass("hdnn");
 $("#fixedbx .fxtitle").html("Quote");
+$("#fixedprice").val(job.fixedprice);
 }
 
 $("#_startervia").find(".resulttry").html("").hide();
@@ -2044,10 +2046,8 @@ $(".axtempl").remove();
 $(".mnjjxzl").find("input").val("5");
 $("._ikmnp input").val("");
 $("#fixedbx").attr("data-price",job.fixedprice).find("strong").html("Rs "+job.fixedprice);
- 
+
    updateviaplaceholder();
-      
- 
 
 window.pickuplat=job.pickuplatitude;
 window.pickuplng=job.pickuplongitude;
@@ -5770,8 +5770,8 @@ $("#timerx,#timerx1").clockpicker({
                }
                var bookingdate=$.trim($("#datepicker").val().split(",")[1]);
                var returningdate=$.trim($("#datepicker1").val().split(",")[1]);
-         var flightnumber=$.trim($("#flightnumber").val());
-         var reference=$.trim($("#reference").val());
+			   var flightnumber=$.trim($("#flightnumber").val());
+			   var reference=$.trim($("#reference").val());
                var cardnumber=$.trim($("#cardnumber").val());
                var cardname=$.trim($("#cardname").val());
                var cardexpirydate=$.trim($("#cardexpirydate").val());
@@ -5936,6 +5936,21 @@ $("#timerx,#timerx1").clockpicker({
                obj["isprepaid"]=$("#prepaid").is(":checked")?"1":($("#deposit").is(":checked")?"1":"0");
                obj["isdeposit"]=$("#deposit").is(":checked")?"1":"0";
                obj["prepaidamount"]=window.prepaidamount;
+			   if(isedit)
+			   {
+				   if(obj["normal"] =="1" || (obj["autorikshaw"]=="1" && obj["passengers"] >=4))
+				   {
+					   obj["jobprice"]=JOBAMOUNT;
+				   }
+				   else if(obj["autorikshaw"]=="1")
+				   {
+					   obj["jobprice"]=JOBAMOUNT*0.75;
+				   }
+				   else if( obj["motorbike"]=="1")
+				   {
+					   obj["jobprice"]=JOBAMOUNT*0.50;
+				   }
+			   }
              if($("#selectmultiplevehicles").is(":checked")){
           obj["ismultiplevehicles"]="1";
           var callsignar=[];
