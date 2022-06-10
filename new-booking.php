@@ -5938,7 +5938,7 @@ $("#timerx,#timerx1").clockpicker({
                obj["prepaidamount"]=window.prepaidamount;
 			   if(isedit)
 			   {
-				   if(obj["normal"] =="1" || (obj["autorikshaw"]=="1" && obj["passengers"] >=4))
+				   if(obj["normal"] =="1" || (obj["autorikshaw"]=="1" && obj["passengers"] >=5))
 				   {
 					   obj["jobprice"]=JOBAMOUNT;
 				   }
