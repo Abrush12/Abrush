@@ -2115,7 +2115,7 @@ var yyyy = today.getFullYear();
     $("#dropnote").val(job.dropnote);
     $("#notes").val(job.notes);
     $("#passengers").html(job.passengers);
-    $("#handluggage").html(job.handluggage);
+	$("#handluggage").html(job.handluggage);
     $("#suitcase").html(job.suitcase);
     $("#flightnumber").val(job.flightnumber);
     $("#reference").val(job.reference);
@@ -4936,6 +4936,7 @@ window._isdrpshown=true;
      $(this).find(".timer-box").show();
     $("#bdemohour2").focus().addClass("llfocus");
     }
+		var tt=0;
        if(!window.istimeboxopen){
            var timeval=$.trim($(this).find("input[type=text]").val());
            if(timeval.length!=0){
@@ -4949,13 +4950,12 @@ window._isdrpshown=true;
            $(this).find(".demoam") .removeClass("timeselected");
           $(this).find(".demopm") .addClass("timeselected");
         }
-        var tt=t[0].split(":");
+          tt=t[0].split(":");
         $(this).find(".demohour").val(tt[0]);
         $(this).find(".demominute").val(tt[1]);
       }
      }
-	 
-	      var idx = "datepicker";
+        var idx = "datepicker";
 		if(datePrev(idx))
 		{ 
 			$(this).find("#divampm").hide();
@@ -4977,7 +4977,11 @@ window._isdrpshown=true;
 			$(this).find(".demoam").show();
 			$(this).find(".divam").show();
 		}
-	
+		
+		if(tt!=0 && timenow(idx,tt))
+		{
+			startTimezz();
+		}
      window.istimeboxopen=true;
 
 });
@@ -5009,6 +5013,19 @@ window.datePrev=function(idx){
             var _dateToday = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
 
             if(newDate.getTime()>_dateToday){
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		  	  
+	  }
+	  window.timenow=function(idx,tt){
+           var _date=$.trim($("#"+idx).val().split(",")[1]).split("-");              
+           var newDate = new Date( _date[2], _date[1] - 1, _date[0],tt[0],tt[1],0);
+		   
+		    if(newDate.getTime()<=dfgv()){
 				return true;
 			}
 			else
@@ -6191,7 +6208,7 @@ window.__xcheck=null;
         }
          
           $(".xdropdown li").on("click",function(e){ 
-            
+           
             if($(this).parent().hasClass("xaccount")){
                  e.preventDefault(); 
                  if(!window.ispickuplcvalid){
@@ -6406,6 +6423,17 @@ window.__xcheck=null;
                         else{
                             $(this).parent().find(".xdropdown").addClass("xshow").show();
 
+                        }
+						 if($(this).parent().find(".xdropdown").hasClass("specialvehicle")){
+							
+							    var pass=$(".xpassengersa").html();
+								$(".xmmotorbike,.xmautorikshaw").show();
+								if(pass>6){
+									 $(".xmmotorbike,.xmautorikshaw").hide();
+								}
+								else  if(pass>1) {
+									$(".xmmotorbike").hide();
+								}
                         }
         })
         $("#reverselocation").click(function(){
@@ -6923,6 +6951,7 @@ $("#confirm,#edit,#cancel").hide();
 
              
                 }
+	activebooking();			
 }
   
  window.activebooking = function()

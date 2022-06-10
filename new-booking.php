@@ -2610,7 +2610,7 @@ $("#tbd tr").remove();
              var extras="";
      if(y.normal=="1") extras="Normal";
      else if(y.autorikshaw=="1")  extras="Auto-Rikshaw";
-     else if(y.motorcycle=="1")  extras="MotorBike";
+     else if(y.motorcycle=="1")  extras="Motorbike";
 
           /*if(y.wheelchair=="1"){
             extras="W/C"  
@@ -2670,7 +2670,7 @@ $("#tbd tr").remove();
           var extras="";
      if(y.normal=="1") extras="Normal";
      else if(y.autorikshaw=="1")   extras="Auto-Rikshaw";
-     else if(y.motorcycle=="1")   extras="MotorBike";
+     else if(y.motorcycle=="1")   extras="Motorbike";
 
           /*if(y.wheelchair=="1"){
             extras="W/C"  
@@ -2730,7 +2730,7 @@ $(data.data.historybooking).each(function(x,y){
          var extras="";
      if(y.normal=="1") extras="Normal";
      else if(y.autorikshaw=="1")   extras="Auto-Rikshaw";
-     else if(y.motorcycle=="1")   extras="MotorBike";
+     else if(y.motorcycle=="1")   extras="Motorbike";
 
           /*if(y.wheelchair=="1"){
             extras="W/C"  
@@ -6606,7 +6606,7 @@ $(".animalsbox").show();
 
                     } else if($(this).index()==1){
                         
-                         if($("#passengers").html()>6) return;
+                        if($("#passengers").html()>6) return;
 
                     }
                  $(this).parent().parent().find(".mg_tb").html($(this).find("span").html());
@@ -6763,9 +6763,19 @@ $(".animalsbox").show();
                         }
                         else{
                             $(this).parent().find(".xdropdown").addClass("xshow").show();
+						
 
                         }
                         if($(this).parent().find(".xdropdown").hasClass("specialvehicle")){
+							
+							    var pass=$(".xpassengersa").html();
+								$(".xmmotorbike,.xmautorikshaw").show();
+								if(pass>6){
+									 $(".xmmotorbike,.xmautorikshaw").hide();
+								}
+								else  if(pass>1) {
+									$(".xmmotorbike").hide();
+								}
                         }
         })
         $("#reverselocation").click(function(){

@@ -1422,9 +1422,9 @@ if(true){
                       
                       </div>
                         <ul class="xdropdown  specialvehicle" style="width: calc(100% - 60px); max-height: 285px; margin-top:34px">
-                          <li class="specialrequestimg xmnormal"><img src="img/anormal.png" ><span>Normal</span> <input type="checkbox" class="chkcb"   id="normal"> <div class="mnbox"></div></li>
-                             <li class="specialrequestimg xmautorikshaw"><img src="img/aautorikshaw.png" ><span>Auto Rikshaw</span> <input type="checkbox" class="chkcb"   id="autorikshaw"> <div class="mnbox"></div></li>
-                             <li class="specialrequestimg xmmotorbike"><img src="img/amotorbike.png" ><span>Motorbike</span> <input type="checkbox" class="chkcb"   id="motorbike"> <div class="mnbox"></div></li>
+                          <li class="specialrequestimg xmnormal"><img src="img/anormal.png" ><span>Normal</span> <input type="checkbox" class="chkcb" id="normal"> <div class="mnbox"></div></li>
+                             <li class="specialrequestimg xmautorikshaw"><img src="img/aautorikshaw.png" ><span>Auto Rikshaw</span> <input type="checkbox" class="chkcb" id="autorikshaw"> <div class="mnbox"></div></li>
+                             <li class="specialrequestimg xmmotorbike"><img src="img/amotorbike.png" ><span>Motorbike</span> <input type="checkbox" class="chkcb" id="motorbike"> <div class="mnbox"></div></li>
                         <div style="display: none;">
                          <li class="specialrequestimg"><img src="img/Artboard 17 copy 14.png" ><span>Wheelchair</span> <input type="checkbox" class="chkcb"   id="wheelchair"> <div class="mnbox"></div></li>
                          <li class="specialrequestimg _xpets"><img src="img/Artboard 17 copy 16.png" ><span>Pets</span> <input type="checkbox"  class="chkcb"   id="pets">  <div class="mnbox"></div>
@@ -2181,7 +2181,7 @@ var yyyy = today.getFullYear();
              if(window.firstselected==1){
                  $("#normal") .prop('checked', true); 
                  $("#_capabilityuj").html("Normal")
-               $("#motorbike,#autorikshaw").attr("disabled","true"); 
+               //$("#motorbike,#autorikshaw").attr("disabled","true"); 
                $(".xmapassengers li").remove();
          for(var  i = 0;i<=20;i++){
              $(".xmapassengers").append("<li class='"+(job.passengers==i?"sctedd":"")+"' onclick='_oppassenger(this)'>"+i+"</li>");
@@ -2190,7 +2190,7 @@ var yyyy = today.getFullYear();
             else  if(window.firstselected==2){
                  $("#autorikshaw") .prop('checked', true); 
                   $("#_capabilityuj").html("Auto Rikshaw")
-               $("#motorbike,#normal").attr("disabled","true"); 
+             //  $("#motorbike,#normal").attr("disabled","true"); 
                $(".xmapassengers li").remove();
          for(var  i = 0;i<=6;i++){
              $(".xmapassengers").append("<li  class='"+(job.passengers==i?"sctedd":"")+"'  onclick='_oppassenger(this)'>"+i+"</li>");
@@ -2199,7 +2199,7 @@ var yyyy = today.getFullYear();
               else  if(window.firstselected==3){
                  $("#motorbike") .prop('checked', true); 
                   $("#_capabilityuj").html("Motorbike")
-               $("#normal,#autorikshaw").attr("disabled","true"); 
+              // $("#normal,#autorikshaw").attr("disabled","true"); 
                $(".xmapassengers li").remove();
          for(var  i = 0;i<=1;i++){
              $(".xmapassengers").append("<li  class='"+(job.passengers==i?"sctedd":"")+"' onclick='_oppassenger(this)'>"+i+"</li>");
@@ -5162,6 +5162,10 @@ $("#confirm").hide();
 
              
                 }
+				       if(window._joblist.length!=0){
+							setTimeout(prebooking,900);
+					}
+				
             });
            $("#confirm").click(function(){
             window.isedit=false;
@@ -6157,6 +6161,17 @@ window.__xcheck=null;
                         else{
                             $(this).parent().find(".xdropdown").addClass("xshow").show();
 
+                        }
+						 if($(this).parent().find(".xdropdown").hasClass("specialvehicle")){
+							
+							    var pass=$(".xpassengersa").html();
+								$(".xmmotorbike,.xmautorikshaw").show();
+								if(pass>6){
+									 $(".xmmotorbike,.xmautorikshaw").hide();
+								}
+								else  if(pass>1) {
+									$(".xmmotorbike").hide();
+								}
                         }
         })
         $("#reverselocation").click(function(){

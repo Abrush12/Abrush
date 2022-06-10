@@ -6278,6 +6278,17 @@ window.__xcheck=null;
                             $(this).parent().find(".xdropdown").addClass("xshow").show();
 
                         }
+						 if($(this).parent().find(".xdropdown").hasClass("specialvehicle")){
+							
+							    var pass=$(".xpassengersa").html();
+								$(".xmmotorbike,.xmautorikshaw").show();
+								if(pass>6){
+									 $(".xmmotorbike,.xmautorikshaw").hide();
+								}
+								else  if(pass>1) {
+									$(".xmmotorbike").hide();
+								}
+                        }
         })
         $("#reverselocation").click(function(){
 
