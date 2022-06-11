@@ -432,6 +432,7 @@ window.getprebookingAlarm=function(){
 					 {
 						 ?>
 						 <a class="dropdown-item" href="signup.php">Sign-up</a>
+						 <a class="dropdown-item" href="">Controllers</a>
 						<?php 
 					 }
 						 ?>

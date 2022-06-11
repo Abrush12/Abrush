@@ -1220,7 +1220,7 @@ Do you want to remove saloon car as one time or permanently.<br>
                   <div class="col-md-6">
                     <div class="left_ic">
                          <div class="plholder pickuplocation" style=" margin-top:-8px;width: 185px;"><span>Enter Contact Number</span></div> 
-                      <span id="starterxx" style="padding:0px;display:none;font-size:14px;margin-top:1px;display: none;">0</span><input style="padding-left:2px;margin-top:1px;margin-left: -7px;" type="text"  tabindex="-1"  class="_reddc" autocomplete="off" maxlength="11" onkeyup="searchbookingbymobile(this.value)"   autocomplete="off" id="mobile" readonly  placeholder="Enter Contact Number">
+                      <span id="starterxx" style="padding:0px;display:none;font-size:14px;margin-top:1px;display: none;">0</span><input style="padding-left:2px;margin-top:1px;margin-left: -7px;" type="text"  tabindex="-1"  class="_reddc" autocomplete="off" maxlength="11" autocomplete="off" id="mobile" readonly  placeholder="Enter Contact Number">
                       <div class="_mboption">
                       <img src="img/email.png" style="width: 20px" class="wdth">
                       <img src="img/phonecall.png" style="width: 17px; margin-right: 6px;  padding-top: 0px;"  class="wdth_phn"></div>
@@ -2373,8 +2373,13 @@ var yyyy = today.getFullYear();
     
     })
   }
-  
-  
+			$("#iused").html(job.jobspredata.used+" Used");
+            $("#icancelled").html(job.jobspredata.rejected+" Cancelled");
+            $("#irunner").html(job.jobspredata.running+" Runner");
+            $("#inofare").html(job.jobspredata.nofare+" No Fare");
+            if(job.jobspredata.lastused!="")
+            $("#ilastused").html(job.jobspredata.lastused).parent().show();
+            else $("#ilastused").parent().hide();
  
 if(driveridx=="0" ){
     driveridx="";
@@ -2402,6 +2407,8 @@ else{
        
 
 }
+
+
 
    setTimeout(function(){
       adheight();
@@ -7118,6 +7125,12 @@ $("#confirm,#edit,#cancel").hide();
         return true;
     }
 }
+
+
+           
+
+
+
     </script>
     <script>
         

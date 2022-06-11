@@ -747,17 +747,6 @@ if(isset($_GET['status'])){
 
                 </span>
               </div>
-             
-              
- 
-              
-
-               
-
-              
-
-             
-               
             </div></div>
           <div class=" col-md-3 "><h4 id="xttlpayment" style="color:#fff;text-align: right;margin-right: 50px;margin-top: 29px;">Total Payment : <span style='color:#ffd800;'>Rs 0</span></h4>
 <h4 id="xttlpaymentcash" style="font-size: 20px;color:#fff;text-align: right;margin-right: 50px;margin-top: 10px;">Total Cash : <span style='color:#ffd800;'>Rs 0</span></h4>
@@ -1968,7 +1957,7 @@ if(y.normal=="1")
             $( "#tabs" ).tabs();
             $('#tabs > ul  > li > a').on("click",function(e){
     e.preventDefault();
-    if($(this).html()=="All"){
+    if($(this).html()=="Drivers"){
        $(".hlbx").hide();
       $(".rthg").html("Earnings");
 	  		if(window.intervalref2!=null)
@@ -2006,7 +1995,7 @@ if(y.normal=="1")
     }
     else       $(".hlbx").hide();
 
-    if($(this).html()=="All"||$(this).html()=="Credit"||$(this).html()=="Registration"||$(this).html()=="No Show"){
+    if($(this).html()=="Drivers"||$(this).html()=="Credit"||$(this).html()=="Registration"||$(this).html()=="No Show"){
       $(".otherdm,.earningsrc,.jobbx,.customerbx").hide();
       $(".alldm").show();
     }
