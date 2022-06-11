@@ -702,7 +702,7 @@ input {
 }
 .sctedd{background: #d5d5d5;}
 </style><script >
-   
+   window.listlen=-1;
  window.distancearr=[];
   window.METERS_IN_MILE = 1609.344;
 
@@ -6779,8 +6779,13 @@ $("#confirm,#edit,#cancel,#runner,#nofare,#bandriver,#recover,#free").hide();
            });
      
          
-    
-       
+    dispatchbooking();
+
+  });
+  
+  window.dispatchbooking=function(){
+	  
+	         
       const today = new Date();
          let h_ = today.getHours();
          let m_ = today.getMinutes();
@@ -6834,7 +6839,7 @@ $("#confirm,#edit,#cancel,#runner,#nofare,#bandriver,#recover,#free").hide();
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html='<tr  class="ttdn'+x+'  cclop'+y.id+'" data-x="'+x+'" data-passenger="'+y.passengers+'" data-bookingdatetime="'+y.bdate+" "+y.btime+'" data-ismultiplevehicles="'+y.ismultiplevehicles+'"  data-driverid="'+y.driverid+'"  onclick="selectjob(this,'+x+')"   data-jobid="'+y.id+'"    data-callsign="'+y.callsign+'">';
+         html+='<tr  class="ttdn'+x+'  cclop'+y.id+'" data-x="'+x+'" data-passenger="'+y.passengers+'" data-bookingdatetime="'+y.bdate+" "+y.btime+'" data-ismultiplevehicles="'+y.ismultiplevehicles+'"  data-driverid="'+y.driverid+'"  onclick="selectjob(this,'+x+')"   data-jobid="'+y.id+'"    data-callsign="'+y.callsign+'">';
          //html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
          //html+='<td>'+y.jobtype+'</td>';
 
@@ -6854,21 +6859,27 @@ $("#confirm,#edit,#cancel,#runner,#nofare,#bandriver,#recover,#free").hide();
             html+='<td>Rs '+y.jobprice+'</td>';
           html+='<td>'+(y.iscash=="1"?(y.cashtype=="0"?"Cash":"Money First"):"Pre-Paid")+'</td>';
                html+=' <td>'+y.callsign+'</td><td>'+(y.controllername==null?"":y.controllername)+'</td></tr>';
-         $("#tbd").append(html);
-       });
-       if(window._joblist.length!=0){
-       setTimeout(function(){ 
-         <?php if(isset($_GET['jobid'])) { ?>
-            var mmpoi=<?php echo  $_GET['jobid']; ?>;
-var kl=$(".cclop"+mmpoi).attr("data-x");
- 
-selectjob($(".ttdn"+kl),kl);
-         <?php }  else { ?> selectjob($(".ttdn0"),0);  <?php } ?>
-       
-       },900);
-   }
+              });
+			  
+						if(window.listlen != window._joblist.length){
+							 $("#tbd").html(html);
+								   if(window._joblist.length!=0){
+					   setTimeout(function(){ 
+						 <?php if(isset($_GET['jobid'])) { ?>
+							var mmpoi=<?php echo  $_GET['jobid']; ?>;
+				         var kl=$(".cclop"+mmpoi).attr("data-x");
+				 
+				        selectjob($(".ttdn"+kl),kl);
+						 <?php }  else { ?> selectjob($(".ttdn0"),0);  <?php } ?>
+					   
+					   },900);
+				   }
+						 }
+	    window.listlen = window._joblist.length;
+
     });
-  });
+	  	setTimeout(dispatchbooking,5000);
+  }
       
     </script>
     <script>

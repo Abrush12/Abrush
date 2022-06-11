@@ -6624,13 +6624,13 @@ window.isclicked=false;
  
         window.ismultipledriver=false;
 
-
+window.listlen=-1;
 window.prebooking = function()
 {
 	
-				$('#tbd').find("tr").each(function(){
+			/*	$('#tbd').find("tr").each(function(){
 							$('#tbd').find("tr").remove();
-						});
+						});*/
 	//$("#tbd").html("");
 	 const today = new Date();
          let h_ = today.getHours();
@@ -6685,7 +6685,7 @@ window.prebooking = function()
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html='<tr  class="ttdn'+x+'" data-passenger="'+y.passengers+'" data-bookingdatetime="'+y.bdate+" "+y.btime+'" data-ismultiplevehicles="'+y.ismultiplevehicles+'"  data-driverid="'+y.driverid+'"  onclick="selectjob(this,'+x+')"   data-jobid="'+y.id+'"    data-callsign="'+y.callsign+'">';
+         html+='<tr  class="ttdn'+x+'" data-passenger="'+y.passengers+'" data-bookingdatetime="'+y.bdate+" "+y.btime+'" data-ismultiplevehicles="'+y.ismultiplevehicles+'"  data-driverid="'+y.driverid+'"  onclick="selectjob(this,'+x+')"   data-jobid="'+y.id+'"    data-callsign="'+y.callsign+'">';
          //html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
          //html+='<td>'+y.jobtype+'</td>';
 
@@ -6704,14 +6704,19 @@ window.prebooking = function()
         html+='<td>Rs '+y.jobprice+'</td>';
           html+='<td>'+(y.iscash=="1"?(y.cashtype=="0"?"Cash":"Money First"):"Pre-Paid")+'</td>';
                html+=' <td>'+y.callsign+'</td><td>'+(y.controllername==null?"":y.controllername)+'</td></tr>';
-         $("#tbd").append(html);
+        // $("#tbd").append(html);
        });
-        if(window._joblist.length!=0){
-       setTimeout(function(){ 
-        selectjob($(".ttdn0"),0);
-       },900);
-   }
+    if(window.listlen != window._joblist.length){
+		     $("#tbd").html(html);
+				if(window._joblist.length!=0){
+			   setTimeout(function(){ 
+				selectjob($(".ttdn0"),0);
+			   },900);
+				}
+		 }
+	    window.listlen = window._joblist.length;
     });
+	setTimeout(prebooking,5000);
 }	
     
     window.cashtype="0";

@@ -681,9 +681,11 @@ input {
 }
 .sctedd{background: #d5d5d5;}
 </style><script >
+window.listlen=-1;
 var JOBAMOUNT =100;
   window.firstd = 0;
  window.distancearr=[];
+window.intervalref2=null;
   window.METERS_IN_MILE = 1609.344;
 
     function metersToMiles(meters) {
@@ -6977,17 +6979,15 @@ $("#confirm,#edit,#cancel").hide();
 
              
                 }
+if(window.intervalref2!=null)
+			{
+			  clearInterval(window.intervalref2);
+			}				
 	activebooking();			
 }
   
- window.activebooking = function()
-{
-	
-	$('#tbd').find("tr").each(function(){
-		$('#tbd').find("tr").remove();
-	});
-				
-			
+window.activebooking = function()
+{ 
 	const today = new Date();
          let h_ = today.getHours();
          let m_ = today.getMinutes();
@@ -7002,7 +7002,7 @@ $("#confirm,#edit,#cancel").hide();
         var html="";
 		var tbd=$("#tbd");
         window._joblist=data.data;
-       $(data.data).each(function(x,y){
+		$(data.data).each(function(x,y){
           var extras="";
      if(y.normal=="1") extras="Normal";
      else if(y.autorikshaw=="1")   extras="Auto-Rikshaw";
@@ -7042,7 +7042,7 @@ $("#confirm,#edit,#cancel").hide();
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html='<tr class="ttdn'+x+'" data-passenger="'+y.passengers+'" data-bookingdatetime="'+y.bdate+" "+y.btime+'" data-ismultiplevehicles="'+y.ismultiplevehicles+'"  data-driverid="'+y.driverid+'"  onclick="selectjob(this,'+x+')"   data-jobid="'+y.id+'"    data-callsign="'+y.callsign+'">';
+         html+='<tr class="ttdn'+x+'" data-passenger="'+y.passengers+'" data-bookingdatetime="'+y.bdate+" "+y.btime+'" data-ismultiplevehicles="'+y.ismultiplevehicles+'"  data-driverid="'+y.driverid+'"  onclick="selectjob(this,'+x+')"   data-jobid="'+y.id+'"    data-callsign="'+y.callsign+'">';
          //html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
         // html+='<td>'+y.jobtype+'</td>';
 
@@ -7074,22 +7074,24 @@ $("#confirm,#edit,#cancel").hide();
                  html+='<i class="fa fa-pencil"></i>';
                }
                html+=' </div></td></tr>';
-         
-            
-        tbd.append(html);
-
-
-        
        });
-	    
-       if(window._joblist.length!=0){
-       setTimeout(function(){ 
-        selectjob($(".ttdn0"),0);
-       },900);
-   }
+	   
+	   if(window.listlen != window._joblist.length){
+		     tbd.html(html);
+				if(window._joblist.length!=0){
+			   setTimeout(function(){ 
+				selectjob($(".ttdn0"),0);
+			   },900);
+				}
+		 }
+	    window.listlen = window._joblist.length;
+
     });
 
-}						
+	setTimeout(activebooking,5000);
+}
+		
+						
     
     window.jobid=0;
         $(function(){
@@ -7102,8 +7104,13 @@ $("#confirm,#edit,#cancel").hide();
               
            });
      
-        activebooking();
- //  setInterval(activebooking,5000);
+    
+	if(window.intervalref2!=null)
+			{
+			  clearInterval(window.intervalref2);
+			}
+    //  setInterval(activebooking,5000);
+	   activebooking();
        
       
   });
