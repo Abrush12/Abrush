@@ -5898,7 +5898,8 @@ else{
                // $("#motorbike,#autorikshaw").attr("disabled","true");
             }
             else{
-                 
+                  $("#_capabilityuj").html("Vechile Type");
+				  $(".xpassengersa").html("0");
                      window.firstselected=0;
               $("#motorbike,#autorikshaw").prop("checked",false);
                      
@@ -5924,7 +5925,8 @@ else{
                // $("#motorbike,#normal").attr("disabled","true");
             }
             else{
-                 
+					 $("#_capabilityuj").html("Vechile Type");
+					$(".xpassengersa").html("0");
                      window.firstselected=0;
               $("#motorbike,#normal").prop("checked",false);
                      
@@ -5949,7 +5951,8 @@ else{
                // $("#autorikshaw,#normal").attr("disabled","true");
             }
             else{
-                 
+					 $("#_capabilityuj").html("Vechile Type");
+					$(".xpassengersa").html("0");
                      window.firstselected=0;
               $("#autorikshaw,#normal").prop("checked",false);
                      
@@ -6983,7 +6986,8 @@ $("#confirm,#edit,#cancel").hide();
 	$('#tbd').find("tr").each(function(){
 		$('#tbd').find("tr").remove();
 	});
-						
+				
+			
 	const today = new Date();
          let h_ = today.getHours();
          let m_ = today.getMinutes();
@@ -6996,6 +7000,7 @@ $("#confirm,#edit,#cancel").hide();
          var dt=dd + '-'+mm+"-"+ yyyy+" "+h_ + ":" + m_+":00";
       myajax( {"api":"getactivebooking","datetime":dt,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
         var html="";
+		var tbd=$("#tbd");
         window._joblist=data.data;
        $(data.data).each(function(x,y){
           var extras="";
@@ -7070,12 +7075,13 @@ $("#confirm,#edit,#cancel").hide();
                }
                html+=' </div></td></tr>';
          
-             $("#tbd").append(html);
-        
+            
+        tbd.append(html);
 
 
         
        });
+	    
        if(window._joblist.length!=0){
        setTimeout(function(){ 
         selectjob($(".ttdn0"),0);
@@ -7096,8 +7102,8 @@ $("#confirm,#edit,#cancel").hide();
               
            });
      
-         
-    activebooking();
+        activebooking();
+ //  setInterval(activebooking,5000);
        
       
   });

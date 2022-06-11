@@ -111,13 +111,13 @@ input[type=text].password-autocomplete-disabler {
      <div class="form-group" style="margin-top:20px">
    <label   style="color: #fff !important; ">Enter Password</label>      
         
-             <input type="password" name="passwordMain"  autocomplete="off" class="form-control secure" id="newpassword"  >
+             <input type="password" name="passwordMain"  autocomplete="off" class="form-control secure" id="passwordMain"  >
  
   </div>
 </form>
    <div class="form-group" style="margin-top:20px">
     <label for="area" style="color:#fff">Confirm Password </label>
-    <input type="password" name="passwordCon"  autocomplete="off"  class="form-control secure" id="cnewpassword"  >
+    <input type="password" name="passwordCon"  autocomplete="off"  class="form-control secure" id="passwordCon"  >
      
   </div>
   <div class="form-group" style="margin-top:20px">

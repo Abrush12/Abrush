@@ -5666,7 +5666,8 @@ else{
                // $("#motorbike,#autorikshaw").attr("disabled","true");
             }
             else{
-                 
+					 $("#_capabilityuj").html("Vechile Type");
+				  $(".xpassengersa").html("0");
                      window.firstselected=0;
               $("#motorbike,#autorikshaw").prop("checked",false);
                      
@@ -5691,7 +5692,8 @@ else{
                // $("#motorbike,#normal").attr("disabled","true");
             }
             else{
-                 
+                  $("#_capabilityuj").html("Vechile Type");
+				  $(".xpassengersa").html("0");
                      window.firstselected=0;
               $("#motorbike,#normal").prop("checked",false);
                      
@@ -5716,7 +5718,8 @@ else{
                // $("#autorikshaw,#normal").attr("disabled","true");
             }
             else{
-                 
+					 $("#_capabilityuj").html("Vechile Type");
+				  $(".xpassengersa").html("0");
                      window.firstselected=0;
               $("#autorikshaw,#normal").prop("checked",false);
                      

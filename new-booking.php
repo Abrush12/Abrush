@@ -2149,7 +2149,7 @@ var yyyy = today.getFullYear();
       }
       $(".creditcardbox").show();
     }
-     setTimeout(function(){
+     setTimeout(function(){ 
      window.ispet=(job.ispet=="1");
             $("#normal") .prop('checked', false); 
 				 $("#autorikshaw") .prop('checked', false); 
@@ -6210,7 +6210,7 @@ else{
             getDrivers();
         },400);
         }
-        window._normal=function(){
+        window._normal=function(){ 
              if(window.firstselected==0){
           window.firstselected=1;  
         }
@@ -6226,7 +6226,8 @@ else{
                // $("#motorbike,#autorikshaw").attr("disabled","true");
             }
             else{
-                 
+             	 $("#_capabilityuj").html("Vechile Type");
+				 $(".xpassengersa").html("0");
                      window.firstselected=0;
               $("#motorbike,#autorikshaw").prop("checked",false);
                      
@@ -6250,7 +6251,8 @@ else{
                // $("#motorbike,#normal").attr("disabled","true");
             }
             else{
-                 
+                  $("#_capabilityuj").html("Vechile Type");
+				  $(".xpassengersa").html("0");
                      window.firstselected=0;
               $("#motorbike,#normal").prop("checked",false);
                      
@@ -6274,7 +6276,8 @@ else{
                // $("#autorikshaw,#normal").attr("disabled","true");
             }
             else{
-                 
+                  $("#_capabilityuj").html("Vechile Type");
+				  $(".xpassengersa").html("0");
                      window.firstselected=0;
               $("#autorikshaw,#normal").prop("checked",false);
                      
