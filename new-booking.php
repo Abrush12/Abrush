@@ -4756,14 +4756,14 @@ function checkKey(e) {
              var rs=window.customerfixedprice.filter(function (entry) {
     return entry.passengers == pass && entry.lat==window.pickuplat && entry.lng==window.pickuplng;
 });
-           if(rs.length!=0){
+     /*      if(rs.length!=0){
             $("#fixedbx").attr("data-price",rs[0].fixedprice).find("strong").html("Rs "+rs[0].fixedprice);
             $("#fixedprice").val(rs[0].fixedprice);
            }
             else{
             $("#fixedbx").attr("data-price","0").find("strong").html("");
              $("#fixedprice").val("");
-           }
+           }*/
         //    window.amaddressref=null;
             return;
         }
@@ -5563,7 +5563,7 @@ if(e.keyCode=='13'){
           var fixedprice=$.trim($("#fixedprice").val());
           if(fixedprice.length!=0){
             $("#fixedbx").attr("data-price",(parseFloat(fixedprice))).find("strong").html("Rs "+(parseFloat(fixedprice)));
-            if($("#quotation").is(":checked")){
+            if( window.editwhat==2 || $("#quotation").is(":checked")){
              $("#confirm").focus();
             }
           }
@@ -6265,6 +6265,12 @@ else{
                // $("#motorbike,#autorikshaw").attr("disabled","true");
 			    if($("#booking").is(":checked")){
              //    $(".specialvehicle").show().parent().find("._dropdown").addClass("active");;
+			 
+			 if(window.editwhat==2)
+			 {
+				  $(".fixededitbox").show();
+                 $("#fixedprice").focus();
+			 }
            
             }
             else{
@@ -6299,6 +6305,11 @@ else{
                // $("#motorbike,#normal").attr("disabled","true");   
 			   if($("#booking").is(":checked")){
              //    $(".specialvehicle").show().parent().find("._dropdown").addClass("active");;
+			 if(window.editwhat==2)
+			 {
+				  $(".fixededitbox").show();
+                 $("#fixedprice").focus();
+			 }
            
             }
             else{
@@ -6333,6 +6344,12 @@ else{
                // $("#autorikshaw,#normal").attr("disabled","true");
 			       if($("#booking").is(":checked")){
              //    $(".specialvehicle").show().parent().find("._dropdown").addClass("active");;
+			 
+			  if(window.editwhat==2)
+			 {
+				  $(".fixededitbox").show();
+                 $("#fixedprice").focus();
+			 }
            
             }
             else{
@@ -6614,7 +6631,7 @@ $(".animalsbox").show();
              var rs=window.customerfixedprice.filter(function (entry) {
     return entry.passengers == pass && entry.lat==window.pickuplat && entry.lng==window.pickuplng;
 });
-           if(rs.length!=0){
+    /*       if(rs.length!=0){
             $("#fixedbx").attr("data-price",rs[0].fixedprice).find("strong").html("Rs "+rs[0].fixedprice);
              $("#fixedprice").val(rs[0].fixedprice);
            }
@@ -6622,7 +6639,7 @@ $(".animalsbox").show();
             $("#fixedbx").attr("data-price","0").find("strong").html("");
              $("#fixedprice").val("");
            }
-                  
+               */   
                   getDrivers(); 
                   getReference();
         }
@@ -6806,7 +6823,7 @@ $(".animalsbox").show();
              var rs=window.customerfixedprice.filter(function (entry) {
     return entry.passengers == pass && entry.lat==window.pickuplat && entry.lng==window.pickuplng;
 });
-           if(rs.length!=0){
+     /*      if(rs.length!=0){
             $("#fixedbx").attr("data-price",rs[0].fixedprice).find("strong").html("Rs "+rs[0].fixedprice);
              $("#fixedprice").val(rs[0].fixedprice);
            }
@@ -6814,7 +6831,7 @@ $(".animalsbox").show();
             $("#fixedbx").attr("data-price","0").find("strong").html("");
              $("#fixedprice").val("");
            }
-                  
+               */   
                   getDrivers(); 
                   getReference();
             }
