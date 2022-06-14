@@ -436,8 +436,8 @@ if(isset($_GET['status'])){
 </div>
 <section class="inner_s_wrap">
 <div class="fluid-container">
-  <div class="row">
-    <div class=" col-md-4 ">
+  <div class="row" style="margin-left:55px;">
+    <div class=" col-md-4" >
             <div class="search_labels alldm">
                
               <div class="search_inpt_flx">

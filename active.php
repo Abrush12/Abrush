@@ -3200,6 +3200,8 @@ window.minhourbkdate=function(ref,idx){
           if(dt<=0){
             dt=12;
           }
+		  if(dt==11 && dfgv12pm())
+			  return;	
           if(dt==11){
              if(ampm=="PM"){
                 $((idx=="datepicker"?"#demopm":"#demopm2")).removeClass("timeselected");

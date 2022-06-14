@@ -3545,6 +3545,8 @@ window.minhourbkdate=function(ref,idx){
           if(dt<=0){
             dt=12;
           }
+		 if(dt==11 && dfgv12pm())
+			  return;	
           if(dt==11){
              if(ampm=="PM"){
                 $((idx=="datepicker"?"#demopm":"#demopm2")).removeClass("timeselected");
@@ -3621,6 +3623,20 @@ window.minhourbkdate=function(ref,idx){
         var today = new Date();
         return new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), 0).getTime();
       }
+	   window.timenow=function(idx,tt){
+           var _date=$.trim($("#"+idx).val().split(",")[1]).split("-");              
+           var newDate = new Date( _date[2], _date[1] - 1, _date[0],tt[0],tt[1],0);
+		   
+		    if(newDate.getTime()<=dfgv()){
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		  	  
+	  }
+	  
 	   window.dfgv12pm=function(){
         var today = new Date();
 		var time12 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 11, 59, 0).getTime();
