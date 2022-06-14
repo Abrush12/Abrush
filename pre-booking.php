@@ -1628,8 +1628,8 @@ if(true){
                   <p class="f_on xmon" style="margin-left:5px" id="fixedbx" data-price="5.00" ><span class="fxtitle">Fixed</span><strong class="xbbbl">&nbsp;</strong></p>
                   <div class="btns_cnfrm fixededitbox" style="padding-left:20px;display:none; margin-top:4px; width:220px">
                     <div>
-                  <span style="color: #000;position: absolute; font-size: 18px;  margin-left: 5px;margin-top: 8px;">Rs</span>
-                <input type="text" autocomplete="off" style="padding-left:19px;margin-top: 10px;" class="_reddc" autocomplete="off" id="fixedprice" placeholder="Enter Fixed Price">
+                  <span style="color: #000;position: absolute; font-size: 16px;  margin-left: 5px;margin-top: 10px;">Rs</span>
+                <input type="text" autocomplete="off" style="padding-left:27px;margin-top: 10px;" class="_reddc" autocomplete="off" id="fixedprice" placeholder="Enter Fixed Price">
             </div>
                 <button type="button" style="margin-left:10px;padding: 2px;height: 32px;margin-top: 6px;" class="confrm" id="addfixed"  >Confirm</button>
               </div>
@@ -2059,6 +2059,7 @@ else{
     $("#quotation").prop("checked",true);
 $(".axdcvf").addClass("hdnn");
 }
+$("#fixedprice").val(job.fixedprice);
 $("#_startervia").find(".resulttry").html("").hide();
 $("#_startervia").find("input").removeAttr("data-lat").removeAttr("data-lng").removeAttr("data-zipcode").val("");
 $(".axtempl").remove();
@@ -2403,7 +2404,7 @@ window.selectjobax=function(ref){
              $(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
          }
       $("#tbd tr").removeClass("trselected");
-
+	$('.fixededitbox').hide();
     $(ref).addClass("trselected");
       window._crrvia=1;
        
@@ -5385,7 +5386,11 @@ $("#confirm").hide();
                obj["prepaidamount"]=window.prepaidamount;
 			    if(obj["api"]="editbooking")
 			   {
-				   if(obj["normal"] =="1" || (obj["autorikshaw"]=="1" && obj["passengers"] >=5))
+				   if (obj["fixedprice"] > 0)
+				   {
+					    obj["jobprice"]  = obj["fixedprice"];
+				   }
+				   else if(obj["normal"] =="1" || (obj["autorikshaw"]=="1" && obj["passengers"] >=5))
 				   {
 					   obj["jobprice"]=JOBAMOUNT;
 				   }

@@ -589,7 +589,7 @@ input{padding: 2px  ;border-radius: 3px;}
 
 </style>
 <script >
-   
+ window.editwhat=0;
  window.distancearr=[];
   window.METERS_IN_MILE = 1609.344;
 
@@ -1069,7 +1069,7 @@ Do you want to remove saloon car as one time or permanently.<br>
           <div class="col-xl-4" style="max-width:39.5%;flex:0 0 39.5%; ">
             <div class="bxx_one">
 
-              <div class="date_picker">
+              <div class="date_picker" id="dateShow">
                 <div class="row">
                   <div class="col-md-7">
                     <div class="form-group">
@@ -1118,7 +1118,7 @@ Do you want to remove saloon car as one time or permanently.<br>
                 </div>
               </div>
 
-              <div class="row" style="margin-bottom:2px;">
+              <div class="row" style="margin-bottom:2px;" id="bookquote">
                 <label class="col-sm-3" style="font-size:14;color:#fff"  >
                   <input checked type="radio" name="ax" class="chkcb chkcbvc" id="booking"> <span style="top: -4px;
     position: relative;">Booking</span>
@@ -2032,6 +2032,7 @@ if(window._cjob.isbooking=="1"){
   $("#booking").prop("checked",true);
   $(".axdcvf,.amdriverbnv").removeClass("hdnn");
   $("#fixedbx .fxtitle").html("Fixed");
+  $("#fixedprice").val(job.fixedprice);
 }
 else{
     $("#quotation").prop("checked",true);
@@ -2416,7 +2417,7 @@ window.selectjob=function(ref,isview,inActive){
             $("#confirm,#cancel,.table_xd").show();
           $("#audit").hide();
       }
-      window.isedit=true;
+   //   window.isedit=true;
       $("#audiolisten").show();
        $("#pram,#wheelchair,#pets,#lowvehicle,#highvehicle,#items,#scooter,#fishing,#bicycle,#boxes,#shopping").removeAttr("disabled").prop("checked",false);
  $(".isreturnx,.itemsbox,.animalsbox,.boxesbox,.depositamountbox").hide();
@@ -2434,7 +2435,19 @@ window.selectjob=function(ref,isview,inActive){
 window._cjob=job; 
 window.lojob(job);
 window._jobprice=job.jobprice;
-if(inActive==1)
+window.editwhat=inActive;
+if(inActive ==2)
+{
+//$("#dateShow").hide();
+//$("#bookquote").css({"margin-top":"38px"});
+  $("#booking").prop("checked",true);
+}
+else
+{
+//$("#dateShow").show();
+//$("#bookquote").css({"margin-top":"0px"});
+}
+if(inActive==3)
 {
 	 $(".xmapassengers").show().parent().find("._dropdown").addClass("active");
 	 window.amaddressref=true;
@@ -2646,7 +2659,7 @@ $("#tbd tr").remove();
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html='<tr class="prebooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,0)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html='<tr class="prebooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,1)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
          //html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
                     //html+='<td>'+y.jobtype+'</td>';
 
@@ -2706,7 +2719,7 @@ $("#tbd tr").remove();
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html='<tr class="quotation" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,0)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html='<tr class="quotation" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,2)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
       //   html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
           //  html+='<td>'+y.jobtype+'</td>';
 
@@ -2766,7 +2779,7 @@ $(data.data.historybooking).each(function(x,y){
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html='<tr onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,1)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html='<tr onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,3)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
         // html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
           // html+='<td>'+y.jobtype+'</td>';
 
@@ -4959,6 +4972,8 @@ $(".amdriverbnv").addClass("hdnn");
 $(".fixededitbox").show();
 $("#fixedprice").attr("placeholder","Give Quote");
 $("#pickuplocation").focus();
+$("#dateShow").hide();
+$("#bookquote").css({"margin-top":"38px"});
 
  });
  $("#booking").click(function(){
@@ -4969,6 +4984,9 @@ $("#confirm").css({"padding-left":"40px","padding-right":"40px"});
 $(".amdriverbnv").removeClass("hdnn");
 $("#fixedprice").attr("placeholder","Enter Fixed Price");
 $(".fixededitbox").hide();
+$("#dateShow").show();
+$("#bookquote").css({"margin-top":"0px"});
+
 
  });
  $("#errormodal").keypress(function(){
@@ -5831,7 +5849,7 @@ $("#timerx,#timerx1").clockpicker({
               
          }
                var obj=new Object();
-               if(window.isedit){
+               if(window.isedit && (window.editwhat==0 || window.editwhat==1) ){
                obj["api"]="editbooking";
              
            }
@@ -5936,7 +5954,7 @@ $("#timerx,#timerx1").clockpicker({
                obj["isprepaid"]=$("#prepaid").is(":checked")?"1":($("#deposit").is(":checked")?"1":"0");
                obj["isdeposit"]=$("#deposit").is(":checked")?"1":"0";
                obj["prepaidamount"]=window.prepaidamount;
-			   if(isedit)
+			   if(isedit && window.editwhat!=2)
 			   {
 				   if(obj["normal"] =="1" || (obj["autorikshaw"]=="1" && obj["passengers"] >=5))
 				   {
@@ -5951,6 +5969,11 @@ $("#timerx,#timerx1").clockpicker({
 					   obj["jobprice"]=JOBAMOUNT*0.50;
 				   }
 			   }
+			   else if(window.editwhat==2)
+			   {
+				   obj["jobprice"]= obj["fixedprice"];
+			   }
+			   
              if($("#selectmultiplevehicles").is(":checked")){
           obj["ismultiplevehicles"]="1";
           var callsignar=[];
@@ -6014,14 +6037,14 @@ $("#timerx,#timerx1").clockpicker({
                  else{
                       $("#loadingaxd").hide();
  
-                     if(window.isedit){
+                     if($("#quotation").is(":checked")){
                         setTimeout(function(){
                          window.location.href="new-booking.php";
                      },1100);
                      }
                      else{
                        // alert(JSON.stringify(data.data));
-                  window.location.href="active.php";
+                      window.location.href="active.php";
                      }
                  }
                  
@@ -6224,6 +6247,15 @@ else{
          }
          if($("#normal").is(":checked")){
                // $("#motorbike,#autorikshaw").attr("disabled","true");
+			    if($("#booking").is(":checked")){
+             //    $(".specialvehicle").show().parent().find("._dropdown").addClass("active");;
+           
+            }
+            else{
+                $(".fixededitbox").show();
+                 $("#fixedprice").focus();
+				
+            }
             }
             else{
              	 $("#_capabilityuj").html("Vechile Type");
@@ -6248,7 +6280,16 @@ else{
          }
          $("#motorbike,#normal").prop("checked",false);
          if($("#autorikshaw").is(":checked")){
-               // $("#motorbike,#normal").attr("disabled","true");
+               // $("#motorbike,#normal").attr("disabled","true");   
+			   if($("#booking").is(":checked")){
+             //    $(".specialvehicle").show().parent().find("._dropdown").addClass("active");;
+           
+            }
+            else{
+                $(".fixededitbox").show();
+                 $("#fixedprice").focus();
+				
+            }
             }
             else{
                   $("#_capabilityuj").html("Vechile Type");
@@ -6274,6 +6315,15 @@ else{
          $("#autorikshaw,#normal").prop("checked",false);
          if($("#motorbike").is(":checked")){
                // $("#autorikshaw,#normal").attr("disabled","true");
+			       if($("#booking").is(":checked")){
+             //    $(".specialvehicle").show().parent().find("._dropdown").addClass("active");;
+           
+            }
+            else{
+                $(".fixededitbox").show();
+                 $("#fixedprice").focus();
+				
+            }
             }
             else{
                   $("#_capabilityuj").html("Vechile Type");
@@ -6521,7 +6571,7 @@ $(".animalsbox").show();
             }
         }
         window.__xcheck=null;
-        window._oppassenger=function(ref){
+        window._oppassenger=function(ref){ 
               $("._cover").hide();
                  $(ref).parent().toggle();
                 $(".xmapassengers li").removeClass("active");
@@ -6531,8 +6581,9 @@ $(".animalsbox").show();
            
             }
             else{
-                $(".fixededitbox").show();
-                 $("#fixedprice").focus();
+              /*  $(".fixededitbox").show();
+                 $("#fixedprice").focus();*/
+				 $(".specialvehicle").show().parent().find("._dropdown").addClass("active");
             }
             var pass=$(".xpassengersa").html(); 
             $(".xmmotorbike,.xmautorikshaw").show();
@@ -6710,7 +6761,7 @@ $(".animalsbox").show();
 
                 }
             }
-            else  if($(this).parent().hasClass("xmapassengers")){
+            else  if($(this).parent().hasClass("xmapassengers")){ 
 
                 $("._cover").hide();
                  $(this).parent().toggle();
@@ -6721,8 +6772,9 @@ $(".animalsbox").show();
            
             }
             else{
-                $(".fixededitbox").show();
-                 $("#fixedprice").focus();
+             /*   $(".fixededitbox").show();
+                 $("#fixedprice").focus();*/
+				 $(".specialvehicle").show().parent().find("._dropdown").addClass("active");;
             }
             var pass=$(".xpassengersa").html();
             $(".xmmotorbike,.xmautorikshaw").show();
