@@ -206,35 +206,35 @@ code span {
 
    <label for="firstName" style="color: #fff !important; ">First Name</label>      
       
-             <input type="text" name="firstName" onkeyup="firstCapitalAlways(event);" autocomplete="none" class="form-control  " id="firstName"  >
+             <input type="text" name="firstName" onkeyup="firstCapitalAlways(event);" autocomplete="none" class="form-control" id="firstName"  >
  
   </div>
     <div class="form-group" style="margin-top:20px">
 
    <label for="lastName" style="color: #fff !important; ">Last Name</label>      
       
-             <input type="text" name="lastName" onkeyup="firstCapitalAlways(event);" autocomplete="off" class="form-control  " id="lastName"  >
+             <input type="text" name="lastName" onkeyup="firstCapitalAlways(event);" autocomplete="off" class="form-control" id="lastName"  >
  
   </div>
       <div class="form-group" style="margin-top:20px">
 
    <label for="birthDate" style="color: #fff !important; ">Date of Birth</label>      
       
-             <input type="date" name="birthDate" autocomplete="off" class="form-control  " id="birthDate"  >
+             <input type="date" name="birthDate" autocomplete="off" class="form-control" id="birthDate"  >
  
   </div>
       <div class="form-group" style="margin-top:20px">
 
-   <label for="PhoneNo" style="color: #fff !important; ">Phone Number</label>      
+   <label for="PhoneNo" style="color: #fff !important;">Phone Number</label>      
       
-             <input type="text"    name="PhoneNo" class="only-numeric"  autocomplete="off" class="form-control  " id="PhoneNo"  >
+             <input type="text" name="PhoneNo"  maxlength="11" autocomplete="off" class="form-control" id="PhoneNo"  >
  
   </div>
    <div class="form-group" style="margin-top:20px">
 
    <label for="company" style="color: #fff !important; ">Country</label>      
       
-             <select id="company" style="width: 100%;  border: none; outline: none;">
+             <select id="company" style="width: 100%;  border: none; outline: none;padding-left:8px" onchange="forFocus()">
                       <option value="0">Select Country</option>
                       <option value="PK">Pakistan</option>
                       <option value="IN">India </option>
@@ -250,10 +250,10 @@ code span {
              <input type="password" name="passwordMain"  autocomplete="off" class="form-control secure" id="passwordMain"  >
  
   </div>
-</form>
+
    <div class="form-group" style="margin-top:20px">
     <label for="passwordCon" style="color:#fff">Confirm Password </label>
-    <input type="password" name="passwordCon"  autocomplete="off"  class="form-control secure" id="passwordCon"  >
+    <input type="text" name="passwordCon"  autocomplete="off"  class="form-control secure" id="passwordCon"  >
      
   </div>
  <div class="form-group" style="margin-top:20px">
@@ -263,12 +263,15 @@ code span {
           <input type="file" id="fileUpload" onchange="uploadImage(0,this)" name="img" accept="image/*" style="color: #fff !important; ">
  
   </div>
-  <div class="form-group" style="margin-top:20px">
+   </form>
+  <div class="form-group" style="margin-top:20px;text-align:center">
 
     <button class="btn btn-primary" id="save">Submit</button>   <span class="alert alert-danger" id="xerrormsgs"></span> <img src="img/load.gif" style="width:60px;display: none;" id="loadingggf">
      
   </div>
-  <div id="imgtmbnail" style="margin-left:450px;margin-top:-105px">  <img src="img/callcenter.png" class="img-thumbnail" alt="Cinque Terre" width="150" height="100"> </div>
+  <div id="imgtmbnail" style="margin-left:450px;margin-top:-105px;display:none;"><img id="dispimg" src="img/blank.png" class="img-thumbnail" alt="Cinque Terre" width="150" height="100"> </div>
+  <input type="hidden" id="imgdb" value="" >
+ 
     </div>
   </div>
 </div>
@@ -289,7 +292,7 @@ code span {
 
 window._baseurl="http://18.168.83.39/";
 
-
+document.onkeydown = checkKey;
 window._pos=0;
 window._ref=null;
 window.firstCapitalAlways= function (event) {
@@ -301,16 +304,16 @@ window.firstCapitalAlways= function (event) {
  
 
     function errorHandler(event) {
-		alert("error");
+	//	alert("error");
      }
 
     function abortHandler(event) {
-		alert("abort");
+	//	alert("abort");
      }
 	 
     
 function uploadProgressHandler(event) {
-        alert("progress");
+      //  alert("progress");
   /*      var percent = (event.loaded / event.total) * 100;
         var progress = Math.round(percent);
         $("#uploadprogress,#uploadprogress1").show().val(progress);
@@ -322,7 +325,7 @@ window.uploadImage=function(qs,ref){
 	 
           var file;
           if(qs==0) { file = $("#fileUpload")[0].files[0];}
-         alert(file); 
+      
         if($(ref).val().length==0){
 			return;
 		}
@@ -353,29 +356,17 @@ window.uploadImage=function(qs,ref){
      }
  
  function loadHandler(event) {
- 			//	$(window._ref).parent().find("img").attr("src","img/upload.png");
- alert(event.target.responseText);
 		 if(window._pos==0){
-		 alert(event.target.responseText);
-       // $("#platenoimage").val(event.target.responseText);
-		//$(window._ref).parent().find("img").attr("src",window._baseurl+"files/"+event.target.responseText);
-
-        
+			 $("#imgtmbnail").show();
+		$("#imgdb").val(event.target.responseText);
+		$("#dispimg").attr("src",window._baseurl+"files/"+event.target.responseText);
+		$("#save").focus();
     }
 	}
+
 $(function(){
 		
-	$(".only-numeric").bind("keypress", function (e) {
-          var keyCode = e.which ? e.which : e.keyCode
-               
-          if (!(keyCode >= 48 && keyCode <= 57)) {
-             $(event.target).val("");
-            return false;
-          }else{
-            
-          }
-      });
-	
+
 	
   $("#save").click(function(){
 	  if($.trim($("#firstName").val())=="")
@@ -413,14 +404,18 @@ $(function(){
 		  alert("Password and Confirm Password do not match");
 		  return;
 	  }
-      $("#loadingggf").show();
-        myajax({"api":"addUpdateAdmin","firstName":$.trim($("#firstName").val()),"lastName":$.trim($("#lastName").val()),"dateofbirth":$.trim($("#birthDate").val()),"Phone":$.trim($("#PhoneNo").val()),"countrycode":$.trim($("#company").val()),"image":"image","password":$.trim($("#passwordMain").val())},function( data, textStatus, jQxhr ){
+	  if($.trim($("#imgdb").val())=="")
+	  {
+		  alert("Please Select Image");
+		  return;
+	  }
+	  $("#loadingggf").show();
+        myajax({"api":"addAdmin","firstName":$.trim($("#firstName").val()),"lastName":$.trim($("#lastName").val()),"dateofbirth":$.trim($("#birthDate").val()),"phone":$.trim($("#PhoneNo").val()),"countrycode":$.trim($("#company").val()),"image":$("#imgdb").val(),"password":$.trim($("#passwordMain").val())},function( data, textStatus, jQxhr ){
           if(data.status=="200"){
-            $("#oldpassword,#newpassword,#cnewpassword").val("");
-             $("#xerrormsgs").html("Successfully Changed").show();  
+            alert("Admin user has been added successfully"); 
           }
           else{
-              $("#xerrormsgs").html(data.alert).show();   
+             alert(data.message);  
               } 
 $("#loadingggf").hide();
     });
@@ -474,7 +469,74 @@ function removeCustomAlert() {
     document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
 }
 
+ 
 
+ window.setInputFilter=function(textbox, inputFilter) {
+  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+    textbox.addEventListener(event, function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      } else { 
+        this.value = "";
+      }
+     });
+  });
+}
+setInputFilter(document.getElementById("PhoneNo"), function(value) {
+  return /^\d*\d*$/.test(value); // Allow digits and '.' only, using a RegExp
+});
+
+function checkKey(e) {
+
+    e = e || window.event;
+     
+  if (e.keyCode == '13') {
+ //   alert($("#birthDate").val())
+		if( $('#firstName').is(':focus') && $.trim($("#firstName").val())!=""){ //alert("fn");
+			$("#lastName").focus();
+		}else if($.trim($("#firstName").val())==""){
+			$("#firstName").focus();
+		}else if($('#lastName').is(':focus') && $.trim($("#lastName").val())!=""){//alert("ln");
+			$("#birthDate").focus();
+		}else if($.trim($("#lastName").val())=="")
+			$("#lastName").focus();
+		else if($('#birthDate').is(':focus') && $.trim($("#birthDate").val())!=""){//alert("date");
+			$("#PhoneNo").focus();
+		}else if($.trim($("#birthDate").val())==""){
+			$("#birthDate").focus();
+		}else if($('#PhoneNo').is(':focus') && $.trim($("#PhoneNo").val())!=""){ //alert("kk");
+			$("#company").focus();
+		}else if($.trim($("#PhoneNo").val())==""){
+			$("#PhoneNo").focus();
+		}else if($.trim($("#company").val()) == 0){
+			$("#company").focus();
+		}else if($('#passwordMain').is(':focus') && $.trim($("#passwordMain").val()) != ""){
+			$("#passwordCon").focus();
+		}else if($.trim($("#passwordMain").val()) == ""){
+			$("#passwordMain").focus();
+		}else if($('#passwordCon').is(':focus') && $.trim($("#passwordCon").val()) != ""){
+			$("#fileUpload").focus();
+		}else if($.trim($("#passwordCon").val()) == ""){
+			$("#passwordCon").focus();
+		}else if($.trim($("#imgdb").val()) != ""){
+			$("#save").focus();
+		}else{ 
+			$("#fileUpload").focus();
+		}
+	}
+
+}
+
+function forFocus() { 
+  var x = document.getElementById("company").value; 
+	if(x!=0)
+		$("#passwordMain").focus();
+}
 </script>
   </body>
 </html>

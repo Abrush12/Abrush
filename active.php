@@ -4118,6 +4118,9 @@ window.dcounter=0;
             return;
          }
           
+        if($(".xallocatedriver").is(":visible")){
+			return;
+		}			
          window._lcchildlength = 0 ;
 
          if(window.amaddressref!=null){
@@ -4296,6 +4299,11 @@ window.dcounter=0;
             
             return;
          }
+		 
+		 
+		if($(".xallocatedriver").is(":visible")){
+			return;
+		}	 
          window._lcchildlength = 0 ;
 
          if(window.amaddressref!=null){
