@@ -1004,7 +1004,7 @@ if(isset($_GET['status'])){
 </script>
   <script>
  window.viewId=0;  
-
+window.oldlen=-1;
       window.checkTime=function(i) {
   if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
   return i;
@@ -2068,8 +2068,8 @@ window.ll=function(xnj){
   
       myajax( {"api":"allappointmentsboth","controllerid":xcontrollername,"xall":xall,"xnormal":xnormal,"xautorikshaw":xautorikshaw,"xmotorbike":xmotorbike,"regdate":regdate,"status":"<?php echo $status; ?>","ddate":ddate,"ishighest":ishighest,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
         $("#loadinggif").hide();
-         $(".rowax,.rowspls").remove();
-         var _clone;
+       //  $(".rowax,.rowspls").remove();
+         var _clone="";
          var tbd=$("#tbd");
      var tbdpending=$("#tbdpending");
 
@@ -2090,7 +2090,7 @@ window.ll=function(xnj){
       window._ttlpayment+=window._ttlcredit;
           $(data.data.all).each(function(x,y){
           
-          _clone ='<tr  class="rowax rowaxdriver" data-registration="'+y.registration+'" data-colour="'+y.color+'" data-phone="'+y.model+'" data-make="'+y.make+'"  data-phone="'+y.phonex+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
+          _clone +='<tr  class="rowax rowaxdriver" data-registration="'+y.registration+'" data-colour="'+y.color+'" data-phone="'+y.model+'" data-make="'+y.make+'"  data-phone="'+y.phonex+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
           _clone+='<img style="margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px" class="_profilepic" src="'+window._baseurl+y.image+'" alt=""></td>';
           _clone+='<td><b >'+y.callsign+'</b></td>';
           _clone+='<td><b >'+y.name+'</b></td>';
@@ -2136,9 +2136,18 @@ window.ll=function(xnj){
              
             _clone+='    </td> </tr>  ';
           
-          tbd.append(_clone);
-         }); 
-   
+        //  tbd.append(_clone);
+         }); //alert(window.oldlen); alert(data.data.all.length);
+		if(window.oldlen==-1){
+			window.oldlen=_clone;
+			tbd.html(_clone);
+		}
+		else if(window.oldlen != _clone)
+		{
+			window.oldlen=_clone;
+			tbd.html(_clone);
+		}
+		//tbd.html(_clone);
        $(data.data.creditlist).each(function(x,y){
          
           

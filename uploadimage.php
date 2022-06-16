@@ -57,25 +57,6 @@ move_uploaded_file($file_tmp,$path.$new_name);
 
 
 $source_img = $path.$new_name; 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $destination_img = $path.$new_name1;
 
 $d = compress($source_img, $destination_img, 90);
