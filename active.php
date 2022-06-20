@@ -4502,7 +4502,7 @@ window.showviamap=function(ref){
  
 window.adheight=function(){
     var ht=$(window).height()-$(".mainctr").height();
-    ht= ht-110;
+    ht= ht-110; 
     $(".mntblsk").css("max-height",ht+"px");
 
 }

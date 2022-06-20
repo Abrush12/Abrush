@@ -27,6 +27,8 @@ session_start();
    
 
        <style type="text/css">
+	   
+body{overflow: hidden;   font-family: 'Almarai' !important; }
        @font-face {
        font-family: Butler;
        src: url('font/Butler_Bold.OTF');
@@ -1063,7 +1065,7 @@ Do you want to remove saloon car as one time or permanently.<br>
    
 <div class="container" id="map-canvas" style="height:300px;display: none;"></div>
     <section class="inner_s_wrap">
-      <div class="container-fluid"  >
+      <div class="container-fluid mainctr"  >
         <div class="row" style="margin-bottom:30px">
 
           <div class="col-xl-4" style="max-width:39.5%;flex:0 0 39.5%; ">
@@ -1903,8 +1905,8 @@ if(true){
 </div>
   <div class="row">
           <div class="col-md-12 px-0">
-            <div class="table_s full_wdth">
-             <table class="table vbgtable"  style="margin-top:0px;">
+                 <div class="table_s full_wdth mntblsk" style="margin-top:-2px; overflow-y: auto;">
+                 <table class="table vbgtable tableFixHead "  style="margin-top:0px;">
                   <thead>
                      <tr>
                       <th style="width:80px;display:none">Type<i></i></th>
@@ -1971,6 +1973,12 @@ window.enbname=function(event) {
 window.clopitimer=function(ref,event){
     event.stopPropagation();
        dddr();
+}
+window.adheight=function(){
+    var ht=$(window).height()-$(".mainctr").height(); 
+    ht= ht-110; 
+    $(".mntblsk").css("max-height",ht+"px");
+
 }
 window.bandriver=function(){
   if($(window._jobref).attr("data-driverid")=="0"){
@@ -2805,6 +2813,9 @@ getReference();
         console.log( errorThrown );
     }
 });
+  setTimeout(function(){
+      adheight();
+  },10);
 }
 window.sectdriverasx=function(keycode){
 if(keycode=="40"){
@@ -3049,6 +3060,9 @@ $("#xcarimage1").attr("src",window._baseurl+"files/"+driver.carimage1);
     <script type="text/javascript">
       window._crrvia=1;
       window._baseurl="http://18.168.83.39/";
+ $(window).resize(function(){
+    adheight();
+ });
 
        function crypMobile(mobile){
     if((mobile).length>8){
