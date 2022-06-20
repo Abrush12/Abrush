@@ -245,7 +245,7 @@ code span {
 
    <label for="company" style="color: #fff !important; ">Country</label>      
       
-             <select id="company" style="width: 100%;  border: none; outline: none;padding-left:8px" onchange="forFocus()">
+             <select id="company" style="width: 100%;  border: none; outline: none;padding:0.175rem 0.75rem;padding-left:8px;border-radius:0.25rem;" onchange="forFocus()">
                       <option value="0">Select Country</option>
                       <option value="PK">Pakistan</option>
                       <option value="IN">India</option>
