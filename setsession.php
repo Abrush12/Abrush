@@ -7,6 +7,7 @@ $_SESSION['FULLNAME']= $postData->fullname;
 $_SESSION['ISLOGIN']="1";
 $_SESSION['COUNTRYCODE']=$postData->countrycode;
 $_SESSION['RIGHTS']=$postData->rights;
+$_SESSION['IMAGE']=$postData->image;
 setcookie("ISLOGIN", "1", time() + (3600 * 1000), "/");
 echo json_encode(array("a"=>"1"));
 

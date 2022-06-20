@@ -81,8 +81,12 @@ body{   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important; 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
  <script>
-
+var userImagesrc ="<?php echo $_SESSION['IMAGE']?>";
+window._baseurl_H ="http://18.168.83.39/";
  $(function(){
+	 
+	 $("#userImage").attr("src",window._baseurl_H+"files/"+userImagesrc);
+		
     $("#playaudio").click(function(){
          setTimeout(function(){
             document.getElementById("myAudio").play();
@@ -421,7 +425,7 @@ window.getprebookingAlarm=function(){
                 </div>
                 <div class="profile_user">  
                   <span>
-                    <img src="img/testimonialimage4.jpg">
+                    <img id="userImage" src="img/testimonialimage4.jpg">
                   </span>
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="fullname_name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['FULLNAME']; ?></button>
@@ -451,5 +455,6 @@ window.getprebookingAlarm=function(){
     <script>
       (function(){
         document.getElementById("fullname_name").innerHTML = localStorage.getItem("fullname");
+		
       })();
     </script>
