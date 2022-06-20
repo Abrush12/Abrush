@@ -307,7 +307,7 @@ session_start();
 <div class="row">
   <div class="col-lg-12">
     <div class="main-box clearfix">
-	<div class=><i class="fa fa-list fa-2x" style="color:white;margin-bottom:20px;margin-left:20px;" aria-hidden="true">&nbsp;&nbsp;&nbsp;Controller List</i>
+	<div class=><h1 style="color:white;margin-bottom:20px;margin-left:20px;font-family: Times,serif;" aria-hidden="true">&nbsp;&nbsp;&nbsp;Controller List</h1>
 </div>
  <div class="table-responsive" style="margin-left:20px;">
     <table class="table user-list  user-listax ">
