@@ -14,11 +14,12 @@ session_start();
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
-	   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
     <!-- JS files  -->
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+
      
     <style type="text/css">
 	body{
@@ -177,6 +178,8 @@ code {
 code span {
     color:green;
 }
+
+
     </style>
 
 
@@ -199,7 +202,14 @@ code span {
       <form  autocomplete="off" role="presentation">
 	<div class="form-group" style="margin-top:20px">
 
-   <label for="country" style="color: #fff !important; "><h1>Sign Up<h1></label>      
+   <h1 style="color: #fff !important;text-align:center; ">Controller Sign Up<h1>     
+ 
+  </div>
+  <div class="form-group" style="margin-top:20px">
+
+   <label for="userName" style="color: #fff !important; ">User Name</label>      
+      
+             <input type="text" name="userName" onkeyup="firstCapitalAlways(event);" autocomplete="none" class="form-control" id="userName"  >
  
   </div>
 	<div class="form-group" style="margin-top:20px">
@@ -220,7 +230,8 @@ code span {
 
    <label for="birthDate" style="color: #fff !important; ">Date of Birth</label>      
       
-             <input type="date" name="birthDate" autocomplete="off" class="form-control" id="birthDate"  >
+          <input type="text" id="birthDate" readonly placeholder="dd-mm-yyyy" style="width:100%;font-size:1rem;border-radius:0.25rem;padding:0.375rem 0.75rem;" >
+          <img src="img/Artboard 17 copy.png" style=" width: 22px;  position: absolute; margin-left: -29px;" id="opendate">
  
   </div>
       <div class="form-group" style="margin-top:20px">
@@ -237,9 +248,9 @@ code span {
              <select id="company" style="width: 100%;  border: none; outline: none;padding-left:8px" onchange="forFocus()">
                       <option value="0">Select Country</option>
                       <option value="PK">Pakistan</option>
-                      <option value="IN">India </option>
-					 <option value="DU">Dubai </option>
-					 <option value="UK">United Kindom	 </option>
+                      <option value="IN">India</option>
+					 <option value="DU">Dubai</option>
+					 <option value="UK">United Kindom</option>
 					 <option value="TU">Turkey </option>
                      </select>
  
@@ -287,6 +298,7 @@ code span {
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+	  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     
 <script>
 
@@ -310,8 +322,18 @@ window.firstCapitalAlways= function (event) {
     function abortHandler(event) {
 	//	alert("abort");
      }
+$("#opendate").click(function(){
+                 $("#birthDate").datepicker("show");
+        });
 	 
-    
+$("#birthDate").datepicker({
+	
+        weekStart: 1,  changeYear: true,yearRange: "-100:+0",
+        daysOfWeekHighlighted: "6,0", maxDate: new Date(),
+        autoclose: true,dateFormat: 'dd-mm-yy',
+        todayHighlight: true
+    })
+          
 function uploadProgressHandler(event) {
       //  alert("progress");
   /*      var percent = (event.loaded / event.total) * 100;
@@ -369,6 +391,11 @@ $(function(){
 
 	
   $("#save").click(function(){
+	  if($.trim($("#userName").val())=="")
+	  {
+		  alert("Please Enter User Name");
+		  return;
+	  }
 	  if($.trim($("#firstName").val())=="")
 	  {
 		  alert("Please Enter First Name");
@@ -410,9 +437,10 @@ $(function(){
 		  return;
 	  }
 	  $("#loadingggf").show();
-        myajax({"api":"addAdmin","firstName":$.trim($("#firstName").val()),"lastName":$.trim($("#lastName").val()),"dateofbirth":$.trim($("#birthDate").val()),"phone":$.trim($("#PhoneNo").val()),"countrycode":$.trim($("#company").val()),"image":$("#imgdb").val(),"password":$.trim($("#passwordMain").val())},function( data, textStatus, jQxhr ){
+        myajax({"api":"addAdmin","userName":$.trim($("#userName").val()),"firstName":$.trim($("#firstName").val()),"lastName":$.trim($("#lastName").val()),"dateofbirth":$.trim($("#birthDate").val()),"phone":$.trim($("#PhoneNo").val()),"countrycode":$.trim($("#company").val()),"image":$("#imgdb").val(),"password":$.trim($("#passwordMain").val())},function( data, textStatus, jQxhr ){
           if(data.status=="200"){
             alert("Admin user has been added successfully"); 
+			window.location.href="controller.php";
           }
           else{
              alert(data.message);  
@@ -497,7 +525,11 @@ function checkKey(e) {
      
   if (e.keyCode == '13') {
  //   alert($("#birthDate").val())
-		if( $('#firstName').is(':focus') && $.trim($("#firstName").val())!=""){ //alert("fn");
+		if( $('#userName').is(':focus') && $.trim($("#userName").val())!=""){ //alert("fn");
+			$("#firstName").focus();
+		}else if($.trim($("#userName").val())==""){
+			$("#userName").focus();
+		}else if( $('#firstName').is(':focus') && $.trim($("#firstName").val())!=""){ //alert("fn");
 			$("#lastName").focus();
 		}else if($.trim($("#firstName").val())==""){
 			$("#firstName").focus();

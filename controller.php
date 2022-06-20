@@ -376,8 +376,8 @@ session_start();
         }
           _clone+='<td><b style="font-size:15px;">'+y.fullname+'</td>';
           _clone+='<td style="font-size:15px"><b>'+y.phone+'</b>';
-          _clone+='<td><b style="font-size:15px;margin-left:15px">'+y.dateofbirth+'</td>';
-        _clone+='<td><b style="font-size:15px;margin-left:15px">'+y.countrycode+'</td>';
+          _clone+='<td><b style="font-size:15px;margin-left:15px">'+dateFormat(y.dateofbirth)+'</td>';
+        _clone+='<td><b style="font-size:15px;margin-left:15px">'+getCountry(y.countrycode)+'</td>';
         _clone+='<td><b style="font-size:15px;margin-left:15px">'+y.username+'</td>';
         _clone+='</tr></tr> </tr>';
           
@@ -397,6 +397,37 @@ session_start();
  window.prmobile=function(mobile){
   var tt=  mobile.substr(0,1);
   return tt=="0"?mobile:"0"+mobile;
+}
+
+function getCountry(code)
+{
+	switch(code){
+			case "IN":
+			day = "India";
+			break;
+			case "PK":
+			day = "Pakistan";
+			break;
+			case "UK":
+			 day = "United Kindom";
+			break;
+			case "DU":
+			day = "Dubai";
+			break;
+			case "TU":
+			day = "Turkey";
+			break;
+	}
+	return day;
+}
+function dateFormat(date)
+{
+			var date_in=new Date(date);
+			var dd = String(date_in.getDate()).padStart(2, '0');
+			var mm = String(date_in.getMonth() + 1).padStart(2, '0'); //January is 0!
+			var yyyy = date_in.getFullYear();
+			return (dd + '-'+mm+"-"+ yyyy);
+
 }
   
  function crypMobile(mobile){
