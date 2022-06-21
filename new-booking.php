@@ -1086,7 +1086,7 @@ Do you want to remove saloon car as one time or permanently.<br>
                       <div class='input-group time' style="width:200px;float:right">
                                                 <span style="font-size: 15px;margin-top: 0px;font-weight: bold;">Time</span>
 
-                      <input type="text" style="width:38%;margin-top:0px;font-weight: bold;font-size: 13px;margin-right: 10px;height: 22px;"  placeholder="--:--" onkeypress="formatTime(this)" MaxLength="8"    id="timerx">
+                      <input type="text" autocomplete="off" style="width:38%;margin-top:0px;font-weight: bold;font-size: 13px;margin-right: 10px;height: 22px;"  placeholder="--:--" onkeypress="formatTime(this)" MaxLength="8"    id="timerx">
                          <img id="clockx" src="img/clock.png" style="width:18px;position:absolute;margin:3px 5px 4px 10px;height: auto;"> 
                          <div class="timer-box mtr-datepicker timer-box1" style="min-height:150px;">
                           <div class="mtr-row">
@@ -1529,7 +1529,7 @@ if(true){
                       <div class="input-group time" style="width:160px;float:right">
                                                 <span style="font-size: 15px;font-weight: bold;">Time</span>
 
-                        <input type="text" style="width:60%;font-size: 15px;font-weight: bold;height: 21px;" placeholder="00:00 AM" onkeypress="formatTime(this)" maxlength="8" id="timerx1">
+                        <input type="text" autocomplete="off" style="width:60%;font-size: 15px;font-weight: bold;height: 21px;" placeholder="00:00 AM" onkeypress="formatTime(this)" maxlength="8" id="timerx1">
                          <img id="clockx1" src="img/clock.png" style="width:18px;position:absolute;margin:2px 2px 4px 10px;height: auto;"> 
                            <div class="timer-box mtr-datepicker timer-box2">
                           <div class="mtr-row">
