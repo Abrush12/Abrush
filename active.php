@@ -4143,7 +4143,7 @@ window.dcounter=0;
 				
                 $("#fixedbx strong").html(jbcounter+" "+$(".mntblsk").get(0).scrollHeight);
                 var amn=window._joblist.length-Math.round(($(".mntblsk").height()-46)/28);
-                 if(jbcounter%17==0){ //alert(jbcounter)
+                 if(jbcounter%11==0){ //alert(jbcounter)
 					//  if(jbcounter%17==0){ 
                  window.scrooltp = (26*(jbcounter-14)); 
 				 
@@ -4324,7 +4324,7 @@ window.dcounter=0;
                 jbcounter++;
 				var amn=Math.round(($(".mntblsk").height()-46)/28);
              //    if(jbcounter>=amn){
-			if(jbcounter%17==0){
+			if(jbcounter%11==0){
                  window.scrooltp = (26*jbcounter);
 				
                $(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
