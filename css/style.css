@@ -139,8 +139,8 @@ a:hover {
   display: flex;
 }
 .profile_user span {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   overflow: hidden;
   border-radius: 50px;
   margin-right: 10px;
