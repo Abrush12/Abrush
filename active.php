@@ -2086,6 +2086,8 @@ $("#_startervia").find("input").removeAttr("data-lat").removeAttr("data-lng").re
 $(".axtempl").remove();
 $(".mnjjxzl").find("input").val("5");
 $("._ikmnp input").val("");
+$("#fixedbx").attr("data-price",job.fixedprice).find("strong").html("");
+if(job.fixedprice > 0)
 $("#fixedbx").attr("data-price",job.fixedprice).find("strong").html("Rs "+job.fixedprice);
  
    updateviaplaceholder();
