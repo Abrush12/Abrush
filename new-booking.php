@@ -1587,7 +1587,7 @@ if(true){
                   <p class="m_on xmon">Kilometer<br><strong  class="xbbbl" id="ttlmileage">&nbsp;</strong></p>
                   <p class="m_on xmon" style="background-image:linear-gradient(to right, #87037c , #d701c5);margin-left:5px">Time<br><strong class="xbbbl" id="ttltime">&nbsp;</strong></p>
                   <p class="p_on xmon" style="margin-left:5px">Price<br><strong class="xbbbl">&nbsp;</strong></p>
-                  <p class="f_on xmon" style="margin-left:5px" id="fixedbx" data-price="5.00" ><span class="fxtitle">Fixed</span> <strong class="xbbbl">&nbsp;</strong></p>
+                  <p class="f_on xmon" style="margin-left:5px" id="fixedbx" data-price="0.00" ><span class="fxtitle">Fixed</span> <strong class="xbbbl">&nbsp;</strong></p>
                   <div class="btns_cnfrm fixededitbox" style="padding-left:20px;display:none; margin-top:4px; width:220px">
                     <div style="position:absolute;margin-top: -7px;">
                     <div style="float: left;width: 140px;">
@@ -5891,7 +5891,7 @@ $("#timerx,#timerx1").clockpicker({
                 mobile=$.trim($("#mobile").attr("data-mobile"))
             }*/
           $("#xerrormsgs").hide();
-          obj["bookingcountry"]="<?php echo $ovcountrycode; ?>";
+          obj["bookingcountry"]="<?php echo $_SESSION['COUNTRYCODE']; ?>";
           obj["issalooncheckparmanent"]=window.issalooncheckparmanent;
           obj["iscard"]=window.__iscard;
           obj["ispermanentfixedprice"]=($("#ispermanentfixedprice").is(":checked")?"1":"0");
