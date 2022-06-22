@@ -1933,7 +1933,7 @@ if(true){
                  </label>
               </div>
                 <div class="row  axdcvf" style="height:42px;z-index:-1">
-				<div id="OldOwedshow" class="col-md-12 blink" style="padding-left: 10px;margin-top:-10px;z-index:-1">
+				<div id="OldOwedshow" class="col-md-12 blink" style="color:red;padding-left: 10px;margin-top:-10px;z-index:-1">
 				
 				</div>
 				<div id="Owedshow" class="col-md-12 blink" style="padding-left: 10px;margin-top: 5px;z-index:-1">
@@ -2429,7 +2429,13 @@ var yyyy = today.getFullYear();
     
     })
   }
-  
+			$("#iused").html(job.jobspredata.used+" Used");
+            $("#icancelled").html(job.jobspredata.rejected+" Cancelled");
+            $("#irunner").html(job.jobspredata.running+" Runner");
+            $("#inofare").html(job.jobspredata.nofare+" No Fare");
+            if(job.jobspredata.lastused!="")
+            $("#ilastused").html(job.jobspredata.lastused).parent().show();
+            else $("#ilastused").parent().hide(); 
   
  
 if(driveridx=="0" ){
