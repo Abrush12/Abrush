@@ -148,9 +148,17 @@ background: transparent;}
  
     background: #0028a1;
 }
-.table_s .table tbody tr.cancelbooking td,.table_s .table tbody tr.activebooking:hover td{
+.table_s .table tbody tr.cancelbooking td,.table_s .table tbody tr.cancelbooking:hover td{
  
     background: #999900;
+}
+.table_s .table tbody tr.runnerbooking td,.table_s .table tbody tr.runnerbooking:hover td{
+ 
+    background: #336600;
+}
+.table_s .table tbody tr.nofarebooking td,.table_s .table tbody tr.nofarebooking:hover td{
+ 
+    background: #e600ac;
 }
 .table_s .table tbody tr.prebooking td,.table_s .table tbody tr.prebooking:hover{background:#b34b29}
 
@@ -1865,10 +1873,8 @@ if(true){
                  </label>
               </div>
                  <div class="row  axdcvf" style="height:42px;z-index:-1">
-				<div id="OldOwedshow" class="col-md-12 blink" style="color:orange;padding-left: 10px;margin-top:-10px;">
 				
-				</div>
-                  <div class="col-md-12 creditcardbox" style="display: none;padding-left: 0px">
+                  <div class="col-md-12 creditcardbox" style="display: none;padding-left: 0px;margin-top:-10px;">
                     <div style="background: #ffffff4a;padding: 7px;border-radius: 7px;">
                         
                         <div class="row"><div class="col-sm-12">
@@ -1893,12 +1899,14 @@ if(true){
                   </div></div>
                 </div>
                   </div>
-                 
+                 <div id="OldOwedshow" class="col-md-12 blink" style="color:red;padding-left:10px;position: absolute;margin-top:25px; margin-left:20px;">
+				
+				</div>
                 </div>
                 
               </div>
 
-              <div class="left_s_apacing">
+              <div class="left_s_apacing" style="margin-top: 35px;">
                <!-- <div class="alocat_d lst">
                   <label class=" " style="width:110px">
                     <input type="checkbox" class="chkcb chkcbvc _am sms"> <span class="_bm">SMS</span>

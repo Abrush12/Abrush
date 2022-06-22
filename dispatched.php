@@ -1933,13 +1933,8 @@ if(true){
                  </label>
               </div>
                 <div class="row  axdcvf" style="height:42px;z-index:-1">
-				<div id="OldOwedshow" class="col-md-12 blink" style="color:red;padding-left: 10px;margin-top:-10px;z-index:-1">
 				
-				</div>
-				<div id="Owedshow" class="col-md-12 blink" style="padding-left: 10px;margin-top: 5px;z-index:-1">
-				
-				</div>
-                  <div class="col-md-12 creditcardbox" style="display: none;z-index:-1">
+                  <div class="col-md-12 creditcardbox" style="display: none;margin-top:-10px;z-index:-1">
                     <div style="background: #ffffff4a;padding: 7px;border-radius: 7px;">
                         
                         <div class="row"><div class="col-sm-12">
@@ -1964,7 +1959,12 @@ if(true){
                   </div></div>
                 </div>
                   </div>
-                 
+                <div id="OldOwedshow" class="col-md-12 blink" style="color:red;padding-left:10px;position: absolute;margin-top:25px; margin-left:20px;">
+				
+				</div>
+				<div id="Owedshow" class="col-md-12 blink" style="padding-left: 10px;margin-top: 5px;position: absolute;margin-top:50px;z-index:-1;margin-left:20px;">
+				
+				</div>
                 </div>
                 
               </div>
@@ -1984,7 +1984,7 @@ if(true){
                 </div>
             </div>
 <img src="img/load.gif" style="width: 57px;position: absolute;display: none;" id="loadingaxd">
-                <div class="btns_cnfrm btns_cnfrmcx" style="margin-left: 0px;">
+                <div class="btns_cnfrm btns_cnfrmcx" style="margin-left: 0px; margin-top: 30px;">
                    <button type="button"   id="resetjob" style="display:none;width:125px">Undo</button>
                   <button type="button" class="confrm" id="confirm" style=" display:none; font-weight: bold;width:125px">Confirm</button>
               <button type="button" class="confrm" style="display:none;width:125px"  id="edit">Edit</button>
