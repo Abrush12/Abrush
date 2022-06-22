@@ -81,6 +81,8 @@ body{   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important; 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
  <script>
+ window._joblist_alarm=[];
+ window.listlen_alarm=-1;
 var userImagesrc ="<?php echo $_SESSION['IMAGE']?>";
 window._baseurl_H ="http://18.168.83.39/";
  $(function(){
@@ -283,23 +285,28 @@ window.updatelogin=function(){
     }
 	
 window.getprebookingAlarm=function(){ 
-	 var username=$.trim(<?php echo $_SESSION['ID'];?>); 
-	    myajax({"api":"getprebookingAlarm","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){ 
-              if(data.status=="200"){ 
-				  $("#playalarm").click();
-				  if(window.location.href.includes("pre-booking.php"))
-				  {
-					  
-					setTimeout( prebooking, 30000);
-				  }
-				  else  if(window.location.href.includes("active.php"))
-				  {
-					setTimeout( activebooking, 30000);
-				  }
-			  }
-			 
-           }); 
-	 setTimeout(getprebookingAlarm,40000);
+	 const today = new Date();
+         let h_ = today.getHours();
+         let m_ = today.getMinutes();
+         let s_ = today.getSeconds();
+         m_ = checkTime(m_);
+         s_ = checkTime(s_);
+         var dd = String(today.getDate()).padStart(2, '0');
+         var mm = String(today.getMonth() + 1).padStart(2, '0');  
+         var yyyy = today.getFullYear();
+         var dt=dd + '-'+mm+"-"+ yyyy+" "+h_ + ":" + m_+":00";
+      myajax( {"api":"getactivebooking","datetime":dt,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
+        var html="";
+		window._joblist_alarm=data.data;
+			   
+	   if(window.listlen_alarm !=-1 && (window.listlen_alarm < window._joblist_alarm.length)){
+			$("#playalarm").click();
+			
+		 }
+	    window.listlen_alarm = window._joblist_alarm.length;
+
+    });
+	 setTimeout(getprebookingAlarm,5000);
     }
 
 
