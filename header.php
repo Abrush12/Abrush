@@ -425,7 +425,7 @@ window.getprebookingAlarm=function(){
                 </div>
                 <div class="profile_user">  
                   <span>
-                    <img id="userImage" src="img/testimonialimage4.jpg" style="height:35px;width:35px;">
+                    <img id="userImage" src="" style="height:35px;width:35px;">
                   </span>
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="fullname_name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['FULLNAME']; ?></button>

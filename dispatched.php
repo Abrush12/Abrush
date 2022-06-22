@@ -1748,7 +1748,7 @@ if(true){
                   <span  >Ban Driver List</span>
                 </div>
                 <div class="bx_1">
-                  <span class="block" id="amountowed">Rs 0 Owed</span>
+                  <span class="block" id="amountowed">&nbsp;</span>
                   <span class="block"><img src="img/Artboard 46.png">Notes</span>
                   <span class="block"><img src="img/Artboard 455.png" style="width: 
                   18px;height: 18px;">Block</span>
@@ -1933,6 +1933,9 @@ if(true){
                  </label>
               </div>
                 <div class="row  axdcvf" style="height:42px;z-index:-1">
+				<div id="OldOwedshow" class="col-md-12 blink" style="padding-left: 10px;margin-top:-10px;z-index:-1">
+				
+				</div>
 				<div id="Owedshow" class="col-md-12 blink" style="padding-left: 10px;margin-top: 5px;z-index:-1">
 				
 				</div>
@@ -2549,14 +2552,15 @@ window.getcutomerowedamount= function(mobile,job_id){
             
                 if(data.data!=0){
 					 
-					 $("#amountowed").html("<b>Rs "+data.data+" owed</b>");
-                     $("#amountowed").addClass("blink)");
+					// $("#amountowed").html("<b>Rs "+data.data+" owed</b>");
+                   //  $("#amountowed").addClass("blink)");
+				    $("#OldOwedshow").html("<b>Rs "+data.data+" owed</b>");
                 }
                 else { 
-				 $("#amountowed").html("Rs "+data.data+" owed");
-                        $("#amountowed").css('visibility', 'visible');
-					 $("#amountowed").removeClass("blink)");
-                     
+				 //$("#amountowed").html("Rs "+data.data+" owed");
+                    //    $("#amountowed").css('visibility', 'visible');
+				//	 $("#amountowed").removeClass("blink)");
+                     $("#OldOwedshow").html("&nbsp;");
                 }
 				 if(data.owed!=0){
 				   $("#Owedshow").html("<span style=\"color:white;\">Waiting time</span>&nbsp;<span style=\"color:orange;\"> "+data.counttimer+"</span>"+
@@ -5088,6 +5092,10 @@ window.opentimeclockpicker=function(ref,e){
           if(fixedprice.length!=0){
             $("#fixedbx").attr("data-price",(parseFloat(fixedprice))).find("strong").html("Rs "+(parseFloat(fixedprice)));
           }
+		  else{
+			   $("#fixedbx").attr("data-price",(parseFloat("0"))).find("strong").html("");
+			   $("#confirm").focus();
+		  }
           $(".fixededitbox").toggle();
         });
        

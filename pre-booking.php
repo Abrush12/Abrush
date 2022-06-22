@@ -651,6 +651,20 @@ input {
     margin-top: 3px;
     margin-right: 7px;}
     .sxdc{cursor: pointer;}
+	
+@-webkit-keyframes blinker {
+  from {opacity: 1.0;}
+  to {opacity: 0.0;}
+}
+.blink{
+	text-decoration: blink;
+	-webkit-animation-name: blinker;
+	-webkit-animation-duration: 1.6s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:ease-in-out;
+	-webkit-animation-direction: alternate;
+}
+	  
 </style>
 <script >
    var JOBAMOUNT =100;
@@ -1662,7 +1676,7 @@ if(true){
                   <span  >Ban Driver List</span>
                 </div>
                 <div class="bx_1">
-                  <span class="block" id="amountowed">Rs 0 Owed</span>
+                  <span class="block" id="amountowed">&nbsp;</span>
                   <span class="block"><img src="img/Artboard 46.png">Notes</span>
                   <span class="block"><img src="img/Artboard 455.png" style="width: 
                   18px;height: 18px;">Block</span>
@@ -1846,7 +1860,10 @@ if(true){
                 </div>
                  </label>
               </div>
-                <div class="row  axdcvf" style="height:42px">
+                  <div class="row  axdcvf" style="height:42px;z-index:-1">
+				<div id="OldOwedshow" class="col-md-12 blink" style="color:orange;padding-left: 10px;margin-top:-10px;">
+				
+				</div>
                   <div class="col-md-12 creditcardbox" style="display: none;">
                     <div style="background: #ffffff4a;padding: 7px;border-radius: 7px;">
                         
@@ -2465,7 +2482,11 @@ window.selectjob=function(ref,jbcounter){
 window._cjob=job; 
 
 window.lojob(job);
-getcutomerowedamount(job.mobile);
+if(window.intervalref2!=null)
+{
+  clearInterval(window.intervalref2);
+}
+getcutomerowedamount(job.mobile,window.jobid);
 }
 window.intervalref=null;
  window.blnk=function(elem){
@@ -2477,25 +2498,39 @@ window.intervalref=null;
         }    
     }, 500);
  }
-window.getcutomerowedamount=function(mobile){
-    myajax( {"api":"getcutomerowedamount","mobile":mobile},function( data, textStatus, jQxhr ){ 
-             
-              if(window.intervalref!=null){
-                        clearInterval(window.intervalref);
-                    }
-               if(data.data!=0){
+window.intervalref2=null;
+
+window.getcutomerowedamount= function(mobile,job_id){
+
+	 window.intervalref2 =  setInterval(function() {
+	myajax( {"api":"getcutomerowedamount","mobile":mobile,"jobid":job_id},function( data, textStatus, jQxhr ){ 
+            
+                if(data.data!=0){
 					 
-					 $("#amountowed").html("<b>Rs "+data.data+" owed</b>");
-                    blnk($("#amountowed"));
+				//	 $("#amountowed").html("<b>Rs "+data.data+" owed</b>");
+                 //    $("#amountowed").addClass("blink)");
+				 $("#OldOwedshow").html("<b>Rs "+data.data+" owed</b>");
                 }
-                else{ 
-				 $("#amountowed").html("Rs "+data.data+" owed");
-                        $("#amountowed").css('visibility', 'visible');
+                else { 
+			//	 $("#amountowed").html("Rs "+data.data+" owed");
+              //          $("#amountowed").css('visibility', 'visible');
+				//	 $("#amountowed").removeClass("blink)");
+                     $("#OldOwedshow").html("&nbsp;");
+                }
+			/*	 if(data.owed!=0){
+				   $("#Owedshow").html("<span style=\"color:white;\">Waiting time</span>&nbsp;<span style=\"color:orange;\"> "+data.counttimer+"</span>"+
+				  "&nbsp;<span style=\"color:white;\">+</span>&nbsp;<span style=\"color:orange;\">Rs "+data.owed+" </span>");
+				 }
+                else { 
+				
+						 $("#Owedshow").html("&nbsp;");
                      
                 }
-								setTimeout(function(){ getcutomerowedamount(mobile)},2000);
-
+				*/
+			
            });
+	 },5000);
+		//   setTimeout(function(){ getcutomerowedamount(mobile)},5000);
 }
 
  window._addvia=function( ){
@@ -4933,6 +4968,10 @@ window.opentimeclockpicker=function(ref,e){
           if(fixedprice.length!=0){
             $("#fixedbx").attr("data-price",(parseFloat(fixedprice))).find("strong").html("Rs "+(parseFloat(fixedprice)));
           }
+		  else{
+			   $("#fixedbx").attr("data-price",(parseFloat("0"))).find("strong").html("");
+			   $("#confirm").focus();
+		  }
           $(".fixededitbox").toggle();
         });
        

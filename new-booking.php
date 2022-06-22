@@ -27,6 +27,19 @@ session_start();
    
 
        <style type="text/css">
+		   
+@-webkit-keyframes blinker {
+  from {opacity: 1.0;}
+  to {opacity: 0.0;}
+}
+.blink{
+	text-decoration: blink;
+	-webkit-animation-name: blinker;
+	-webkit-animation-duration: 1.6s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:ease-in-out;
+	-webkit-animation-direction: alternate;
+}
 	   
 body{overflow: hidden;   font-family: 'Almarai' !important; }
        @font-face {
@@ -135,6 +148,10 @@ background: transparent;}
  
     background: #0028a1;
 }
+.table_s .table tbody tr.cancelbooking td,.table_s .table tbody tr.activebooking:hover td{
+ 
+    background: #999900;
+}
 .table_s .table tbody tr.prebooking td,.table_s .table tbody tr.prebooking:hover{background:#b34b29}
 
 .table_s .table tbody tr.quotation td,.table_s .table tbody tr.prebooking:hover{background:#f1a906}
@@ -162,6 +179,22 @@ background: transparent;}
     margin-top: -5px;
       background: #8b8989;
     }
+	.crclecan{
+      width: 10px;height: 10px;border-radius: 10px; float: left;
+    margin-top: -5px;
+      background: #999900;
+    }
+	.crclenofare{
+      width: 10px;height: 10px;border-radius: 10px; float: left;
+    margin-top: -5px;
+      background: #e600ac;
+    }
+	.crclerunner{
+      width: 10px;height: 10px;border-radius: 10px; float: left;
+    margin-top: -5px;
+      background: #336600;
+    }
+
 .table_s.full_wdth{margin-top: 0px;}
 .dayselectrow{background: #fdc2c2;}
 #modal input[type='text']{border: 1px solid #eaeaea;
@@ -1650,7 +1683,7 @@ if(true){
                   <span  >Ban Driver List</span>
                 </div>
                 <div class="bx_1">
-                  <span class="block" id="amountowed"  >Rs 0 Owed</span>
+                  <span class="block" id="amountowed"  >&nbsp;</span>
                   <span class="block"><img src="img/Artboard 46.png">Notes</span>
                   <span class="block"><img src="img/Artboard 455.png" style="width: 
                   18px;height: 18px;">Block</span>
@@ -1831,8 +1864,8 @@ if(true){
                 </div>
                  </label>
               </div>
-                <div class="row " style="margin-left:0px;height:42px">
-				<div id="Owedshow" class="col-md-12 creditcardbox" style="display: none,padding-left: 10px;margin-top: 15px;">
+                 <div class="row  axdcvf" style="height:42px;z-index:-1">
+				<div id="OldOwedshow" class="col-md-12 blink" style="color:orange;padding-left: 10px;margin-top:-10px;">
 				
 				</div>
                   <div class="col-md-12 creditcardbox" style="display: none;padding-left: 0px">
@@ -1898,7 +1931,11 @@ if(true){
    <div class="_bnx"><div class="crcleblue"></div>&nbsp;&nbsp;Pre-Booking</div>
    <div class="_bnx"><div class="crcleorange"></div>&nbsp;&nbsp;Quotation</div>
     <div class="_bnx"><div class="crclegray"></div>&nbsp;&nbsp;Completed</div>
+	<div class="_bnx"><div class="crclecan"></div>&nbsp;&nbsp;Cancelled</div>
+	<div class="_bnx"><div class="crclenofare"></div>&nbsp;&nbsp;No Fare</div>
+	<div class="_bnx"><div class="crclerunner"></div>&nbsp;&nbsp;Runner</div>
 </div>
+
 <div class="col-sm-6" style=" display: none; justify-content: flex-end;">
   <table class="_jobtable"><tr><td class="_tbcompletedjob">Completed : 0</td><td class="_tbcancelljob">Cancelled : 0</td><td class="_tbrunnerjobs">Runner : 0</td><td class="_tbappjobs">Call : 0 </td><td class="_tbcalljobs">App : 0</td></tr></table>
 </div>
@@ -2090,7 +2127,8 @@ var yyyy = today.getFullYear();
     $("#handluggage").html(job.handluggage);
     $("#suitcase").html(job.suitcase);
     $("#flightnumber").val(job.flightnumber);
-    $("#reference").val(job.reference);
+   // $("#reference").val(job.reference);
+   getReference();
     $("#cardnumber,#cardname,#cardexpirydate,#cardcvv,#allocatedriver").val("");
     
     if(job.cardnumber!="0"){
@@ -2527,18 +2565,19 @@ $("#tbd tr").remove();
     processData: false,
     success: function( data, textStatus, jQxhr ){
                 window.xhr=null;
-               
-                 if(window.intervalref!=null){
+          
+               /*  if(window.intervalref!=null){
                         clearInterval(window.intervalref);
-                    }
+                    }*/
                 if(data.data.owedamount!=0){
-					 $("#amountowed").html("<b>Rs "+data.data.owedamount+" owed</b>");
-                    blnk($("#amountowed"));
+				//	 $("#amountowed").html("<b>Rs "+data.data.owedamount+" owed</b>");
+                 //   blnk($("#amountowed"));
+					$("#OldOwedshow").html("<b>Rs "+data.data.owedamount+" owed</b>");
                 }
                 else{ 
-				 $("#amountowed").html("Rs "+data.data.owedamount+" owed");
-                        $("#amountowed").css('visibility', 'visible');
-                //     $("#Owedshow").html("&nbsp;");
+				// $("#amountowed").html("Rs "+data.data.owedamount+" owed");
+                 //       $("#amountowed").css('visibility', 'visible');
+						$("#OldOwedshow").html("&nbsp;");
                 }
                 window.owedcounter=data.data.owedcounter;
                 if(window.owedcounter==1){
@@ -2559,6 +2598,12 @@ $("#tbd tr").remove();
             window._joblist=window._joblist.concat(data.data.quotationbooking);
             if(data.data.historybooking.length!=0)
             window._joblist=window._joblist.concat(data.data.historybooking);
+			if(data.data.cancelbooking.length!=0)
+            window._joblist=window._joblist.concat(data.data.cancelbooking);
+			if(data.data.nofarebooking.length!=0)
+            window._joblist=window._joblist.concat(data.data.nofarebooking);
+			if(data.data.runnerbooking.length!=0)
+            window._joblist=window._joblist.concat(data.data.runnerbooking);
 
             $("#iused").html(data.data.jobsdata.used+" Used");
             $("#icancelled").html(data.data.jobsdata.rejected+" Cancelled");
@@ -2794,6 +2839,72 @@ $(data.data.historybooking).each(function(x,y){
           // html+='<td>'+y.jobtype+'</td>';
 
            html+='<td>'+y.dayname+'</td>';
+         html+='<td>'+y.bdate+'</td>';html+='<td>'+y.btime+'</td>';
+              // html+='<td>'+y.pickupzipcode.split(" ")[0]+'</td>';
+         html+='<td>'+y.pickuplocation+'</td>';
+             //  html+='<td>'+y.dropzipcode.split(" ")[0]+'</td>';
+         html+='<td>'+y.droplocation+'</td>';
+         html+='<td>'+extras+'</td>';
+               html+='<td>'+y.passengers+'</td>';
+               
+        
+           html+='<td>Rs '+y.jobprice+'</td>';
+          html+='<td>'+(y.iscash=="1"?(y.cashtype=="0"?"Cash":"Money First"):"Pre-Paid")+'</td>';
+               html+=' <td>'+y.callsign+'</td><td>'+(y.controllername==null?"":y.controllername)+'</td></tr>';
+       $("#tbd").append(html);
+       }); 
+$(data.data.cancelbooking).each(function(x,y){
+         var extras="";
+     if(y.normal=="1") extras="Normal";
+     else if(y.autorikshaw=="1")   extras="Auto-Rikshaw";
+     else if(y.motorcycle=="1")   extras="Motorbike";
+
+         html='<tr class="cancelbooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,0)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html+='<td>'+y.dayname+'</td>';
+         html+='<td>'+y.bdate+'</td>';html+='<td>'+y.btime+'</td>';
+              // html+='<td>'+y.pickupzipcode.split(" ")[0]+'</td>';
+         html+='<td>'+y.pickuplocation+'</td>';
+             //  html+='<td>'+y.dropzipcode.split(" ")[0]+'</td>';
+         html+='<td>'+y.droplocation+'</td>';
+         html+='<td>'+extras+'</td>';
+               html+='<td>'+y.passengers+'</td>';
+               
+        
+           html+='<td>Rs '+y.jobprice+'</td>';
+          html+='<td>'+(y.iscash=="1"?(y.cashtype=="0"?"Cash":"Money First"):"Pre-Paid")+'</td>';
+               html+=' <td>'+y.callsign+'</td><td>'+(y.controllername==null?"":y.controllername)+'</td></tr>';
+       $("#tbd").append(html);
+       }); 
+$(data.data.nofarebooking).each(function(x,y){
+         var extras="";
+     if(y.normal=="1") extras="Normal";
+     else if(y.autorikshaw=="1")   extras="Auto-Rikshaw";
+     else if(y.motorcycle=="1")   extras="Motorbike";
+
+         html='<tr class="nofarebooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,0)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html+='<td>'+y.dayname+'</td>';
+         html+='<td>'+y.bdate+'</td>';html+='<td>'+y.btime+'</td>';
+              // html+='<td>'+y.pickupzipcode.split(" ")[0]+'</td>';
+         html+='<td>'+y.pickuplocation+'</td>';
+             //  html+='<td>'+y.dropzipcode.split(" ")[0]+'</td>';
+         html+='<td>'+y.droplocation+'</td>';
+         html+='<td>'+extras+'</td>';
+               html+='<td>'+y.passengers+'</td>';
+               
+        
+           html+='<td>Rs '+y.jobprice+'</td>';
+          html+='<td>'+(y.iscash=="1"?(y.cashtype=="0"?"Cash":"Money First"):"Pre-Paid")+'</td>';
+               html+=' <td>'+y.callsign+'</td><td>'+(y.controllername==null?"":y.controllername)+'</td></tr>';
+       $("#tbd").append(html);
+       }); 
+$(data.data.runnerbooking).each(function(x,y){
+         var extras="";
+     if(y.normal=="1") extras="Normal";
+     else if(y.autorikshaw=="1")   extras="Auto-Rikshaw";
+     else if(y.motorcycle=="1")   extras="Motorbike";
+
+         html='<tr class="runnerbooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,0)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html+='<td>'+y.dayname+'</td>';
          html+='<td>'+y.bdate+'</td>';html+='<td>'+y.btime+'</td>';
               // html+='<td>'+y.pickupzipcode.split(" ")[0]+'</td>';
          html+='<td>'+y.pickuplocation+'</td>';
@@ -5583,6 +5694,10 @@ if(e.keyCode=='13'){
              $("#confirm").focus();
             }
           }
+		  else{
+			   $("#fixedbx").attr("data-price",(parseFloat("0"))).find("strong").html("");
+			   $("#confirm").focus();
+		  }
           $(".fixededitbox").toggle();
         });
        
