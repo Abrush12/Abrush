@@ -877,8 +877,8 @@ if(isset($_GET['status'])){
               <th><span>Controller</span></th> 
                <th style="width:345px"><span>Credit</span></th>
               <th class=" "><span>Vehicle Type</span></th>
-               <th class=" "><span>Affiliate</span></th>
-              <th class=" "> </th>
+   <!--            <th class=" "><span>Affiliate</span></th>
+              <th class=" "> </th>-->
             </tr>
           </thead> 
           <tbody id="tbdcredit">  
@@ -2163,7 +2163,8 @@ window.ll=function(xnj){
  /*_clone+=' <a  href="javascript:void(0)"  data-callsign="'+y.callsign+'" data-owed="'+y.owed +'" data-name="'+y.name+'" onclick="deposit(this,'+y.driverid+')"  class="btn-grad _mxicon btn-grada">Deposit</a>';
          _clone+='<a  href="javascript:void(0)" data-callsign="'+y.callsign+'" data-owed="'+y.owed +'" data-name="'+y.name+'" onclick="transfer(this,'+y.driverid+')" class="btn-grad _mxicon ">Transfer</a>';*/
           _clone+='<td class="_createdate" style="font-size:18px">';
-           _clone+='<a  href="javascript:void(0)" data-callsign="'+y.callsign+'"  data-name="'+y.name+'" onclick="credit(this,'+y.driverid+')" class="btn-grad _mxicon " style="margin-right:140px">Credit</a><b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.creditamount)+'">Rs '+Math.round(y.creditamount)+'&nbsp;&nbsp;&nbsp;'+(Math.round(y.creditamount)>0?(y.credittype=="0"?"Cash":"Online"):"")+'</span></b>';
+   //        _clone+='<a  href="javascript:void(0)" data-callsign="'+y.callsign+'"  data-name="'+y.name+'" onclick="credit(this,'+y.driverid+')" class="btn-grad _mxicon " style="margin-right:140px">Credit</a><b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.creditamount)+'">Rs '+Math.round(y.creditamount)+'&nbsp;&nbsp;&nbsp;'+(Math.round(y.creditamount)>0?(y.credittype=="0"?"Cash":"Online"):"")+'</span></b>';
+		   _clone+='<b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.creditamount)+'">Rs '+Math.round(y.creditamount)+'&nbsp;&nbsp;&nbsp;'+(Math.round(y.creditamount)>0?(y.credittype=="0"?"Cash":"Online"):"")+'</span></b>';
            _clone+=' </td>';
 
         }else{ 
@@ -2175,17 +2176,17 @@ window.ll=function(xnj){
         if(y.normal=="1") _clone+="<b>Normal</b>";
            else if(y.autorikshaw=="1") _clone+="<b>Auto-Rikshaw</b>";
            else if(y.motorbike=="1") _clone+="<b>Motorbike</b>";
-        _clone+='</td><td></td>';
-            _clone+='<td style="width: 15%;">';
+        _clone+='</td>';//<td></td>';
+            _clone+='<td style="width: 15%;">&nbsp;';
       if(y.type==2){
-       _clone+='<a  href="javascript:void(0)" class="btn-grad _mxicon">Pending</a>';
+     //  _clone+='<a  href="javascript:void(0)" class="btn-grad _mxicon">Pending</a>';
       }
       else if(y.type==3){
-         _clone+='<a  href="drivers.php?id='+y.uid+'&isedit=1" class="btn-grad _mxicon btn-grada">View</a>';
+      //   _clone+='<a  href="drivers.php?id='+y.uid+'&isedit=1" class="btn-grad _mxicon btn-grada">View</a>';
          //_clone+='<a  href="drivers.php?id='+y.uid+'&isview=1" class="btn-grad _mxicon ">View</a>';
       }
       else{
-        _clone+='<a  href="drivers.php?id='+y.uid+'" class="btn-grad _mxicon">View</a>';
+    //    _clone+='<a  href="drivers.php?id='+y.uid+'" class="btn-grad _mxicon">View</a>';
       }
              
             _clone+='    </td> </tr><tr class="rowspls"><td colspan=5></td></tr><tr style="height:10px" class="rowspls"><td colspan="5"></td></tr>';

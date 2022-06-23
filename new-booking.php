@@ -1143,7 +1143,8 @@ Do you want to remove saloon car as one time or permanently.<br>
                               <div class="arrow up"  id="barrowupmin"  onclick="incminbkdate(this,'datepicker')"><span></span></div>
  <div class="content">
 <input type="text" class="default-value-holder demominute" id="bdemominute"   data-value="10" maxlength="2" >
-                              </div>                              <div id="barrowdownmin"  onclick="minminbkdate(this,'datepicker')"  class="arrow down"><span></span></div>
+                              </div>                              
+							  <div id="barrowdownmin"  onclick="minminbkdate(this,'datepicker')"  class="arrow down"><span></span></div>
 
                             </div>
                              <div class="mtr-input-radio"> 
@@ -1181,9 +1182,9 @@ Do you want to remove saloon car as one time or permanently.<br>
                 <div class="row">
                   <div class="col-md-6">
                     <div>
-                      <img style=" margin-top: 4px; margin-left: 2px;height: 18px;  width: auto;position: absolute;" src="img/businessman.png" class="wdth_user" >
-                       <div class="plholder pickuplocation" style=" margin-top:-8px"><span>Pickup Location</span></div> 
-                      <input type="text" style="margin-top:1px;padding-left:20px" id="fullname"  onkeyup="firstCapitalAlways(event);" placeholder="Enter Name" class="_reddc"  tabindex="-1" autocomplete="off">
+                      <img style=" margin-top: 4px; margin-left: 10px;height: 18px;  width: auto;position: absolute;" src="img/businessman.png" class="wdth_user" >
+                       <div class="plholder pickuplocation" style=" margin-top:-8px;margin-left: 60px;"><span>Pickup Location</span></div> 
+                      <input type="text" style="margin-top:1px;padding-left:40px" id="fullname"  onkeyup="firstCapitalAlways(event);" placeholder="Enter Name" class="_reddc"  tabindex="-1" autocomplete="off">
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -1687,14 +1688,17 @@ if(true){
                   <span id="irunner">0 Runner</span>
                 </div>
                 <div class="bx_1 mg_bx1">
-                  <span>Drivers Don't Pick</span>
-                  <span  >Ban Driver List</span>
+                  <span>&nbsp;</span>
+                  <span>Ban Driver</span>
                 </div>
                 <div class="bx_1">
                   <span class="block" id="amountowed"  >&nbsp;</span>
-                  <span class="block"><img src="img/Artboard 46.png">Notes</span>
+                <!--  <span class="block"><img src="img/Artboard 46.png">Notes</span>
                   <span class="block"><img src="img/Artboard 455.png" style="width: 
-                  18px;height: 18px;">Block</span>
+                  18px;height: 18px;">Block </span>-->
+				   <span class="block">&nbsp;</span>
+                  <span class="block"><img src="img/Artboard 455.png" style="width: 
+                  18px;height: 18px;">Block Customer</span>
                 </div>
               </div>
 
@@ -3673,7 +3677,7 @@ var ampm=$(ref).parent().parent().find(".demoam").hasClass("timeselected")?"AM":
       }
 
 window.minhourbkdate=function(ref,idx){
-        
+        $(ref).parent().parent().find(".demohour").focus().addClass("llfocus");
         var dt=$.trim($(ref).parent().find(".default-value-holder").val());
          var ampm=$((idx=="datepicker"?"#demoam":"#demoam2")).hasClass("timeselected")?"AM":"PM";
           dt--;
@@ -3729,7 +3733,7 @@ window.minhourbkdate=function(ref,idx){
 		  	  
 	  }
       window.inchourbkdate=function(ref,idx){
-         
+         $(ref).parent().parent().find(".demohour").focus().addClass("llfocus");
         var dt=$.trim($(ref).parent().find(".default-value-holder").val());
          var ampm=$((idx=="datepicker"?"#demoam":"#demoam2")).hasClass("timeselected")?"AM":"PM";
           dt++;
@@ -3899,7 +3903,8 @@ window.minhourbkdate=function(ref,idx){
            window.settmx($(ref).parent().parent().parent().parent());
           }
       }
-        window.incminbkdate=function(ref,idx){
+        window.incminbkdate=function(ref,idx){ 
+			$(ref).parent().parent().find(".demominute").focus().addClass("llfocus");
         var dt=$.trim($(ref).parent().find(".default-value-holder").val());
         var hr=$.trim($(ref).parent().parent().find(".demohour").val());
          var ampm=$((idx=="datepicker"?"#demoam":"#demoam2")).hasClass("timeselected")?"AM":"PM";
@@ -3960,6 +3965,7 @@ window.minhourbkdate=function(ref,idx){
 
       }
        window.minminbkdate=function(ref,idx){
+		   $(ref).parent().parent().find(".demominute").focus().addClass("llfocus");
         var dt=$.trim($(ref).parent().find(".default-value-holder").val());
          
           dt--;
@@ -5403,10 +5409,19 @@ var postal_code=""
         });
         $(".time").click(function(e){
             e.stopPropagation();
-   
     if($(this).find(".timer-box").hasClass("timer-box1")){
          $(this).find(".timer-box").show();
-		$("#bdemohour").focus().addClass("llfocus");
+		if($(this).find(".demohour").is(":focus")){
+			$("#bdemohour").focus().addClass("llfocus");
+         }
+		 else if($(this).find(".demominute").is(":focus")){
+			$("#bdemominute").focus().addClass("llfocus");
+         }
+		 else
+			{
+				$("#bdemohour").focus().addClass("llfocus");
+			}
+		
     }
     else if($(this).find(".timer-box").hasClass("timer-box2")){
         if($.trim($("#datepicker1").val())==""){

@@ -376,10 +376,10 @@ window.getprebookingAlarm=function(){
                      <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4  nav-itemx" style="padding-right: 35px;" >
                       <a class="nav-link" href="javascript:void(0)"><img style="height: 45px; position: absolute;  margin-top: -18px; margin-left: -10px;" src="img/Artboard-10.png"></a>
                     </li>
-                   
-                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4  <?php echo $basename=='home.php'?'active':''; ?>" >
+ 
+       <!--             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4  <?php echo $basename=='home.php'?'active':''; ?>" >
                       <a class="nav-link" href="home.php"> Home</a>
-                    </li>
+                    </li>-->
                     <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4   <?php echo $basename=='new-booking.php'?'active':''; ?>">
                       <a class="nav-link" href="new-booking.php">New Booking</a>
                     </li>
