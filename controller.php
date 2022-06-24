@@ -48,6 +48,7 @@ session_start();
        margin-right:20px;
        border:1px solid #fff;
        padding:5px 5px;
+	   cursor: default;
      }
      ._mxicon:hover{
        background-color:green;
@@ -73,10 +74,9 @@ session_start();
 
   .table td, .table th{padding:0px !important;}
 
-
-         .btn-grad {background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%)}
+	.btn-grad{margin: 5px;height: 25px;}
+    .btn-grad {background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%)}
          .btn-grad {
-           margin: 10px;
     padding: 3px 10px;
     text-align: center;
     text-transform: uppercase;
@@ -89,15 +89,14 @@ session_start();
     font-size: 13px;
 	min-width:110px
 }
-      
-
-          .btn-grad:hover {
+    
+	.btn-grad:hover {
             background-position: right center; /* change the direction of the change here */
             color: #fff;
             text-decoration: none;
           }
-         
-         .btn-grada {border-color:#D31027;background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)}
+     .btn-grada{margin: 5px;height: 25px;}    
+         .btn-grada {background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)}
          
 
           .btn-grada:hover {
@@ -107,7 +106,6 @@ session_start();
           }
 
 	.btn-grada {
-           margin: 10px;
     padding: 3px 10px;
     text-align: center;
     text-transform: uppercase;
@@ -120,7 +118,30 @@ session_start();
     font-size: 13px;
 	min-width:110px
 }
-    
+   
+ .btn-gradb{margin: 5px;height: 25px;}    
+         .btn-gradb {background-image: linear-gradient(to right, #d4a211 0%, #e7bb39  51%, #d4a211  100%)}
+         
+
+          .btn-gradb:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+
+	.btn-gradb {
+    padding: 3px 10px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white; 
+    border-radius: 2px;
+    display: block;
+    border: 1px solid #d4a211;
+    font-size: 13px;
+	min-width:110px
+}   
          .owed{  
     float: left;
     font-size: 15px;}
@@ -135,7 +156,7 @@ session_start();
      #loadinggif{display: none;}
      .table.user-list{margin-top: 5px !important;}
      #creditamounttable tr th,#creditamounttable tr td{padding: 5px !important;color: #000;}
-     .btn-grad{margin: 5px;height: 25px;}
+
      .table.user-list tr th,.table.user-list tr th span{border-top: none;border-bottom: none;font-weight: bold;font-size: 17px }
       .table.user-list tr th{padding: 20px 0px}
       .user-listax th span{ padding:0px 0px 5px !important; }
@@ -149,163 +170,6 @@ session_start();
  input[type=radio]{cursor: pointer;}
  .inputs_search img{cursor: pointer;}
  table tr td .fa{cursor:pointer;}
-    </style>
-    <style type="text/css">
-      .timer-box {
-    position: absolute;
-    width: inherit;
-    padding: 5px;
-    box-shadow: 1px 1px #eaeaea;
-    border: 1px solid #bababa;
-    background: #fff;
-    margin-top: 0px;
-    z-index: 999;
-    width: 22%;
-    display: none;
-    min-width: 202px;
-}
-.mtr-row,.mtr-input-radio{    position: relative!important;
-    float: left!important;}
-  .mtr-input-slider {
-    width: 50px!important;
-    height: 85px!important;
-    overflow: hidden!important;
-    margin: 14px 6px!important;
-    text-align: center!important;
-    vertical-align: middle!important;
-    position: relative!important;
-    float: left!important;
-}
-.mtr-datepicker .mtr-input-slider .arrow {
-    height: 20px!important;
-    line-height: 20px!important;
-    cursor: pointer!important;
-    z-index: 0!important;
-    position: relative!important;
-}
-.mtr-datepicker .arrow.up {
-    padding-top: 6px; 
-}
-.mtr-datepicker .arrow span {
-    background: url(img/mtr-datepicker-arrows.png);
-    width: 13px;
-    height: 8px;
-}
-.mtr-datepicker .mtr-input-slider .arrow span {
-    display: block!important;
-    margin: 0 auto!important;
-}
-.mtr-datepicker .arrow.up span {
-    background-position: top center;
-}
-.mtr-datepicker .arrow.down {
-   
-    padding-top: 6px;
-}
-.mtr-datepicker .arrow:hover{background: #eaeaea;}
-.mtr-datepicker .content {
-    background: #bdbcb8;
-    color: #fff;
-}
-.mtr-datepicker .mtr-input-slider .content {
-    overflow: hidden!important;
-    height: 45px!important;
-    z-index: 1!important;
-    position: relative!important;
-}
-.mtr-datepicker .arrow.down span {
-    background-position: bottom center;
-}
-.mtr-datepicker .mtr-input-radio label {
-    color: #b9b7b7;
-}
-.mtr-datepicker .mtr-input-radio label {
-    position: relative!important;
-}
-.mtr-datepicker .mtr-input-radio label span.value {
-    width: 20px;
-}
-.mtr-datepicker .mtr-input-radio, .mtr-datepicker .mtr-input-radio label span  {
-    position: relative!important;
-    float: left!important;
-}
-.mtr-datepicker .mtr-input-radio, .mtr-datepicker .mtr-input-radio label{
-  display: block;
-    max-width: 100%;
-    margin-bottom: 5px;
-    font-weight: 700;
-    color: #000;
-}
-.mtr-datepicker .mtr-input-radio input[type=radio] {
-    width: 26px;
-    height: 14px;
-    display: inline-block; 
-    line-height: 18px;
-    margin: 0;
-    margin-left: 5px;
-}
-.mtr-input-slider:hover .content{background: #ff8612}
-.mtr-datepicker .mtr-input-slider .content   .default-value-holder {
-    height: 45px!important;
-    line-height: 45px!important;
-    font-size: 15px!important;
-    font-size: 1.5rem!important;
-}
-.mtr-datepicker .mtr-input-slider .content   .default-value-holder .default-value{
-  height: 45px!important;
-    line-height: 45px!important;
-    font-size: 15px!important;
-    font-size: 1.5rem!important;
-}
-.mtr-datepicker .mtr-input-radio   span.radio {
-    width: 26px;
-    height: 18px;
-    display: inline-block;
-    background: url(img/mtr-datepicker-radio.png) no-repeat;
-    line-height: 18px;
-    margin: 0;
-    margin-left: 5px;
-}
-.mtr-datepicker .mtr-input-radio   .radio.timeselected{
-    background-position:-27px 0px;
-}
-  .demohour:focus,.demominute:focus {background: #ffa800 !important;}
- .mtr-datepicker .mtr-input-slider .content input {
-    background: #bdbcb8;
-    color: #fff;
-    text-align: center;
-}
-.redccr{width: 14px;
-    height: 14px;
-    background: red;
-    position: absolute;
-    border-radius: 40px;
-    margin-top: 2px;
-    margin-left: 2px;}
-.greenccr{width: 14px;
-    height: 14px;
-    background: #14d914;
-    position: absolute;
-    border-radius: 40px;
-    margin-top: 2px;
-    margin-left: 2px;}
-    .redccra{width: 14px;
-    height: 14px;
-    background: red;
-    float: left;
-    border-radius: 40px;
-    margin-top: 3px;
-    margin-right: 7px;}
-.greenccra{width: 14px;
-    height: 14px;
-    background: #14d914;
-    float: left;
-    border-radius: 40px;
-    margin-top: 3px;
-    margin-right: 7px;}
-    .sxdc{cursor: pointer;}
-	
-
 
 #modalContainer {
     background-color:rgba(0, 0, 0, 0.3);
@@ -404,7 +268,7 @@ h1,h2 {
    ?>
    <!--------header end-------->
 <div class="modal" id="blockuser" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document" style="max-width: 700px;float: right;right: 98px;top: 53%; ">
+  <div class="modal-dialog" role="document" style="max-width: 700px;float:left;left: 40%;top: 40%; ">
     <div class="modal-content">
        
       <div class="modal-body">
@@ -419,8 +283,24 @@ h1,h2 {
     </div>
   </div>
 </div>
+<div class="modal" id="deleteuser" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document" style="max-width: 700px;float:left;left: 40%;top: 40%; ">
+    <div class="modal-content">
+       
+      <div class="modal-body">
+        <h4>Are you sure you want to delete the user?</h4>
+      
+      </div>
+      <div class="modal-footer" style="justify-content:center;">
+        
+        <button type="button" class="btn btn-secondary"  id="nodel" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" id="yesdel">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal" id="unblockuser" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document" style="max-width: 700px;float: right;right: 98px;top: 53%; ">
+  <div class="modal-dialog" role="document" style="max-width: 700px;float:left;left: 40%;top: 40%; ">
     <div class="modal-content">
        
       <div class="modal-body">
@@ -453,7 +333,7 @@ h1,h2 {
                <th ><span>Date of Birth</span></th> 
               <th ><span>Country Code</span></th> 
               <th ><span>Username</span></th> 
-			  <th></th>
+			  <th style="width:300px"></th>
               </tr>
                   </thead>
                   <tbody id="tbd">
@@ -477,7 +357,7 @@ h1,h2 {
 </script>
   <script>
  window._selectUid=null; 
-  
+ var loginUserId=$.trim(<?php echo $_SESSION['ID'];?>);  
   
 
  window.viewId=0;  
@@ -491,12 +371,12 @@ h1,h2 {
  
     myajax( {"api":"getcontrollerlist","adminCountryCode":"All"},function( data, textStatus, jQxhr ){ 
          $(".rowaxcustomer").remove();
-         var _clone;
+         var _clone="";
          var tbd=$("#tbd"); 
          $(data.data).each(function(x,y){
          
  
-          _clone ='<tr  class="rowax rowaxcontroller" data-phone="'+y.phone+'" data-name="'+y.fullname+'"> ';
+          _clone +='<tr  class="rowax rowaxcontroller" data-phone="'+y.phone+'" data-name="'+y.fullname+'"> ';
           if(y.image!=""){
           _clone+="<td><img style='margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px' src='http://18.168.83.39/files/"+y.image+"'></td>";
         }
@@ -508,17 +388,22 @@ h1,h2 {
           _clone+='<td><b style="font-size:15px;margin-left:15px">'+dateFormat(y.dateofbirth)+'</td>';
         _clone+='<td><b style="font-size:15px;margin-left:15px">'+getCountry(y.countrycode)+'</td>';
         _clone+='<td><b style="font-size:15px;margin-left:15px">'+y.username+'</td>';
+		if(loginUserId == y.id)
+		{
+			_clone+='<td></td>';
+		}
+		else{
 		if(y.blocked == 0)
-			_clone+='<td><a  onclick="blockAlert('+y.id+');" class="btn-grad _mxicon">Block</a></td>'
+			_clone+='<td><a  onclick="blockAlert('+y.id+');" class="btn-grad _mxicon">Block</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  onclick="deleteAlert('+y.id+');" class="btn-grada _mxicon">Delete</a></td>';
 		else
-			_clone+='<td><a  onclick="unblockAlert('+y.id+');" class="btn-grada _mxicon">Un-Block</a></td>'
-        _clone+='</tr>';
+			_clone+='<td><a  onclick="unblockAlert('+y.id+');" class="btn-gradb _mxicon">Un-Block</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  onclick="deleteAlert('+y.id+');" class="btn-grada _mxicon">Delete</a></td>';
         
+        }
+          _clone+='</tr>';
           
-          tbd.append(_clone);
 		  
          });
-  
+		tbd.html(_clone);
      
      
        
@@ -546,7 +431,38 @@ window.block=function(){
 		     $("#loadingr").hide();
       if(data.status=="200"){
 		 
-		 alert("Users has been blocked");
+		 alert("User has been blocked");
+		 window.location.href="controller.php";
+        
+	  }
+	  else{
+	  alert(data.message);
+	  }
+     });
+}
+
+function deleteAlert(id){
+	window._selectUid = id;
+$("#deleteuser").modal("show");
+}
+$("#yesdel").click(function(){
+            deleteAdmin();
+         });
+		 
+		 
+
+window.deleteAdmin=function(){
+    if(window._selectUid==null){
+          alert("Please Select Job");
+          return;
+        }
+		$("#deleteuser").modal("hide");
+		$("#loadingr").show();
+	   myajax( {"api":"deleteAdmin","flag":"1","userid":window._selectUid},function( data, textStatus, jQxhr ){
+		     $("#loadingr").hide();
+      if(data.status=="200"){
+		 
+		 alert("User has been deleted");
 		 window.location.href="controller.php";
         
 	  }
@@ -577,7 +493,7 @@ window.unblock=function(){
 			  $("#loadingr").hide();
       if(data.status=="200"){
 		 
-		 alert("Users has been un-blocked");
+		 alert("User has been un-blocked");
         window.location.href="controller.php";
 	  }
 	  else{
