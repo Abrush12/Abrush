@@ -286,7 +286,7 @@ code span {
         
 	  }
 	  else{
-	  alert("Login Failed");
+	  alert(data.message);
 	  }
      },
     error: function( jqXhr, textStatus, errorThrown ){
@@ -310,7 +310,7 @@ window.logout=function(username){
 		//	window.location.href="index.php";
 	  }
 	  else{
-	  alert("Login Failed");
+	  alert("Logout Failed");
 	  }
      },
     error: function( jqXhr, textStatus, errorThrown ){

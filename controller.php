@@ -44,7 +44,7 @@ session_start();
       
      }
      ._mxicon{
-       float:right;
+       float:left;
        margin-right:20px;
        border:1px solid #fff;
        padding:5px 5px;
@@ -87,6 +87,7 @@ session_start();
     display: block;
     border: 1px solid #02AAB0;
     font-size: 13px;
+	min-width:110px
 }
       
 
@@ -104,6 +105,22 @@ session_start();
             color: #fff;
             text-decoration: none;
           }
+
+	.btn-grada {
+           margin: 10px;
+    padding: 3px 10px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white; 
+    border-radius: 2px;
+    display: block;
+    border: 1px solid #D31027;
+    font-size: 13px;
+	min-width:110px
+}
+    
          .owed{  
     float: left;
     font-size: 15px;}
@@ -287,6 +304,90 @@ session_start();
     margin-top: 3px;
     margin-right: 7px;}
     .sxdc{cursor: pointer;}
+	
+
+
+#modalContainer {
+    background-color:rgba(0, 0, 0, 0.3);
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+    z-index:10000;
+    background-image:url(tp.png); /* required by MSIE to prevent actions on lower z-index elements */
+}
+
+#alertBox {
+    position:relative;
+    width:500px;
+    min-height:200px;
+    margin-top:350px;
+    border:1px solid #666;
+    background-color:#fff;
+    background-repeat:no-repeat;
+    background-position:20px 30px;
+}
+
+#modalContainer > #alertBox {
+    position:fixed;
+}
+
+#alertBox h1 {
+	font-family: "Times New Roman", Times, serif;
+    margin:0;
+    font:bold 1.2em verdana,arial;
+    background-color:#039697;
+    color:#FFF;
+	text-align:center;
+    border-bottom:1px solid #000;
+    padding:2px 0 2px 5px;
+}
+
+#alertBox p {
+	font-family: Arial, Helvetica, sans-serif;
+    height:50px;
+	font-size:20px;
+    padding-left:5px;
+	margin-top:55px;
+	text-align:center;
+}
+
+#alertBox #closeBtn {
+    display:block;
+    position:relative;
+    margin:5px auto;
+    padding:7px;
+    border:0 none;
+    width:70px;
+    font:0.9em verdana,arial;
+    text-transform:uppercase;
+    text-align:center;
+    color:#FFF;
+    background-color:#039697;
+    border-radius: 3px;
+    text-decoration:none;
+}
+
+/* unrelated styles */
+
+#mContainer {
+    position:relative;
+    width:600px;
+    margin:auto;
+    padding:5px;
+    border-top:2px solid #000;
+    border-bottom:2px solid #000;
+    font:0.7em verdana,arial;
+}
+
+h1,h2 {
+    margin:0;
+    padding:4px;
+    font:bold 1.5em verdana;
+    border-bottom:1px solid #000;
+}
+
     </style>
 
 
@@ -302,6 +403,38 @@ session_start();
     include "header.php";
    ?>
    <!--------header end-------->
+<div class="modal" id="blockuser" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document" style="max-width: 700px;float: right;right: 98px;top: 53%; ">
+    <div class="modal-content">
+       
+      <div class="modal-body">
+        <h4>Are you sure you want to block the user?</h4>
+      
+      </div>
+      <div class="modal-footer" style="justify-content:center;">
+        
+        <button type="button" class="btn btn-secondary"  id="noblock" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" id="yesblock">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="unblockuser" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document" style="max-width: 700px;float: right;right: 98px;top: 53%; ">
+    <div class="modal-content">
+       
+      <div class="modal-body">
+        <h4>Are you sure you want to unblock the user?</h4>
+      
+      </div>
+      <div class="modal-footer" style="justify-content:center;">
+        
+        <button type="button" class="btn btn-secondary"  id="nounblock" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" id="yesunblock">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
    <section class="inner_s_wrap">
 <div class="fluid-container">   
 <div class="row">
@@ -310,21 +443,17 @@ session_start();
 	<div class=><h1 style="color:white;margin-bottom:20px;margin-left:20px;font-family: Times,serif;" aria-hidden="true">&nbsp;&nbsp;&nbsp;Controller List</h1>
 </div>
  <div class="table-responsive" style="margin-left:20px;">
+   <center><img src="img/load.gif" id="loadingr" style="height:80px;display:none;" /></center>  
     <table class="table user-list  user-listax ">
       <thead>
-                    <tr>
-                      <th><span>Picture</span></th>
-              <th style="width:350px"><span style="padding:0px !important"><span>Name</span><input onkeyup="firstCapitalAlways(event)"  id='namec' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px;
-    margin-top: 7px;
-    float: right;
-    margin-left: 9px;" class="sxdc"></span></th>
-              <th style="width:350px"><span style="padding:0px !important"><span>Phone</span><input onkeyup="firstCapitalAlways(event)"  id='phonec' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px;
-    margin-top: 7px;
-    float: right;
-    margin-left: 9px;" class="sxdc"></span></th>
+              <tr>
+               <th><span>Picture</span></th>
+              <th style="width:250px"><span style="padding:0px !important"><span>Name</span><input onkeyup="firstCapitalAlways(event)"  id='namec' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
+              <th style="width:250px"><span style="padding:0px !important"><span>Phone</span><input onkeyup="firstCapitalAlways(event)"  id='phonec' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right;margin-left: 9px;" class="sxdc"></span></th>
                <th ><span>Date of Birth</span></th> 
               <th ><span>Country Code</span></th> 
               <th ><span>Username</span></th> 
+			  <th></th>
               </tr>
                   </thead>
                   <tbody id="tbd">
@@ -347,6 +476,10 @@ session_start();
   
 </script>
   <script>
+ window._selectUid=null; 
+  
+  
+
  window.viewId=0;  
 
       window.checkTime=function(i) {
@@ -356,14 +489,10 @@ session_start();
 
  window.controllerlist=function(){
  
-    myajax( {"api":"getcontrollerlist","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){ 
+    myajax( {"api":"getcontrollerlist","adminCountryCode":"All"},function( data, textStatus, jQxhr ){ 
          $(".rowaxcustomer").remove();
          var _clone;
          var tbd=$("#tbd"); 
-
-     
-      
-     
          $(data.data).each(function(x,y){
          
  
@@ -379,7 +508,12 @@ session_start();
           _clone+='<td><b style="font-size:15px;margin-left:15px">'+dateFormat(y.dateofbirth)+'</td>';
         _clone+='<td><b style="font-size:15px;margin-left:15px">'+getCountry(y.countrycode)+'</td>';
         _clone+='<td><b style="font-size:15px;margin-left:15px">'+y.username+'</td>';
-        _clone+='</tr></tr> </tr>';
+		if(y.blocked == 0)
+			_clone+='<td><a  onclick="blockAlert('+y.id+');" class="btn-grad _mxicon">Block</a></td>'
+		else
+			_clone+='<td><a  onclick="unblockAlert('+y.id+');" class="btn-grada _mxicon">Un-Block</a></td>'
+        _clone+='</tr>';
+        
           
           tbd.append(_clone);
 		  
@@ -391,6 +525,69 @@ session_start();
     });
   
     }
+function blockAlert(id){
+	window._selectUid = id;
+$("#blockuser").modal("show");
+}
+$("#yesblock").click(function(){
+            block();
+         });
+		 
+		 
+
+window.block=function(){
+    if(window._selectUid==null){
+          alert("Please Select Job");
+          return;
+        }
+		$("#blockuser").modal("hide");
+		$("#loadingr").show();
+	   myajax( {"api":"userblock","flag":"1","userid":window._selectUid},function( data, textStatus, jQxhr ){
+		     $("#loadingr").hide();
+      if(data.status=="200"){
+		 
+		 alert("Users has been blocked");
+		 window.location.href="controller.php";
+        
+	  }
+	  else{
+	  alert(data.message);
+	  }
+     });
+}
+
+function unblockAlert(id){
+	window._selectUid = id;
+$("#unblockuser").modal("show");
+}
+$("#yesunblock").click(function(){
+            unblock();
+         });
+		 
+		 
+
+window.unblock=function(){
+    if(window._selectUid==null){
+          alert("Please Select Job");
+          return;
+        }
+		$("#unblockuser").modal("hide");
+		$("#loadingr").show();
+		myajax( {"api":"userblock","flag":"0","userid":window._selectUid},function( data, textStatus, jQxhr ){
+			  $("#loadingr").hide();
+      if(data.status=="200"){
+		 
+		 alert("Users has been un-blocked");
+        window.location.href="controller.php";
+	  }
+	  else{
+	  alert(data.message);
+	  }
+     });
+}
+
+
+
   window._baseurl="http://18.168.83.39/";
   window.xcontrollernamea="0";
  
@@ -623,7 +820,52 @@ function dateFormat(date)
 
         });
 	  })
-      
+ var ALERT_TITLE = "Alert!";
+var ALERT_BUTTON_TEXT = "Ok";
+
+if(document.getElementById) {
+    window.alert = function(txt) {
+        createCustomAlert(txt);
+    }
+}
+
+function createCustomAlert(txt) {
+    d = document;
+
+    if(d.getElementById("modalContainer")) return;
+
+    mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
+    mObj.id = "modalContainer";
+    mObj.style.height = d.documentElement.scrollHeight + "px";
+
+    alertObj = mObj.appendChild(d.createElement("div"));
+    alertObj.id = "alertBox";
+    if(d.all && !window.opera) alertObj.style.top = document.documentElement.scrollTop + "px";
+    alertObj.style.left = (d.documentElement.scrollWidth - alertObj.offsetWidth)/2 + "px";
+    alertObj.style.visiblity="visible";
+
+    h1 = alertObj.appendChild(d.createElement("h1"));
+    h1.appendChild(d.createTextNode(ALERT_TITLE));
+
+    msg = alertObj.appendChild(d.createElement("p"));
+    //msg.appendChild(d.createTextNode(txt));
+    msg.innerHTML = txt;
+
+    btn = alertObj.appendChild(d.createElement("a"));
+    btn.id = "closeBtn";
+    btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
+    btn.href = "#";
+    btn.focus();
+    btn.onclick = function() { removeCustomAlert();return false; }
+
+    alertObj.style.display = "block";
+
+}
+
+function removeCustomAlert() {
+    document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
+}
+   
 </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
