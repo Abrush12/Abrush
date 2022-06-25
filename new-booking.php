@@ -35,7 +35,7 @@ session_start();
 .blink{
 	text-decoration: blink;
 	-webkit-animation-name: blinker;
-	-webkit-animation-duration: 1.6s;
+	-webkit-animation-duration: 0.8s;
 	-webkit-animation-iteration-count:infinite;
 	-webkit-animation-timing-function:ease-in-out;
 	-webkit-animation-direction: alternate;
@@ -1183,7 +1183,7 @@ Do you want to remove saloon car as one time or permanently.<br>
                   <div class="col-md-6">
                     <div>
                       <img style=" margin-top: 4px; margin-left: 10px;height: 18px;  width: auto;position: absolute;" src="img/businessman.png" class="wdth_user" >
-                       <div class="plholder pickuplocation" style=" margin-top:-8px;margin-left: 60px;"><span>Pickup Location</span></div> 
+                       <div class="plholder pickuplocation" style=" margin-top:-8px;margin-left: 100px;"><span>Pickup Location</span></div> 
                       <input type="text" style="margin-top:1px;padding-left:40px" id="fullname"  onkeyup="firstCapitalAlways(event);" placeholder="Enter Name" class="_reddc"  tabindex="-1" autocomplete="off">
                     </div>
                   </div>
@@ -2126,7 +2126,7 @@ var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = today.getFullYear(); 
  // $("#datepicker").val(window._daysname[today.getDay()]+", "+dd + '-'+mm+"-"+ yyyy);
   //  $("#timerx").val(window.tConvert(job.btime));
-    $("#fullname").val(job.name);
+  //  $("#fullname").val(job.name);
     $("#addressax_").val(job.address);
     $("#pickuplocation").val(job.pickuplocation);
     $("#droplocation").val(job.droplocation);
@@ -2577,7 +2577,11 @@ $("#tbd tr").remove();
     processData: false,
     success: function( data, textStatus, jQxhr ){
                 window.xhr=null;
-          
+				$("#fullname").val("");
+				if(data.data.nameAssociated !="")
+				{
+					$("#fullname").val(data.data.nameAssociated) ;
+				}
                /*  if(window.intervalref!=null){
                         clearInterval(window.intervalref);
                     }*/
@@ -4886,8 +4890,8 @@ function checkKey(e) {
             }
 			
             $(".specialvehicle").show().parent().find("._dropdown").addClass("active");
-			$("#normal").prop('checked', true);
-			$(".xmnormal").attr('selected',true);
+		//	$("#normal").prop('checked', true);
+		//	$(".xmnormal").attr('selected',true);
         /*    if($("#booking").is(":checked")){ }
             else{
                 $(".fixededitbox").show();
