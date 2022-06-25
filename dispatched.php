@@ -1733,9 +1733,7 @@ if(true){
 
             </div>
           </div>
-
-
-           <div class="col-xl-4" style="max-width:21%;flex:0 0 21%">
+            <div class="col-xl-4" style="max-width:21%;flex:0 0 21%">
             <div class="_cover"></div>
             <div class="rpeat_boking">
               
@@ -2009,13 +2007,20 @@ if(true){
 </div></div>
       <div class="container-fluid" style="margin-top:-25px" >
         <div class="row" >
-          
-          
-            
-            
-            <div class="clearfix"></div>
+         <div class="clearfix"></div>
  <div class="col-sm-6">
-  
+     <div class="table_bg_bar" style="margin-top:-5px;padding:5px 16px;max-width:360px;position:absolute;margin-left:55%">
+              <div class="flex_bar_tbl">
+                  
+                <div class="">
+                  <ul>
+                    <li class="nav_a active seAll"><a href="">All</a></li>
+                    <li class="nav_a seAlo"><a onclick="OnlyAllocated('seAlo')">Allocated</a></li>
+                    <li class="nav_a seRem"><a onclick="NotAllocated('seRem')" >Remaining</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
 </div>
 <div class="col-sm-6" style=" display: flex; justify-content: flex-end;">
   <table class="_jobtable"><tr><td class="_tbcompletedjob">Completed : 0</td><td class="_tbcancelljob">Cancelled : 0</td><td class="_tbrunnerjobs">Runner : 0</td><td class="_tbappjobs">Call : 0 </td><td class="_tbcalljobs">App : 0</td></tr></table>
@@ -2025,7 +2030,7 @@ if(true){
  
           <div class="col-md-12 px-0">
             
-            <div class="table_s full_wdth mntblsk" style="margin-top:-2px; overflow-y: auto;">
+            <div class="table_s full_wdth mntblsk" style="margin-top:2px; overflow-y: auto;">
                  <table class="table vbgtable tableFixHead "  style="margin-top:0px;">
                     <thead>
                      <tr>
@@ -2554,6 +2559,29 @@ if(window.intervalref2!=null)
 }
 getcutomerowedamount(job.mobile,window.jobid);
 }
+
+function OnlyAllocated(obj){
+	      $(document).find(".nav_a").removeClass("active");
+		  $("."+obj).addClass("active");
+		  $(".dispbooking").hide();
+            $(".dispbooking").each(function(){
+              if($(this).attr("data-callsign").startsWith("A")){
+                $(this).show();
+              }
+        })
+}
+
+function NotAllocated(obj){
+	$(document).find(".nav_a").removeClass("active");
+	 $("."+obj).addClass("active");
+		  $(".dispbooking").hide();
+            $(".dispbooking").each(function(){
+              if(!$(this).attr("data-callsign").startsWith("A")){
+                $(this).show();
+              }
+        })
+}
+ 
 
 window.intervalref2=null;
 
@@ -6862,7 +6890,7 @@ $("#confirm,#edit,#cancel,#runner,#nofare,#bandriver,#recover,#free").hide();
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html+='<tr  class="ttdn'+x+'  cclop'+y.id+'" data-x="'+x+'" data-passenger="'+y.passengers+'" data-bookingdatetime="'+y.bdate+" "+y.btime+'" data-ismultiplevehicles="'+y.ismultiplevehicles+'"  data-driverid="'+y.driverid+'"  onclick="selectjob(this,'+x+')"   data-jobid="'+y.id+'"    data-callsign="'+y.callsign+'">';
+         html+='<tr  class="ttdn'+x+'  cclop'+y.id+' dispbooking" data-x="'+x+'" data-passenger="'+y.passengers+'" data-bookingdatetime="'+y.bdate+" "+y.btime+'" data-ismultiplevehicles="'+y.ismultiplevehicles+'"  data-driverid="'+y.driverid+'"  onclick="selectjob(this,'+x+')"   data-jobid="'+y.id+'"    data-callsign="'+y.callsign+'">';
          //html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
          //html+='<td>'+y.jobtype+'</td>';
 
