@@ -685,8 +685,11 @@ input[name="paymenttype"] {
     margin-top: -6px;
 }
 .pickuplocation.plholder span{margin-left: 20px;}
-.droplocation.plholder span{margin-left: 20px;}
-.viazdkk.plholder span{margin-left: 45px;}
+.droplocation.plholder span{margin-left: 35px;}
+.entername.plholder span{margin-left: 33px;}
+.entercontact.plholder span{margin-left: 20px;}
+.viazdkk.plholder span{margin-left: 55px;}
+.flightnum.plholder span{margin-left: 30px;}
 input {
     padding: 2px ;
     border-radius: 3px;
@@ -1227,13 +1230,13 @@ Do you want to remove saloon car as one time or permanently.<br>
                   <div class="col-md-6">
                     <div>
                       <img style=" margin-top: 4px; margin-left: 10px;height: 18px;  width: auto;position: absolute;" src="img/businessman.png" class="wdth_user" >
-                       <div class="plholder pickuplocation" style=" margin-top:-8px;margin-left: 100px;"><span>Pickup Location</span></div> 
+                       <div class="plholder entername" style=" margin-top:-8px;margin-left: 100px;"><span>Pickup Location</span></div> 
                       <input type="text" style="margin-top:1px;padding-left:40px" id="fullname" placeholder="Enter Name" onkeyup="firstCapitalAlways(event);"  class="_reddc"  tabindex="-1" autocomplete="off">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="left_ic">
-                         <div class="plholder pickuplocation" style=" margin-top:-8px;width: 185px;"><span>Enter Contact Number</span></div> 
+                         <div class="plholder entercontact" style=" margin-top:-8px;width: 185px;"><span>Enter Contact Number</span></div> 
                       <span id="starterxx" style="padding:0px;display:none;font-size:14px;margin-top:1px;display: none;">0</span><input style="padding-left:2px;margin-top:1px;margin-left: -7px;" type="text"  tabindex="-1"  class="_reddc" autocomplete="off" maxlength="11" autocomplete="off" id="mobile" readonly  placeholder="Enter Contact Number">
                       <div class="_mboption">
                       <img src="img/email.png" style="width: 20px" class="wdth">
@@ -1354,7 +1357,7 @@ Do you want to remove saloon car as one time or permanently.<br>
                         <img src="img/Artboard 17 copy 7.png" style="    height: 14px;
     margin-left: -5px; width: auto;display: none;">
     <i class="fa fa-shopping-basket" style="margin-top: 6px; display: inline-block;"></i>
-                        <label for="cars" class="mg_tb" style="padding:0px">H-Luggage</label>
+                        <label for="cars" class="mg_tb" style="margin:0px;padding:0px; margin-left:2px">H-Luggage</label>
                          
                     <span   class=" ddrrr" style=" position: absolute;
     width: 26px;background: transparent;right: 0px;"><i id="handluggage" class="_xmsg" style="font-style:normal;">0</i>  <i class="fa fa-sort-desc down_arrow"></i> </span>
@@ -1391,7 +1394,7 @@ Do you want to remove saloon car as one time or permanently.<br>
                       <span class="_dropdown" style="width:100%;min-width: 130px;" >
                         <img src="img/Artboard 17 copy 5.png" style="width:15px;margin-left:-5px;margin-top: -3px;display: none;">
                          <i class="fa fa-suitcase"></i>
-                        <label for="cars" class="mg_tb" style="margin:0px;margin-top: 3px;padding: 0px">Suitcase</label>
+                        <label for="cars" class="mg_tb" style="margin:0px;margin-top: 3px;padding:0px; margin-left:2px">Suitcase</label>
                               <span  class="  ddrrr"  ><i id="suitcase" class="_xmsg" style="font-style:normal;">0</i>  <i class="fa fa-sort-desc down_arrow"></i> </span>
                        
                       </span>
@@ -1656,7 +1659,7 @@ if(true){
 </div> <div class="clearfix"></div>
                   <div class="row" style=" margin: 0px;padding-right: calc(2.3% + 10px);">
                   <div class="col-md-6"  >
-                      <div class="plholder pickuplocation" style=" margin-top:-8px; "><span>Pickup Location</span></div>
+                      <div class="plholder flightnum" style=" margin-top:-8px; "><span>Pickup Location</span></div>
 <input type="text" id="flightnumber" style="padding-left: 8px;"   class="_reddc" placeholder="Flight Number"  onkeyup="firstCapitalAlways(event);"  autocomplete="off" class="input_flight">
                   </div>
                    <div class="col-md-6" style="padding-left: 0px;padding-right:calc(2.2% + 8px)">
