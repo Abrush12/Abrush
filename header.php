@@ -283,14 +283,17 @@ window.updatelogin=function(){
            }); 
 	 setTimeout(updatelogin,15000);
     }
-	
+       window.checkTim=function(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}	
 window.getprebookingAlarm=function(){ 
 	 const today = new Date();
          let h_ = today.getHours();
          let m_ = today.getMinutes();
          let s_ = today.getSeconds();
-         m_ = checkTime(m_);
-         s_ = checkTime(s_);
+         m_ = checkTim(m_);
+         s_ = checkTim(s_);
          var dd = String(today.getDate()).padStart(2, '0');
          var mm = String(today.getMonth() + 1).padStart(2, '0');  
          var yyyy = today.getFullYear();
