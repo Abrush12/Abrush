@@ -1940,7 +1940,7 @@ if(true){
               </div>
                 <div class="row  axdcvf" style="height:42px;z-index:-1">
 				
-                  <div class="col-md-12 creditcardbox" style="display: none;margin-top:-10px;z-index:-1">
+                  <div class="col-md-12 creditcardbox" style="display: none;margin-top:-10px;">
                     <div style="background: #ffffff4a;padding: 7px;border-radius: 7px;">
                         
                         <div class="row"><div class="col-sm-12">
@@ -1968,7 +1968,7 @@ if(true){
                 <div id="OldOwedshow" class="col-md-12 blink" style="color:red;padding-left:10px;position: absolute;margin-top:25px; margin-left:20px;">
 				
 				</div>
-				<div id="Owedshow" class="col-md-12 blink" style="padding-left: 10px;margin-top: 5px;position: absolute;margin-top:50px;z-index:-1;margin-left:20px;">
+				<div id="Owedshow" class="col-md-12 blink" style="padding-left: 10px;position: absolute;margin-top:25px;margin-left:20px;">
 				
 				</div>
                 </div>
@@ -2560,8 +2560,8 @@ window.intervalref2=null;
 window.getcutomerowedamount= function(mobile,job_id){
 
 	 window.intervalref2 =  setInterval(function() {
-	myajax( {"api":"getcutomerowedamount","mobile":mobile,"jobid":job_id},function( data, textStatus, jQxhr ){ 
-            
+	myajax( {"api":"getcutomerowedamount","mobile":mobile,"jobid":job_id,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){ 
+           
                 if(data.data!=0){
 					 
 					// $("#amountowed").html("<b>Rs "+data.data+" owed</b>");
@@ -6719,20 +6719,6 @@ $("#xcarimage1").attr("src",window._baseurl+"files/"+driver.carimage1);
  
  
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //----------------
 var today = new Date();

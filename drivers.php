@@ -844,6 +844,7 @@ function uploadProgressHandler(event) {
              
            });
    }
+
    window.getDrivers=function(){}
 	 $(function(){
     $("#edit").click(function(){

@@ -1941,19 +1941,19 @@ if(true){
                   
                 <div class="">
                   <ul>
-                    <li class="nav_a active"><a href="">All</a></li>
-                    <li class="nav_a"><a href="">Allocated</a></li>
-                    <li class="nav_a"><a href="">Remaining</a></li>
+                    <li class="nav_a active seAll"><a href="">All</a></li>
+                    <li class="nav_a seAlo"><a onclick="OnlyAllocated('seAlo')">Allocated</a></li>
+                    <li class="nav_a seRem"><a onclick="NotAllocated('seRem')" >Remaining</a></li>
                   </ul>
                 </div>
 
                 <div class="Pickups_serach">
-                  <input type="text" name="" id="searchpickup" style="padding-left:10px" placeholder="Pick Up">
+                  <input type="text" name="" onkeyup="firstCapitalAlways(event)" id="searchpickup" style="padding-left:10px" placeholder="Pick Up">
                   <span style="height: 24px;"><i class="fa fa-search" style="margin: 0 0 !important"></i></span>
                 </div>
 
                 <div class="Pickups_serach">
-                  <input type="text" name="" id="searchdriver" style="padding-left:10px"  placeholder="Driver">
+                  <input type="text" name="" onkeyup="firstCapitalAlways(event)" id="searchdriver" style="padding-left:10px"  placeholder="Driver">
                   <span style="height: 24px;"><i class="fa fa-search" style="margin:  0 0 !important"></i></span>
                 </div>
 
@@ -2505,6 +2505,43 @@ window.intervalref=null;
         }    
     }, 500);
  }
+
+$("#searchdriver").keyup(function(){
+          var a=$.trim($(this).val());
+          $(".rowprebooking").hide();
+          if(a.length==0){
+            $(".rowprebooking").show();
+          }
+          else{
+            $(".rowprebooking").each(function(){
+              if($(this).attr("data-callsign").startsWith(a)){
+                $(this).show();
+              }
+            })
+          }
+        }) 
+function OnlyAllocated(obj){
+	      $(document).find(".nav_a").removeClass("active");
+		  $("."+obj).addClass("active");
+		  $(".rowprebooking").hide();
+            $(".rowprebooking").each(function(){
+              if($(this).attr("data-callsign").startsWith("A")){
+                $(this).show();
+              }
+        })
+}
+
+function NotAllocated(obj){
+	$(document).find(".nav_a").removeClass("active");
+	 $("."+obj).addClass("active");
+		  $(".rowprebooking").hide();
+            $(".rowprebooking").each(function(){
+              if(!$(this).attr("data-callsign").startsWith("A")){
+                $(this).show();
+              }
+        })
+}
+ 
 window.intervalref2=null;
 
 window.getcutomerowedamount= function(mobile,job_id){
@@ -6752,7 +6789,7 @@ window.prebooking = function()
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html+='<tr  class="ttdn'+x+'" data-passenger="'+y.passengers+'" data-bookingdatetime="'+y.bdate+" "+y.btime+'" data-ismultiplevehicles="'+y.ismultiplevehicles+'"  data-driverid="'+y.driverid+'"  onclick="selectjob(this,'+x+')"   data-jobid="'+y.id+'"    data-callsign="'+y.callsign+'">';
+         html+='<tr  class="ttdn'+x+' rowprebooking" data-passenger="'+y.passengers+'" data-bookingdatetime="'+y.bdate+" "+y.btime+'" data-ismultiplevehicles="'+y.ismultiplevehicles+'"  data-driverid="'+y.driverid+'"  onclick="selectjob(this,'+x+')"   data-jobid="'+y.id+'"    data-callsign="'+y.callsign+'">';
          //html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
          //html+='<td>'+y.jobtype+'</td>';
 

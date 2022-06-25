@@ -1452,14 +1452,14 @@ window.getcurrentDateTime=function(){
         });
         
           $("#kkkcustomerphone").keyup(function(){
-          var a=$.trim($(this).val()).toLowerCase();
+          var a=$.trim($(this).val());
           $(".rowaxcustomer").hide();
           if(a.length==0){
             $(".rowaxcustomer").show();
           }
           else{
             $(".rowaxcustomer").each(function(){
-             if($(this).attr("data-phone").toLowerCase() == a){
+              if($(this).attr("data-phone") === a){
                 $(this).show();
               }
             })
@@ -2156,6 +2156,7 @@ window.ll=function(xnj){
 		if(window.oldlen==-1){
 			window.oldlen=_clone;
 			tbd.html(_clone);
+			
 		}
 		else if(window.oldlen != _clone)
 		{
