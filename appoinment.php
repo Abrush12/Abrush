@@ -1452,41 +1452,56 @@ window.getcurrentDateTime=function(){
         });
         
           $("#kkkcustomerphone").keyup(function(){
-          var a=$.trim($(this).val());
+          var a=$.trim($(this).val()).toLowerCase();
           $(".rowaxcustomer").hide();
           if(a.length==0){
             $(".rowaxcustomer").show();
           }
           else{
             $(".rowaxcustomer").each(function(){
-              if($(this).attr("data-phone") == a){
+             if($(this).attr("data-phone").toLowerCase() == a){
                 $(this).show();
               }
             })
           }
         })
   $("#kkkphonenumber").keyup(function(){
-          var a=$.trim($(this).val());
+          var a=$.trim($(this).val()).toLowerCase();
           $(".rowaxdriver").hide();
           if(a.length==0){
             $(".rowaxdriver").show();
           }
           else{
             $(".rowaxdriver").each(function(){
-              if($(this).attr("data-phone") == a){
+              if($(this).attr("data-phone").toLowerCase() == a){
                 $(this).show();
               }
             })
           }
         })
 
-        $(".sxdc").click(function(){
+        $(".sxdc").click(function(){ 
+		window.searchClick =$(this).hide().parent().find("input");
            $(".sxdc").parent().find("input").val("").hide();
-              $(".sxdc").parent().find("span,img").show();
+            $(".sxdc").parent().find("span,img").show();
           $(this).hide().parent().find("input").show().focus();
           $(this).parent().find("span").hide();
 
         });
+window.searchClick ="";		
+$(document).click(function(){ 
+if(window.searchClick=="")
+{
+   $(".sxdc").parent().find("input").val("").hide();
+   $(".sxdc").parent().find("span,img").show();
+}
+if(!$(".sxdc").parent().find("input").is(":focus"))
+{
+   $(".sxdc").parent().find("input").val("").hide();
+   $(".sxdc").parent().find("span,img").show();
+}
+});
+
         setInputFilter(document.getElementById("kkkphonenumber"), function(value) {
   return /^\d*\d*$/.test(value); // Allow digits and '.' only, using a RegExp
 });
@@ -2089,8 +2104,8 @@ window.ll=function(xnj){
       window._ttlcredit=Math.round(window._ttlcash+window._ttlprepaid);
       window._ttlpayment+=window._ttlcredit;
           $(data.data.all).each(function(x,y){
-          
-          _clone +='<tr  class="rowax rowaxdriver" data-registration="'+y.registration+'" data-colour="'+y.color+'" data-phone="'+y.model+'" data-make="'+y.make+'"  data-phone="'+y.phonex+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
+        
+          _clone +='<tr class="rowax rowaxdriver" data-registration="'+y.registration+'" data-colour="'+y.color+'" data-model="'+y.model+'" data-make="'+y.make+'" data-phone="'+y.phonex+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
           _clone+='<img style="margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px" class="_profilepic" src="'+window._baseurl+y.image+'" alt=""></td>';
           _clone+='<td><b >'+y.callsign+'</b></td>';
           _clone+='<td><b >'+y.name+'</b></td>';
