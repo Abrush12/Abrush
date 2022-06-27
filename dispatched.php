@@ -2009,7 +2009,7 @@ if(true){
         <div class="row" >
          <div class="clearfix"></div>
  <div class="col-sm-6">
-     <div class="table_bg_bar" style="margin-top:-5px;padding:5px 16px;max-width:360px;position:absolute;margin-left:55%">
+ <!--    <div class="table_bg_bar" style="margin-top:-5px;padding:5px 16px;max-width:360px;position:absolute;margin-left:55%">
               <div class="flex_bar_tbl">
                   
                 <div class="">
@@ -2020,7 +2020,7 @@ if(true){
                   </ul>
                 </div>
               </div>
-            </div>
+            </div>-->
 </div>
 <div class="col-sm-6" style=" display: flex; justify-content: flex-end;">
   <table class="_jobtable"><tr><td class="_tbcompletedjob">Completed : 0</td><td class="_tbcancelljob">Cancelled : 0</td><td class="_tbnofarejobs">No Fare : 0</td><td class="_tbrunnerjobs">Runner : 0</td><td class="_tbappjobs">Call : 0 </td><td class="_tbcalljobs">App : 0</td></tr></table>
