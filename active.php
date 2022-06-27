@@ -1973,17 +1973,28 @@ if(true){
             
             <div class="clearfix"></div>
  <div class="col-sm-6">
-  
+     <div class="table_bg_bar" style="margin-top:-5px;padding:5px 16px;max-width:360px;position:absolute;margin-left:55%">
+              <div class="flex_bar_tbl">
+                  
+                <div class="">
+                  <ul>
+                    <li class="nav_a active seAll"><a href="">All</a></li>
+                    <li class="nav_a seAlo"><a onclick="OnlyAllocated('seAlo')">Allocated</a></li>
+                    <li class="nav_a seRem"><a onclick="NotAllocated('seRem')" >Remaining</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
 </div>
 <div class="col-sm-6" style=" display: flex; justify-content: flex-end;">
-  <table class="_jobtable"><tr><td class="_tbcompletedjob">Completed : 0</td><td class="_tbcancelljob">Cancelled : 0</td><td class="_tbrunnerjobs">Runner : 0</td><td class="_tbappjobs">Call : 0 </td><td class="_tbcalljobs">App : 0</td></tr></table>
+  <table class="_jobtable"><tr><td class="_tbcompletedjob">Completed : 0</td><td class="_tbcancelljob">Cancelled : 0</td><td class="_tbnofarejobs">No Fare : 0</td><td class="_tbrunnerjobs">Runner : 0</td><td class="_tbappjobs">Call : 0 </td><td class="_tbcalljobs">App : 0</td></tr></table>
 </div>
  
 <div class="clearfix"></div>
  
           <div class="col-md-12 px-0">
             
-            <div class="table_s full_wdth mntblsk" style="margin-top:-2px; overflow-y: auto;">
+            <div class="table_s full_wdth mntblsk" style="margin-top:2px; overflow-y: auto;">
                  <table class="table vbgtable tableFixHead "  style="margin-top:0px;">
                   <thead>
                      <tr>
@@ -2516,6 +2527,30 @@ if(window.intervalref2!=null)
 }
 getcutomerowedamount(job.mobile,window.jobid);
 }
+function OnlyAllocated(obj){
+	      $(document).find(".nav_a").removeClass("active");
+		  $("."+obj).addClass("active");
+		  $(".activebooking").hide();
+            $(".activebooking").each(function(){
+              if($(this).attr("data-callsign").startsWith("A")){
+                $(this).show();
+              }
+        })
+}
+
+function NotAllocated(obj){
+	$(document).find(".nav_a").removeClass("active");
+	 $("."+obj).addClass("active");
+		  $(".activebooking").hide();
+            $(".activebooking").each(function(){
+              if(!$(this).attr("data-callsign").startsWith("A")){
+                $(this).show();
+              }
+        })
+}
+
+
+
 window.intervalref=null;
  window.blnk=function(elem){
    window.intervalref =  setInterval(function() {
@@ -5125,6 +5160,16 @@ window.datePrev=function(idx){
 $(document).click(function(){
     $(".timer-box").hide();
     window.istimeboxopen=false;
+	myajax({"api":"getalljobdetails","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
+           $("._tbcompletedjob").html("Completed : "+data.data.used);
+            $("._tbcancelljob").html("Cancelled : "+data.data.rejected);
+            $("._tbappjobs").html("App : "+data.data.app);  
+               $("._tbcalljobs").html("Call : "+data.data.call); 
+            $("._tbrunnerjobs").html("Runner : "+data.data.running); 
+			$("._tbnofarejobs").html("No Fare : "+data.data.nofare); 
+			
+              
+           }); 
 }); 
 $(document).mouseup(function(e) 
 {
@@ -5139,14 +5184,7 @@ $(document).mouseup(function(e)
         container.hide();
     }
 });
-         myajax({"api":"getalljobdetails","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
-           $("._tbcompletedjob").html("Completed : "+data.data.used);
-            $("._tbcancelljob").html("Cancelled : "+data.data.rejected);
-            $("._tbappjobs").html("App : "+data.data.app);  
-               $("._tbcalljobs").html("Call : "+data.data.call); 
-            $("._tbrunnerjobs").html("Runner : "+data.data.running);        
-              
-           }); 
+         
          
        $("#cash").change(function(){
         if(window._cjob==null){
@@ -7117,7 +7155,7 @@ window.activebooking = function()
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html+='<tr class="ttdn'+x+'" data-passenger="'+y.passengers+'" data-bookingdatetime="'+y.bdate+" "+y.btime+'" data-ismultiplevehicles="'+y.ismultiplevehicles+'"  data-driverid="'+y.driverid+'"  onclick="selectjob(this,'+x+')"   data-jobid="'+y.id+'"    data-callsign="'+y.callsign+'">';
+         html+='<tr class="ttdn'+x+' activebooking" data-passenger="'+y.passengers+'" data-bookingdatetime="'+y.bdate+" "+y.btime+'" data-ismultiplevehicles="'+y.ismultiplevehicles+'"  data-driverid="'+y.driverid+'"  onclick="selectjob(this,'+x+')"   data-jobid="'+y.id+'"    data-callsign="'+y.callsign+'">';
          //html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
         // html+='<td>'+y.jobtype+'</td>';
 
@@ -7175,7 +7213,8 @@ window.activebooking = function()
             $("._tbcancelljob").html("Cancelled : "+data.data.rejected);
             $("._tbappjobs").html("App : "+data.data.app);  
                $("._tbcalljobs").html("Call : "+data.data.call); 
-            $("._tbrunnerjobs").html("Runner : "+data.data.running);        
+            $("._tbrunnerjobs").html("Runner : "+data.data.running);
+			$("._tbnofarejobs").html("No Fare : "+data.data.nofare); 			
               
            });
      

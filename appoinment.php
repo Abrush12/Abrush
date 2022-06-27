@@ -1004,7 +1004,15 @@ if(isset($_GET['status'])){
 </script>
   <script>
  window.viewId=0;  
-window.oldlen=-1;
+window.olddriver=-1;
+window.oldcredit = -1;  
+window.oldappo = -1; 
+window.oldpending = -1; 
+window.oldregi = -1; 
+window.oldearn = -1; 
+window.oldjob = -1; 
+window.oldcust = -1; 
+
       window.checkTime=function(i) {
   if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
   return i;
@@ -1244,10 +1252,6 @@ return (sHours + ":" + sMinutes);
       }
     window._baseurl="http://18.168.83.39/";
  
-  window.checkTime=function(i) {
-  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-  return i;
-}
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -1784,7 +1788,7 @@ if(y.normal=="1")
            $("#creditamount").val("");
            var cdc = $(".creditamount"+window.driverid).attr("data-amount");
            cdc=parseFloat(cdc);
-           cdc+=parseFloat(data.data.creditamount);
+           cdc=parseFloat(data.data.creditamount);
            $(".creditamount"+window.driverid).html("Rs "+cdc+"&nbsp;&nbsp;&nbsp;"+(type=="0"?"Cash":"Prepaid")).attr("data-amount",cdc);
            $("#creditamounttable tbody").prepend("<tr><td>"+data.data.date+"</td><td>"+creditamount+"</td><td>"+(type=="0"?"Cash":"Prepaid")+"</td><td>"+data.data.controllername+"</td></tr>");
            var ttlpayment = parseFloat($("#xttlpayment").attr("data-amount"));
@@ -2124,7 +2128,7 @@ window.ll=function(xnj){
  /*_clone+=' <a  href="javascript:void(0)"  data-callsign="'+y.callsign+'" data-owed="'+y.owed +'" data-name="'+y.name+'" onclick="deposit(this,'+y.driverid+')"  class="btn-grad _mxicon btn-grada">Deposit</a>';
          _clone+='<a  href="javascript:void(0)" data-callsign="'+y.callsign+'" data-owed="'+y.owed +'" data-name="'+y.name+'" onclick="transfer(this,'+y.driverid+')" class="btn-grad _mxicon ">Transfer</a>';*/
           _clone+='<td class="_createdate" style="font-size:18px">';
-           _clone+='<b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.creditamount)+'">Rs '+Math.round(y.creditamount)+'</span></b><a  href="javascript:void(0)" data-callsign="'+y.callsign+'"  data-name="'+y.name+'" onclick="credit(this,'+y.driverid+')" class="btn-grad _mxicon " style="margin-right:130px; ">Credit</a>';
+           _clone+='<b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.creditamount)+'">Rs '+Math.round(y.creditamount)+'</span></b><a  href="javascript:void(0)" data-callsign="'+y.callsign+'"  data-name="'+y.name+'" onclick="credit(this,'+y.driverid+')" class="btn-grad _mxicon " style="margin-right:100px; ">Credit</a>';
            _clone+=' </td>';
  
         }else{ 
@@ -2153,21 +2157,22 @@ window.ll=function(xnj){
           
         //  tbd.append(_clone);
          }); //alert(window.oldlen); alert(data.data.all.length);
-		if(window.oldlen==-1){
-			window.oldlen=_clone;
+		if(window.olddriver==-1){
+			window.olddriver=_clone;
 			tbd.html(_clone);
 			
 		}
-		else if(window.oldlen != _clone)
+		else if(window.olddriver != _clone)
 		{
-			window.oldlen=_clone;
+			window.olddriver=_clone;
 			tbd.html(_clone);
 		}
 		//tbd.html(_clone);
+		_clone="";
        $(data.data.creditlist).each(function(x,y){
          
           
-          _clone ='<tr  class="rowax rowaxdriver" data-phone="'+y.phone+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
+          _clone +='<tr  class="rowax rowaxdriver" data-phone="'+y.phone+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
           _clone+='<img style="margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px" class="_profilepic" src="'+window._baseurl+y.image+'" alt=""></td>';
           _clone+='<td><b >'+y.callsign+'</b></td>';
           _clone+='<td><b >'+y.name+'</b></td>';
@@ -2207,14 +2212,25 @@ window.ll=function(xnj){
              
             _clone+='    </td> </tr><tr class="rowspls"><td colspan=5></td></tr><tr style="height:10px" class="rowspls"><td colspan="5"></td></tr>';
           
-          $("#tbdcredit").append(_clone);
+          
          }); 
+		 if(window.oldcredit==-1){
+			window.oldcredit=_clone;
+			$("#tbdcredit").html(_clone);
+			
+		}
+		else if(window.oldcredit != _clone)
+		{
+			window.oldcredit=_clone;
+			$("#tbdcredit").html(_clone);
+		}
+		 _clone="";
    $(data.data.registrationlist).each(function(x,y){
          
           window._ttlpayment+=parseFloat(y.paymentgiven);
           window._ttlregistration+=parseFloat(y.paymentgiven);
           
-          _clone ='<tr  class="rowax rowaxdriver" data-phone="'+y.phone+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
+          _clone +='<tr  class="rowax rowaxdriver" data-phone="'+y.phone+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
           _clone+='<img style="margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px" class="_profilepic" src="'+window._baseurl+y.image+'" alt=""></td>';
           _clone+='<td><b >'+y.callsign+'</b></td>';
           _clone+='<td><b >'+y.name+'</b></td>';
@@ -2251,8 +2267,18 @@ window.ll=function(xnj){
               
             _clone+='    </td> </tr><tr class="rowspls"><td colspan=5></td></tr><tr style="height:10px" class="rowspls"><td colspan="5"></td></tr>';
           
-          $("#tbdregistration").append(_clone);
+         // $("#tbdregistration").append(_clone);
          }); 
+		  if(window.oldregi=-1){
+			window.oldregi=_clone;
+			$("#tbdregistration").html(_clone);
+			
+		}
+		else if(window.oldregi != _clone)
+		{
+			window.oldregi=_clone;
+			$("#tbdregistration").html(_clone);
+		}
      $("#xttlpayment").html("Total Payment : <span style='color:#ffd800;'>Rs "+window._ttlpayment+"</span>").attr("data-amount",window._ttlpayment);
       $("#xttlpaymentcash").html("Total Cash : <span style='color:#ffd800;'>Rs "+window._ttlcash+"</span>").attr("data-amount",window._ttlcash);
        $("#xttlpaymentprepaid").html("Total Online : <span style='color:#ffd800;'>Rs "+window._ttlprepaid+"</span>").attr("data-amount",window._ttlprepaid);
@@ -2263,7 +2289,7 @@ window.ll=function(xnj){
 
          
 
-          _clone ='<tr  class="rowax"><td>'
+          _clone +='<tr  class="rowax"><td>'
           _clone+='<img style="margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px" class="_profilepic" src="'+window._baseurl+y.image+'" alt=""></td>';
           _clone+='<td><b style="font-size:18px">'+y.name+'</b></td>';
           _clone+='<td style="font-size:18px"><b>'+y.phone+'</b><i style="font-size: 23px;margin-left: 11px;" class="fa fa-phone"><i style="font-size: 23px;margin-left: 10px;" class="fa fa-envelope"></i></td>';
@@ -2287,8 +2313,18 @@ window.ll=function(xnj){
             _clone+='    </td> </tr><tr class="rowspls"><td colspan=5></td></tr><tr style="height:10px"  class="rowspls"><td colspan="5"></td></tr>';
           
            
-          tbdpending.append(_clone);
+      //    tbdpending.append(_clone);
          });
+		   if(window.oldpending=-1){
+			window.oldpending=_clone;
+			tbdpending.html(_clone);
+			
+		}
+		else if(window.oldpending != _clone)
+		{
+			window.oldpending=_clone;
+			tbdpending.html(_clone);
+		}
       if(xnj==0){
     // window.timerref =  setTimeout(function(){ll(0)},4000);
    } else{
@@ -2356,6 +2392,7 @@ window.ll=function(xnj){
          var normal="0";
          var autorikshaw="0";
          var motorbike="0";
+		 var html ="";
          var pickuplocation=$.trim($("#jobpickup").val());
          var droplocation=$.trim($("#jobdropoff").val());
          var jobvehicletype= $.trim($("#jobvehicletype").val());
@@ -2373,7 +2410,7 @@ window.ll=function(xnj){
      if(y.normal=="1") extras="Normal";
      else if(y.autorikshaw=="1")   extras="Auto-Rikshaw";
      else if(y.motorcycle=="1")   extras="Motorbike";
-           html='<tr  class="_rowax accdd rowjobs" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
+           html+='<tr  class="_rowax accdd rowjobs" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
        html+="<td>";
        
           html+= "<span style='margin-left:20px'>"+y.callsign+'</span></td>';
@@ -2388,8 +2425,18 @@ html+='<td>'+y.bdate+'</td>';
                html+='<td>'+(y.iscash=="1"?(y.cashtype=="0"?"Cash":"Money First"):"Pre-Paid")+'</td>';
                html+="<td>"+y.jobstatusx+"</td>";
                 html+=' </tr><tr  class="accdd" style="height:10px"><td colspan="9"></td></tr>';
-         $("#tbdjobs").append(html);
+      //   $("#tbdjobs").append(html);
         })
+		 if(window.oldjob=-1){
+			window.oldjob=html;
+			$("#tbdjobs").html(html);
+			
+		}
+		else if(window.oldjob != _clone)
+		{
+			window.oldjob=html;
+			$("#tbdjobs").html(html);
+		}
       });
       }
 
@@ -2447,11 +2494,11 @@ html+='<td>'+y.bdate+'</td>';
 
       
      
-    
+    html="";
     
        $( data.data).each(function(x,y){
       
-       html='<tr  class="_rowax accdd rowearning">';
+       html+='<tr  class="_rowax accdd rowearning">';
        html+="<td>";
        if(y.isonline=="0"){
         html+="<span class='redccr'></span>";
@@ -2473,8 +2520,19 @@ html+='<td>'+y.bdate+'</td>';
 
                html+='<td>Rs '+y.ttlearning+'</td>';
                 html+='<td>0</td><td>Rs '+y.owed+'</td></tr><tr  class="accdd" style="height:10px"><td colspan="11"></td></tr>';
-         $("#tbdearnings").append(html);
+        // .append(html);
        });
+	    if(window.oldearn=-1){
+			window.oldearn=html;
+			$("#tbdearnings").html(html);
+			
+		}
+		else if(window.oldearn != _clone)
+		{
+			window.oldearn=html;
+			$("#tbdearnings").html(html);
+		}
+	   
     });
      }
       const today = new Date();

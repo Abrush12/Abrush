@@ -2023,7 +2023,7 @@ if(true){
             </div>
 </div>
 <div class="col-sm-6" style=" display: flex; justify-content: flex-end;">
-  <table class="_jobtable"><tr><td class="_tbcompletedjob">Completed : 0</td><td class="_tbcancelljob">Cancelled : 0</td><td class="_tbrunnerjobs">Runner : 0</td><td class="_tbappjobs">Call : 0 </td><td class="_tbcalljobs">App : 0</td></tr></table>
+  <table class="_jobtable"><tr><td class="_tbcompletedjob">Completed : 0</td><td class="_tbcancelljob">Cancelled : 0</td><td class="_tbnofarejobs">No Fare : 0</td><td class="_tbrunnerjobs">Runner : 0</td><td class="_tbappjobs">Call : 0 </td><td class="_tbcalljobs">App : 0</td></tr></table>
 </div>
  
 <div class="clearfix"></div>
@@ -4948,6 +4948,15 @@ window._isdrpshown=true;
 $(document).click(function(){
     $(".timer-box").hide();
     window.istimeboxopen=false;
+	 myajax({"api":"getalljobdetails","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
+           $("._tbcompletedjob").html("Completed : "+data.data.used);
+            $("._tbcancelljob").html("Cancelled : "+data.data.rejected);
+            $("._tbappjobs").html("App : "+data.data.app);  
+               $("._tbcalljobs").html("Call : "+data.data.call); 
+            $("._tbrunnerjobs").html("Runner : "+data.data.running); 
+			$("._tbnofarejobs").html("No Fare : "+data.data.nofare); 
+              
+           }); 
 }); 
 $(document).mouseup(function(e) 
 {
@@ -4961,14 +4970,7 @@ $(document).mouseup(function(e)
         container.hide();
     }
 });
-         myajax({"api":"getalljobdetails","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
-           $("._tbcompletedjob").html("Completed : "+data.data.used);
-            $("._tbcancelljob").html("Cancelled : "+data.data.rejected);
-            $("._tbappjobs").html("App : "+data.data.app);  
-               $("._tbcalljobs").html("Call : "+data.data.call); 
-            $("._tbrunnerjobs").html("Runner : "+data.data.running);        
-              
-           }); 
+        
          
        $("#cash").change(function(){
         if(window._cjob==null){
@@ -6819,13 +6821,14 @@ $("#cash").prop("checked",true);
 $(".btns_cnfrmcx").show();
 $("#confirm,#edit,#cancel,#runner,#nofare,#bandriver,#recover,#free").hide();
     }
-        $(function(){
+$(function(){
             myajax({"api":"getalljobdetails","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
            $("._tbcompletedjob").html("Completed : "+data.data.used);
             $("._tbcancelljob").html("Cancelled : "+data.data.rejected);
             $("._tbappjobs").html("App : "+data.data.app);  
                $("._tbcalljobs").html("Call : "+data.data.call); 
-            $("._tbrunnerjobs").html("Runner : "+data.data.running);        
+            $("._tbrunnerjobs").html("Runner : "+data.data.running);
+			$("._tbnofarejobs").html("No Fare : "+data.data.nofare); 
               
            });
      
