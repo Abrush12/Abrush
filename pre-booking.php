@@ -2201,6 +2201,9 @@ var yyyy = today.getFullYear();
 			{
 				window.firstselected=job.firstselected;
 			}
+			$("#normal") .prop('checked', false); 
+			$("#autorikshaw") .prop('checked', false); 
+			$("#motorbike") .prop('checked', false);
             $("#sizetype").val(job.boxessize);
             $("#sizehowmany").val(job.boxeshowmany);
             $("#noofitems").val(job.noofitems=="0"?"":job.noofitems);
@@ -2810,6 +2813,7 @@ window.allocatedr=function(driveridx,xx){
 window.driverid=driveridx;
 if(xx==1){
 $(".xallocatedriver").hide(); 
+if(isedit)
 $("#confirm").show().focus();
 }
 $(".driverbox").show();

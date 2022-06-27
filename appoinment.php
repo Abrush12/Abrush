@@ -43,6 +43,25 @@ if(isset($_GET['status'])){
        color:#fff;
       
      }
+.table_s .table tbody tr.activebooking td,.table_s .table tbody tr.activebooking:hover td{
+ 
+    background: #0028a1;
+}
+.table_s .table tbody tr.cancelbooking td,.table_s .table tbody tr.cancelbooking:hover td{
+ 
+    background: #999900;
+}
+.table_s .table tbody tr.runnerbooking td,.table_s .table tbody tr.runnerbooking:hover td{
+ 
+    background: #336600;
+}
+.table_s .table tbody tr.nofarebooking td,.table_s .table tbody tr.nofarebooking:hover td{
+ 
+    background: #e600ac;
+}
+.table_s .table tbody tr.prebooking td,.table_s .table tbody tr.prebooking:hover{background:#b34b29}
+
+	 
      .user-list ._mxicon a:hover{
        color:#fff;
        background-color:green;
@@ -2410,7 +2429,10 @@ window.ll=function(xnj){
      if(y.normal=="1") extras="Normal";
      else if(y.autorikshaw=="1")   extras="Auto-Rikshaw";
      else if(y.motorcycle=="1")   extras="Motorbike";
-           html+='<tr  class="_rowax accdd rowjobs" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
+		if(y.jobstatusx == "Active")
+		{
+           html+='<tr  class="_rowax accdd rowjobs activebooking" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
+		}
        html+="<td>";
        
           html+= "<span style='margin-left:20px'>"+y.callsign+'</span></td>';
