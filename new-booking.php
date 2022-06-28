@@ -1314,7 +1314,7 @@ Do you want to remove saloon car as one time or permanently.<br>
     margin-left: -5px; width: auto;display: none;">
     <i class="fa fa-shopping-basket" style="margin-top: 6px; display: inline-block;"></i>
                         <label for="cars" class="mg_tb" style="margin:0px;padding:0px; margin-left:2px">H-Luggage</label>
-                         
+                         "
                     <span  class=" ddrrr" style=" position: absolute;
     width: 26px;background: transparent;right: 0px;"><i id="handluggage" class="_xmsg" style="font-style:normal;">0</i>  <i class="fa fa-sort-desc down_arrow"  ></i> </span>
                       
@@ -1792,6 +1792,7 @@ if(true){
                   </p>
                   <p class="bg_c_two" style="margin-top:5px">
                     <span id="xbadgeno"></span> 
+					 <i style="font-size: 16px;margin-left: 5px;cursor: pointer;" class="fa fa-phone"></i><i style="font-size: 16px;margin-left: 10px;cursor: pointer;" class="fa fa-envelope"></i>
                     <span ><img src="img/index.png" id="xstarrating" style="width:65px;display: none;"></span> 
                   </p>
                  
@@ -3181,7 +3182,8 @@ $(".driverbox,.xstarrating").show();
                     else if(driver.highvehicle=="1"){
  $("#xvechile").html("Low Vechile");
                     }
- $("#xbadgeno").html("Expected Time : "+driver.expectedtime);
+ $("#xbadgeno").html("");
+// $("#xbadgeno").html("Expected Time : "+driver.expectedtime);
 $("#xplateno").html(driver.platnotxt);
 $("#xregistration").html(driver.registration);
 $("#xcallsign").html(driver.callsign);
@@ -3396,7 +3398,9 @@ $(".driverbox,.xstarrating").show();
                     else if(driver.highvehicle=="1"){
  $("#xvechile").html("Low Vechile");
                     }
- $("#xbadgeno").html(driver.badgenotxt);
+$("#xbadgeno").html("");
+// $("#xbadgeno").html("Expected Time : "+driver.expectedtime);
+ //$("#xbadgeno").html(driver.badgenotxt);
 $("#xplateno").html(driver.platnotxt);
  $("#xprofilepic").attr("src",window._baseurl+driver.image);
 $("#xregistration").html(driver.registration)
@@ -3474,7 +3478,10 @@ $("#xcarimage1").attr("src",window._baseurl+"files/"+driver.carimage1);
                     else if(driver.highvehicle=="1"){
  $("#xvechile").html("Low Vechile");
                     }
- $("#xbadgeno").html(driver.badgenotxt);
+					
+$("#xbadgeno").html("");
+// $("#xbadgeno").html("Expected Time : "+driver.expectedtime);
+ //$("#xbadgeno").html(driver.badgenotxt);
 $("#xplateno").html(driver.platnotxt);
 $("#xregistration").html(driver.registration);
  $("#xprofilepic").attr("src",window._baseurl+driver.image);
@@ -3542,7 +3549,9 @@ $("#xcarimage1").attr("src",window._baseurl+"files/"+driver.carimage1);
                     else if(driver.highvehicle=="1"){
  $("#xvechile").html("Low Vechile");
                     }
- $("#xbadgeno").html(driver.badgenotxt);
+$("#xbadgeno").html("");
+// $("#xbadgeno").html("Expected Time : "+driver.expectedtime);
+ //$("#xbadgeno").html(driver.badgenotxt);
 $("#xplateno").html(driver.platnotxt);
 
 $("#xregistration").html(driver.registration);
@@ -7369,10 +7378,10 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
          var iscapability="1";
           if(!isDisabled&&lowvehicle=="0"&&highvehicle=="0"&&(wheelchair=="0"||pets=="0"||pram=="0")){
             iscapability="0";
-           }
+           } alert(callsign); 
          myajax({ "highvehicle":highvehicle,"lowvehicle":lowvehicle,"pram":pram,"pets":pets,"wheelchair":wheelchair,"iscapability":iscapability,"pdate":pickdate,"currentdate":getcurrentDateTime(),"status":"4","passengers":_passengers,"api":"getdriversbycallsign","dids":callsign,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
              $(".sectdriver").remove();
-         var html="";
+         var html="";alert(data.data.drivers);
          window.driverlist=data.data.driverlist;
           var isdriver=(data.data.drivers==null);
 
@@ -7412,7 +7421,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                   counter++;
 
                  }
-         
+ 
 if(!isdriver){
  
     var driver=data.data.drivers[0];
@@ -7448,7 +7457,9 @@ $(".driverbox,.xstarrating").show();
           else if(driver.highvehicle=="1"){
  $("#xvechile").html("Low Vechile");
           }
- $("#xbadgeno").html(driver.badgenotxt);
+$("#xbadgeno").html("");
+// $("#xbadgeno").html("Expected Time : "+driver.expectedtime);
+ //$("#xbadgeno").html(driver.badgenotxt);
 $("#xplateno").html(driver.platnotxt);
  $("#xprofilepic").attr("src",window._baseurl+driver.image);
 

@@ -1781,6 +1781,7 @@ if(true){
                   <p class="bg_c_two"  style="margin-top:5px">
                     
                     <span id="xbadgeno"></span>
+					 <i style="font-size: 16px;margin-left: 5px;cursor: pointer;" class="fa fa-phone"></i><i style="font-size: 16px;margin-left: 10px;cursor: pointer;" class="fa fa-envelope"></i>
                     <span ><img src="img/index.png" id="xstarrating" style="width:65px;display: none;"></span> 
                   </p>
                  
@@ -2830,7 +2831,8 @@ $(".driverbox").show();
                     else if(driver.highvehicle=="1"){
  $("#xvechile").html("Low Vechile");
                     }
- $("#xbadgeno").html("Expected Time : "+driver.expectedtime);
+$("#xbadgeno").html("");
+// $("#xbadgeno").html("Expected Time : "+driver.expectedtime);
  //$("#xbadgeno").html(driver.badgenotxt);
 $("#xplateno").html(driver.platnotxt);
 $("#xregistration").html(driver.registration);
@@ -3028,7 +3030,9 @@ var driver=window.driverlist.filter(function (entry) {
                     else if(driver.highvehicle=="1"){
  $("#xvechile").html("Low Vechile");
                     }
- $("#xbadgeno").html(driver.badgenotxt);
+$("#xbadgeno").html("");
+// $("#xbadgeno").html("Expected Time : "+driver.expectedtime);
+// $("#xbadgeno").html(driver.badgenotxt);
 $("#xplateno").html(driver.platnotxt);
 $("#xregistration").html(driver.registration)
  $("#xprofilepic").attr("src",window._baseurl+driver.image);
@@ -3110,7 +3114,9 @@ $("#xcarimage1").attr("src",window._baseurl+"files/"+driver.carimage1);
                     else if(driver.highvehicle=="1"){
  $("#xvechile").html("Low Vechile");
                     }
- $("#xbadgeno").html(driver.badgenotxt);
+$("#xbadgeno").html("");
+// $("#xbadgeno").html("Expected Time : "+driver.expectedtime);
+// $("#xbadgeno").html(driver.badgenotxt);
 $("#xplateno").html(driver.platnotxt);
 $("#xregistration").html(driver.registration)
  $("#xprofilepic").attr("src",window._baseurl+driver.image);
@@ -6682,7 +6688,9 @@ $("#allocateddriverlist").append("<div class='_allpoi' data-callsign='"+y.callsi
           else if(driver.highvehicle=="1"){
  $("#xvechile").html("Low Vechile");
           }
- $("#xbadgeno").html(driver.badgenotxt);
+$("#xbadgeno").html("");
+// $("#xbadgeno").html("Expected Time : "+driver.expectedtime);	
+ //$("#xbadgeno").html(driver.badgenotxt);
 $("#xplateno").html(driver.platnotxt);
 $("#xregistration").html(driver.registration)
  $("#xprofilepic").attr("src",window._baseurl+driver.image);
