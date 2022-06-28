@@ -2670,6 +2670,8 @@ $("#confirm").show().focus();
        sectdriverasx(_e.keyCode)
         return false;
     }
+	if(!isedit)
+		return ;
     val=$.trim(val);
     if(val.length==0){
      $(".driverbox,.xallocatedriver ").hide();
@@ -2827,7 +2829,8 @@ $(".driverbox").show();
                     else if(driver.highvehicle=="1"){
  $("#xvechile").html("Low Vechile");
                     }
- $("#xbadgeno").html(driver.badgenotxt);
+ $("#xbadgeno").html("Expected Time : "+driver.expectedtime);
+ //$("#xbadgeno").html(driver.badgenotxt);
 $("#xplateno").html(driver.platnotxt);
 $("#xregistration").html(driver.registration);
 $("#xcallsign").html(driver.callsign);
