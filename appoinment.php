@@ -1805,10 +1805,11 @@ if(y.normal=="1")
          }
            if(data.status=="200"){
            $("#creditamount").val("");
-           var cdc = $(".creditamount"+window.driverid).attr("data-amount");
-           cdc=parseFloat(cdc);
-           cdc=parseFloat(data.data.creditamount);
-           $(".creditamount"+window.driverid).html("Rs "+cdc+"&nbsp;&nbsp;&nbsp;"+(type=="0"?"Cash":"Prepaid")).attr("data-amount",cdc);
+           var cdc = "";//$(".creditamount"+window.driverid).attr("data-amount");
+          // cdc=parseFloat(cdc);a
+           cdc=parseFloat(data.data.creditamount);//alert(data.data.creditamount);
+       //    $(".creditamount"+window.driverid).html("Rs "+cdc+"&nbsp;&nbsp;&nbsp;"+(type=="0"?"Cash":"Prepaid")).attr("data-amount",cdc);
+	   $(".creditamount"+window.driverid).html("Rs "+cdc).attr("data-amount",cdc);
            $("#creditamounttable tbody").prepend("<tr><td>"+data.data.date+"</td><td>"+creditamount+"</td><td>"+(type=="0"?"Cash":"Prepaid")+"</td><td>"+data.data.controllername+"</td></tr>");
            var ttlpayment = parseFloat($("#xttlpayment").attr("data-amount"));
             var ttlcredit = parseFloat($("#xttlcredit").attr("data-amount"));
@@ -2204,7 +2205,8 @@ window.ll=function(xnj){
          _clone+='<a  href="javascript:void(0)" data-callsign="'+y.callsign+'" data-owed="'+y.owed +'" data-name="'+y.name+'" onclick="transfer(this,'+y.driverid+')" class="btn-grad _mxicon ">Transfer</a>';*/
           _clone+='<td class="_createdate" style="font-size:18px">';
    //        _clone+='<a  href="javascript:void(0)" data-callsign="'+y.callsign+'"  data-name="'+y.name+'" onclick="credit(this,'+y.driverid+')" class="btn-grad _mxicon " style="margin-right:140px">Credit</a><b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.creditamount)+'">Rs '+Math.round(y.creditamount)+'&nbsp;&nbsp;&nbsp;'+(Math.round(y.creditamount)>0?(y.credittype=="0"?"Cash":"Online"):"")+'</span></b>';
-		   _clone+='<b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.creditamount)+'">Rs '+Math.round(y.creditamount)+'&nbsp;&nbsp;&nbsp;'+(Math.round(y.creditamount)>0?(y.credittype=="0"?"Cash":"Online"):"")+'</span></b>';
+	//	   _clone+='<b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.creditamount)+'">Rs '+Math.round(y.creditamount)+'&nbsp;&nbsp;&nbsp;'+(Math.round(y.creditamount)>0?(y.credittype=="0"?"Cash":"Online"):"")+'</span></b>';
+		   	   _clone+='<b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.creditamount)+'">Rs '+Math.round(y.creditamount)+'</span></b>';
            _clone+=' </td>';
 
         }else{ 
@@ -2429,10 +2431,10 @@ window.ll=function(xnj){
      if(y.normal=="1") extras="Normal";
      else if(y.autorikshaw=="1")   extras="Auto-Rikshaw";
      else if(y.motorcycle=="1")   extras="Motorbike";
-		if(y.jobstatusx == "Active")
-		{
+		/*if(y.jobstatusx == "Active")
+		{*/
            html+='<tr  class="_rowax accdd rowjobs activebooking" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
-		}
+		//}
        html+="<td>";
        
           html+= "<span style='margin-left:20px'>"+y.callsign+'</span></td>';
