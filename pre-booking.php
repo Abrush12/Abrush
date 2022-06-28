@@ -1732,11 +1732,12 @@ if(true){
                   <span class="checkmark"></span>Select Multiple Vehicles
                 </label>
               </div>
+			  <div class="_cover" style="height: 85px;"></div>
               <div class="row" style="margin-top: 7px;margin-left: 17px;">
                
                 <div style="color:#fff;width:115px">Allocate driver</div>
                 <div class="col-sm-7">
-                <div id="allocateddriverlist"></div><input autocomplete="off" id="allocatedriver"   class="_reddc" onkeyup="searchcallsign(this.value,event)" style="width:140px;padding-left: 3px;" type="text"><div class="ispermanent" style="display:none"><input style="width:9%;float:left;" type="checkbox" id="ispermanent" style="display:none">&nbsp;<span style="float:left;margin-left: 5px;"  >Permanent</span></div><div class="clearfix"></div>
+                <div id="allocateddriverlist"></div><input autocomplete="off" id="allocatedriver" class="_reddc" onkeyup="searchcallsign(this.value,event)" style="width:140px;padding-left: 3px;" type="text"><div class="ispermanent" style="display:none"><input style="width:9%;float:left;" type="checkbox" id="ispermanent" style="display:none">&nbsp;<span style="float:left;margin-left: 5px;"  >Permanent</span></div><div class="clearfix"></div>
                 <div class="xallocatedriver xshow " style="width:260px">
                     <div id="loading" class="boldx">Loading...</div>
                     <div id="dxlist">
