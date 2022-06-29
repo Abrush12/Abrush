@@ -107,6 +107,7 @@ body{overflow: hidden;   font-family: 'Almarai' !important; }
 .xbbbl{    
     font-size: 17px;
 }
+.sctedd{background: #d5d5d5;}
 .xmon{ font-size: 13px !important;}
 #audiotable tr td{color:#000;}
        .sectdriver:hover td, #tbd tr:hover td{background:#8b8989 !important;cursor:pointer;}
@@ -2236,17 +2237,22 @@ var yyyy = today.getFullYear();
 			{
 				window.firstselected=job.firstselected;
 			}
+			$("#normal") .prop('checked', false); 
+			$("#autorikshaw") .prop('checked', false); 
+			$("#motorbike") .prop('checked', false);					
+										   
             $("#sizetype").val(job.boxessize);
             $("#sizehowmany").val(job.boxeshowmany);
             $("#noofitems").val(job.noofitems=="0"?"":job.noofitems);
             $("#shopping") .prop('checked', (job.shopping=="1"));
+			$(".specialrequestimgchld:nth-of-type("+window.firstselected+")").addClass("active");
 			if(window.firstselected==1){
                  $("#normal") .prop('checked', true); 
                  $("#_capabilityuj").html("Normal")
               // $("#motorbike,#autorikshaw").attr("disabled","true"); 
                $(".xmapassengers li").remove();
          for(var  i = 0;i<=20;i++){
-            $(".xmapassengers").append("<li onclick='_oppassenger(this)'>"+i+"</li>");
+ $(".xmapassengers").append("<li class='"+(job.passengers==i?"sctedd active":"")+"' onclick='_oppassenger(this)'>"+i+"</li>");
          }
             }
             else  if(window.firstselected==2){
@@ -2255,7 +2261,7 @@ var yyyy = today.getFullYear();
              //  $("#motorbike,#normal").attr("disabled","true"); 
                $(".xmapassengers li").remove();
          for(var  i = 0;i<=6;i++){
-             $(".xmapassengers").append("<li onclick='_oppassenger(this)'>"+i+"</li>");
+             $(".xmapassengers").append("<li  class='"+(job.passengers==i?"sctedd active":"")+"'  onclick='_oppassenger(this)'>"+i+"</li>");
          }
             }
               else  if(window.firstselected==3){
@@ -2264,7 +2270,7 @@ var yyyy = today.getFullYear();
              //  $("#normal,#autorikshaw").attr("disabled","true"); 
                $(".xmapassengers li").remove();
          for(var  i = 0;i<=1;i++){
-            $(".xmapassengers").append("<li onclick='_oppassenger(this)'>"+i+"</li>");
+             $(".xmapassengers").append("<li  class='"+(job.passengers==i?"sctedd active":"")+"' onclick='_oppassenger(this)'>"+i+"</li>");
          }
             }
             /*  if(window.firstselected==1){
@@ -4592,6 +4598,7 @@ function checkKey(e) {
             }
         });
            xmpassengersx.find("li").removeClass("active");
+		   xmpassengersx.find("li").removeClass("sctedd");
            if(hasclass)
              classcounter--;
         if(classcounter<=0){
@@ -4738,7 +4745,6 @@ function checkKey(e) {
     else if (e.keyCode == '40') { 
         var classcounter=0;
         var hasclass=false;
-         
         var xmpassengersx=$(".xmapassengers");
         if(xmpassengersx.is(":visible")){
             var _lcchildlengthax= xmpassengersx.find("li").length;
@@ -4750,6 +4756,7 @@ function checkKey(e) {
             }
         });
            xmpassengersx.find("li").removeClass("active");
+		   xmpassengersx.find("li").removeClass("sctedd");
            if(hasclass)
              classcounter++;
         if(classcounter>_lcchildlengthax){

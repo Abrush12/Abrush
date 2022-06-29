@@ -189,6 +189,7 @@ input#timaerx1::-webkit-calendar-picker-indicator{
   position:absolute;
   transform: scale(12)
 }
+ .specialrequestimgchld.active{background-color: #dfdfdf;}
 .timer-box{position: absolute;width: inherit;padding: 5px;box-shadow: 1px 1px #eaeaea;
     border: 1px solid #bababa;background: #fff;margin-top: 28px;z-index: 999;display: none;min-width: 202px}
 .mtr-row,.mtr-input-radio{    position: relative!important;
@@ -442,6 +443,10 @@ background: transparent;}
     margin-top: 0.16em;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;}
+	.xdropdown li img{width: 24px}
+.xdropdown li.specialrequestimg{padding: 5px}
+.xdropdown li.specialrequestimg input[type=checkbox]{float: right;margin-top: 2px;}
+.xdropdown li.specialrequestimg span{margin-left: -5px;background: transparent;}
     .mnbox{width: 40px;
     height: 34px;
     position: absolute;
@@ -1440,9 +1445,9 @@ if(true){
                       
                       </div>
                         <ul class="xdropdown  specialvehicle" style="width: calc(100% - 60px); max-height: 285px; margin-top:34px">
-                          <li class="specialrequestimg xmnormal"><img src="img/anormal.png" ><span>Normal</span> <input type="checkbox" class="chkcb" id="normal"> <div class="mnbox"></div></li>
-                             <li class="specialrequestimg xmautorikshaw"><img src="img/aautorikshaw.png" ><span>Auto Rikshaw</span> <input type="checkbox" class="chkcb" id="autorikshaw"> <div class="mnbox"></div></li>
-                             <li class="specialrequestimg xmmotorbike"><img src="img/amotorbike.png" ><span>Motorbike</span> <input type="checkbox" class="chkcb" id="motorbike"> <div class="mnbox"></div></li>
+                          <li class="specialrequestimgchld specialrequestimg xmnormal"><img src="img/anormal.png" ><span>Normal</span> <input type="checkbox" class="chkcb" id="normal"> <div class="mnbox"></div></li>
+                             <li class="specialrequestimgchld specialrequestimg xmautorikshaw"><img src="img/aautorikshaw.png" ><span>Auto Rikshaw</span> <input type="checkbox" class="chkcb" id="autorikshaw"> <div class="mnbox"></div></li>
+                             <li class="specialrequestimgchld specialrequestimg xmmotorbike"><img src="img/amotorbike.png" ><span>Motorbike</span> <input type="checkbox" class="chkcb" id="motorbike"> <div class="mnbox"></div></li>
                         <div style="display: none;">
                          <li class="specialrequestimg"><img src="img/Artboard 17 copy 14.png" ><span>Wheelchair</span> <input type="checkbox" class="chkcb"   id="wheelchair"> <div class="mnbox"></div></li>
                          <li class="specialrequestimg _xpets"><img src="img/Artboard 17 copy 16.png" ><span>Pets</span> <input type="checkbox"  class="chkcb"   id="pets">  <div class="mnbox"></div>
@@ -1576,7 +1581,7 @@ if(true){
                     <div class="form-group">
                       <div class="input-group date">
                  <img src="img/Artboard 17 copy.png" id="opendatepicker1">
-                        <input data-date-format="dd/mm/yyyy" id="datepicker1" style="font-size: 15px;font-weight: bold;padding:0px 5px;height:21px" placeholder="Retur Date">
+                        <input data-date-format="dd/mm/yyyy" id="datepicker1" style="font-size: 15px;font-weight: bold;padding:0px 5px;height:21px" placeholder="Return Date">
                       </div>
                     </div>
                   </div>
@@ -1606,7 +1611,7 @@ if(true){
                             </div>
                              <div class="mtr-input-radio"> 
 <div style="margin-top: 32px;
-    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value divam">AM</span> <span class="radio demoam" id="demoam2"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm2"  ></span> </label></div></div>
+    margin-left: 9px;"><div><label for="demo-radio-ampm-AM"><span class="value divAM">AM</span> <span class="radio demoam" id="demoam2"  ></span> </label></div><div class='clearfix'></div><div><label for="demo-radio-ampm-PM"><span class="value">PM</span><span class="radio demopm" id="demopm2"  ></span> </label></div></div>
                             </div>
                           </div>
                           <div class="btns_cnfrm " style="margin-top:0px;justify-content: center;width: 100%;">
@@ -2038,6 +2043,11 @@ window.firstCapitalAlways= function (event) {
     var firstLetterUpper = val[0] ? val[0].toUpperCase() : "";
     $(event.target).val(firstLetterUpper + val.substr(1, val.length));
 }
+window.enbname=function(event) {
+  var key = event.keyCode;
+ 
+  return ((key >= 65 && key <= 90) || (key >= 97 && key <= 122) || key == 8|| key == 32);
+};
 window.clopitimer=function(ref,event){
     event.stopPropagation();
        dddr();
@@ -2210,13 +2220,15 @@ var yyyy = today.getFullYear();
             $("#sizehowmany").val(job.boxeshowmany);
             $("#noofitems").val(job.noofitems=="0"?"":job.noofitems);
             $("#shopping") .prop('checked', (job.shopping=="1"));
+			$(".specialrequestimgchld:nth-of-type("+window.firstselected+")").addClass("active");
              if(window.firstselected==1){
                  $("#normal") .prop('checked', true); 
                  $("#_capabilityuj").html("Normal")
+				
                //$("#motorbike,#autorikshaw").attr("disabled","true"); 
                $(".xmapassengers li").remove();
          for(var  i = 0;i<=20;i++){
-             $(".xmapassengers").append("<li class='"+(job.passengers==i?"sctedd":"")+"' onclick='_oppassenger(this)'>"+i+"</li>");
+             $(".xmapassengers").append("<li class='"+(job.passengers==i?"sctedd active":"")+"' onclick='_oppassenger(this)'>"+i+"</li>");
          }
             }
             else  if(window.firstselected==2){
@@ -2225,7 +2237,7 @@ var yyyy = today.getFullYear();
              //  $("#motorbike,#normal").attr("disabled","true"); 
                $(".xmapassengers li").remove();
          for(var  i = 0;i<=6;i++){
-             $(".xmapassengers").append("<li  class='"+(job.passengers==i?"sctedd":"")+"'  onclick='_oppassenger(this)'>"+i+"</li>");
+             $(".xmapassengers").append("<li  class='"+(job.passengers==i?"sctedd active":"")+"'  onclick='_oppassenger(this)'>"+i+"</li>");
          }
             }
               else  if(window.firstselected==3){
@@ -2234,7 +2246,7 @@ var yyyy = today.getFullYear();
               // $("#normal,#autorikshaw").attr("disabled","true"); 
                $(".xmapassengers li").remove();
          for(var  i = 0;i<=1;i++){
-             $(".xmapassengers").append("<li  class='"+(job.passengers==i?"sctedd":"")+"' onclick='_oppassenger(this)'>"+i+"</li>");
+             $(".xmapassengers").append("<li  class='"+(job.passengers==i?"sctedd active":"")+"' onclick='_oppassenger(this)'>"+i+"</li>");
          }
             }
             /*
@@ -3607,7 +3619,7 @@ window.incminbkdate=function(ref,idx){
 
         }
         else if($(ref).parent().hasClass("dropdrpdn")){
-            $(".xmapassengers").show();
+ $(".xmapassengers").show().parent().find("._dropdown").addClass("active");
         }
         
       $(ref).parent().hide();
@@ -4095,6 +4107,7 @@ window.scrooltp=0;
             }
         });
            xmpassengersx.find("li").removeClass("active");
+		   xmpassengersx.find("li").removeClass("sctedd");
            if(hasclass)
              classcounter--;
         if(classcounter<=0){
@@ -4115,6 +4128,72 @@ window.scrooltp=0;
       
             return;
         }
+        if($(".specialvehicle").is(":visible")){ 
+
+             var indx=-1;
+              if($(".xmnormal").hasClass("active")){
+                indx=1;
+              }
+              else if($(".xmautorikshaw").hasClass("active")){
+                indx=2;
+              }
+               else if($(".xmmotorbike").hasClass("active")){
+                indx=3;
+              }
+                var pp=$(".xpassengersa").html();
+               $(".specialrequestimgchld").removeClass("active").find("input[type=checkbox]").prop("checked",false);
+
+              if(indx==-1){
+                
+                if(pp>6){
+                    $("#_capabilityuj").html($(".specialrequestimgchld:nth-of-type(1)").find("span").html());
+                   $(".specialrequestimgchld:nth-of-type(1)").addClass("active").find("input[type=checkbox]").prop("checked",true);
+            }
+            else if(pp>1&&pp<=6){
+                $("#_capabilityuj").html($(".specialrequestimgchld:nth-of-type(2)").find("span").html());
+                $(".specialrequestimgchld:nth-of-type(2)").addClass("active").find("input[type=checkbox]").prop("checked",true);
+            }
+            else{
+                $("#_capabilityuj").html($(".specialrequestimgchld:nth-of-type(3)").find("span").html());
+                 $(".specialrequestimgchld:nth-of-type(3)").addClass("active").find("input[type=checkbox]").prop("checked",true);
+            }
+              }
+              else{
+               
+                
+             if(pp>6){
+                $("#_capabilityuj").html($(".specialrequestimgchld:nth-of-type(1)").find("span").html());
+                   $(".specialrequestimgchld:nth-of-type(1)").addClass("active").find("input[type=checkbox]").prop("checked",true);
+            }
+            else if(pp>1&&pp<=6){
+               
+                if(indx==1){
+                    $("#_capabilityuj").html($(".specialrequestimgchld:nth-of-type(2)").find("span").html());
+                      $(".specialrequestimgchld:nth-of-type(2)").addClass("active").find("input[type=checkbox]").prop("checked",true);
+                }
+                else{
+                    $("#_capabilityuj").html($(".specialrequestimgchld:nth-of-type(1)").find("span").html());
+                      $(".specialrequestimgchld:nth-of-type(1)").addClass("active").find("input[type=checkbox]").prop("checked",true);
+                }
+            }
+            else  {
+                 if(indx==1){
+                    $("#_capabilityuj").html($(".specialrequestimgchld:nth-of-type(3)").find("span").html());
+                      $(".specialrequestimgchld:nth-of-type(3)").addClass("active").find("input[type=checkbox]").prop("checked",true);
+                }
+                else if(indx==2){
+                    $("#_capabilityuj").html($(".specialrequestimgchld:nth-of-type(1)").find("span").html());
+                      $(".specialrequestimgchld:nth-of-type(1)").addClass("active").find("input[type=checkbox]").prop("checked",true);
+                }
+                else{
+                    $("#_capabilityuj").html($(".specialrequestimgchld:nth-of-type(2)").find("span").html());
+                      $(".specialrequestimgchld:nth-of-type(2)").addClass("active").find("input[type=checkbox]").prop("checked",true);
+                } 
+            }
+              }
+            
+            return;
+         }		 
         window._lcchildlength = window.amaddressref.find(".lcdropdown p").length;
          if(!$(".lcdropdown").is(":visible")||_lcchildlength==0){ return; }
         var classcounter=0;
@@ -4185,6 +4264,7 @@ window.scrooltp=0;
             }
         });
            xmpassengersx.find("li").removeClass("active");
+		   xmpassengersx.find("li").removeClass("sctedd");
            if(hasclass)
              classcounter++;
         if(classcounter>_lcchildlengthax){
@@ -4204,6 +4284,58 @@ window.scrooltp=0;
       
             return;
         }
+		if($(".specialvehicle").is(":visible")){ 
+             var indx=-1;
+              if($(".xmnormal").hasClass("active")){
+                indx=1;
+              }
+              else if($(".xmautorikshaw").hasClass("active")){
+                indx=2;
+              }
+               else if($(".xmmotorbike").hasClass("active")){
+                indx=3;
+              }
+               $(".specialrequestimgchld").removeClass("active").find("input[type=checkbox]").prop("checked",false);
+              if(indx==-1){
+                $("#_capabilityuj").html($(".specialrequestimgchld:nth-of-type(1)").find("span").html());
+                $(".specialrequestimgchld:nth-of-type(1)").addClass("active").find("input[type=checkbox]").prop("checked",true);
+              }
+              else{
+                var pp=$(".xpassengersa").html();
+                
+             if(pp>6){
+                $("#_capabilityuj").html($(".specialrequestimgchld:nth-of-type(1)").find("span").html());
+                   $(".specialrequestimgchld:nth-of-type(1)").addClass("active").find("input[type=checkbox]").prop("checked",true);
+            }
+            else if(pp>1&&pp<=6){
+               
+                if(indx==1){
+                    $("#_capabilityuj").html($(".specialrequestimgchld:nth-of-type(2)").find("span").html());
+                      $(".specialrequestimgchld:nth-of-type(2)").addClass("active").find("input[type=checkbox]").prop("checked",true);
+                }
+                else{
+                    $("#_capabilityuj").html($(".specialrequestimgchld:nth-of-type(1)").find("span").html());
+                      $(".specialrequestimgchld:nth-of-type(1)").addClass("active").find("input[type=checkbox]").prop("checked",true);
+                }
+            }
+            else  {
+                 if(indx==1){
+                    $("#_capabilityuj").html($(".specialrequestimgchld:nth-of-type(2)").find("span").html());
+                      $(".specialrequestimgchld:nth-of-type(2)").addClass("active").find("input[type=checkbox]").prop("checked",true);
+                }
+                else if(indx==2){
+                    $("#_capabilityuj").html($(".specialrequestimgchld:nth-of-type(3)").find("span").html());
+                      $(".specialrequestimgchld:nth-of-type(3)").addClass("active").find("input[type=checkbox]").prop("checked",true);
+                }
+                else{
+                    $("#_capabilityuj").html($(".specialrequestimgchld:nth-of-type(1)").find("span").html());
+                      $(".specialrequestimgchld:nth-of-type(1)").addClass("active").find("input[type=checkbox]").prop("checked",true);
+                } 
+            }
+              }
+            
+            return;
+         }			   								   
          window._lcchildlength = window.amaddressref.find(".lcdropdown p").length;
         if(!$(".lcdropdown").is(":visible")||_lcchildlength==0){ return; }
         
@@ -4257,30 +4389,74 @@ window.scrooltp=0;
      
     }
      else if (e.keyCode == '13') {
-
-            if($("#errormodal").hasClass("show")){
-                
+if($("#errormodal").hasClass("show")){
+               
                 $("#errormodal").modal("hide");
+                  if($("#quotation").is(":checked")){
+                      var mkll=$.trim($("#fixedprice").val());
+                if(mkll.length==0){
+                 $("#fixedprice").focus();
+                  return; 
+                }
+                  }
                 if(window.errortype=="0")
                  $("#confirm").focus();
                 return;
             }
-         if($(".xmapassengers").is(":visible")){
-
+		
+        if($(".xmapassengers").is(":visible")){
             e.preventDefault();
             $(".xmapassengers").hide().parent().find("._dropdown").removeClass("active");
-            if($("#booking").is(":checked")){
-                
-            $(".specialvehicle").show().parent().find("._dropdown").addClass("active");;
+             $(".xmmotorbike,.xmautorikshaw").show();
+            if($(".xpassengersa").html()>6){
+                $(".xmmotorbike,.xmautorikshaw").hide();
             }
+            else  if($(".xpassengersa").html()>1){
+                $(".xmmotorbike").hide();
+            }
+			
+            $(".specialvehicle").show().parent().find("._dropdown").addClass("active");
+		//	$("#normal").prop('checked', true);
+		//	$(".xmnormal").attr('selected',true);
+        /*    if($("#booking").is(":checked")){ }
+            else{
+                $(".fixededitbox").show();
+                 $("#fixedprice").focus();
+            }*/
+          var pass=$(".xpassengersa").html();
+   /*          var rs=window.customerfixedprice.filter(function (entry) {
+    return entry.passengers == pass && entry.lat==window.pickuplat && entry.lng==window.pickuplng;
+});
+           if(rs.length!=0){
+            $("#fixedbx").attr("data-price",rs[0].fixedprice).find("strong").html("Rs "+rs[0].fixedprice);
+            $("#fixedprice").val(rs[0].fixedprice);
+           }
+            else{
+            $("#fixedbx").attr("data-price","0").find("strong").html("");
+             $("#fixedprice").val("");
+           }*/
+        //    window.amaddressref=null;
+            return;
+        }
+        if($(".specialvehicle").is(":visible")){ 
+            $(".specialvehicle").hide().parent().find("._dropdown").removeClass("active");
+			if($("#booking").is(":checked")){   
+			
+			}
             else{
                 $(".fixededitbox").show();
                  $("#fixedprice").focus();
             }
-          
+			if($("#booking").is(":checked")){  
+          setTimeout(function(){ 
+             $("#confirm").focus();
+            $("._cover").hide();
+       },2000);
+			}
             window.amaddressref=null;
             return;
-        }
+        
+			}
         if(window.amaddressref==null) return;
 
 
@@ -4289,15 +4465,31 @@ window.scrooltp=0;
             $(".lcdropdown").hide();
           
             if(window.amaddressref.find(".pickupdrpdn").length!=0&&window.ispickuplcvalid) {
-        $("#droplocation").focus().prev().hide();
+              /*  if($("#quotation").is(":checked")){
+                    var vialln = ($(".vias > div").length);
+                    window.viacountrpl=1;
+                    $(".vias > div:nth-of-type("+window.viacountrpl+")").find("input").focus();
+                }
+                else{ $("#droplocation").focus().prev().hide();}*/
+				$("#droplocation").focus().prev().hide();
+        }
+        else  if(window.amaddressref.find(".viaaz ").length!=0){
+             var vialln = ($(".vias > div").length);
+             window.viacountrpl++;
+             if(window.viacountrpl>vialln){
+                $("#droplocation").focus();
+             }
+             else{
+             $(".vias > div:nth-of-type("+window.viacountrpl+")").find("input").focus();
+         }
         }
         else if(window.amaddressref.find(".dropdrpdn").length!=0&&window.isdropvalid) {
 
               $(".xmapassengers").show().parent().find("._dropdown").addClass("active");
               $("#droplocation").blur();
         }
-       
-        if(window.__xsetaddr.length!=0)
+      
+         if(window.__xsetaddr.length!=0)
         window.amaddressref.find(".resulttry").show().html(window.__xsetaddr);
         if(window.xattrytype==1)
         getplacedetailsbytext(window.pickupplaceid,1,window.amaddressref);
@@ -5802,23 +5994,40 @@ else{
             getDrivers();
         },400);
         }
-            window._normal=function(){
+     window._normal=function(){ 
              if(window.firstselected==0){
           window.firstselected=1;  
         }
-         if($(".xpassengersa").html()=="0")
+
+        if($(".xpassengersa").html()=="0")
         $(".xpassengersa").html("20");
-        $(".xmapassengers li").remove();
+         $("#motorbike,#autorikshaw").prop("checked",false);
+         $(".xmapassengers li").remove();
          for(var  i = 0;i<=20;i++){
              $(".xmapassengers").append("<li onclick='_oppassenger(this)'>"+i+"</li>");
          }
-         $("#motorbike,#autorikshaw").prop("checked",false);
+										 
          if($("#normal").is(":checked")){
                // $("#motorbike,#autorikshaw").attr("disabled","true");
+			    if($("#booking").is(":checked")){
+             //    $(".specialvehicle").show().parent().find("._dropdown").addClass("active");;
+			 
+			 if(window.editwhat==2)
+			 {
+				  $(".fixededitbox").show();
+                 $("#fixedprice").focus();
+			 }
+           
             }
             else{
-					 $("#_capabilityuj").html("Vechile Type");
-				  $(".xpassengersa").html("0");
+                $(".fixededitbox").show();
+                 $("#fixedprice").focus();
+				
+            }
+            }
+            else{
+             	 $("#_capabilityuj").html("Vechile Type");
+				 $(".xpassengersa").html("0");
                      window.firstselected=0;
               $("#motorbike,#autorikshaw").prop("checked",false);
                      
@@ -5828,11 +6037,11 @@ else{
             getDrivers();
         },400);
         }
-          window._autorikshaw=function(){
+       window._autorikshaw=function(){
              if(window.firstselected==0){
           window.firstselected=2;  
-        }
-        if($(".xpassengersa").html()=="0"||parseInt($(".xpassengersa").html())>6)
+																				 
+        } if($(".xpassengersa").html()=="0"||parseInt($(".xpassengersa").html())>6)
         $(".xpassengersa").html("6");
         $(".xmapassengers li").remove();
          for(var  i = 0;i<=6;i++){
@@ -5840,7 +6049,21 @@ else{
          }
          $("#motorbike,#normal").prop("checked",false);
          if($("#autorikshaw").is(":checked")){
-               // $("#motorbike,#normal").attr("disabled","true");
+               // $("#motorbike,#normal").attr("disabled","true");   
+			   if($("#booking").is(":checked")){
+             //    $(".specialvehicle").show().parent().find("._dropdown").addClass("active");;
+			 if(window.editwhat==2)
+			 {
+				  $(".fixededitbox").show();
+                 $("#fixedprice").focus();
+			 }
+           
+            }
+            else{
+                $(".fixededitbox").show();
+                 $("#fixedprice").focus();
+				
+            }
             }
             else{
                   $("#_capabilityuj").html("Vechile Type");
@@ -5857,8 +6080,8 @@ else{
          window._motorbike=function(){
              if(window.firstselected==0){
           window.firstselected=2;  
-        }
-         if($(".xpassengersa").html()=="0"||parseInt($(".xpassengersa").html())>1)
+																				  
+        } if($(".xpassengersa").html()=="0"||parseInt($(".xpassengersa").html())>1)
         $(".xpassengersa").html("1");
         $(".xmapassengers li").remove();
          for(var  i = 0;i<=1;i++){
@@ -5867,9 +6090,24 @@ else{
          $("#autorikshaw,#normal").prop("checked",false);
          if($("#motorbike").is(":checked")){
                // $("#autorikshaw,#normal").attr("disabled","true");
+			       if($("#booking").is(":checked")){
+             //    $(".specialvehicle").show().parent().find("._dropdown").addClass("active");;
+			 
+			  if(window.editwhat==2)
+			 {
+				  $(".fixededitbox").show();
+                 $("#fixedprice").focus();
+			 }
+           
             }
             else{
-					 $("#_capabilityuj").html("Vechile Type");
+                $(".fixededitbox").show();
+                 $("#fixedprice").focus();
+				
+            }
+            }
+            else{
+                  $("#_capabilityuj").html("Vechile Type");
 				  $(".xpassengersa").html("0");
                      window.firstselected=0;
               $("#autorikshaw,#normal").prop("checked",false);
@@ -6107,7 +6345,12 @@ $(".animalsbox").show();
         },400);
         }
 
-
+ window.prmb=function(){
+            var b = $("#wheelchair").is(":checked")||$("#pets").is(":checked")||$("#pram").is(":checked")||$("#lowvehicle").is(":checked")||$("#bicycle").is(":checked")||$("#scooter").is(":checked")||$("#boxes").is(":checked")||$("#fishing").is(":checked")||$("#items").is(":checked")||$("#shopping").is(":checked")||$("#highvehicle").is(":checked")||$("#parcel").is(":checked");
+            if(!b){
+               // $("#_capabilityuj").html("Requested Vehicles");
+            }
+ }
 
 
 window.__xcheck=null;
@@ -6132,18 +6375,7 @@ window.__xcheck=null;
             else  if(pass>1) {
                 $(".xmmotorbike").hide();
             }
-             var rs=window.customerfixedprice.filter(function (entry) {
-    return entry.passengers == pass && entry.lat==window.pickuplat && entry.lng==window.pickuplng;
-});
-           if(rs.length!=0){
-            $("#fixedbx").attr("data-price",rs[0].fixedprice).find("strong").html("Rs "+rs[0].fixedprice);
-             $("#fixedprice").val(rs[0].fixedprice);
-           }
-           else{
-            $("#fixedbx").attr("data-price","0").find("strong").html("");
-             $("#fixedprice").val("");
-           }
-                  
+                   
                   getDrivers(); 
                   getReference();
         }
