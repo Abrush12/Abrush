@@ -633,7 +633,66 @@ input{padding: 2px  ;border-radius: 3px;}
     margin-top: 3px;
     margin-right: 7px;}
     .sxdc{cursor: pointer;}
+.stamp {
+  transform: rotate(-14deg);
+	color: #fff;
+	font-size: 2rem;
+	font-weight: 700;
+	background-color: #0028a1;
+	border: 0.5rem solid #0028a1;
+	display: inline-block;
+	padding: 0.25rem 1rem;
+	text-transform: uppercase;
+	border-radius: 0;
+	font-family: 'Courier';
+	-webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
+	-webkit-mask-size: 44px 60px;
+}
 
+.is-prebook{
+  color: #fff;
+  background-color: #b34b29;
+  border: 0.5rem solid #b34b29;
+ transform: rotate(-14deg);
+   border-radius: 0;
+}
+
+.is-quote {
+	 color: #fff;
+	 background-color: #f1a906;
+     border: 0.5rem solid #f1a906;
+	transform: rotate(-14deg);
+  border-radius: 0;
+} 
+
+.is-complete {
+	 color: #fff;
+  background-color: #8b8989;
+  border: 0.5rem solid #8b8989;
+	transform: rotate(-14deg);
+  border-radius: 0;
+} 
+.is-cancel {
+	 color: #fff;
+  background-color: #999900;
+  border: 0.5rem solid #999900;
+	transform: rotate(-14deg);
+  border-radius: 0;
+} 
+.is-nofare {
+	 color: #fff;
+  background-color: #e600ac;
+  border: 0.5rem solid #e600ac;
+	transform: rotate(-14deg);
+  border-radius: 0;
+} 
+.is-runner {
+	 color: #fff;
+  background-color: #336600;
+  border: 0.5rem solid #336600;
+	transform: rotate(-14deg);
+  border-radius: 0;
+} 
 </style>
 <script >
  window.editwhat=0;
@@ -1911,6 +1970,9 @@ if(true){
                  <div id="OldOwedshow" class="col-md-12 blink" style="color:red;padding-left:10px;position: absolute;margin-top:25px; margin-left:20px;">
 				
 				</div>
+				<div id="Stampshow" class="col-md-12 " style="display:none; margin-left:500px;">
+				<span class="stamp is-prebook">Active</span>
+				</div>
                 </div>
                 
               </div>
@@ -2472,6 +2534,52 @@ else{
  }
 
 }
+
+window.hideStamp=function(){
+	
+	$("#Stampshow").html("");
+	$("#Stampshow").hide();
+}
+
+window.showStamp=function(type){
+	$("#Stampshow").show();
+	$("#Stampshow").html("");
+	if(type=="Act")
+	{
+		$("#Stampshow").html("<span class=\"stamp\">Active</span>");
+	}
+	else if(type=="Pre")
+	{
+		$("#Stampshow").html("<span class=\"stamp is-prebook\">Prebooking</span>");
+	}
+	else if(type=="Quo")
+	{
+		$("#Stampshow").html("<span class=\"stamp is-quote\">Quotation</span>");
+	}
+	else if(type=="Can")
+	{
+		$("#Stampshow").html("<span class=\"stamp is-cancel\">Cancelled</span>");
+	}
+	else if(type=="Nof")
+	{
+		$("#Stampshow").html("<span class=\"stamp is-nofare\">No-Fare</span>");
+	}
+	else if(type=="Run")
+	{
+		$("#Stampshow").html("<span class=\"stamp is-runner\">Runner</span>");
+	}
+	else if(type=="Com")
+	{
+		$("#Stampshow").html("<span class=\"stamp is-complete\">Completed</span>");
+	}
+	else {
+			$("#Stampshow").hide();
+	}
+	
+	
+	
+}
+
 window.issalooncheckparmanent=0;
 window.selectjob=function(ref,isview,inActive){
      $("._cover").hide();
@@ -2680,7 +2788,7 @@ $("#tbd tr").remove();
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html='<tr class="activebooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,0)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html='<tr class="activebooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,0)" onmouseover=showStamp("Act") onmouseout="hideStamp()" data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
          //html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
               // html+='<td>'+y.jobtype+'</td>';
 
@@ -2740,7 +2848,7 @@ $("#tbd tr").remove();
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html='<tr class="prebooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,1)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html='<tr class="prebooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,1)" onmouseover=showStamp("Pre") onmouseout="hideStamp()" data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
          //html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
                     //html+='<td>'+y.jobtype+'</td>';
 
@@ -2800,7 +2908,7 @@ $("#tbd tr").remove();
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html='<tr class="quotation" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,2)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html='<tr class="quotation" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,2)"  data-jobid="'+y.id+'" onmouseover=showStamp("Quo") onmouseout="hideStamp()"  data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
       //   html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
           //  html+='<td>'+y.jobtype+'</td>';
 
@@ -2860,7 +2968,7 @@ $(data.data.historybooking).each(function(x,y){
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html='<tr onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,3)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html='<tr onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,3)" onmouseover=showStamp("Com") onmouseout="hideStamp()"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
         // html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
           // html+='<td>'+y.jobtype+'</td>';
 
@@ -2885,7 +2993,7 @@ $(data.data.cancelbooking).each(function(x,y){
      else if(y.autorikshaw=="1")   extras="Auto-Rikshaw";
      else if(y.motorcycle=="1")   extras="Motorbike";
 
-         html='<tr class="cancelbooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,0)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html='<tr class="cancelbooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,0)" onmouseover=showStamp("Can") onmouseout="hideStamp()"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
          html+='<td>'+y.dayname+'</td>';
          html+='<td>'+y.bdate+'</td>';html+='<td>'+y.btime+'</td>';
               // html+='<td>'+y.pickupzipcode.split(" ")[0]+'</td>';
@@ -2907,7 +3015,7 @@ $(data.data.nofarebooking).each(function(x,y){
      else if(y.autorikshaw=="1")   extras="Auto-Rikshaw";
      else if(y.motorcycle=="1")   extras="Motorbike";
 
-         html='<tr class="nofarebooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,0)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html='<tr class="nofarebooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,0)" onmouseover=showStamp("Nof") onmouseout="hideStamp()" data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
          html+='<td>'+y.dayname+'</td>';
          html+='<td>'+y.bdate+'</td>';html+='<td>'+y.btime+'</td>';
               // html+='<td>'+y.pickupzipcode.split(" ")[0]+'</td>';
@@ -2929,7 +3037,7 @@ $(data.data.runnerbooking).each(function(x,y){
      else if(y.autorikshaw=="1")   extras="Auto-Rikshaw";
      else if(y.motorcycle=="1")   extras="Motorbike";
 
-         html='<tr class="runnerbooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,0)"  data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
+         html='<tr class="runnerbooking" onmousedown="rgst(event,this)" data-mobile="'+y.mobile+'"   data-passengers="'+y.passengers+'"  data-ismultiplevehicles="'+y.ismultiplevehicles+'" onclick="hidedropdown(this)" ondblclick="selectjob(this,0,0)" onmouseover=showStamp("Run") onmouseout="hideStamp()" data-jobid="'+y.id+'"   data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'">';
          html+='<td>'+y.dayname+'</td>';
          html+='<td>'+y.bdate+'</td>';html+='<td>'+y.btime+'</td>';
               // html+='<td>'+y.pickupzipcode.split(" ")[0]+'</td>';
