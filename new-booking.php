@@ -7378,10 +7378,10 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
          var iscapability="1";
           if(!isDisabled&&lowvehicle=="0"&&highvehicle=="0"&&(wheelchair=="0"||pets=="0"||pram=="0")){
             iscapability="0";
-           } alert(callsign); 
+           } 
          myajax({ "highvehicle":highvehicle,"lowvehicle":lowvehicle,"pram":pram,"pets":pets,"wheelchair":wheelchair,"iscapability":iscapability,"pdate":pickdate,"currentdate":getcurrentDateTime(),"status":"4","passengers":_passengers,"api":"getdriversbycallsign","dids":callsign,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
              $(".sectdriver").remove();
-         var html="";alert(data.data.drivers);
+         var html="";
          window.driverlist=data.data.driverlist;
           var isdriver=(data.data.drivers==null);
 

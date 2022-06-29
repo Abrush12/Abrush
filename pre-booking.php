@@ -1963,7 +1963,7 @@ if(true){
                   <div class="form-group">
                       <div class='input-group date'>
                         <img src="img/Artboard 17 copy.png" style="margin-top:3px">
-                        <input data-date-format="dd/mm/yyyy" id="datepicker">
+                        <input data-date-format="dd/mm/yyyy" id="pickupdate">
                       </div>
                     </div>
                    <span style="height: 24px;"><i class="fa fa-search" style="margin: 0 0 !important"></i></span>
@@ -2525,6 +2525,21 @@ $("#searchdriver").keyup(function(){
             })
           }
         }) 
+$("#searchpickup").keyup(function(){
+          var a=$.trim($(this).val()).toLowerCase();
+          $(".rowprebooking").hide();
+          if(a.length==0){
+            $(".rowprebooking").show();
+          }
+          else{
+            $(".rowprebooking").each(function(){
+              if($(this).attr("data-picklocation").toLowerCase().startsWith(a)){
+                $(this).show();
+              }
+            })
+          }
+        })
+		
 function OnlyAllocated(obj){
 	      $(document).find(".nav_a").removeClass("active");
 		  $("."+obj).addClass("active");
@@ -2535,7 +2550,25 @@ function OnlyAllocated(obj){
               }
         })
 }
-
+$('#pickupdate').datepicker({
+        weekStart: 1,  changeYear: true,yearRange: "-100:+0",
+        daysOfWeekHighlighted: "6,0", maxDate: "+1M",
+        autoclose: true,dateFormat: 'dd-mm-yy',
+        todayHighlight: true
+    }).change(function(e){
+				   var a=$.trim($(this).val()).toLowerCase();
+          $(".rowprebooking").hide();
+          if(a.length<10){
+            $(".rowprebooking").show();
+          }
+          else{
+            $(".rowprebooking").each(function(){
+              if($(this).attr("data-bookingdatetime").toLowerCase().startsWith(a)){
+                $(this).show();
+              }
+            })
+          }
+    }); 
 function NotAllocated(obj){
 	$(document).find(".nav_a").removeClass("active");
 	 $("."+obj).addClass("active");
@@ -5212,7 +5245,7 @@ $("#timerx,#timerx1").clockpicker({
                   $("#loadingr").hide();
                   $(".relatedbookingtable").show();
                 $(data.data).each(function(x,y){
-       html='<tr class="_qqqq '+(window._cjob.id==y.id?"sectre":"")+'" data-mobile="'+y.mobile+'" data-passenger="'+y.passengers+'" data-bookingdatetime="'+y.bdate+" "+y.btime+'" data-ismultiplevehicles="'+y.ismultiplevehicles+'"  data-driverid="'+y.driverid+'"     data-jobid="'+y.id+'"    data-callsign="'+y.callsign+'">';
+       html='<tr class="_qqqq '+(window._cjob.id==y.id?"sectre":"")+'" data-mobile="'+y.mobile+'" data-passenger="'+y.passengers+'" data-bookingdatetime="'+y.bdate+" "+y.btime+'" data-ismultiplevehicles="'+y.ismultiplevehicles+'"  data-driverid="'+y.driverid+'" data-jobid="'+y.id+'"    data-callsign="'+y.callsign+'">';
          html+='<td><input type="checkbox" class="_xcancel" style="width:20px" '+(window._cjob.id==y.id?"checked":"")+'></td>';
          html+='<td>'+y.btime+'</td>';
          html+='<td>'+y.bdate+'</td>';
@@ -6805,7 +6838,7 @@ window.prebooking = function()
                if(extras!="") extras+=","
             extras+="HV"  
           }*/
-         html+='<tr  class="ttdn'+x+' rowprebooking" data-passenger="'+y.passengers+'" data-bookingdatetime="'+y.bdate+" "+y.btime+'" data-ismultiplevehicles="'+y.ismultiplevehicles+'"  data-driverid="'+y.driverid+'"  onclick="selectjob(this,'+x+')"   data-jobid="'+y.id+'"    data-callsign="'+y.callsign+'">';
+         html+='<tr  class="ttdn'+x+' rowprebooking" data-passenger="'+y.passengers+'" data-bookingdatetime="'+y.bdate+" "+y.btime+'" data-ismultiplevehicles="'+y.ismultiplevehicles+'"  data-driverid="'+y.driverid+'"  onclick="selectjob(this,'+x+')"  data-picklocation="'+y.pickuplocation+'" data-jobid="'+y.id+'"    data-callsign="'+y.callsign+'">';
          //html+='<td><input type="radio" style="width:15px" name="booking" /></td>';
          //html+='<td>'+y.jobtype+'</td>';
 

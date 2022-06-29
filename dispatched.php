@@ -1845,7 +1845,7 @@ if(true){
                     <span>Driver Name</span> 
                     <span>Rating</span> 
                   </p>
-                  <p class="bg_c_two"  style="margin-top:5px;justify-content:center;">
+                  <p class="bg_c_two"  style="margin-top:5px;">
                     <span id="xbadgeno"></span>
                     <i style="font-size: 16px;margin-left: 5px;cursor: pointer;" class="fa fa-phone"></i><i style="font-size: 16px;margin-left: 10px;cursor: pointer;" class="fa fa-envelope"></i>
                     <span ><img src="img/index.png" id="xstarrating" style="width:65px;display: none;"></span> 
