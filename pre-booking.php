@@ -676,6 +676,7 @@ input {
 	  
 </style>
 <script >
+window.isallocatedriverex=false;
    var JOBAMOUNT =100;
  window.distancearr=[];
   window.METERS_IN_MILE = 1609.344;
@@ -1977,7 +1978,7 @@ if(true){
               </div>
             </div>
             <div class="table_s full_wdth mntblsk" style="margin-top:30px;overflow-y: auto;">
-               <table class="table vbgtable" style="margin-top:0px;"  >
+               <table class="table vbgtable tableFixHead" style="margin-top:0px;"  >
                     <thead>
                      <tr>
                       <th style="width:80px;display:none">Type<i></i></th>
@@ -2066,6 +2067,16 @@ window.bandriver=function(){
    }
 }
 
+document.addEventListener('keydown', function(e) {
+    // To make sure it freezes the scroll when  
+    // the first two keypresses are "ArrowUp"
+    if (
+        e.key === 'ArrowUp' 
+        || e.key === 'ArrowDown'
+    ) {
+        e.preventDefault();
+    }
+});
 
 window.lojob=function(job){
      window.cashtype=job.cashtype;
@@ -2473,7 +2484,7 @@ window.lojob(job);
 }
 window.issalooncheckparmanent=0;
 window.selectjob=function(ref,jbcounter){
-    if(window.isedit) return;
+    if(window.isedit||window.isallocatedriverex) return;
      window.ispickuplcvalid=window.isdropvalid=true;
     window.__jobref=ref;
     window.jobcounter=jbcounter;
@@ -4092,7 +4103,7 @@ window.scrooltp=0;
             }
         }
      
-    if(!window.amaddressref) return;
+  //  if(!window.amaddressref) return;
     if (e.keyCode == '38') {
          var classcounter=0;
         var hasclass=false;
@@ -4194,6 +4205,58 @@ window.scrooltp=0;
             
             return;
          }		 
+		         if($(".xallocatedriver").is(":visible")){
+			return;
+		}			
+         window._lcchildlength = 0 ;
+         if(window.amaddressref!=null){
+         window._lcchildlength= window.amaddressref.find(".lcdropdown p").length;
+        }
+        if((!$(".lcdropdown").is(":visible")||_lcchildlength==0)&&!window.isallocatedriverex){
+             window.jobcounter--;
+              
+             if(window.jobcounter<0){
+					window.jobcounter=0;
+					window.firstd = 0;
+                /* window.jobcounter--; 
+                 var objDiv = document.querySelector(".mntblsk");
+                 objDiv.scrollTop = objDiv.scrollHeight*/
+				 $(".mntblsk").animate({scrollTop: '0px'}, 100);
+				 return ;
+             }
+             else{
+                 var jbcounter=window.jobcounter;
+                jbcounter++;
+                $("#fixedbx strong").html(jbcounter+" "+$(".mntblsk").get(0).scrollHeight);
+				var amn2=Math.round(($(".mntblsk").height()-46)/28)-2
+                var amn=window._joblist.length-Math.round(($(".mntblsk").height()-46)/28);
+                 if(jbcounter%amn2==0){ //alert(jbcounter)
+					//  if(jbcounter%17==0){ 
+                 window.scrooltp = 26*(jbcounter-amn2)+2*(jbcounter-amn2); 
+				window.firstd = 1;
+						$(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
+				 
+             }
+			 if(jbcounter%(amn2)==(amn2-1)){ //alert(jbcounter)
+					//  if(jbcounter%17==0){ 
+                 window.scrooltp = 26*(jbcounter+1-amn2)+2*(jbcounter+1-amn2);  
+				 window.firstd = 1;
+						$(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
+				 
+             }
+		/*	 if(jbcounter<=amn && window.firstd == 0){ //alert(jbcounter)
+					//  if(jbcounter%17==0){ 
+                 window.scrooltp = (26*jbcounter); 
+				 window.firstd = 1;
+			
+						$(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
+				 
+             }*/
+			 }
+
+             selectjob($("#tbd").children().eq(window.jobcounter),window.jobcounter);
+         return; 
+       }
         window._lcchildlength = window.amaddressref.find(".lcdropdown p").length;
          if(!$(".lcdropdown").is(":visible")||_lcchildlength==0){ return; }
         var classcounter=0;
@@ -4335,7 +4398,46 @@ window.scrooltp=0;
               }
             
             return;
-         }			   								   
+         }			   				
+	if($(".xallocatedriver").is(":visible")){
+			return;
+		}	 
+         window._lcchildlength = 0 ;
+
+         if(window.amaddressref!=null){
+         window._lcchildlength= window.amaddressref.find(".lcdropdown p").length;
+        }
+        if((!$(".lcdropdown").is(":visible")||_lcchildlength==0)&&!window.isallocatedriverex){
+             window.jobcounter++;
+              
+             if(window.jobcounter>=window._joblist.length){
+				 window.jobcounter=window._joblist.length;
+				 window.firstd = 0;
+               // window.jobcounter=0;
+                // $(".mntblsk").animate({scrollTop:  '0px'}, 100);
+				 return;
+             }
+             else{
+                var jbcounter=window.jobcounter;
+                jbcounter++;
+			//	alert("Row height"+$(".mntblsk").find("tr").eq(0).height());
+			//	alert($(".mntblsk").height());
+				var amn=Math.round(($(".mntblsk").height()-46)/28)-2;
+             //    if(jbcounter>=amn){
+			//	 alert(jbcounter);
+			//	 alert(amn);
+			if(jbcounter%amn==0){
+                 window.scrooltp = (26*jbcounter)+2*(jbcounter-amn);
+				 
+               $(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
+				
+             }
+             }
+ 
+             selectjob($("#tbd").children().eq(window.jobcounter),window.jobcounter);
+         return; 
+       }
+        		 
          window._lcchildlength = window.amaddressref.find(".lcdropdown p").length;
         if(!$(".lcdropdown").is(":visible")||_lcchildlength==0){ return; }
         

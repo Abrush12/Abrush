@@ -728,7 +728,19 @@ window.intervalref2=null;
     return hDisplay + mDisplay; 
 }
 window.printmap=function(lat,lng){
-  
+
+document.addEventListener('keydown', function(e) {
+    // To make sure it freezes the scroll when  
+    // the first two keypresses are "ArrowUp"
+    if (
+        e.key === 'ArrowUp' 
+        || e.key === 'ArrowDown'
+    ) {
+        e.preventDefault();
+    }
+});
+
+ 
 var mapProp= {
   center:new google.maps.LatLng(lat,lng),
   zoom:14 
@@ -2458,7 +2470,8 @@ else{
 
 }
 window.__jobref=null; 
-window.selectjobax=function(ref){
+window.selectjobax=function(ref){ 
+
      window.ispickuplcvalid=window.isdropvalid=true;
     var jbcounter=window.jobcounter;
      if(jbcounter>=Math.round(($(".mntblsk").height()-46)/28)){
@@ -2491,6 +2504,7 @@ window._cjob=job;
 window.lojob(job);
 }
 window.issalooncheckparmanent=0;
+
 window.selectjob=function(ref,jbcounter){ 
     if(window.isedit||window.isallocatedriverex) return;
      window.ispickuplcvalid=window.isdropvalid=true;
@@ -4218,30 +4232,37 @@ window.dcounter=0;
                 /* window.jobcounter--; 
                  var objDiv = document.querySelector(".mntblsk");
                  objDiv.scrollTop = objDiv.scrollHeight*/
+				 $(".mntblsk").animate({scrollTop: '0px'}, 100);
 				 return ;
              }
              else{
                  var jbcounter=window.jobcounter;
-                //jbcounter++;
-				
+                jbcounter++;
                 $("#fixedbx strong").html(jbcounter+" "+$(".mntblsk").get(0).scrollHeight);
+				var amn2=Math.round(($(".mntblsk").height()-46)/28)-2
                 var amn=window._joblist.length-Math.round(($(".mntblsk").height()-46)/28);
-                 if(jbcounter%11==0){ //alert(jbcounter)
+                 if(jbcounter%amn2==0){ //alert(jbcounter)
 					//  if(jbcounter%17==0){ 
-                 window.scrooltp = (26*(jbcounter-14)); 
-				 
-					window.firstd = 1;
+                 window.scrooltp = 26*(jbcounter-amn2)+2*(jbcounter-amn2); 
+				window.firstd = 1;
 						$(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
 				 
              }
-			 if(jbcounter<=amn && window.firstd == 0){ //alert(jbcounter)
+			 if(jbcounter%(amn2)==(amn2-1)){ //alert(jbcounter)
+					//  if(jbcounter%17==0){ 
+                 window.scrooltp = 26*(jbcounter+1-amn2)+2*(jbcounter+1-amn2);  
+				 window.firstd = 1;
+						$(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
+				 
+             }
+		/*	 if(jbcounter<=amn && window.firstd == 0){ //alert(jbcounter)
 					//  if(jbcounter%17==0){ 
                  window.scrooltp = (26*jbcounter); 
 				 window.firstd = 1;
 			
 						$(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
 				 
-             }
+             }*/
 			 }
 
              selectjob($("#tbd").children().eq(window.jobcounter),window.jobcounter);
@@ -4405,11 +4426,15 @@ window.dcounter=0;
              else{
                 var jbcounter=window.jobcounter;
                 jbcounter++;
-				var amn=Math.round(($(".mntblsk").height()-46)/28);
+			//	alert("Row height"+$(".mntblsk").find("tr").eq(0).height());
+			//	alert($(".mntblsk").height());
+				var amn=Math.round(($(".mntblsk").height()-46)/28)-2;
              //    if(jbcounter>=amn){
-			if(jbcounter%11==0){
-                 window.scrooltp = (26*jbcounter);
-				
+			//	 alert(jbcounter);
+			//	 alert(amn);
+			if(jbcounter%amn==0){
+                 window.scrooltp = (26*jbcounter)+2*(jbcounter-amn);
+				 
                $(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
 				
              }
