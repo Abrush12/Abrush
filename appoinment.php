@@ -870,6 +870,7 @@ if(isset($_GET['status'])){
               <th class=" "><span>Phone Number</span></th>
               <th><span>Controller</span></th>
               <th class=" "><span>Amount</span></th> 
+			  <th class=" "><span>Registration Time</span></th> 
               <th class=" "><span>Vehicle Type</span></th>
                <th class=" "><span>Affiliate</span></th>
               <th class=" "> </th>
@@ -2265,7 +2266,7 @@ window.ll=function(xnj){
          if(y.type==3){
            _clone+='<td class="_createdate" style="font-size:18px">';
           _clone+="<b class='owed' style='margin-top:6px;'><span style='color:#ffd800;'>Rs "+y.paymentgiven+"</span></b></td>";
-          
+          _clone+="<td><b>"+y.registrationdate.substring(11,16)+"</b></td>";
          
 
         }    if(y.type==2){
