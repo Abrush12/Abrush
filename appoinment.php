@@ -2209,7 +2209,8 @@ window.ll=function(xnj){
 	//	   _clone+='<b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.creditamount)+'">Rs '+Math.round(y.creditamount)+'&nbsp;&nbsp;&nbsp;'+(Math.round(y.creditamount)>0?(y.credittype=="0"?"Cash":"Online"):"")+'</span></b>';
 		   	   _clone+='<b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.creditamount)+'">Rs '+Math.round(y.creditamount)+'</span></b>';
            _clone+=' </td>';
-		   _clone+="<td><b>"+y.credittime+"</b></td>";
+		   
+		   _clone+="<td><b>"+y.credittime.substring(11,16)+"</b></td>";
 		   
 
         }else{ 
