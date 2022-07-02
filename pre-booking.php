@@ -2674,9 +2674,17 @@ if(keycode=="40"){
            dxlist.find("p").removeClass("active");
            if(hasclass)
              classcounter++;
-        if(classcounter>_lcchildlengthax){
+          if(classcounter>_lcchildlengthax){
             classcounter=0;
-         
+            xmpassengersx.animate({scrollTop: '0px'}, 100);
+        }
+        if(classcounter==9){
+                xmpassengersx.animate({scrollTop: '230px'}, 100);
+
+        }
+        else if(classcounter==18){
+                xmpassengersx.animate({scrollTop: '300px'}, 100);
+
         }
         
          var vg=dxlist.children().eq(classcounter);
@@ -2705,13 +2713,19 @@ else if(keycode=='38'){
            dxlist.find("p").removeClass("active");
            if(hasclass)
              classcounter--;
-        if(classcounter<0){
+      if(classcounter<0){
             classcounter=_lcchildlengthax;
-            
+            xmpassengersx.animate({scrollTop: '300px'}, 100);
         }
-        
-         
-         var vg=dxlist.children().eq(classcounter);
+        if(classcounter==11){
+                xmpassengersx.animate({scrollTop: '50px'}, 100);
+
+        }
+        else if(classcounter==2){
+                xmpassengersx.animate({scrollTop: '0px'}, 100);
+
+        }
+    var vg=dxlist.children().eq(classcounter);
            $("#allocatedriver").html(vg.addClass("active").text());
       allocatedr(window.searchdriverlist[classcounter].driverid,2);
       

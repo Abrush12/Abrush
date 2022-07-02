@@ -1877,7 +1877,7 @@ if(true){
               
 
               <div class="atm_b">
-                <div class="_cover"  style="height: 85px;z-index:-1;""></div>
+                <div class="_cover"  style="height: 85px;z-index:-1;"></div>
                  <div class="row axdcvf" style=" margin-left:0px;">
                 <label class="col-sm-2 ccpaymenttype dmnkcash"  style="flex: 0 0 18.666667%;  max-width: 18.666667%;" >
                   <div class="covercashcheck"></div>
@@ -2511,7 +2511,10 @@ window.selectjob=function(ref,jbcounter){
     window.__jobref=ref;
     window.jobcounter=jbcounter;
     jbcounter++;
-    
+      if(jbcounter>=Math.round(($(".mntblsk").height()-46)/28)){
+      window.scrooltp = (26*jbcounter);
+             $(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
+         }
       $("#tbd tr").removeClass("trselected");
 
     $(ref).addClass("trselected");
@@ -2645,9 +2648,17 @@ if(keycode=="40"){
            dxlist.find("p").removeClass("active");
            if(hasclass)
              classcounter++;
-        if(classcounter>_lcchildlengthax){
+         if(classcounter>_lcchildlengthax){
             classcounter=0;
-         
+            xmpassengersx.animate({scrollTop: '0px'}, 100);
+        }
+        if(classcounter==9){
+                xmpassengersx.animate({scrollTop: '230px'}, 100);
+
+        }
+        else if(classcounter==18){
+                xmpassengersx.animate({scrollTop: '300px'}, 100);
+
         }
         
          var vg=dxlist.children().eq(classcounter);
@@ -2678,7 +2689,15 @@ else if(keycode=='38'){
              classcounter--;
         if(classcounter<0){
             classcounter=_lcchildlengthax;
-            
+            xmpassengersx.animate({scrollTop: '300px'}, 100);
+        }
+        if(classcounter==11){
+                xmpassengersx.animate({scrollTop: '50px'}, 100);
+
+        }
+        else if(classcounter==2){
+                xmpassengersx.animate({scrollTop: '0px'}, 100);
+
         }
         
          

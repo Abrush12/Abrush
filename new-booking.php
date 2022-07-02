@@ -2151,7 +2151,8 @@ window.lojob=function(job){
     }
     window.issalooncheckparmanent=job.issalooncheckparmanent;
     var driveridx=job.driverid;
-     $("#ispermanent").prop("checked",(job.ispermanent=="1"));
+     $("#ispermanent").prop("checked",(job.ispermanent=="1")); 
+	  $(".axdcvf,.amdriverbnv").removeClass("hdnn");
 if(window._cjob.isbooking=="1"){
   $("#booking").prop("checked",true);
   $(".axdcvf,.amdriverbnv").removeClass("hdnn");
@@ -2159,8 +2160,8 @@ if(window._cjob.isbooking=="1"){
   $("#fixedprice").val(job.fixedprice);
 }
 else{
-    $("#quotation").prop("checked",true);
-$(".axdcvf,.amdriverbnv").addClass("hdnn");
+ //   $("#quotation").prop("checked",true);
+//$(".axdcvf,.amdriverbnv").addClass("hdnn");
 $("#fixedbx .fxtitle").html("Quote");
 $("#fixedprice").val(job.fixedprice);
 }
@@ -2586,8 +2587,8 @@ window.selectjob=function(ref,isview,inActive){
       $("#tbd tr").removeClass("trselected");
       window.ispickuplcvalid=window.isdropvalid=true;
     $(ref).addClass("trselected");
-      window._crrvia=1;
-      if(isview){
+      window._crrvia=1; 
+     if(isview){
           $("#confirm,#cancel,.table_xd").hide();
           $("#audit").show();
       }
@@ -2595,7 +2596,7 @@ window.selectjob=function(ref,isview,inActive){
             $("#confirm,#cancel,.table_xd").show();
           $("#audit").hide();
       }
-   //   window.isedit=true;
+	  //   window.isedit=true;
       $("#audiolisten").show();
        $("#pram,#wheelchair,#pets,#lowvehicle,#highvehicle,#items,#scooter,#fishing,#bicycle,#boxes,#shopping").removeAttr("disabled").prop("checked",false);
  $(".isreturnx,.itemsbox,.animalsbox,.boxesbox,.depositamountbox").hide();
@@ -3082,9 +3083,17 @@ if(keycode=="40"){
            dxlist.find("p").removeClass("active");
            if(hasclass)
              classcounter++;
-        if(classcounter>_lcchildlengthax){
+       if(classcounter>_lcchildlengthax){
             classcounter=0;
-         
+            xmpassengersx.animate({scrollTop: '0px'}, 100);
+        }
+        if(classcounter==9){
+                xmpassengersx.animate({scrollTop: '230px'}, 100);
+
+        }
+        else if(classcounter==18){
+                xmpassengersx.animate({scrollTop: '300px'}, 100);
+
         }
         
          var vg=dxlist.children().eq(classcounter);
@@ -3113,9 +3122,17 @@ else if(keycode=='38'){
            dxlist.find("p").removeClass("active");
            if(hasclass)
              classcounter--;
-        if(classcounter<0){
+         if(classcounter<0){
             classcounter=_lcchildlengthax;
-            
+            xmpassengersx.animate({scrollTop: '300px'}, 100);
+        }
+        if(classcounter==11){
+                xmpassengersx.animate({scrollTop: '50px'}, 100);
+
+        }
+        else if(classcounter==2){
+                xmpassengersx.animate({scrollTop: '0px'}, 100);
+
         }
         
          
@@ -3127,7 +3144,7 @@ else if(keycode=='38'){
 }
 else if(keycode=='13'){
 $(".xallocatedriver").hide();
-$("#confirm").focus();
+//$("#confirm").focus();
  }
 }
 window.searchcallsign=function(val,e){
@@ -3283,7 +3300,7 @@ window.allocatedr=function(driveridx,xx){
 window.driverid=driveridx;
 if(xx==1){
 $(".xallocatedriver").hide(); 
-$("#confirm").focus();
+//$("#confirm").focus();
 }
 $(".driverbox,.xstarrating").show();
  $("#xdrivername").html(driver.name);

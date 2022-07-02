@@ -308,7 +308,7 @@ background: transparent;}
     border-bottom: 1px solid #eaeaea;
     padding: 1px 5px;cursor: pointer;font-size:15px;
     list-style-type: none;margin:0px;}
-    .xdropdown li:hover,.xallocatedriver p:hover, .pac-item:hover,.lcdropdown p:hover,.lcdropdown p.active,.xmapassengers li.active{background-color:#d9d9d9 !important;}
+    .xdropdown li:hover,.xallocatedriver p:hover, .pac-item:hover,.lcdropdown p:hover,.lcdropdown p.active,.xmapassengers li.active,.xallocatedriver p.active{background-color:#d9d9d9 !important;}
     .xallocatedriver{margin-top:0px;display: none;}
     .xallocatedriver .boldx,.lcdropdown .boldx{width: 100%;text-align: center;padding:10px;color:#000;font-weight: bold; display: none;}
     .xallocatedriver  p span{font-size: 12px;
@@ -331,6 +331,9 @@ background: transparent;}
 .xmon{ font-size: 13px !important;}
 #audiotable tr td{color:#000;}
        .sectdriver:hover td, #tbd tr:hover td{ cursor:pointer;}
+       #tbd i{font-size: 17px; cursor: pointer; display: inline-block;}
+       #tbd .fa-sort-desc{display: inline-block;margin-left: 5px;margin-right: 8px;top: -3px;float: left;}
+       #tbd .fa-pencil{float: right;}					 
 .custom-menu {
     display: none;
     z-index: 1000;
@@ -734,7 +737,17 @@ input {
     return hDisplay + mDisplay; 
 }
 window.printmap=function(lat,lng){
-  
+ 
+document.addEventListener('keydown', function(e) {
+    // To make sure it freezes the scroll when  
+    // the first two keypresses are "ArrowUp"
+    if (
+        e.key === 'ArrowUp' 
+        || e.key === 'ArrowDown'
+    ) {
+        e.preventDefault();
+    }
+});
 var mapProp= {
   center:new google.maps.LatLng(lat,lng),
   zoom:14 
@@ -915,7 +928,7 @@ function GetLatlong(address) {
   });
 }
 </script>
-    <title>Abrush Empire - EMARA</title>
+    <title>Abrush Empire</title>
     <link rel="shortcut icon" href="img/Artboard-10.png" />
   </head>
   <body onload="startTimezz()">
@@ -1805,18 +1818,18 @@ if(true){
                
                 <div style="color:#fff;width:115px">Allocate driver</div>
                 <div class="col-sm-7">
-                <div id="allocateddriverlist"></div><input autocomplete="off" id="allocatedriver" class="_reddc"  onkeyup="searchcallsign(this.value)" style="width:140px;padding-left: 3px;" type="text"><div class="ispermanent" style="display:none"><input style="width:9%;float:left;" type="checkbox" id="ispermanent">&nbsp;<span style="float:left;margin-left: 5px;"  >Permanent</span></div><div class="clearfix"></div>
+                <div id="allocateddriverlist"></div><input autocomplete="off" id="allocatedriver" class="_reddc"  onkeyup="searchcallsign(this.value,event)" style="width:140px;padding-left: 2px;" type="text"><div class="ispermanent" style="display:none"><input style="width:9%;float:left;" type="checkbox" id="ispermanent" style="display:none">&nbsp;<span style="float:left;margin-left: 5px;"  >Permanent</span></div><div class="clearfix"></div>
                 <div class="xallocatedriver xshow " style="width:260px">
                     <div id="loading" class="boldx">Loading...</div>
+                    <div id="dxlist">
                     <p>1</p>
                     <p>2</p>
                     <p>3</p>
                     <p>4</p>
                     <p>5</p>
                     <p>6</p>
-                     
-
-                  </div>
+                     </div>
+				</div>
               </div>
               </div>
    <div class="driverbox" >
@@ -1896,7 +1909,7 @@ if(true){
 </div>
               
 
-              <div class="atm_b" style="z-index:-1">
+              <div class="atm_b">
                 <div class="_cover"  style="height: 85px;z-index:-1"></div>
                  <div class="row axdcvf" style=" margin-left:0px;">
                 <label class="col-sm-2 ccpaymenttype dmnkcash" style="flex: 0 0 18.666667%;  max-width: 18.666667%;" >
@@ -2079,6 +2092,7 @@ window._xobj=null;
 window.searchdriverlist=[];
 window._joblist=[];
 window.isedit=false;
+window.isallocatedriverex=false;					
 window.jobid="0";
 window._cjob=null;
 window._jobprice = null;
@@ -2635,7 +2649,96 @@ window.getcutomerowedamount= function(mobile,job_id){
       $(".custom-menu").hide(100);
 
  }
- window.searchcallsign=function(val){
+  window.sectdriverasx=function(keycode){
+if(keycode=="40"){
+     var classcounter=0;
+        var hasclass=false;
+        var xmpassengersx=$(".xallocatedriver");
+        var dxlist=$("#dxlist");
+        if(xmpassengersx.is(":visible")){
+            var _lcchildlengthax= dxlist.find("p").length;
+            _lcchildlengthax--;
+           dxlist.find("p").each(function(x){
+            if($(this).hasClass("active")){
+                hasclass=true;
+                classcounter=x;
+            }
+        });
+           dxlist.find("p").removeClass("active");
+           if(hasclass)
+             classcounter++;
+          if(classcounter>_lcchildlengthax){
+            classcounter=0;
+            xmpassengersx.animate({scrollTop: '0px'}, 100);
+        }
+        if(classcounter==9){
+                xmpassengersx.animate({scrollTop: '230px'}, 100);
+
+        }
+        else if(classcounter==18){
+                xmpassengersx.animate({scrollTop: '300px'}, 100);
+
+        }
+        
+         var vg=dxlist.children().eq(classcounter);
+         $("#allocatedriver").html(vg.addClass("active").text());
+      allocatedr(window.searchdriverlist[classcounter].driverid,2);
+}
+
+}
+else if(keycode=='38'){
+
+      var classcounter=0;
+        var hasclass=false;
+        var xmpassengersx=$(".xallocatedriver");
+        var dxlist=$("#dxlist");
+ 
+        if(xmpassengersx.is(":visible")){
+
+            var _lcchildlengthax= dxlist.find("p").length;
+            _lcchildlengthax--;
+           dxlist.find("p").each(function(x){
+            if($(this).hasClass("active")){
+                hasclass=true;
+                classcounter=x;
+            }
+        });
+           dxlist.find("p").removeClass("active");
+           if(hasclass)
+             classcounter--;
+      if(classcounter<0){
+            classcounter=_lcchildlengthax;
+            xmpassengersx.animate({scrollTop: '300px'}, 100);
+        }
+        if(classcounter==11){
+                xmpassengersx.animate({scrollTop: '50px'}, 100);
+
+        }
+        else if(classcounter==2){
+                xmpassengersx.animate({scrollTop: '0px'}, 100);
+
+        }
+    var vg=dxlist.children().eq(classcounter);
+           $("#allocatedriver").html(vg.addClass("active").text());
+      allocatedr(window.searchdriverlist[classcounter].driverid,2);
+      
+}
+}
+else if(keycode=='13'){
+$(".xallocatedriver").hide();
+$("#confirm").show().focus();
+ }
+}
+ window.searchcallsign=function(val,_e){
+	   if(_e.keyCode=='68'){
+        ddfdriver();
+        return false;
+    }								 
+	    if(_e.keyCode == '38'||_e.keyCode == '40'||_e.keyCode == '13') {
+
+       sectdriverasx(_e.keyCode)
+        return false;
+    }
     val=$.trim(val);
     if(val.length==0){
      $(".driverbox,.xallocatedriver ").hide();
@@ -2724,11 +2827,12 @@ window.getcutomerowedamount= function(mobile,job_id){
         /*if(window.searchdriverlist.length==1){
             allocatedr(window.searchdriverlist[0].driverid);
 
-        }else*/ if(window.searchdriverlist.length>0){
+        }else*/
+		if(window.searchdriverlist.length>0){ 
                 $(".xallocatedriver #loading").hide();
 
         $(window.searchdriverlist).each(function(x,y){
-				var dlist_sign= "<p onclick='allocatedr("+y.driverid+")' data-id='"+y.driverid+"' data-callsign='"+y.callsign+"'>"+y.callsign;
+				var dlist_sign= "<p onclick='allocatedr("+y.driverid+",1)' data-id='"+y.driverid+"' data-callsign='"+y.callsign+"'>"+y.callsign;
 			if(y.isonline == "1")
 				dlist_sign+= "<span class='greenccr'></span>";
 			else
@@ -2748,7 +2852,7 @@ window.getcutomerowedamount= function(mobile,job_id){
 				}
 			}
 			dlist_sign+="<span>"+y.name+"</span></p>";
-            $(".xallocatedriver").append(dlist_sign);
+            $("#dxlist").append(dlist_sign);
            
         
         });
@@ -2767,14 +2871,17 @@ window.getcutomerowedamount= function(mobile,job_id){
 });
  
 };
-window.allocatedr=function(driveridx){
+window.allocatedr=function(driveridx,xx){
  
     var driver=window.searchdriverlist.filter(function (entry) {
     return entry.driverid == driveridx;
 })[0];
   $("#allocatedriver").val(driver.callsign);
 window.driverid=driveridx;
-$(".xallocatedriver").hide();
+if(xx==1){
+$(".xallocatedriver").hide(); 
+$("#dispatchdriver").show().focus();
+}				
 $(".driverbox").show();
  $("#xdrivername").html(driver.name);
   $("#xcolor").html(driver.color);
@@ -3757,8 +3864,46 @@ window.scrooltp=0;
   function checkKey(e) {
 
     e = e || window.event; 
-      if(e.keyCode==85&&window.isedit){
+      
+    if(e.keyCode==67&&!window.isedit){
+         $("#cancelbookingmodalbv").modal("show");
+    setTimeout(function(){
+        $("#cancelyesdbv").focus();
+    },500);
+        return;
+    }
+       if(e.keyCode==27&&window.isallocatedriverex){
+
+         window.isallocatedriverex=false;
+        window.isedit=false;
         
+        $("#dispatchdriver,.xallocatedriver,.driverbox").hide();
+        $("#edit,#cancel").show();
+        setTimeout(function(){
+            $("#allocatedriver").blur().val("");
+            $(".xallocatedriver").hide();
+        },400)
+
+        return;
+       }
+      if(e.keyCode==68&&window.isallocatedriverex){
+        ddfdriver();
+        return;
+      }
+         
+    if(e.keyCode==65&&!$("#allocatedriver").is(":focus")){
+        window.isallocatedriverex=true;
+        window.isedit=false;
+        
+        $("#dispatchdriver").show();
+        $("#resetjob,#confirm,#edit,#cancel").hide();
+        setTimeout(function(){
+            $("#allocatedriver").focus();
+        },400);
+         return;
+    }
+    if(e.keyCode==85&&window.isedit){
+      
     $("#cancelbookingmodal").modal("show");
     setTimeout(function(){
          $("#pickuplocation").parent().find(".resulttry").show();
@@ -4114,6 +4259,9 @@ window.scrooltp=0;
             return;
         }
 
+ if($(".xallocatedriver").is(":visible")){
+			return;
+		}													 
          window._lcchildlength = 0 ;
 
          if(window.amaddressref!=null){
@@ -4230,13 +4378,15 @@ window.scrooltp=0;
       
             return;
         }
-
+        if($(".xallocatedriver").is(":visible")){
+			return;
+		}	 
          window._lcchildlength = 0 ;
 
          if(window.amaddressref!=null){
          window._lcchildlength= window.amaddressref.find(".lcdropdown p").length;
         }
-        if(!$(".lcdropdown").is(":visible")||_lcchildlength==0){
+        if((!$(".lcdropdown").is(":visible")||_lcchildlength==0)&&!window.isallocatedriverex){
              window.jobcounter++;
               
              if(window.jobcounter>=window._joblist.length){
@@ -4308,7 +4458,11 @@ window.scrooltp=0;
      
     }
      else if (e.keyCode == '13') {
-
+if($("#xallocatedriver").is(":visible")){
+            $("#xallocatedriver").hide();
+            $("#dispatchdriver").focus();
+            return;
+}
             if($("#errormodal").hasClass("show")){
                 
                 $("#errormodal").modal("hide");
@@ -4416,6 +4570,35 @@ window.adheight=function(){
      var t =  $(ref).parent().find(".plholder").hide().text();
    $(ref).attr("placeholder",t)
  }
+window.ddfdriver=function(){
+    var callsign=$.trim($("#allocatedriver").val());
+            if(callsign.length!=0){
+                $("#loadingaxd").show();
+                $("#dispatchdriver").hide();
+                 myajax({"api":"allocatedriver","callsign":callsign,"jobid":window._cjob,jobid},function( data, textStatus, jQxhr ){
+                    $("#loadingaxd").hide();
+                    $("#dispatchdriver").show();
+                    if(data.status=="400"){
+                        $("#errormodal").modal({"show":true});
+                       $("#amerrorbx").html(data.message);
+                    }
+                    else{
+                         $("#errormodal").modal({"show":true});
+                       $("#amerrorbx").html("Success");
+                       setTimeout(function(){
+                        window.location.reload();
+                       },1000)
+                    }
+
+                 });
+            }
+            else{
+                 $("#errormodal").modal({"show":true});
+                       $("#amerrorbx").html("Please Enter Call Sign");
+            }
+ }
+	 
+ 
 window._isdrpshown=false;
 window.amaddressref=null;
 window.prepaidamount=0;
