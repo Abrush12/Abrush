@@ -4273,25 +4273,47 @@ window.scrooltp=0;
          if(window.amaddressref!=null){
          window._lcchildlength= window.amaddressref.find(".lcdropdown p").length;
         }
-        if(!$(".lcdropdown").is(":visible")||_lcchildlength==0){
+        if((!$(".lcdropdown").is(":visible")||_lcchildlength==0)&&!window.isallocatedriverex){
              window.jobcounter--;
+              
              if(window.jobcounter<0){
 					window.jobcounter=0;
+					window.firstd = 0;
                 /* window.jobcounter--; 
                  var objDiv = document.querySelector(".mntblsk");
                  objDiv.scrollTop = objDiv.scrollHeight*/
+				 $(".mntblsk").animate({scrollTop: '0px'}, 100);
 				 return ;
              }
              else{
                  var jbcounter=window.jobcounter;
-               // jbcounter++;
+                jbcounter++;
                 $("#fixedbx strong").html(jbcounter+" "+$(".mntblsk").get(0).scrollHeight);
+				var amn2=Math.round(($(".mntblsk").height()-46)/28)-2
                 var amn=window._joblist.length-Math.round(($(".mntblsk").height()-46)/28);
-                 if(jbcounter<=amn){
+                 if(jbcounter%amn2==0){ //alert(jbcounter)
+					//  if(jbcounter%17==0){ 
+                 window.scrooltp = 26*(jbcounter-amn2)+2*(jbcounter-amn2); 
+				window.firstd = 1;
+						$(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
+				 
+             }
+			 if(jbcounter%(amn2)==(amn2-1)){ //alert(jbcounter)
+					//  if(jbcounter%17==0){ 
+                 window.scrooltp = 26*(jbcounter+1-amn2)+2*(jbcounter+1-amn2);  
+				 window.firstd = 1;
+						$(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
+				 
+             }
+		/*	 if(jbcounter<=amn && window.firstd == 0){ //alert(jbcounter)
+					//  if(jbcounter%17==0){ 
                  window.scrooltp = (26*jbcounter); 
-               $(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
-             }
-             }
+				 window.firstd = 1;
+			
+						$(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
+				 
+             }*/
+			 }
 
              selectjob($("#tbd").children().eq(window.jobcounter),window.jobcounter);
          return; 
@@ -4397,6 +4419,7 @@ window.scrooltp=0;
               
              if(window.jobcounter>=window._joblist.length){
 				 window.jobcounter=window._joblist.length;
+				 window.firstd = 0;
                // window.jobcounter=0;
                 // $(".mntblsk").animate({scrollTop:  '0px'}, 100);
 				 return;
@@ -4404,9 +4427,17 @@ window.scrooltp=0;
              else{
                 var jbcounter=window.jobcounter;
                 jbcounter++;
-                 if(jbcounter>=Math.round(($(".mntblsk").height()-46)/28)){
-                 window.scrooltp = (26*jbcounter);
+			//	alert("Row height"+$(".mntblsk").find("tr").eq(0).height());
+			//	alert($(".mntblsk").height());
+				var amn=Math.round(($(".mntblsk").height()-46)/28)-2;
+             //    if(jbcounter>=amn){
+			//	 alert(jbcounter);
+			//	 alert(amn);
+			if(jbcounter%amn==0){
+                 window.scrooltp = (26*jbcounter)+2*(jbcounter-amn);
+				 
                $(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
+				
              }
              }
 
