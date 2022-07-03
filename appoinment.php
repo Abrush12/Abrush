@@ -2271,6 +2271,7 @@ window.ll=function(xnj){
 
         }    if(y.type==2){
 			_clone+="<td></td>";
+			_clone+="<td></td>";
 		}
 
         

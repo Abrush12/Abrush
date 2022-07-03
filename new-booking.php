@@ -696,6 +696,7 @@ input{padding: 2px  ;border-radius: 3px;}
 </style>
 <script >
  window.editwhat=0;
+ window.selectedcount=-1;
  window.distancearr=[];
   window.METERS_IN_MILE = 1609.344;
 
@@ -1750,10 +1751,12 @@ if(true){
                   <span id="inofare">0 No Fare</span>
                   <span id="irunner">0 Runner</span>
                 </div>
-                <div class="bx_1 mg_bx1">
+                <div class="mg_bx1" style="text-align:right;margin-right:20px;">
                   <span>&nbsp;</span>
                   <span>Ban Driver</span>
-                </div>
+				  <span>&nbsp;</span><span>&nbsp;</span>
+			       <input autocomplete="off" id="bandriver"  class="_reddc"   onkeyup="return searchbancallsign(this.value,event)" style="width:140px;padding-left:3px; border:1px solid blue;" type="text" autocomplete="off">
+			   </div>
                 <div class="bx_1">
                   <span class="block" id="amountowed"  >&nbsp;</span>
                 <!--  <span class="block"><img src="img/Artboard 46.png">Notes</span>
@@ -1799,11 +1802,12 @@ if(true){
                   <tbody id="driverlist">  </tbody>
                 </table>
               </div>
-                <div class="checkbox_yes amdriverbnv" style="margin-left:15px;">
+                <div class="checkbox_yes amdriverbnv" style="margin-left:15px;color:white;">
                 <label class="containerr">
                   <input type="checkbox" id="selectmultiplevehicles" >
-                  <span class="checkmark"></span>Select Multiple Vehicles
-                </label>
+                  <span class="checkmark"></span>
+                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				Select Multiple Vehicles
               </div>
               <div class="row amdriverbnv" style="margin-top: 7px;margin-left: 17px;">
                
@@ -3098,7 +3102,8 @@ if(keycode=="40"){
         
          var vg=dxlist.children().eq(classcounter);
          $("#allocatedriver").html(vg.addClass("active").text());
-      allocatedr(window.searchdriverlist[classcounter].driverid,2);
+		  window.selectedcount = classcounter;
+  //    allocatedr(window.searchdriverlist[classcounter].driverid,2);
 }
 
 }
@@ -3138,12 +3143,15 @@ else if(keycode=='38'){
          
          var vg=dxlist.children().eq(classcounter);
            $("#allocatedriver").html(vg.addClass("active").text());
-      allocatedr(window.searchdriverlist[classcounter].driverid,2);
+		     window.selectedcount = classcounter;
+   //   allocatedr(window.searchdriverlist[classcounter].driverid,2);
       
 }
 }
 else if(keycode=='13'){
 $(".xallocatedriver").hide();
+if(window.selectedcount!=-1)
+allocatedr(window.searchdriverlist[window.selectedcount].driverid,2);
 //$("#confirm").focus();
  }
 }

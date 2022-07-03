@@ -1808,11 +1808,12 @@ if(true){
                   <tbody id="driverlist">  <tr class="sectdriver" data-counter="1"><th class="no_bg"> <input type="checkbox" name="driverlists" class="checkboxmcv"><label class="lbl"> </label></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>   </tr><tr class="sectdriver" data-counter="2"><th class="no_bg"> <input type="checkbox" name="driverlists" class="checkboxmcv"><label class="lbl"> </label></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>   </tr><tr class="sectdriver" data-counter="3"><th class="no_bg"> <input type="checkbox" name="driverlists" class="checkboxmcv"><label class="lbl"> </label></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>   </tr><tr class="sectdriver" data-counter="4"><th class="no_bg"> <input type="checkbox" name="driverlists" class="checkboxmcv"><label class="lbl"> </label></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>   </tr></tbody>
                 </table>
               </div>
-                <div class="checkbox_yes" style="margin-left:15px;">
+               <div class="checkbox_yes amdriverbnv" style="margin-left:15px;color:white;">
                 <label class="containerr">
-                  <input type="checkbox" id="selectmultiplevehicles">
-                  <span class="checkmark"></span>Select Multiple Vehicles
-                </label>
+                  <input type="checkbox" id="selectmultiplevehicles" >
+                  <span class="checkmark"></span>
+                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				Select Multiple Vehicles
               </div>
               <div class="row" style="margin-top: 7px;margin-left: 17px;">
                
@@ -2089,6 +2090,7 @@ if(true){
  <script>
 window.xhr=null;
 window._xobj=null;
+window.selectedcount=-1;
 window.searchdriverlist=[];
 window._joblist=[];
 window.isedit=false;
@@ -2682,7 +2684,8 @@ if(keycode=="40"){
         
          var vg=dxlist.children().eq(classcounter);
          $("#allocatedriver").html(vg.addClass("active").text());
-      allocatedr(window.searchdriverlist[classcounter].driverid,2);
+    		    window.selectedcount = classcounter;
+  //    allocatedr(window.searchdriverlist[classcounter].driverid,2);
 }
 
 }
@@ -2720,12 +2723,15 @@ else if(keycode=='38'){
         }
     var vg=dxlist.children().eq(classcounter);
            $("#allocatedriver").html(vg.addClass("active").text());
-      allocatedr(window.searchdriverlist[classcounter].driverid,2);
+		    window.selectedcount = classcounter;
+  //    allocatedr(window.searchdriverlist[classcounter].driverid,2);
       
 }
 }
 else if(keycode=='13'){
 $(".xallocatedriver").hide();
+if(window.selectedcount!=-1)
+allocatedr(window.searchdriverlist[window.selectedcount].driverid,2);
 $("#confirm").show().focus();
  }
 }
