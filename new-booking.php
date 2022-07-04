@@ -27,6 +27,15 @@ session_start();
    
 
        <style type="text/css">
+	.banbtn{background: #ffa800;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  color: #fff;
+  border-radius: 4px;
+  padding: 0px 20px;
+  cursor: pointer;
+ 	   }
 		   
 @-webkit-keyframes blinker {
   from {opacity: 1.0;}
@@ -73,7 +82,7 @@ body{overflow: hidden;   font-family: 'Almarai' !important; }
     position: relative;
     top: -3px;}
     ._dropdown{cursor: pointer;outline :2px solid transparent}
-    .xdropdown,.xallocatedriver,.lcdropdown{    z-index: 999;
+    .xdropdown,.xallocatedriver,.xbandriver,.lcdropdown{z-index: 999;
     position: absolute;
     width: 158px;display: none;
     background: #fff;
@@ -83,14 +92,19 @@ body{overflow: hidden;   font-family: 'Almarai' !important; }
     .lcdropdown{width:calc(100% - 33px);margin-top:-15px;z-index: 9999}
     .xdropdown{width: 177px;}
     .xdropdown li{font-weight: bold;}
-    .xdropdown li,.xallocatedriver p,.lcdropdown p{display: block;
+    .xdropdown li,.xallocatedriver p,.xbandriver p,.lcdropdown p{display: block;
     border-bottom: 1px solid #eaeaea;
     padding: 1px 5px;cursor: pointer;font-size:15px;
     list-style-type: none;margin:0px;}
-    .xdropdown li:hover,.xallocatedriver p:hover, .pac-item:hover,.lcdropdown p:hover,.lcdropdown p.active,.xmapassengers li.active,.xallocatedriver p.active{background-color:#d9d9d9 !important;}
+    .xdropdown li:hover,.xallocatedriver p:hover,.xbandriver p:hover, .pac-item:hover,.lcdropdown p:hover,.lcdropdown p.active,.xmapassengers li.active,.xallocatedriver p.active,.xbandriver p.active{background-color:#d9d9d9 !important;}
     .xallocatedriver{margin-top:0px;display: none;}
+	.xbandriver{margin-top:0px;display: none;}
     .xallocatedriver .boldx,.lcdropdown .boldx{width: 100%;text-align: center;padding:10px;color:#000;font-weight: bold; display: none;}
     .xallocatedriver  p span{font-size: 13px;font-weight: bold;
+    float: right;
+    margin-top: 3px;}
+	xbandriver .boldx,.lcdropdown .boldx{width: 100%;text-align: center;padding:10px;color:#000;font-weight: bold; display: none;}
+    .xbandriver  p span{font-size: 13px;font-weight: bold;
     float: right;
     margin-top: 3px;}
 .no_bg,.no_bg *,.ispermanent,#datepicker,#datepicker1,#timerx,#timerx1,#clockx,#clockx1,#booking,#quotation,.left_ic img,.ccpaymenttype input[type='radio'],.date img,#fixedbx,.days_selected.selected span{cursor: pointer;}
@@ -697,6 +711,7 @@ input{padding: 2px  ;border-radius: 3px;}
 <script >
  window.editwhat=0;
  window.selectedcount=-1;
+ window.selectedbancount =-1;
  window.distancearr=[];
   window.METERS_IN_MILE = 1609.344;
 
@@ -1751,11 +1766,24 @@ if(true){
                   <span id="inofare">0 No Fare</span>
                   <span id="irunner">0 Runner</span>
                 </div>
-                <div class="mg_bx1" style="text-align:right;margin-right:20px;">
+                <div class="mg_bx1" style="margin-left:20px;">
                   <span>&nbsp;</span>
                   <span>Ban Driver</span>
 				  <span>&nbsp;</span><span>&nbsp;</span>
-			       <input autocomplete="off" id="bandriver"  class="_reddc"   onkeyup="return searchbancallsign(this.value,event)" style="width:140px;padding-left:3px; border:1px solid blue;" type="text" autocomplete="off">
+			       <input autocomplete="off" id="txtbandriver"  class="_reddc"   onkeyup="return searchbancallsign(this.value,event)" style="width:140px;padding-left:3px; border:1px solid blue;" type="text" autocomplete="off"> <span id="divbanbtn" style="display:none">  <button type="button" class="banbtn" id="yesban" style="margin-left: 5px;" onclick="bandriverformobile()" onmouseover="chgclr('Y');">Yes</button>&nbsp;&nbsp;&nbsp;<button type="button"  class="banbtn" id="noban" style="background: #a8a1a1" onclick="unbandriver()" onmouseover="chgclr('N');">No</button></span>
+				   <div class="clearfix"></div>
+                <div class="xbandriver xshow " style="width:260px;">
+                    <div id="loading" class="boldx">Loading...</div>
+                    <div id="dxbanlist">
+                    <p>1</p>
+                    <p>2</p>
+                    <p>3</p>
+                    <p>4</p>
+                    <p>5</p>
+                    <p>6</p>
+                     </div>
+
+                  </div>
 			   </div>
                 <div class="bx_1">
                   <span class="block" id="amountowed"  >&nbsp;</span>
@@ -2073,8 +2101,10 @@ if(true){
 <script>
 var JOBAMOUNT =100;
 window.xhr=null;
+window.driverbanid =-1;
 window._xobj=null;
 window.searchdriverlist=[];
+window.searchdriverbanlist=[];
 window._joblist=[];
 window.isedit=false;
 window.jobid="0";
@@ -2108,6 +2138,17 @@ window.bandriver=function(){
  if(confirm("Do you want to ban driver?")){
 
      myajax({"api":"bandriver","type":"3","jobid":$(window._jobref).attr("data-jobid"),"driverid":$(window._jobref).attr("data-driverid"),"mobile":$(window._jobref).attr("data-mobile")},function( data, textStatus, jQxhr ){
+                alert("Success");
+              window.location.reload();               
+           }); 
+   }
+}
+window.bandriverformobile=function(){
+	if(window.driverbanid ==-1 || $.trim($("#mobile").val()) == "")
+		return;
+ if(confirm("Do you want to ban driver?")){
+
+     myajax({"api":"bandriver","jobid":"0","driverid":window.driverbanid ,"mobile":$.trim($("#mobile").val())},function( data, textStatus, jQxhr ){
                 alert("Success");
               window.location.reload();               
            }); 
@@ -2537,6 +2578,24 @@ else{
 
                  }
  }
+
+}
+
+
+window.chgclr=function(choice){
+ 
+if( choice == 'Y')
+{
+$("#yesban").css({"background-color":"#ffa800"});
+$("#noban").css({"background-color":"#a8a1a1"});
+$("#yesban").focus();
+}
+else
+{
+$("#yesban").css({"background-color":"#a8a1a1"});
+$("#noban").css({"background-color":"#ffa800"});
+$("#noban").focus();
+}
 
 }
 
@@ -3155,6 +3214,92 @@ allocatedr(window.searchdriverlist[window.selectedcount].driverid,2);
 //$("#confirm").focus();
  }
 }
+window.sectbandriverasx=function(keycode){
+if(keycode=="40"){
+     var classcounter=0;
+        var hasclass=false;
+        var xmpassengersx=$(".xbandriver");
+        var dxlist=$("#dxbanlist");
+        if(xmpassengersx.is(":visible")){
+            var _lcchildlengthax= dxlist.find("p").length;
+            _lcchildlengthax--;
+           dxlist.find("p").each(function(x){
+            if($(this).hasClass("active")){
+                hasclass=true;
+                classcounter=x;
+            }
+        });
+           dxlist.find("p").removeClass("active");
+           if(hasclass)
+             classcounter++;
+       if(classcounter>_lcchildlengthax){
+            classcounter=0;
+            xmpassengersx.animate({scrollTop: '0px'}, 100);
+        }
+        if(classcounter==9){
+                xmpassengersx.animate({scrollTop: '230px'}, 100);
+
+        }
+        else if(classcounter==18){
+                xmpassengersx.animate({scrollTop: '300px'}, 100);
+
+        }
+        
+         var vg=dxlist.children().eq(classcounter);
+         $("#txtbandriver").html(vg.addClass("active").text());
+		  window.selectedbancount = classcounter;
+  //    allocatedr(window.searchdriverlist[classcounter].driverid,2);
+}
+
+}
+else if(keycode=='38'){
+
+      var classcounter=0;
+        var hasclass=false;
+        var xmpassengersx=$(".xbandriver");
+        var dxlist=$("#dxbanlist");
+ 
+        if(xmpassengersx.is(":visible")){
+
+            var _lcchildlengthax= dxlist.find("p").length;
+            _lcchildlengthax--;
+           dxlist.find("p").each(function(x){
+            if($(this).hasClass("active")){
+                hasclass=true;
+                classcounter=x;
+            }
+        });
+           dxlist.find("p").removeClass("active");
+           if(hasclass)
+             classcounter--;
+         if(classcounter<0){
+            classcounter=_lcchildlengthax;
+            xmpassengersx.animate({scrollTop: '300px'}, 100);
+        }
+        if(classcounter==11){
+                xmpassengersx.animate({scrollTop: '50px'}, 100);
+
+        }
+        else if(classcounter==2){
+                xmpassengersx.animate({scrollTop: '0px'}, 100);
+
+        }
+        
+         
+         var vg=dxlist.children().eq(classcounter);
+           $("#txtbandriver").html(vg.addClass("active").text());
+		     window.selectedbancount = classcounter;
+   //   allocatedr(window.searchdriverlist[classcounter].driverid,2);
+      
+}
+}
+else if(keycode=='13'){
+$(".xbandriver").hide();
+if(window.selectedbancount!=-1)
+bandr(window.searchdriverbanlist[window.selectedbancount].driverid,2);
+//$("#confirm").focus();
+ }
+}
 window.searchcallsign=function(val,e){
     if(e.keyCode == '38'||e.keyCode == '40'||e.keyCode == '13') {
          sectdriverasx(e.keyCode)
@@ -3206,6 +3351,7 @@ window.searchcallsign=function(val,e){
                noofitems=(noofitems.length==0?"0":noofitems);
                var size=$("#sizetype").val();
                var howmany=$("#sizehowmany").val();
+			   var mobile=$.trim($("#mobile").val());
          var iscapability="1";
           if(!isDisabled&&lowvehicle=="0"&&highvehicle=="0"&&(wheelchair=="0"||pets=="0"||pram=="0")){
             iscapability="0";
@@ -3220,6 +3366,7 @@ window.searchcallsign=function(val,e){
     window._xobj["currentdate"]=getcurrentDateTime();
     window._xobj["highvehicle"]=highvehicle;
     window._xobj["lowvehicle"]=lowvehicle;
+	window._xobj["mobile"]=mobile;
     window._xobj["pram"]=pram;
     window._xobj["pets"]=pets;
     window._xobj["wheelchair"]=wheelchair;
@@ -3299,6 +3446,97 @@ window.searchcallsign=function(val,e){
     return true;
  
 };
+window.searchbancallsign=function(val,e){
+	var mobile=$.trim($("#mobile").val());
+	if(mobile.length ==0)
+		return;
+    if(e.keyCode == '38'||e.keyCode == '40'||e.keyCode == '13') {
+         sectbandriverasx(e.keyCode)
+        return false;
+    }
+    
+    if(val.length==0){
+     $(".xbandriver").hide();
+        return;
+    }
+     val = $(event.target).val();
+    var firstLetterUpper = val[0] ? val[0].toUpperCase() : "";
+    val=firstLetterUpper + val.substr(1, val.length);
+    $(event.target).val(val);
+	
+$("#divbanbtn").hide();
+    if(window.xhr!=null){
+        window.xhr.abort()
+    }
+   
+    
+    window._xobj=new Object();
+    window._xobj["api"]="searchforcallsign";
+    window._xobj["callsign"]=val;
+	window._xobj["mobile"]=mobile;
+	 window._xobj["lat"]=window.pickuplat;
+        window._xobj["lng"]=window.pickuplng;
+   	   window._xobj["adminCountryCode"]="<?php echo $_SESSION['COUNTRYCODE']; ?>";
+      
+    $(".xbandriver").show().find("p").remove();
+    $(".xbandriver #loading").show().html("Loading...");
+  
+    window.xhr = $.ajax({
+    url: 'api.php',
+    dataType: 'json',
+    type: 'post',
+    contentType: 'application/json',
+    data: JSON.stringify(window._xobj),
+    processData: false,
+    success: function( data, textStatus, jQxhr ){
+                window.xhr=null;
+        window.searchdriverbanlist=data.data;
+        /*if(window.searchdriverlist.length==1){
+            allocatedr(window.searchdriverlist[0].driverid);
+
+        }else*/ if(window.searchdriverbanlist.length>0){
+                $(".xbandriver #loading").hide();
+
+        $(window.searchdriverbanlist).each(function(x,y){
+			var dlist_sign= "<p onclick='bandr("+y.driverid+",1)' data-id='"+y.driverid+"' data-callsign='"+y.callsign+"'>"+y.callsign;
+			if(y.isonline == "1")
+				dlist_sign+= "<span class='greenccr'></span>";
+			else
+				dlist_sign+= "<span class='redccr'></span>";
+			if(window._jobprice !=null){
+			var diff=(y.creditamount-(window._jobprice*0.2));
+			if(diff <= 0){
+				dlist_sign+= "<span class='blackccr'></span>";
+				dlist_sign+= "<span class='credit'>(Rs. "+diff+")</span>";
+			}
+			}
+			else
+			{
+				if(y.creditamount <= 0){
+				dlist_sign+= "<span class='blackccr'></span>";
+				dlist_sign+= "<span class='credit'>(Rs. "+y.creditamount+")</span>";
+				}
+			}
+			dlist_sign+="<span>"+y.name+"</span></p>";
+            $("#dxbanlist").append(dlist_sign);
+     //   <span class='redccra'></span>
+        });
+    }
+    else{
+         $(".xbandriver #loading").show().html("No Driver Found !!");
+     
+
+
+    }
+    },
+    error: function( jqXhr, textStatus, errorThrown ){
+         window.xhr=null;
+        console.log( errorThrown );
+    }
+});
+    return true;
+ 
+};
 window.allocatedr=function(driveridx,xx){
  
     var driver=window.searchdriverlist.filter(function (entry) {
@@ -3328,6 +3566,30 @@ $("#xregistration").html(driver.registration);
 $("#xcallsign").html(driver.callsign);
  $("#xprofilepic").attr("src",window._baseurl+driver.image);
 $("#xcarimage1").attr("src",window._baseurl+"files/"+driver.carimage1);
+}
+
+window.bandr=function(driveridx,xx){
+ 
+    var driver=window.searchdriverbanlist.filter(function (entry) {
+    return entry.driverid == driveridx;
+})[0];
+  $("#txtbandriver").val(driver.callsign);
+window.driverbanid=driveridx;
+if(xx==1){
+$(".xbandriver").hide(); 
+
+//$("#confirm").focus();
+}
+$("#divbanbtn").show();
+$("#yesban").focus();
+$("#yesban").css({"background-color":"#ffa800"});
+$("#noban").css({"background-color":"#a8a1a1"});
+}
+
+window.unbandriver=function()
+{
+	 $("#txtbandriver").val("");
+	 $("#divbanbtn").hide();
 }
 </script>
     <script type="text/javascript">
@@ -5648,7 +5910,7 @@ $(document).click(function(){
 $(document).mouseup(function(e) 
 {
      $("._dropdown").removeClass("active");
-    var container = $(".xdropdown,.lcdropdown,.xallocatedriver");
+    var container = $(".xdropdown,.lcdropdown,.xallocatedriver, .xbandriver");
 
     // if the target of the click isn't the container nor a descendant of the container
     if (!container.is(e.target) && container.has(e.target).length === 0) 
