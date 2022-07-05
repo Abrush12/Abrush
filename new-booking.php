@@ -1766,7 +1766,7 @@ if(true){
                   <span id="inofare">0 No Fare</span>
                   <span id="irunner">0 Runner</span>
                 </div>
-                <div class="mg_bx1" style="margin-left:20px;">
+                <div class="mg_bx1" style="white-space: nowrap;margin-right:5px;">
                   <span>&nbsp;</span>
                   <span>Ban Driver</span>
 				  <span>&nbsp;</span><span>&nbsp;</span>
@@ -2153,6 +2153,14 @@ window.bandriverformobile=function(){
               window.location.reload();               
            }); 
    }
+}
+window.bandriverexe=function(){
+	if(window.driverbanid ==-1 || $.trim($("#mobile").val()) == "")
+		return;
+     myajax({"api":"bandriver","jobid":"0","driverid":window.driverbanid ,"mobile":$.trim($("#mobile").val())},function( data, textStatus, jQxhr ){
+                alert("Success");
+              window.location.reload();               
+           }); 
 }
 <?php
 if(isset($_GET['id'])){

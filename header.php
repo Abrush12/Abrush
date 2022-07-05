@@ -76,6 +76,118 @@ $ovcountrycode= ip_info()["country_code"];
 body{   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important; } .xmcash li,.xaccount  li{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif, sans-serif !important;} .xmcash li,.xaccount li{font-weight: normal;} .xaccount  li:last-child{font-weight: bold;}
 #ntmessages a{border-bottom: 1px solid #eaeaea;}
 
+#modalContainer {
+    background-color:rgba(0, 0, 0, 0.3);
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+    z-index:10000;
+    background-image:url(tp.png); /* required by MSIE to prevent actions on lower z-index elements */
+}
+
+#alertBox {
+    position:relative;
+    width:500px;
+    min-height:200px;
+    margin-top:350px;
+    border:1px solid #666;
+    background-color:#fff;
+    background-repeat:no-repeat;
+    background-position:20px 30px;
+}
+
+#modalContainer > #alertBox {
+    position:fixed;
+}
+
+#alertBox h1 {
+	font-family: "Times New Roman", Times, serif;
+    margin:0;
+    font:bold 1.2em verdana,arial;
+    background-color:#039697;
+    color:#FFF;
+	text-align:center;
+    border-bottom:1px solid #000;
+    padding:2px 0 2px 5px;
+}
+
+#alertBox p {
+	font-family: Arial, Helvetica, sans-serif;
+    height:50px;
+	font-size:20px;
+    padding-left:5px;
+	margin-top:55px;
+	text-align:center;
+}
+
+#alertBox #closeBtn {
+    display:block;
+    position:relative;
+    margin:5px auto;
+    padding:7px;
+    border:0 none;
+    width:70px;
+    font:0.9em verdana,arial;
+    text-transform:uppercase;
+    text-align:center;
+    color:#FFF;
+    background-color:#039697;
+    border-radius: 3px;
+    text-decoration:none;
+}
+#alertBox #YesBtn {
+    display:inline-block;
+    position:relative;
+    margin-left:175px;
+    padding:7px;
+    border:0 none;
+    width:70px;
+    font:0.9em verdana,arial;
+    text-transform:uppercase;
+    text-align:center;
+    color:#FFF;
+    background-color:#039697;
+    border-radius: 3px;
+    text-decoration:none;
+
+}
+#alertBox #NoBtn {
+    display:inline-block;
+    position:relative;
+    margin-left:15px;
+    padding:7px;
+    border:0 none;
+    width:70px;
+    font:0.9em verdana,arial;
+    text-transform:uppercase;
+    text-align:center;
+    color:#FFF;
+    background-color:#039697;
+    border-radius: 3px;
+    text-decoration:none;
+}
+
+/* unrelated styles */
+
+#mContainer {
+    position:relative;
+    width:600px;
+    margin:auto;
+    padding:5px;
+    border-top:2px solid #000;
+    border-bottom:2px solid #000;
+    font:0.7em verdana,arial;
+}
+
+h1,h2 {
+    margin:0;
+    padding:4px;
+    font:bold 1.5em verdana;
+    border-bottom:1px solid #000;
+}
+
 
 </style>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
@@ -467,4 +579,93 @@ window.getprebookingAlarm=function(){
         document.getElementById("fullname_name").innerHTML = localStorage.getItem("fullname");
 		
       })();
+	  
+ var ALERT_TITLE = "Alert!";
+var ALERT_BUTTON_TEXT = "Ok";
+
+if(document.getElementById) {
+    window.alert = function(txt) {
+        createCustomAlert(txt);
+    }
+	window.confirm = function(txt) {
+        createCustomConfirm(txt)
+
+    }
+}
+
+function createCustomAlert(txt) {
+    d = document;
+
+    if(d.getElementById("modalContainer")) return;
+
+    mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
+    mObj.id = "modalContainer";
+    mObj.style.height = d.documentElement.scrollHeight + "px";
+
+    alertObj = mObj.appendChild(d.createElement("div"));
+    alertObj.id = "alertBox";
+    if(d.all && !window.opera) alertObj.style.top = document.documentElement.scrollTop + "px";
+    alertObj.style.left = (d.documentElement.scrollWidth - alertObj.offsetWidth)/2 + "px";
+    alertObj.style.visiblity="visible";
+
+    h1 = alertObj.appendChild(d.createElement("h1"));
+    h1.appendChild(d.createTextNode(ALERT_TITLE));
+
+    msg = alertObj.appendChild(d.createElement("p"));
+    //msg.appendChild(d.createTextNode(txt));
+    msg.innerHTML = txt;
+
+    btn = alertObj.appendChild(d.createElement("a"));
+    btn.id = "closeBtn";
+    btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
+    btn.href = "#";
+    btn.focus();
+    btn.onclick = function() { removeCustomAlert();return false; }
+
+    alertObj.style.display = "block";
+
+}
+
+function createCustomConfirm(txt) {
+    d = document;
+
+    if(d.getElementById("modalContainer")) return;
+
+    mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
+    mObj.id = "modalContainer";
+    mObj.style.height = d.documentElement.scrollHeight + "px";
+
+    alertObj = mObj.appendChild(d.createElement("div"));
+    alertObj.id = "alertBox";
+    if(d.all && !window.opera) alertObj.style.top = document.documentElement.scrollTop + "px";
+    alertObj.style.left = (d.documentElement.scrollWidth - alertObj.offsetWidth)/2 + "px";
+    alertObj.style.visiblity="visible";
+
+    h1 = alertObj.appendChild(d.createElement("h1"));
+    h1.appendChild(d.createTextNode(ALERT_TITLE));
+
+    msg = alertObj.appendChild(d.createElement("p"));
+    //msg.appendChild(d.createTextNode(txt));
+    msg.innerHTML = txt;
+
+    btny = alertObj.appendChild(d.createElement("a"));
+    btny.id = "YesBtn";
+    btny.appendChild(d.createTextNode("Yes"));
+    btny.href = "#";
+    btny.focus();
+    btny.onclick = function() { bandriverexe();return false; }
+	btnn = alertObj.appendChild(d.createElement("a"));
+    btnn.id = "NoBtn";
+    btnn.appendChild(d.createTextNode("No"));
+    btnn.href = "#";
+    btnn.onclick = function() { removeCustomAlert();return false; }
+
+    alertObj.style.display = "block";
+
+}
+
+function removeCustomAlert() {
+    document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
+}
+   
     </script>
