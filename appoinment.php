@@ -1032,7 +1032,7 @@ window.oldpending = -1;
 window.oldregi = -1; 
 window.oldearn = -1; 
 window.oldjob = -1; 
-window.oldcust = -1; 
+window.oldcustomer = -1; 
 
       window.checkTime=function(i) {
   if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
@@ -1063,6 +1063,7 @@ window.loaddrivercredit=function(){
         
     });
 }
+
 window.llcustomer=function(xnj){ 
   var type="2";
 
@@ -1074,20 +1075,15 @@ window.llcustomer=function(xnj){
     type="0";
   }
 } 
- setInterval(function(){
- 
     myajax( {"api":"getcustomersdetails","type":type,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){ 
          $(".rowaxcustomer").remove();
-         var _clone;
-         var tbd=$("#tbdcustomers"); 
-
-     
-      
+         var _clone ="";
+         var tbd=$("#tbdcustomers");
      
          $(data.data).each(function(x,y){
          
  
-          _clone ='<tr  class="rowaxcustomer" data-phone="'+y.mobile+'" data-name="'+y.name+'"> ';
+          _clone +='<tr  class="rowaxcustomer" data-phone="'+y.mobile+'" data-name="'+y.name+'"> ';
           if(y.image!=""){
           _clone+="<td><img style='margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px' src='http://18.168.83.39/"+y.image+"'></td>";
         }
@@ -1108,16 +1104,24 @@ window.llcustomer=function(xnj){
              
             _clone+='</tr></tr> </tr>';
           
-          tbd.append(_clone);
+         // tbd.append(_clone);
 		  
          });
   
-     
+        if(window.oldcustomer==-1){
+			window.oldcustomer=_clone;
+			tbd.html(_clone);
+			
+		}
+		else if(window.oldcustomer != _clone)
+		{
+			window.oldcustomer=_clone;
+			tbd.html(_clone);
+		}
      
        
     });
  
- },3000);
    
     };
     window.transfer=function(ref,id){
@@ -2106,7 +2110,6 @@ window.ll=function(xnj){
   }
   else{  $("#loadinggif").show();}
   
-  
       myajax( {"api":"allappointmentsboth","controllerid":xcontrollername,"xall":xall,"xnormal":xnormal,"xautorikshaw":xautorikshaw,"xmotorbike":xmotorbike,"regdate":regdate,"status":"<?php echo $status; ?>","ddate":ddate,"ishighest":ishighest,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
         $("#loadinggif").hide();
        //  $(".rowax,.rowspls").remove();
@@ -2194,7 +2197,7 @@ window.ll=function(xnj){
        $(data.data.creditlist).each(function(x,y){
          
           
-          _clone +='<tr  class="rowax rowaxdriver" data-phone="'+y.phone+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
+          _clone +='<tr class="rowax rowaxdriver" data-registration="'+y.registration+'" data-colour="'+y.color+'" data-model="'+y.model+'" data-make="'+y.make+'" data-phone="'+y.phonex+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
           _clone+='<img style="margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px" class="_profilepic" src="'+window._baseurl+y.image+'" alt=""></td>';
           _clone+='<td><b >'+y.callsign+'</b></td>';
           _clone+='<td><b >'+y.name+'</b></td>';
@@ -2235,8 +2238,9 @@ window.ll=function(xnj){
       else{
     //    _clone+='<a  href="drivers.php?id='+y.uid+'" class="btn-grad _mxicon">View</a>';
       }
+	  _clone+='    </td> </tr>';
              
-            _clone+='    </td> </tr><tr class="rowspls"><td colspan=5></td></tr><tr style="height:10px" class="rowspls"><td colspan="5"></td></tr>';
+       //     _clone+='    </td> </tr><tr class="rowspls"><td colspan=5></td></tr><tr style="height:10px" class="rowspls"><td colspan="5"></td></tr>';
           
           
          }); 
@@ -2256,7 +2260,7 @@ window.ll=function(xnj){
           window._ttlpayment+=parseFloat(y.paymentgiven);
           window._ttlregistration+=parseFloat(y.paymentgiven);
           
-          _clone +='<tr  class="rowax rowaxdriver" data-phone="'+y.phone+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
+          _clone +='<tr class="rowax rowaxdriver" data-registration="'+y.registration+'" data-colour="'+y.color+'" data-model="'+y.model+'" data-make="'+y.make+'" data-phone="'+y.phonex+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
           _clone+='<img style="margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px" class="_profilepic" src="'+window._baseurl+y.image+'" alt=""></td>';
           _clone+='<td><b >'+y.callsign+'</b></td>';
           _clone+='<td><b >'+y.name+'</b></td>';
