@@ -3078,12 +3078,10 @@ $("#divbanbtn").hide();
    
     
     window._xobj=new Object();
-    window._xobj["api"]="searchforcallsign";
+    window._xobj["api"]="searchforcallsignAll";
     window._xobj["callsign"]=val;
 	window._xobj["mobile"]=mobile;
-	 window._xobj["lat"]=window.pickuplat;
-        window._xobj["lng"]=window.pickuplng;
-   	   window._xobj["adminCountryCode"]="<?php echo $_SESSION['COUNTRYCODE']; ?>";
+ 	   window._xobj["adminCountryCode"]="<?php echo $_SESSION['COUNTRYCODE']; ?>";
       
     $(".xbandriver").show().find("p").remove();
     $(".xbandriver #loading").show().html("Loading...");
