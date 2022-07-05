@@ -43,23 +43,23 @@ if(isset($_GET['status'])){
        color:#fff;
       
      }
-.table_s .table tbody tr.activebooking td,.table_s .table tbody tr.activebooking:hover td{
+.user-list .table tbody tr.activebooking td,.user-list .table tbody tr.activebooking:hover td{
  
     background: #0028a1;
 }
-.table_s .table tbody tr.cancelbooking td,.table_s .table tbody tr.cancelbooking:hover td{
+.user-list .table tbody tr.cancelbooking td,.user-list .table tbody tr.cancelbooking:hover td{
  
     background: #999900;
 }
-.table_s .table tbody tr.runnerbooking td,.table_s .table tbody tr.runnerbooking:hover td{
+.user-list .table tbody tr.runnerbooking td,.user-list .table tbody tr.runnerbooking:hover td{
  
     background: #336600;
 }
-.table_s .table tbody tr.nofarebooking td,.table_s .table tbody tr.nofarebooking:hover td{
+.user-list .table tbody tr.nofarebooking td,.user-list .table tbody tr.nofarebooking:hover td{
  
     background: #e600ac;
 }
-.table_s .table tbody tr.prebooking td,.table_s .table tbody tr.prebooking:hover{background:#b34b29}
+.user-list .table tbody tr.prebooking td,.user-list .table tbody tr.prebooking:hover{background:#b34b29}
 
 	 
      .user-list ._mxicon a:hover{
@@ -940,8 +940,8 @@ if(isset($_GET['status'])){
     
       </div>
  <div id="tabs-7">
- <div class="table-responsive">
-    <table class="table user-list  user-listax ">
+ <div class="table-responsive user-list">
+    <table class="table user-list  user-listax">
       <thead>
                     <tr>
                       <th style="width:125px"><span>Call Sign</span>
@@ -2441,10 +2441,31 @@ window.ll=function(xnj){
      if(y.normal=="1") extras="Normal";
      else if(y.autorikshaw=="1")   extras="Auto-Rikshaw";
      else if(y.motorcycle=="1")   extras="Motorbike";
-		/*if(y.jobstatusx == "Active")
-		{*/
-           html+='<tr  class="_rowax accdd rowjobs activebooking" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
-		//}
+		if(y.jobstatusx == "Active")
+		{
+           html+='<tr  class="rowax accdd rowjobs activebooking" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
+		}
+		else if(y.jobstatusx == "Completed")
+		{
+           html+='<tr  class="rowax accdd rowjobs " data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
+		}
+		else if(y.jobstatusx == "No Fare")
+		{
+           html+='<tr  class="rowax accdd rowjobs nofarebooking" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
+		}
+		else if(y.jobstatusx == "Runner")
+		{
+           html+='<tr  class="rowax accdd rowjobs runnerbooking" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
+		}
+		else if(y.jobstatusx == "Prebooking")
+		{
+           html+='<tr  class="rowax accdd rowjobs prebooking" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
+		}
+		else if(y.jobstatusx == "Rejected")
+		{
+           html+='<tr  class="rowax accdd rowjobs cancelbooking" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
+		}
+		
        html+="<td>";
        
           html+= "<span style='margin-left:20px'>"+y.callsign+'</span></td>';
@@ -2458,7 +2479,7 @@ html+='<td>'+y.bdate+'</td>';
          html+='<td>Rs '+y.jobprice+'</td>';
                html+='<td>'+(y.iscash=="1"?(y.cashtype=="0"?"Cash":"Money First"):"Pre-Paid")+'</td>';
                html+="<td>"+y.jobstatusx+"</td>";
-                html+=' </tr><tr  class="accdd" style="height:10px"><td colspan="9"></td></tr>';
+                html+=' </tr>';
       //   $("#tbdjobs").append(html);
         })
 		 if(window.oldjob=-1){
