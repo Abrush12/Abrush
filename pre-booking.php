@@ -2545,10 +2545,10 @@ window.__jobref=null;
 window.selectjobax=function(ref){
      window.ispickuplcvalid=window.isdropvalid=true;
     var jbcounter=window.jobcounter;
-     if(jbcounter>=Math.round(($(".mntblsk").height()-46)/28)){
-      window.scrooltp = (26*jbcounter);
+   /*  if(jbcounter>=Math.round(($(".mntblsk").height()-46)/28)){
+   /   window.scrooltp = (26*jbcounter);
              $(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
-         }
+         }*/
       $("#tbd tr").removeClass("trselected");
 	$('.fixededitbox').hide();
     $(ref).addClass("trselected");
@@ -2573,6 +2573,11 @@ window.selectjobax=function(ref){
 window._cjob=job; 
 window._jobprice=job.jobprice;
 window.lojob(job);
+if(window.intervalref2!=null)
+{
+  clearInterval(window.intervalref2);
+}
+getcutomerowedamount(job.mobile,window.jobid);
 }
 window.issalooncheckparmanent=0;
 window.selectjob=function(ref,jbcounter){
@@ -2581,10 +2586,10 @@ window.selectjob=function(ref,jbcounter){
     window.__jobref=ref;
     window.jobcounter=jbcounter;
     jbcounter++;
-     if(jbcounter>=Math.round(($(".mntblsk").height()-46)/28)){
+   /*  if(jbcounter>=Math.round(($(".mntblsk").height()-46)/28)){
       window.scrooltp = (26*jbcounter);
              $(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
-         }
+         }*/
       $("#tbd tr").removeClass("trselected");
 
     $(ref).addClass("trselected");
@@ -2698,7 +2703,8 @@ function NotAllocated(obj){
 window.intervalref2=null;
 
 window.getcutomerowedamount= function(mobile,job_id){
-
+$("#OldOwedshow").html("&nbsp;");
+$("#OldOwedshow").hide();
 	 window.intervalref2 =  setInterval(function() {
 	myajax( {"api":"getcutomerowedamount","mobile":mobile,"jobid":job_id},function( data, textStatus, jQxhr ){ 
             
@@ -2706,6 +2712,7 @@ window.getcutomerowedamount= function(mobile,job_id){
 					 
 				//	 $("#amountowed").html("<b>Rs "+data.data+" owed</b>");
                  //    $("#amountowed").addClass("blink)");
+				  $("#OldOwedshow").show();
 				 $("#OldOwedshow").html("<b>Rs "+data.data+" owed</b>");
                 }
                 else { 
@@ -2713,6 +2720,7 @@ window.getcutomerowedamount= function(mobile,job_id){
               //          $("#amountowed").css('visibility', 'visible');
 				//	 $("#amountowed").removeClass("blink)");
                      $("#OldOwedshow").html("&nbsp;");
+					  $("#OldOwedshow").hide();
                 }
 			/*	 if(data.owed!=0){
 				   $("#Owedshow").html("<span style=\"color:white;\">Waiting time</span>&nbsp;<span style=\"color:orange;\"> "+data.counttimer+"</span>"+
@@ -2726,7 +2734,7 @@ window.getcutomerowedamount= function(mobile,job_id){
 				*/
 			
            });
-	 },5000);
+	 },1000);
 		//   setTimeout(function(){ getcutomerowedamount(mobile)},5000);
 }
 

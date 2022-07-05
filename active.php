@@ -2572,10 +2572,10 @@ window.selectjobax=function(ref){
 
      window.ispickuplcvalid=window.isdropvalid=true;
     var jbcounter=window.jobcounter;
-     if(jbcounter>=Math.round(($(".mntblsk").height()-46)/28)){
+    /* if(jbcounter>=Math.round(($(".mntblsk").height()-46)/28)){
       window.scrooltp = (26*jbcounter);
              $(".mntblsk").animate({scrollTop: window.scrooltp+'px'}, 100);
-         }
+         }*/
       $("#tbd tr").removeClass("trselected");
 	$('.fixededitbox').hide();
     $(ref).addClass("trselected");
@@ -2716,7 +2716,7 @@ $("#OldOwedshow").hide();
 				*/
 			
            });
-	 },5000);
+	 },1000);
 		//   setTimeout(function(){ getcutomerowedamount(mobile)},5000);
 }
  window._addvia=function( ){

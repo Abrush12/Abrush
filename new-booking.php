@@ -2287,6 +2287,15 @@ var yyyy = today.getFullYear();
                 $("#email").val("").attr("disabled","true");
 
     }
+	
+		if(window.owedcounter==1){
+			window.cashtype="1";
+		$("#cash").parent().find("span").html("Money First");
+                }
+                else if(window.owedcounter==2){
+                    $("#prepaid").prop("checked",true);
+                     $(".creditcardbox").show();
+                }
         window.isrepeatbooking=(job.isrepeatbooking=="1");
         window.isreturnbooking=(job.isreturnbooking=="1");
        /* if(window.isrepeatbooking){
