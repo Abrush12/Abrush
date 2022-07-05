@@ -2184,6 +2184,12 @@ window.bandriverformobile=function(){
            }); 
    }
 }
+window.undoban=function(){
+	window.driverbanid = -1;
+	$("#txtbandriver").val("");
+	$("#divbanbtn").hide();
+	
+}
 window.bandriverexe=function(){
 	if(window.driverbanid ==-1 || $.trim($("#mobile").val()) == "")
 		return;
@@ -5203,6 +5209,7 @@ $("#errormodal").modal("hide");
              $("#cancelbookingmodal").modal("hide");
             $(".lcdropdown,#resetjob,#confirm").hide();
       $("._cover,#edit,#cancel").show();
+	  	  undoban();
     selectjobax(window.__jobref);
         });
  $("#edit").click(function(){
