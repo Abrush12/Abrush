@@ -2525,20 +2525,18 @@ html+='<td>'+y.bdate+'</td>';
     if(data.data.length==0){
      
     }
-
-      
-     
+    
     html="";
     
        $( data.data).each(function(x,y){
       
-       html+='<tr  class="_rowax accdd rowearning">';
+       html+='<tr  class="rowax accdd rowearning" style="height:40px">';
        html+="<td>";
        if(y.isonline=="0"){
         html+="<span class='redccr'></span>";
        }
        else{
-         html+="<span class='greenccr'></span>";
+         html+="<span class='greenccr' ></span>";
        }
           html+= "<span style='margin-left:20px'>"+y.callsign+'</span></td>';
 
