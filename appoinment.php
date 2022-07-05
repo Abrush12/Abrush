@@ -2443,9 +2443,10 @@ window.ll=function(xnj){
      else if(y.motorcycle=="1")   extras="Motorbike";
 		if(y.jobstatusx == "Active")
 		{
-           html+='<tr  class="rowax accdd rowjobs activebooking" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
 		}
-		else if(y.jobstatusx == "Completed")
+		else
+		{
+		if(y.jobstatusx == "Completed")
 		{
            html+='<tr  class="rowax accdd rowjobs " data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
 		}
@@ -2480,6 +2481,7 @@ html+='<td>'+y.bdate+'</td>';
                html+='<td>'+(y.iscash=="1"?(y.cashtype=="0"?"Cash":"Money First"):"Pre-Paid")+'</td>';
                html+="<td>"+y.jobstatusx+"</td>";
                 html+=' </tr>';
+		}
       //   $("#tbdjobs").append(html);
         })
 		 if(window.oldjob=-1){
