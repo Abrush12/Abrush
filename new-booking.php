@@ -103,7 +103,7 @@ body{overflow: hidden;   font-family: 'Almarai' !important; }
     .xallocatedriver  p span{font-size: 13px;font-weight: bold;
     float: right;
     margin-top: 3px;}
-	xbandriver .boldx,.lcdropdown .boldx{width: 100%;text-align: center;padding:10px;color:#000;font-weight: bold; display: none;}
+	.xbandriver .boldx,.lcdropdown .boldx{width: 100%;text-align: center;padding:10px;color:#000;font-weight: bold; display: none;}
     .xbandriver  p span{font-size: 13px;font-weight: bold;
     float: right;
     margin-top: 3px;}
@@ -3479,12 +3479,10 @@ $("#divbanbtn").hide();
    
     
     window._xobj=new Object();
-    window._xobj["api"]="searchforcallsign";
+    window._xobj["api"]="searchforcallsignAll";
     window._xobj["callsign"]=val;
 	window._xobj["mobile"]=mobile;
-	 window._xobj["lat"]=window.pickuplat;
-        window._xobj["lng"]=window.pickuplng;
-   	   window._xobj["adminCountryCode"]="<?php echo $_SESSION['COUNTRYCODE']; ?>";
+ 	   window._xobj["adminCountryCode"]="<?php echo $_SESSION['COUNTRYCODE']; ?>";
       
     $(".xbandriver").show().find("p").remove();
     $(".xbandriver #loading").show().html("Loading...");
