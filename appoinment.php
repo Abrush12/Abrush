@@ -546,7 +546,7 @@ if(isset($_GET['status'])){
 
                
 
-              
+  <!--            
 
              
               <div class="btns_cnfrm btns_cnfrmcx"> 
@@ -555,7 +555,7 @@ if(isset($_GET['status'])){
                   <img src="img/load.gif" id="loadinggifdn" style="width:40px;float: left;margin-top: -7px;">
              
 
-                </div>
+                </div>-->
             </div>
 
             <div class="search_labels earningsrc" style="display:none;width: 80%;">
@@ -1719,10 +1719,11 @@ $("#name").keyup(function(){
           var xnormal= $("#xnormaldm").is(":checked")?"1":"0";
           var xautorikshaw= $("#xautorikshawdm").is(":checked")?"1":"0";
           var xmotorbike=$("#xmotorbikedm").is(":checked")?"1":"0";
+		  var name = $.trim($("#name").val());
           if(cc==0) {
-            fromdate=todate="";
+            fromdate=todate=name="";
           }
-           myajax( {"api":"allappointments","fromdate":fromdate,"todate":todate,"status":"1","xall":xall,"xnormal":xnormal,"xautorikshaw":xautorikshaw,"xmotorbike":xmotorbike,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
+           myajax( {"api":"allappointments","fromdate":fromdate,"todate":todate,"status":"1","xall":xall,"xnormal":xnormal,"xautorikshaw":xautorikshaw,"xmotorbike":xmotorbike,"name":name,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
          $("#loadinggifdn").hide();
          var _clone;
          var tbd=$("#tbdappointment");  
@@ -1933,7 +1934,6 @@ if(y.normal=="1")
     }); 
 	$("#fromdate").change(function(e){
          llb(1);
-
       });
      $("#fromdate,#todate,#datetimex,#datejob,#datejobto").datepicker({
         weekStart: 1,  changeYear: true,yearRange: "-100:+0",
