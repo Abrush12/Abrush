@@ -516,25 +516,21 @@ if(isset($_GET['status'])){
              <div class="search_labels otherdm" style="display:none;">
               
               <div class="search_inpt_flx" style="width:80%">
-                <span class="labels_search">Date from and to</span>
+                <span class="labels_search">Select Date</span>
                 <span class="inputs_search">
-                  <div style="width:48%;float:left;">
-                  <input type="text" id="fromdate" style="width:100%" class="hlf_f  ">
+                  <div style="width:100%;">
+                  <input type="text" id="fromdate"  value="<?php echo date("d-m-Y"); ?>" style="width:100%" class="hlf_f  ">
                   <img src="img/Artboard 17 copy.png" style=" width: 22px;  position: absolute; margin-left: -29px;" id="opendatepickera1">
                 </div>
-                  <div style="width:48%;float:left;margin-left: 10px;">
-                  <input type="text" id="todate" style="width:100%" class="hlf_f  ">
-                  <img src="img/Artboard 17 copy.png" style=" width: 22px;  position: absolute; margin-left: -29px;" id="opendatepickera2">
-                </div>
-                </span>
+                 
               </div>
 
                 
 
               <div class="search_inpt_flx">
                 <span class="labels_search">Name</span>
-                <span class="inputs_search">
-                  <input type="text" id="name" style="width:75%" onkeyup="firstCapitalAlways(event)">
+                <span class="inputs_search" >
+                  <input type="text" id="name" style="width:75%;" onkeyup="firstCapitalAlways(event)">
                 </span>
               </div>
   <div class="search_inpt_flx" id="VehicleT2" >
@@ -640,7 +636,7 @@ if(isset($_GET['status'])){
                 </div>
                 </span>
               </div>-->
-      <div class="search_inpt_flx" style="text-align:center">
+      <div class="search_inpt_flx">
                 <span class="labels_search">Earning Amount</span>
                 <span class="inputs_search">
                   <label style="color:#fff">Highest <input type="radio" checked   name="earningamount" id="earningamounthighest" ></label> 
@@ -656,7 +652,7 @@ if(isset($_GET['status'])){
 
              
               <div class="btns_cnfrm btns_cnfrmcx"> 
-<button type="button" style="margin-top:10px;margin-left:140px" class="btn btn-primary" id="submit">Submit</button>
+<button type="button" style="margin-top:10px;margin-left:240px" class="btn btn-primary" id="submit">Submit</button>
                  
              
 
@@ -895,7 +891,11 @@ if(isset($_GET['status'])){
                <th ><span>Name</span></th>
               <th class=" "><span>Phone Number</span></th>
               <th><span>Controller</span></th> 
-               <th style="width:345px"><span>Credit</span></th>
+               <th style="width:345px"><span>Credit <select style="margin-left:10px" id="mkcredit">
+                 <option value="0">None</option>
+                 <option value="1">Highest</option>
+                 <option value="2">Lowest</option>
+               </select></span></th>
 			   <th style="width:345px"><span>Credit Time</span></th>
               <th class=" "><span>Vehicle Type</span></th>
    <!--            <th class=" "><span>Affiliate</span></th>
