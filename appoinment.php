@@ -320,7 +320,7 @@ if(isset($_GET['status'])){
        
   </head>
 
-  <body onload="startTimezz()">
+  <body>
 
       <!---header start---------->
    <?php
@@ -466,7 +466,7 @@ if(isset($_GET['status'])){
                <img src="img/Artboard 17 copy.png" style=" width: 22px;  position: absolute; margin-left: -29px;" id="opendatepicker">
                 </span>
               </div>
-                <div class="search_inpt_flx">
+                <div class="search_inpt_flx" id="cont">
                 <span class="labels_search">Controller</span>
                 <span class="inputs_search">
                  <select id="xcontrollername"   style="width:70%"  style="width: 46%;padding:2px;font-size: 14px;"></select>
@@ -478,7 +478,7 @@ if(isset($_GET['status'])){
                  <input type="text" id="xcallsign"  style="width:70%" onkeyup="firstCapitalAlways(event)" class="hlf_f  "> 
                 </span>
               </div>
-                 <div class="search_inpt_flx" style="display:none">
+                 <div class="search_inpt_flx" style="display:none" id="VehicleT">
                 <span class="labels_search">Vehicle Type</span>
                 <span class="inputs_search">
                   <label style="color:#fff">All <input type="radio" checked id="xall" name="xvehicletype" ></label> 
@@ -513,9 +513,9 @@ if(isset($_GET['status'])){
                 </div>
             </div>
 
-             <div class="search_labels otherdm" style="display:none;width:80%">
+             <div class="search_labels otherdm" style="display:none;">
               
-              <div class="search_inpt_flx">
+              <div class="search_inpt_flx" style="width:80%">
                 <span class="labels_search">Date from and to</span>
                 <span class="inputs_search">
                   <div style="width:48%;float:left;">
@@ -534,10 +534,10 @@ if(isset($_GET['status'])){
               <div class="search_inpt_flx">
                 <span class="labels_search">Name</span>
                 <span class="inputs_search">
-                  <input type="text" id="name" onkeyup="firstCapitalAlways(event)">
+                  <input type="text" id="name" style="width:75%" onkeyup="firstCapitalAlways(event)">
                 </span>
               </div>
-  <div class="search_inpt_flx">
+  <div class="search_inpt_flx" id="VehicleT2" >
                 <span class="labels_search">Vehicle Type</span>
                 <span class="inputs_search">
                   <label style="color:#fff">All <input type="radio" checked id="xalldm" name="xvehicletypedm" ></label> 
@@ -574,7 +574,7 @@ if(isset($_GET['status'])){
                    
                 </span>
               </div>
-                
+  <!--             
            <div class="search_inpt_flx">
                 <span class="labels_search">Time from and to</span>
                 <span class="inputs_search">
@@ -639,8 +639,8 @@ if(isset($_GET['status'])){
                          </div>
                 </div>
                 </span>
-              </div>
-      <div class="search_inpt_flx">
+              </div>-->
+      <div class="search_inpt_flx" style="text-align:center">
                 <span class="labels_search">Earning Amount</span>
                 <span class="inputs_search">
                   <label style="color:#fff">Highest <input type="radio" checked   name="earningamount" id="earningamounthighest" ></label> 
@@ -737,7 +737,7 @@ if(isset($_GET['status'])){
                
             </div>
           </div>
-<div class="col-sm-5"><div class="search_labels alldm">
+<div class="col-sm-5"><div class="search_labels alldm2">
                
               <div class="search_inpt_flx">
                 <span class="labels_search">Make </span>
@@ -767,7 +767,7 @@ if(isset($_GET['status'])){
                 </span>
               </div>
             </div></div>
-          <div class=" col-md-3 "><h4 id="xttlpayment" style="color:#fff;text-align: right;margin-right: 50px;margin-top: 29px;">Total Payment : <span style='color:#ffd800;'>Rs 0</span></h4>
+          <div class=" col-md-3 " id="creditinfo"><h4 id="xttlpayment" style="color:#fff;text-align: right;margin-right: 50px;margin-top: 29px;">Total Payment : <span style='color:#ffd800;'>Rs 0</span></h4>
 <h4 id="xttlpaymentcash" style="font-size: 20px;color:#fff;text-align: right;margin-right: 50px;margin-top: 10px;">Total Cash : <span style='color:#ffd800;'>Rs 0</span></h4>
 <h4 id="xttlpaymentprepaid" style="font-size: 20px;color:#fff;text-align: right;margin-right: 50px;margin-top:10px;">Total Prepaid : <span style='color:#ffd800;'>Rs 0</span></h4>
 <h4 id="xttlregistration" style="font-size: 20px;color:#fff;text-align: right;margin-right: 50px;margin-top:10px;">Registration : <span style='color:#ffd800;'>Rs 0</span></h4>
@@ -921,13 +921,13 @@ if(isset($_GET['status'])){
                       <th><span>Name</span></th>
                       <th><span>Shift</span></th>
                       <th><span>Hours</span></th>
-                      <th><span>Cash</span></th>
+              <!--        <th><span>Cash</span></th>
             <th><span>Pre-Paid</span></th>
                       <th><span>Cash Jobs</span></th>
-                      <th><span>Pre-Paid Jobs</span></th>                    
+                      <th><span>Pre-Paid Jobs</span></th> -->                   
             <th><span>Earnings</span></th>
                       <th><span>Average</span></th>
-                       <th><span>Owed</span></th>
+                  <!--     <th><span>Owed</span></th>-->
                      
                      
                     </tr>
@@ -995,8 +995,8 @@ if(isset($_GET['status'])){
                <th ><span>Used</span></th> 
               <th ><span>Last Used</span></th> 
               <th ><span>Spent</span></th> 
-              <th ><span>Affiliate</span></th> 
-              <th><span>Type</span></th> 
+             <!-- <th ><span>Affiliate</span></th> 
+              <th><span>Type</span></th> -->
                     </tr>
                   </thead>
                   <tbody id="tbdcustomers">
@@ -1096,11 +1096,11 @@ window.llcustomer=function(xnj){
         _clone+='<td><b style="font-size:15px;margin-left:15px">'+y.used+'</td>';
         _clone+='<td><b style="font-size:15px;margin-left:15px">'+y.lastused+'</td>';
         _clone+='<td><b style="font-size:15px;margin-left:15px">Rs '+y.spent+'</td>';
-        _clone+='<td><b style="font-size:15px;margin-left:15px"></td>';
+     /*   _clone+='<td><b style="font-size:15px;margin-left:15px"></td>';
          _clone+='<td style="font-size:15px"><b>';
          if(y.isapp=="1") _clone+="App";
          else _clone+="Call";
-         _clone+='</b></td>';
+         _clone+='</b></td>';*/
              
             _clone+='</tr></tr> </tr>';
           
@@ -1191,7 +1191,7 @@ if(hours<10) sHours = "0" + sHours;
 if(minutes<10) sMinutes = "0" + sMinutes;
 return (sHours + ":" + sMinutes);
   }
-      window.startTimezz=function() {
+ /*     window.startTimezz=function() {
   var date=new Date();
   var hours = date.getHours();
   var minutes = date.getMinutes();
@@ -1217,7 +1217,7 @@ return (sHours + ":" + sMinutes);
   //$("#fromtime,#totime").attr("placeholder",strTime);
  
   setTimeout(startTimezz, 1000);
-}
+}*/
       window.clopitimer=function(ref,event){
     event.stopPropagation();
       $(ref).parent().parent().hide();
@@ -1533,7 +1533,7 @@ if(!$(".sxdc").parent().find("input").is(":focus"))
 
         setInputFilter(document.getElementById("kkkphonenumber"), function(value) {
   return /^\d*\d*$/.test(value); // Allow digits and '.' only, using a RegExp
-});
+});/*
  setInputFilter(document.getElementById("bdemohour"), function(value) {
   return /^\d*\d*$/.test(value); // Allow digits and '.' only, using a RegExp
 });
@@ -1546,7 +1546,7 @@ if(!$(".sxdc").parent().find("input").is(":focus"))
   setInputFilter(document.getElementById("bdemominute2"), function(value) {
   return /^\d*\d*$/.test(value); // Allow digits and '.' only, using a RegExp
 });
-             $("#demoam").click(function(){
+     /*        $("#demoam").click(function(){
              $("#demopm").removeClass("timeselected");
 
         $(this).addClass("timeselected");
@@ -1606,10 +1606,10 @@ if(!$(".sxdc").parent().find("input").is(":focus"))
      window.istimeboxopen=true;
 
 }); 
-
+*/
 $(document).click(function(){
-    $(".timer-box").hide();
-    window.istimeboxopen=false;
+  //  $(".timer-box").hide();
+ //   window.istimeboxopen=false;
 });
 $(document).mouseup(function(e) 
 {
@@ -1824,17 +1824,17 @@ if(y.normal=="1")
             ttlpayment+=parseFloat(creditamount);
              
            
-            $("#xttlcredit").attr("data-amount",ttlcredit).html("Total Credit : <span style='color:#ffd800;'>Rs "+ttlcredit+"</span>");
-            $("#xttlpayment").attr("data-amount",ttlpayment).html("Total Payment : <span style='color:#ffd800;'>Rs "+ttlpayment+"</span>");
+    //        $("#xttlcredit").attr("data-amount",ttlcredit).html("Total Credit : <span style='color:#ffd800;'>Rs "+ttlcredit+"</span>");
+     //       $("#xttlpayment").attr("data-amount",ttlpayment).html("Total Payment : <span style='color:#ffd800;'>Rs "+ttlpayment+"</span>");
             if(type=="0"){
               var cash = parseFloat($("#xttlpaymentcash").attr("data-amount"));
               cash+=parseFloat(creditamount);
-              $("#xttlpaymentcash").attr("data-amount",cash).html("Total Cash : <span style='color:#ffd800;'>Rs "+cash+"</span>");
+      //        $("#xttlpaymentcash").attr("data-amount",cash).html("Total Cash : <span style='color:#ffd800;'>Rs "+cash+"</span>");
             }
             else if(type=="1"){
               var cash = parseFloat($("#xttlpaymentprepaid").attr("data-amount"));
               cash+=parseFloat(creditamount);
-              $("#xttlpaymentprepaid").attr("data-amount",cash).html("Total Online : <span style='color:#ffd800;'>Rs "+cash+"</span>");
+       //       $("#xttlpaymentprepaid").attr("data-amount",cash).html("Total Online : <span style='color:#ffd800;'>Rs "+cash+"</span>");
             }
             $("#creditmodal").modal("hide");
             $("#erromodal").modal("show");
@@ -2002,8 +2002,14 @@ if(y.normal=="1")
             $( "#tabs" ).tabs();
             $('#tabs > ul  > li > a').on("click",function(e){
     e.preventDefault();
+	$(".alldm").hide();
+	$(".alldm2").hide();
+	 $("#VehicleT").hide();
     if($(this).html()=="Drivers"){
+		$(".alldm").show();
+		$(".alldm2").show();
        $(".hlbx").hide();
+	   $("#creditinfo").show();
       $(".rthg").html("Earnings");
 	  		if(window.intervalref2!=null)
 			{
@@ -2011,9 +2017,26 @@ if(y.normal=="1")
 			}
       ll(1);
     }
-    else if($(this).html()=="Credit"||$(this).html()=="Registration")
+    else if($(this).html()=="Credit")
     {
-      $(".hlbx").show();
+		 $("#cont").show();
+      $(".hlbx").hide();
+	  $(".alldm").show();
+	  $("#creditinfo").hide();
+      $(".rthg").html("Earnings");
+	  		if(window.intervalref2!=null)
+			{
+			  clearInterval(window.intervalref2);
+			}
+      ll(1);
+    }
+	else if($(this).html()=="Registration")
+    {
+      $(".alldm").show();
+		$(".alldm2").show();
+		 $("#VehicleT").show();
+	  $(".hlbx").hide();
+	  $("#creditinfo").hide();
       $(".rthg").html("Earnings");
 	  		if(window.intervalref2!=null)
 			{
@@ -2022,27 +2045,37 @@ if(y.normal=="1")
       ll(1);
     }
     else if($(this).html()=="Appointments"){
+		 $("#creditinfo").hide();
       llb(1);
     }
      else if($(this).html()=="No Show"){
+		 $("#cont").hide();
+		 $("#VehicleT").show();
+		 $(".alldm").show();
+		   $(".hlbx").hide();
+		  $("#creditinfo").hide();
       loadnoshow();
     }
     else if($(this).html()=="Earnings"){
+		 $("#creditinfo").hide();
       nj()
     }
      else if($(this).html()=="Jobs"){
+		  $("#creditinfo").hide();
       loadjobs();
      }
     else if($(this).html()=="Credit")
     {
       $(".hlbx").show();
+	   $("#creditinfo").hide();
        $(".rthg").html("Credit");
     }
-    else       $(".hlbx").hide();
-
+    else  {     $(".hlbx").hide();
+	 $("#creditinfo").hide();
+	}
     if($(this).html()=="Drivers"||$(this).html()=="Credit"||$(this).html()=="Registration"||$(this).html()=="No Show"){
       $(".otherdm,.earningsrc,.jobbx,.customerbx").hide();
-      $(".alldm").show();
+    //  $(".alldm").show();
     }
     else if($(this).html()=="Appointments"){
       $(".otherdm").show();
@@ -2057,7 +2090,7 @@ if(y.normal=="1")
       $(".alldm,.otherdm,.earningsrc,.customerbx").hide();
     }
       else if($(this).html()=="Customers"){
-      $(".customerbx").show();
+      $(".customerbx").hide();
       $(".alldm,.otherdm,.earningsrc,.jobbx").hide();
     }
 
@@ -2310,11 +2343,11 @@ window.ll=function(xnj){
 			window.oldregi=_clone;
 			$("#tbdregistration").html(_clone);
 		}
-     $("#xttlpayment").html("Total Payment : <span style='color:#ffd800;'>Rs "+window._ttlpayment+"</span>").attr("data-amount",window._ttlpayment);
+ /*    $("#xttlpayment").html("Total Payment : <span style='color:#ffd800;'>Rs "+window._ttlpayment+"</span>").attr("data-amount",window._ttlpayment);
       $("#xttlpaymentcash").html("Total Cash : <span style='color:#ffd800;'>Rs "+window._ttlcash+"</span>").attr("data-amount",window._ttlcash);
        $("#xttlpaymentprepaid").html("Total Online : <span style='color:#ffd800;'>Rs "+window._ttlprepaid+"</span>").attr("data-amount",window._ttlprepaid);
         $("#xttlcredit").html("Credit : <span style='color:#ffd800;'>Rs "+window._ttlcredit+"</span>").attr("data-amount",window._ttlcredit);
-       $("#xttlregistration").html("Registration : <span style='color:#ffd800;'>Rs "+window._ttlregistration+"</span>");
+       $("#xttlregistration").html("Registration : <span style='color:#ffd800;'>Rs "+window._ttlregistration+"</span>");*/
       $(data.data.pending).each(function(x,y){
 
 
@@ -2566,15 +2599,16 @@ html+='<td>'+y.bdate+'</td>';
          html+='<td>'+y.name+'</td>';
          html+='<td>'+y.stime+'</td>';
                html+='<td>'+y.hourworked+'</td>';
-      html+='<td>Rs '+y.cash+'</td>';
+    /*  html+='<td>Rs '+y.cash+'</td>';
 
          html+='<td>Rs '+y.prepaid+'</td>';
          html+='<td>'+y.cashjobs+'</td>';
                html+='<td>'+y.prepaidjobs+'</td>';
-      
+      */
 
                html+='<td>Rs '+y.ttlearning+'</td>';
-                html+='<td>0</td><td>Rs '+y.owed+'</td></tr><tr  class="accdd" style="height:10px"><td colspan="11"></td></tr>';
+                html+='<td>0</td></tr><tr  class="accdd" style="height:10px"><td colspan="11"></td></tr>';
+//				html+='<td>0</td><td>Rs '+y.owed+'</td></tr><tr  class="accdd" style="height:10px"><td colspan="11"></td></tr>';
         // .append(html);
        });
 	    if(window.oldearn=-1){
