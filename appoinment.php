@@ -652,7 +652,7 @@ if(isset($_GET['status'])){
 
              
               <div class="btns_cnfrm btns_cnfrmcx"> 
-<button type="button" style="margin-top:10px;margin-left:240px" class="btn btn-primary" id="submit">Submit</button>
+<button type="button" style="margin-top:10px;margin-left:165px" class="btn btn-primary" id="submit">Submit</button>
                  
              
 
@@ -1714,7 +1714,7 @@ $("#name").keyup(function(){
      
         window.llb=function(cc){
           var fromdate = $.trim($("#fromdate").val());
-          var todate = $.trim($("#todate").val());
+          var todate = "";//$.trim($("#todate").val());
           var xall= $("#xalldm").is(":checked")?"1":"0";
           var xnormal= $("#xnormaldm").is(":checked")?"1":"0";
           var xautorikshaw= $("#xautorikshawdm").is(":checked")?"1":"0";
@@ -1931,6 +1931,10 @@ if(y.normal=="1")
       },500)
       
     }); 
+	$("#fromdate").change(function(e){
+         llb(1);
+
+      });
      $("#fromdate,#todate,#datetimex,#datejob,#datejobto").datepicker({
         weekStart: 1,  changeYear: true,yearRange: "-100:+0",
         daysOfWeekHighlighted: "6,0", maxDate: new Date(),
@@ -2007,6 +2011,7 @@ if(y.normal=="1")
 	 $("#VehicleT").hide();
     if($(this).html()=="Drivers"){
 		$(".alldm").show();
+		 $("#cont").show();
 		$(".alldm2").show();
        $(".hlbx").hide();
 	   $("#creditinfo").show();
@@ -2329,7 +2334,7 @@ window.ll=function(xnj){
         _clone+='<a  href="drivers.php?id='+y.uid+'" class="btn-grad _mxicon">View</a>';
       }
               
-            _clone+='    </td> </tr><tr class="rowspls"><td colspan=5></td></tr><tr style="height:10px" class="rowspls"><td colspan="5"></td></tr>';
+            _clone+='    </td> </tr>';
           
          // $("#tbdregistration").append(_clone);
          }); 
@@ -2347,8 +2352,10 @@ window.ll=function(xnj){
       $("#xttlpaymentcash").html("Total Cash : <span style='color:#ffd800;'>Rs "+window._ttlcash+"</span>").attr("data-amount",window._ttlcash);
        $("#xttlpaymentprepaid").html("Total Online : <span style='color:#ffd800;'>Rs "+window._ttlprepaid+"</span>").attr("data-amount",window._ttlprepaid);
         $("#xttlcredit").html("Credit : <span style='color:#ffd800;'>Rs "+window._ttlcredit+"</span>").attr("data-amount",window._ttlcredit);
-       $("#xttlregistration").html("Registration : <span style='color:#ffd800;'>Rs "+window._ttlregistration+"</span>");*/
-      $(data.data.pending).each(function(x,y){
+      
+	  $("#xttlregistration").html("Registration : <span style='color:#ffd800;'>Rs "+window._ttlregistration+"</span>");*/
+      _clone="";
+	  $(data.data.pending).each(function(x,y){
 
 
          
