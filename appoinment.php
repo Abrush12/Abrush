@@ -1093,14 +1093,14 @@ window.llcustomer=function(xnj){
          $(data.data).each(function(x,y){
          
  if(y.used >0 ){
-          _clone +='<tr  class="rowaxcustomer" data-phone="'+y.mobile+'" data-name="'+y.name+'"> ';
+          _clone +='<tr  class="rowaxcustomer" style="height:45px;" data-phone="'+y.mobile+'" data-name="'+y.name+'"> ';
   /*        if(y.image!=""){
           _clone+="<td><img style='margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px' src='http://18.168.83.39/"+y.image+"'></td>";
         }
         else{
            _clone+="<td><img style='margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px' src='img/Artboard-10.png'></td>";
         }*/
-          _clone+='<td><b style="font-size:15px;">'+y.name+'</td>';
+          _clone+='<td><b style="font-size:15px;margin-left:20px">'+y.name+'</td>';
           _clone+='<td style="font-size:15px"><b>'+crypMobile(y.mobile)+'</b>';
           _clone+='<i style="font-size: 15px;margin-left: 11px;" class="fa fa-phone"><i style="font-size: 17px;margin-left: 10px;" class="fa fa-envelope"></i></td>';
         _clone+='<td><b style="font-size:15px;margin-left:15px">'+y.used+'</td>';
@@ -1834,7 +1834,8 @@ if(y.normal=="1")
           if(creditamount!=""){
            $("#creditloading").show();
            $(this).hide();
-             myajax( {"api":"savedrivercredit","controllerid":localStorage.getItem("id"),"amount":creditamount,"type":type ,"driverid":window.driverid},function( data, textStatus, jQxhr ){
+		   var loginUserId=$.trim(<?php echo $_SESSION['ID'];?>); 
+             myajax( {"api":"savedrivercredit","controllerid":loginUserId,"amount":creditamount,"type":type ,"driverid":window.driverid},function( data, textStatus, jQxhr ){
                $("#creditloading").hide();
            $("#savecredit").show();
             if(data.status=="400"){
@@ -1897,7 +1898,7 @@ if(y.normal=="1")
 
           nj()
         });
-            $("input[name='earningamountall'],#mkkearnings,#mkkvehicletype").change(function(){
+            $("input[name='earningamountall'],#mkkearnings,#mkkvehicletype,#mkcredit").change(function(){
 			if(window.intervalref2!=null)
 			{
 			  clearInterval(window.intervalref2);
@@ -2180,6 +2181,15 @@ window.ll=function(xnj){
   if(window.selectedtab == 4)
   {
 	  xall="1";
+	 var mkcredit = $("#mkcredit").val();
+	 if(mkcredit!="0"){
+		if(mkcredit=="1"){
+		  ishighest="1";
+		}
+		else{
+		  ishighest="0"
+		}
+	}
   }
    if(window.selectedtab == 3)
   {
@@ -2222,7 +2232,7 @@ window.ll=function(xnj){
       window._ttlpayment+=window._ttlcredit;
           $(data.data.all).each(function(x,y){
         
-          _clone +='<tr class="rowax rowaxdriver" data-registration="'+y.registration+'" data-colour="'+y.color+'" data-model="'+y.model+'" data-make="'+y.make+'" data-phone="'+y.phonex+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
+          _clone +='<tr class="rowax rowaxdriver" style="height:45px;" data-registration="'+y.registration+'" data-colour="'+y.color+'" data-model="'+y.model+'" data-make="'+y.make+'" data-phone="'+y.phonex+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
           _clone+='<img style="margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px" class="_profilepic" src="'+window._baseurl+y.image+'" alt=""></td>';
           _clone+='<td><b >'+y.callsign+'</b></td>';
           _clone+='<td><b >'+y.name+'</b></td>';
@@ -2285,7 +2295,7 @@ window.ll=function(xnj){
        $(data.data.creditlist).each(function(x,y){
          
           
-          _clone +='<tr class="rowax rowaxdriver" data-registration="'+y.registration+'" data-colour="'+y.color+'" data-model="'+y.model+'" data-make="'+y.make+'" data-phone="'+y.phonex+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
+          _clone +='<tr class="rowax rowaxdriver" style="height:45px;" data-registration="" data-colour="" data-model="" data-make="" data-phone="'+y.phonex+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
           _clone+='<img style="margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px" class="_profilepic" src="'+window._baseurl+y.image+'" alt=""></td>';
           _clone+='<td><b >'+y.callsign+'</b></td>';
           _clone+='<td><b >'+y.name+'</b></td>';
@@ -2299,14 +2309,15 @@ window.ll=function(xnj){
           _clone+='<td class="_createdate" style="font-size:18px">';
    //        _clone+='<a  href="javascript:void(0)" data-callsign="'+y.callsign+'"  data-name="'+y.name+'" onclick="credit(this,'+y.driverid+')" class="btn-grad _mxicon " style="margin-right:140px">Credit</a><b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.creditamount)+'">Rs '+Math.round(y.creditamount)+'&nbsp;&nbsp;&nbsp;'+(Math.round(y.creditamount)>0?(y.credittype=="0"?"Cash":"Online"):"")+'</span></b>';
 	//	   _clone+='<b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.creditamount)+'">Rs '+Math.round(y.creditamount)+'&nbsp;&nbsp;&nbsp;'+(Math.round(y.creditamount)>0?(y.credittype=="0"?"Cash":"Online"):"")+'</span></b>';
-		   	   _clone+='<b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.creditamount)+'">Rs '+Math.round(y.creditamount)+'</span></b>';
+		   	   _clone+='<b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.amount)+'">Rs '+Math.round(y.amount)+'</span></b>';
            _clone+=' </td>';
 		   
 		   _clone+="<td><b>"+y.credittime.substring(11,16)+"</b></td>";
-		   
+		  
 
         }else{ 
-                   _clone+="<td colspan=2><b class='owed'><span style='color:#ffd800;'>Rs "+y.paymentgiven+"</span></td>";
+                   _clone+="<td><b class='owed'><span style='color:#ffd800;'>Rs "+y.amount+"</span></td>";
+				   _clone+="<td><b>"+y.credittime.substring(11,16)+"</b></td>";
         }
 
         
@@ -2348,7 +2359,7 @@ window.ll=function(xnj){
     //      window._ttlpayment+=parseFloat(y.paymentgiven);
       //    window._ttlregistration+=parseFloat(y.paymentgiven);
           
-          _clone +='<tr class="rowax rowaxdriver" data-registration="'+y.registration+'" data-colour="'+y.color+'" data-model="'+y.model+'" data-make="'+y.make+'" data-phone="'+y.phonex+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'" ><td>'
+          _clone +='<tr class="rowax rowaxdriver" style="height:45px;" data-registration="'+y.registration+'" data-colour="'+y.color+'" data-model="'+y.model+'" data-make="'+y.make+'" data-phone="'+y.phonex+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'" ><td>'
           _clone+='<img style="margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px" class="_profilepic" src="'+window._baseurl+y.image+'" alt=""></td>';
           _clone+='<td><b >'+y.callsign+'</b></td>';
           _clone+='<td><b >'+y.name+'</b></td>';
@@ -2356,8 +2367,9 @@ window.ll=function(xnj){
           _clone+='<td><b>'+y.controllername+'</b></td>';
        
          if(y.type==3){
+			 var balance =y.paymentgiven*4;
            _clone+='<td class="_createdate" style="font-size:18px">';
-          _clone+='<b class="owed" style="margin-top:6px;"><span style="color:#ffd800;">Rs '+y.paymentgiven+'</span></b></td>';
+          _clone+='<b class="owed" style="margin-top:6px;"><span style="color:#ffd800;">Rs '+balance+'</span></b></td>';
           _clone+='<td><b>'+y.registrationdate.substring(11,16)+'</b></td>';
          
 
@@ -2410,7 +2422,7 @@ window.ll=function(xnj){
 
          
 
-          _clone +='<tr  class="rowax"><td>'
+          _clone +='<tr  class="rowax" style="height:45px;"><td>'
           _clone+='<img style="margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px" class="_profilepic" src="'+window._baseurl+y.image+'" alt=""></td>';
           _clone+='<td><b style="font-size:18px">'+y.name+'</b></td>';
           _clone+='<td style="font-size:18px"><b>'+y.phone+'</b><i style="font-size: 23px;margin-left: 11px;" class="fa fa-phone"><i style="font-size: 23px;margin-left: 10px;" class="fa fa-envelope"></i></td>';
@@ -2538,23 +2550,23 @@ window.ll=function(xnj){
 		{
 		if(y.jobstatusx == "Completed")
 		{
-           html+='<tr  class="rowax accdd rowjobs " data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
+           html+='<tr  class="rowax accdd rowjobs " style="height:45px;" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
 		}
 		else if(y.jobstatusx == "No Fare")
 		{
-           html+='<tr  class="rowax accdd rowjobs nofarebooking" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
+           html+='<tr  class="rowax accdd rowjobs nofarebooking" style="height:45px;" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
 		}
 		else if(y.jobstatusx == "Runner")
 		{
-           html+='<tr  class="rowax accdd rowjobs runnerbooking" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
+           html+='<tr  class="rowax accdd rowjobs runnerbooking" style="height:45px;" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
 		}
 		else if(y.jobstatusx == "Prebooking")
 		{
-           html+='<tr  class="rowax accdd rowjobs prebooking" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
+           html+='<tr  class="rowax accdd rowjobs prebooking" style="height:45px;" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
 		}
 		else if(y.jobstatusx == "Rejected")
 		{
-           html+='<tr  class="rowax accdd rowjobs cancelbooking" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
+           html+='<tr  class="rowax accdd rowjobs cancelbooking" style="height:45px;" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
 		}
 		
        html+="<td>";
