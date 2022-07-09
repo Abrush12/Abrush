@@ -478,13 +478,22 @@ if(isset($_GET['status'])){
                  <input type="text" id="xcallsign"  style="width:70%" onkeyup="firstCapitalAlways(event)" class="hlf_f  "> 
                 </span>
               </div>
-                 <div class="search_inpt_flx" style="display:none" id="VehicleT">
+ <div class="search_inpt_flx" style="display:none" id="VehicleNS">
                 <span class="labels_search">Vehicle Type</span>
                 <span class="inputs_search">
-                  <label style="color:#fff">All <input type="radio" checked id="xall" name="xvehicletype" ></label> 
-                  <label style="color:#fff;margin-left: 10px">Normal <input type="radio" id="xnormal"  name="xvehicletype" ></label> 
-                  <label style="color:#fff;margin-left: 10px">Auto-Rikshaw <input type="radio" id="xautorikshaw" name="xvehicletype" ></label> 
-                  <label style="color:#fff;margin-left: 10px">Motorbike <input type="radio" id="xmotorbike" name="xvehicletype"   ></label> 
+                  <label style="color:#fff">All <input type="radio" checked id="xallNS" name="xvehicletypeNS" ></label> 
+                  <label style="color:#fff;margin-left: 10px">Normal <input type="radio" id="xnormalNS"  name="xvehicletypeNS" ></label> 
+                  <label style="color:#fff;margin-left: 10px">Auto-Rikshaw <input type="radio" id="xautorikshawNS" name="xvehicletypeNS" ></label> 
+                  <label style="color:#fff;margin-left: 10px">Motorbike <input type="radio" id="xmotorbikeNS" name="xvehicletypeNS"   ></label> 
+                </span>
+              </div>
+			    <div class="search_inpt_flx" style="display:none" id="VehicleR">
+                <span class="labels_search">Vehicle Type</span>
+                <span class="inputs_search">
+                  <label style="color:#fff">All <input type="radio" checked id="xallR" name="xvehicletypeR" ></label> 
+                  <label style="color:#fff;margin-left: 10px">Normal <input type="radio" id="xnormalR"  name="xvehicletypeR" ></label> 
+                  <label style="color:#fff;margin-left: 10px">Auto-Rikshaw <input type="radio" id="xautorikshawR" name="xvehicletypeR" ></label> 
+                  <label style="color:#fff;margin-left: 10px">Motorbike <input type="radio" id="xmotorbikeR" name="xvehicletypeR"   ></label> 
                 </span>
               </div>
                 
@@ -1627,8 +1636,12 @@ $(document).mouseup(function(e)
 
 window.loadnoshow=function(){
    var regdate=$.trim($("#registrationdate").val());
-
-     myajax( {"api":"allappointmentsnoshow","ddate":regdate,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
+	var xall=xnormal=xautorikshaw=xmotorbike="0";
+	xall= $("#xallNS").is(":checked")?"1":"0";
+    xnormal= $("#xnormalNS").is(":checked")?"1":"0";
+    xautorikshaw= $("#xautorikshawNS").is(":checked")?"1":"0";
+    xmotorbike= $("#xmotorbikeNS").is(":checked")?"1":"0";
+     myajax( {"api":"allappointmentsnoshow","ddate":regdate,"xall":xall,"xnormal":xnormal,"xautorikshaw":xautorikshaw,"xmotorbike":xmotorbike,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
        
          var _clone;
          var tbd=$("#tbdnoshow");  
@@ -1682,6 +1695,23 @@ $("#name").keyup(function(){
 
           }
         }) 
+	/*	$("#xall").change(function(){
+            alert("here");
+            ll(1);
+             
+        });
+		$("#xnormal").change(function(){
+            
+            ll(1);
+             
+        });
+		 $("#xautorikshaw").change(function(){
+			   ll(1);
+			 });
+			 
+			 $("#xmotorbikedm").change(function(){
+				ll(1);
+			 });*/
    $("#xalldm").change(function(){
             
             $("._namex").show();
@@ -1849,12 +1879,15 @@ if(y.normal=="1")
              });
           }
         })
-        $("input[name='xvehicletype']").change(function(){
+        $("input[name='xvehicletypeR']").change(function(){
 			if(window.intervalref2!=null)
 			{
 			  clearInterval(window.intervalref2);
 			}
-          ll(1);
+          ll(2);
+        });
+		 $("input[name='xvehicletypeNS']").change(function(){
+			     loadnoshow();
         });
          $("input[name='xvehicletypedm']").change(function(){
           llb(1);
@@ -2008,7 +2041,7 @@ if(y.normal=="1")
     e.preventDefault();
 	$(".alldm").hide();
 	$(".alldm2").hide();
-	 $("#VehicleT").hide();
+	 $("#VehicleNS, #VehicleR").hide();
     if($(this).html()=="Drivers"){
 		$(".alldm").show();
 		 $("#cont").show();
@@ -2016,6 +2049,7 @@ if(y.normal=="1")
        $(".hlbx").hide();
 	   $("#creditinfo").show();
       $(".rthg").html("Earnings");
+	  window.selectedtab = 0;
 	  		if(window.intervalref2!=null)
 			{
 			  clearInterval(window.intervalref2);
@@ -2029,6 +2063,7 @@ if(y.normal=="1")
 	  $(".alldm").show();
 	  $("#creditinfo").hide();
       $(".rthg").html("Earnings");
+	  window.selectedtab = 4;
 	  		if(window.intervalref2!=null)
 			{
 			  clearInterval(window.intervalref2);
@@ -2039,44 +2074,44 @@ if(y.normal=="1")
     {
       $(".alldm").show();
 		$(".alldm2").show();
-		 $("#VehicleT").show();
+		 $("#VehicleR").show();
 	  $(".hlbx").hide();
 	  $("#creditinfo").hide();
       $(".rthg").html("Earnings");
+	  window.selectedtab = 4;
 	  		if(window.intervalref2!=null)
 			{
 			  clearInterval(window.intervalref2);
 			}
-      ll(1);
+      ll(2);
     }
     else if($(this).html()=="Appointments"){
 		 $("#creditinfo").hide();
+		 window.selectedtab = 1;
       llb(1);
     }
      else if($(this).html()=="No Show"){
 		 $("#cont").hide();
-		 $("#VehicleT").show();
+		 $("#VehicleNS").show();
 		 $(".alldm").show();
 		   $(".hlbx").hide();
 		  $("#creditinfo").hide();
+		   window.selectedtab = 2;
       loadnoshow();
     }
     else if($(this).html()=="Earnings"){
 		 $("#creditinfo").hide();
+		  window.selectedtab = 5;
       nj()
     }
      else if($(this).html()=="Jobs"){
 		  $("#creditinfo").hide();
+		   window.selectedtab = 6;
       loadjobs();
      }
-    else if($(this).html()=="Credit")
-    {
-      $(".hlbx").show();
-	   $("#creditinfo").hide();
-       $(".rthg").html("Credit");
-    }
     else  {     $(".hlbx").hide();
 	 $("#creditinfo").hide();
+	 window.selectedtab = 7;
 	}
     if($(this).html()=="Drivers"||$(this).html()=="Credit"||$(this).html()=="Registration"||$(this).html()=="No Show"){
       $(".otherdm,.earningsrc,.jobbx,.customerbx").hide();
@@ -2102,6 +2137,7 @@ if(y.normal=="1")
     
 });
 
+window.selectedtab = 0;
 window.timerref=null;
 window.alldriverlist=[];
 window.intervalref2=null;
@@ -2109,11 +2145,12 @@ window.ll=function(xnj){
  window.intervalref2 = setInterval(function(){
   var regdate=$.trim($("#registrationdate").val());
   var ddate=regdate;
-  var xall= "0";//$("#xall").is(":checked")?"1":"0";
-  var xnormal= "0";//$("#xnormal").is(":checked")?"1":"0";
-  var xautorikshaw= "0";//$("#xautorikshaw").is(":checked")?"1":"0";
-  var xmotorbike="0";//$("#xmotorbike").is(":checked")?"1":"0";
+  
+  var xall=xnormal=xautorikshaw=xmotorbike="0";
+
   var kk=$("#mkkvehicletype").val();
+ if(window.selectedtab == 0){
+	 xall="0";
   if(kk=="0"){
     xall="1";
   }
@@ -2126,6 +2163,7 @@ window.ll=function(xnj){
    else if(kk=="3"){
     xmotorbike="1";
   }
+ }
   var xcontrollername = window.xcontrollernamea;// $("#xcontrollername").val();
 
   var ishighest ="-1";
@@ -2138,6 +2176,18 @@ window.ll=function(xnj){
       ishighest="0"
     }
   }
+  if(window.selectedtab == 4)
+  {
+	  xall="1";
+  }
+   if(window.selectedtab == 3)
+  {
+	xall= $("#xallR").is(":checked")?"1":"0";
+    xnormal= $("#xnormalR").is(":checked")?"1":"0";
+    xautorikshaw= $("#xautorikshawR").is(":checked")?"1":"0";
+    xmotorbike= $("#xmotorbikeR").is(":checked")?"1":"0";
+	ishighest ="-1";
+  }
          
   if(xnj==0 && xall==0 && xnormal==0&& xautorikshaw==0 && xmotorbike==0) {
    //xcontrollername="0";
@@ -2147,7 +2197,6 @@ window.ll=function(xnj){
     regdate="";
   }
   else{  $("#loadinggif").show();}
-  
       myajax( {"api":"allappointmentsboth","controllerid":xcontrollername,"xall":xall,"xnormal":xnormal,"xautorikshaw":xautorikshaw,"xmotorbike":xmotorbike,"regdate":regdate,"status":"<?php echo $status; ?>","ddate":ddate,"ishighest":ishighest,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
         $("#loadinggif").hide();
        //  $(".rowax,.rowspls").remove();
@@ -2298,22 +2347,22 @@ window.ll=function(xnj){
           window._ttlpayment+=parseFloat(y.paymentgiven);
           window._ttlregistration+=parseFloat(y.paymentgiven);
           
-          _clone +='<tr class="rowax rowaxdriver" data-registration="'+y.registration+'" data-colour="'+y.color+'" data-model="'+y.model+'" data-make="'+y.make+'" data-phone="'+y.phonex+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'"><td>'
+          _clone +='<tr class="rowax rowaxdriver" data-registration="'+y.registration+'" data-colour="'+y.color+'" data-model="'+y.model+'" data-make="'+y.make+'" data-phone="'+y.phonex+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'" ><td>'
           _clone+='<img style="margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px" class="_profilepic" src="'+window._baseurl+y.image+'" alt=""></td>';
           _clone+='<td><b >'+y.callsign+'</b></td>';
           _clone+='<td><b >'+y.name+'</b></td>';
           _clone+='<td><b>'+y.phone+'</b><i style="font-size: 17px;margin-left: 11px;" class="fa fa-phone"><i style="font-size: 17px;margin-left: 10px;" class="fa fa-envelope"></i></td>';
-          _clone+="<td><b>"+y.controllername+"</b></td>";
+          _clone+='<td><b>'+y.controllername+'</b></td>';
        
          if(y.type==3){
            _clone+='<td class="_createdate" style="font-size:18px">';
-          _clone+="<b class='owed' style='margin-top:6px;'><span style='color:#ffd800;'>Rs "+y.paymentgiven+"</span></b></td>";
-          _clone+="<td><b>"+y.registrationdate.substring(11,16)+"</b></td>";
+          _clone+='<b class="owed" style="margin-top:6px;"><span style="color:#ffd800;">Rs '+y.paymentgiven+'</span></b></td>';
+          _clone+='<td><b>'+y.registrationdate.substring(11,16)+'</b></td>';
          
 
         }    if(y.type==2){
-			_clone+="<td></td>";
-			_clone+="<td></td>";
+			_clone+='<td>&nbsp;</td>';
+			_clone+='<td>&nbsp;</td>';
 		}
 
         
