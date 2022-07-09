@@ -657,7 +657,7 @@ if(isset($_GET['status'])){
 
                
 
-              
+    <!--          
 
              
               <div class="btns_cnfrm btns_cnfrmcx"> 
@@ -666,6 +666,7 @@ if(isset($_GET['status'])){
              
 
                 </div>
+				-->
             </div> 
               <div class="search_labels jobbx" style="display:none;width: 80%;">
                
