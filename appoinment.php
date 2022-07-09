@@ -993,7 +993,7 @@ if(isset($_GET['status'])){
     <table class="table user-list  user-listax ">
       <thead>
                     <tr>
-                      <th><span>Picture</span></th>
+           <!--           <th><span>Picture</span></th>-->
               <th style="width:350px"><span style="padding:0px !important"><span>Name</span><input onkeyup="firstCapitalAlways(event)"  id='kkkcustomer' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px;
     margin-top: 7px;
     float: right;
@@ -1077,14 +1077,14 @@ window.loaddrivercredit=function(){
 window.llcustomer=function(xnj){ 
   var type="2";
 
-  if(xnj==1){
+/*  if(xnj==1){
   if($("#xapp").is(":checked")){
     type="1";
   }
   else  if($("#xcall").is(":checked")){
     type="0";
   }
-} 
+} */
     myajax( {"api":"getcustomersdetails","type":type,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){ 
          $(".rowaxcustomer").remove();
          var _clone ="";
@@ -1092,14 +1092,14 @@ window.llcustomer=function(xnj){
      
          $(data.data).each(function(x,y){
          
- 
+ if(y.used >0 ){
           _clone +='<tr  class="rowaxcustomer" data-phone="'+y.mobile+'" data-name="'+y.name+'"> ';
-          if(y.image!=""){
+  /*        if(y.image!=""){
           _clone+="<td><img style='margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px' src='http://18.168.83.39/"+y.image+"'></td>";
         }
         else{
            _clone+="<td><img style='margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px' src='img/Artboard-10.png'></td>";
-        }
+        }*/
           _clone+='<td><b style="font-size:15px;">'+y.name+'</td>';
           _clone+='<td style="font-size:15px"><b>'+crypMobile(y.mobile)+'</b>';
           _clone+='<i style="font-size: 15px;margin-left: 11px;" class="fa fa-phone"><i style="font-size: 17px;margin-left: 10px;" class="fa fa-envelope"></i></td>';
@@ -1113,7 +1113,7 @@ window.llcustomer=function(xnj){
          _clone+='</b></td>';*/
              
             _clone+='</tr></tr> </tr>';
-          
+ }
          // tbd.append(_clone);
 		  
          });
