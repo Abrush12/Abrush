@@ -2078,7 +2078,7 @@ if(y.normal=="1")
 	  $(".hlbx").hide();
 	  $("#creditinfo").hide();
       $(".rthg").html("Earnings");
-	  window.selectedtab = 4;
+	  window.selectedtab = 3;
 	  		if(window.intervalref2!=null)
 			{
 			  clearInterval(window.intervalref2);
@@ -2344,8 +2344,8 @@ window.ll=function(xnj){
 		 _clone="";
    $(data.data.registrationlist).each(function(x,y){
          
-          window._ttlpayment+=parseFloat(y.paymentgiven);
-          window._ttlregistration+=parseFloat(y.paymentgiven);
+    //      window._ttlpayment+=parseFloat(y.paymentgiven);
+      //    window._ttlregistration+=parseFloat(y.paymentgiven);
           
           _clone +='<tr class="rowax rowaxdriver" data-registration="'+y.registration+'" data-colour="'+y.color+'" data-model="'+y.model+'" data-make="'+y.make+'" data-phone="'+y.phonex+'"  data-name="'+y.name+'" data-callsign="'+y.callsign+'" ><td>'
           _clone+='<img style="margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px" class="_profilepic" src="'+window._baseurl+y.image+'" alt=""></td>';
@@ -2370,7 +2370,7 @@ window.ll=function(xnj){
         if(y.normal=="1") _clone+="<b>Normal</b>";
            else if(y.autorikshaw=="1") _clone+="<b>Auto-Rikshaw</b>";
            else if(y.motorbike=="1") _clone+="<b>Motorbike</b>";
-        _clone+='</td><td></td>';
+        _clone+='</td><td>&nbsp;</td>';
             _clone+='<td style="width: 15%;">';
       if(y.type==2){
        _clone+='<a  href="javascript:void(0)" class="btn-grad _mxicon">Pending</a>';
@@ -2387,7 +2387,7 @@ window.ll=function(xnj){
           
          // $("#tbdregistration").append(_clone);
          }); 
-		  if(window.oldregi=-1){
+		  if(window.oldregi==-1){
 			window.oldregi=_clone;
 			$("#tbdregistration").html(_clone);
 			
