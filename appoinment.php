@@ -994,7 +994,7 @@ if(isset($_GET['status'])){
       <thead>
                     <tr>
            <!--           <th><span>Picture</span></th>-->
-              <th style="width:350px"><span style="padding:0px !important"><span>Name</span><input onkeyup="firstCapitalAlways(event)"  id='kkkcustomer' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px;
+              <th style="width:350px;"><span style="padding:0px !important;margin-left:20px;"><span>Name</span><input onkeyup="firstCapitalAlways(event)"  id='kkkcustomer' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px;
     margin-top: 7px;
     float: right;
     margin-left: 9px;" class="sxdc"></span></th>
