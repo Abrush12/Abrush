@@ -239,20 +239,21 @@ session_start();
 <div class="fluid-container">   
 <div class="row">
   <div class="col-lg-12">
-    <div class="main-box clearfix">
+ <!--   <div class="main-box clearfix">
 	<div class=><h1 style="color:white;margin-bottom:20px;margin-left:20px;font-family: Times,serif;" aria-hidden="true">&nbsp;&nbsp;&nbsp;Controller List</h1>
-</div>
+</div>-->
  <div class="table-responsive" style="margin-left:20px;">
    <center><img src="img/load.gif" id="loadingr" style="height:80px;display:none;" /></center>  
     <table class="table user-list  user-listax ">
       <thead>
               <tr>
                <th><span>Picture</span></th>
+			   <th ><span>Username</span></th> 
               <th style="width:250px"><span style="padding:0px !important"><span>Name</span><input onkeyup="firstCapitalAlways(event)"  id='namec' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
               <th style="width:250px"><span style="padding:0px !important"><span>Phone</span><input onkeyup="firstCapitalAlways(event)"  id='phonec' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right;margin-left: 9px;" class="sxdc"></span></th>
                <th ><span>Date of Birth</span></th> 
               <th ><span>Country Code</span></th> 
-              <th ><span>Username</span></th> 
+              
 			  <th style="width:300px"></th>
               </tr>
                   </thead>
@@ -303,11 +304,12 @@ session_start();
         else{
            _clone+="<td><img style='margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px' src='img/Artboard-10.png'></td>";
         }
+			_clone+='<td><b style="font-size:15px;margin-left:15px">'+y.username+'</td>';
           _clone+='<td><b style="font-size:15px;">'+y.fullname+'</td>';
           _clone+='<td style="font-size:15px"><b>'+y.phone+'</b>';
           _clone+='<td><b style="font-size:15px;margin-left:15px">'+dateFormat(y.dateofbirth)+'</td>';
         _clone+='<td><b style="font-size:15px;margin-left:15px">'+getCountry(y.countrycode)+'</td>';
-        _clone+='<td><b style="font-size:15px;margin-left:15px">'+y.username+'</td>';
+        
 		if(loginUserId == y.id)
 		{
 			_clone+='<td></td>';
