@@ -1835,7 +1835,7 @@ if(y.normal=="1")
            $("#creditloading").show();
            $(this).hide();
 		   var loginUserId=$.trim(<?php echo $_SESSION['ID'];?>); 
-             myajax( {"api":"savedrivercredit","controllerid":loginUserId,"amount":creditamount,"type":type ,"driverid":window.driverid},function( data, textStatus, jQxhr ){
+             myajax( {"api":"savedrivercredit","controllerid":loginUserId,"amount":creditamount,"type":type ,"driverid":window.driverid,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
                $("#creditloading").hide();
            $("#savecredit").show();
             if(data.status=="400"){
@@ -2543,28 +2543,24 @@ window.ll=function(xnj){
      if(y.normal=="1") extras="Normal";
      else if(y.autorikshaw=="1")   extras="Auto-Rikshaw";
      else if(y.motorcycle=="1")   extras="Motorbike";
-		if(y.jobstatusx == "Active")
+		if(y.status == "Quotation" || y.status == "Rejected" || y.status == "")
 		{
 		}
 		else
 		{
-		if(y.jobstatusx == "Completed")
+		if(y.status == "Completed")
 		{
            html+='<tr  class="rowax accdd rowjobs " style="height:45px;" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
 		}
-		else if(y.jobstatusx == "No Fare")
+		else if(y.status == "No Fare")
 		{
            html+='<tr  class="rowax accdd rowjobs nofarebooking" style="height:45px;" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
 		}
-		else if(y.jobstatusx == "Runner")
+		else if(y.status == "Runner")
 		{
            html+='<tr  class="rowax accdd rowjobs runnerbooking" style="height:45px;" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
 		}
-		else if(y.jobstatusx == "Prebooking")
-		{
-           html+='<tr  class="rowax accdd rowjobs prebooking" style="height:45px;" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
-		}
-		else if(y.jobstatusx == "Rejected")
+		else if(y.status == "Cancelled")
 		{
            html+='<tr  class="rowax accdd rowjobs cancelbooking" style="height:45px;" data-dropoff="'+y.droplocation+'" data-pickup="'+y.pickuplocation+'" data-callsign="'+y.callsign+'" >';
 		}
@@ -2581,7 +2577,7 @@ html+='<td>'+y.bdate+'</td>';
          html+='<td>'+y.passengers+'</td>';
          html+='<td>Rs '+y.jobprice+'</td>';
                html+='<td>'+(y.iscash=="1"?(y.cashtype=="0"?"Cash":"Money First"):"Pre-Paid")+'</td>';
-               html+="<td>"+y.jobstatusx+"</td>";
+               html+="<td>"+y.status+"</td>";
                 html+=' </tr>';
 		}
       //   $("#tbdjobs").append(html);

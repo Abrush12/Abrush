@@ -252,7 +252,8 @@ session_start();
               <th style="width:250px"><span style="padding:0px !important"><span>Name</span><input onkeyup="firstCapitalAlways(event)"  id='namec' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
               <th style="width:250px"><span style="padding:0px !important"><span>Phone</span><input onkeyup="firstCapitalAlways(event)"  id='phonec' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right;margin-left: 9px;" class="sxdc"></span></th>
                <th ><span>Date of Birth</span></th> 
-              <th ><span>Country Code</span></th> 
+			   <th style="width:250px"><span style="padding:0px !important"><span>Branch</span><input onkeyup="firstCapitalAlways(event)"  id='branchc' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
+              <th style="width:250px"><span style="padding:0px !important"><span>Country</span><input onkeyup="firstCapitalAlways(event)"  id='countryc' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
               
 			  <th style="width:300px"></th>
               </tr>
@@ -280,6 +281,32 @@ session_start();
  window._selectUid=null; 
  var loginUserId=$.trim(<?php echo $_SESSION['ID'];?>);  
   
+ window.firstCapitalAlways= function (event) {
+    var val = $(event.target).val();
+    var firstLetterUpper = val[0] ? val[0].toUpperCase() : "";
+    $(event.target).val(firstLetterUpper + val.substr(1, val.length));
+}
+       $(".sxdc").click(function(){ 
+		window.searchClick =$(this).hide().parent().find("input");
+           $(".sxdc").parent().find("input").val("").hide();
+            $(".sxdc").parent().find("span,img").show();
+          $(this).hide().parent().find("input").show().focus();
+          $(this).parent().find("span").hide();
+
+        });
+window.searchClick ="";		
+$(document).click(function(){ 
+if(window.searchClick=="")
+{
+   $(".sxdc").parent().find("input").val("").hide();
+   $(".sxdc").parent().find("span,img").show();
+}
+if(!$(".sxdc").parent().find("input").is(":focus"))
+{
+   $(".sxdc").parent().find("input").val("").hide();
+   $(".sxdc").parent().find("span,img").show();
+}
+});
 
  window.viewId=0;  
 
@@ -297,7 +324,7 @@ session_start();
          $(data.data).each(function(x,y){
          
  
-          _clone +='<tr  class="rowax rowaxcontroller" data-phone="'+y.phone+'" data-name="'+y.fullname+'"> ';
+          _clone +='<tr  class="rowax rowaxcontroller" data-phone="'+y.phone+'" data-name="'+y.fullname+'" data-branch="'+y.officeadderss+'" data-country="'+getCountry(y.countrycode)+'"> ';
           if(y.image!=""){
           _clone+="<td><img style='margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px' src='http://18.168.83.39/files/"+y.image+"'></td>";
         }
@@ -308,7 +335,8 @@ session_start();
           _clone+='<td><b style="font-size:15px;">'+y.fullname+'</td>';
           _clone+='<td style="font-size:15px"><b>'+y.phone+'</b>';
           _clone+='<td><b style="font-size:15px;margin-left:15px">'+dateFormat(y.dateofbirth)+'</td>';
-        _clone+='<td><b style="font-size:15px;margin-left:15px">'+getCountry(y.countrycode)+'</td>';
+        _clone+='<td><b style="font-size:15px;margin-left:15px">'+y.officeadderss+'</td>';
+		_clone+='<td><b style="font-size:15px;margin-left:15px">'+getCountry(y.countrycode)+'</td>';
         
 		if(loginUserId == y.id)
 		{
@@ -502,6 +530,34 @@ function dateFormat(date)
           else{
             $(".rowaxcontroller").each(function(){
               if($(this).attr("data-name").toLowerCase().startsWith(a)){
+                $(this).show();
+              }
+            })
+          }
+        });
+		 $("#branchc").keyup(function(){
+          var a=$.trim($(this).val()).toLowerCase();
+          $(".rowaxcontroller").hide();
+          if(a.length==0){
+            $(".rowaxcontroller").show();
+          }
+          else{
+            $(".rowaxcontroller").each(function(){
+              if($(this).attr("data-branch").toLowerCase().startsWith(a)){
+                $(this).show();
+              }
+            })
+          }
+        });
+		 $("#countryc").keyup(function(){
+          var a=$.trim($(this).val()).toLowerCase();
+          $(".rowaxcontroller").hide();
+          if(a.length==0){
+            $(".rowaxcontroller").show();
+          }
+          else{
+            $(".rowaxcontroller").each(function(){
+              if($(this).attr("data-country").toLowerCase().startsWith(a)){
                 $(this).show();
               }
             })

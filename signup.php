@@ -163,7 +163,7 @@ code span {
 
    <label for="company" style="color: #fff !important; ">Country</label>      
       
-             <select id="company" style="width: 100%;  border: none; outline: none;padding:0.175rem 0.75rem;padding-left:8px;border-radius:0.25rem;" onchange="forFocus()">
+             <select id="company" style="width: 100%;  border: none; outline: none;padding:0.175rem 0.75rem;padding-left:8px;border-radius:0.25rem;" onchange="forFocusCon()">
                       <option value="0">Select Country</option>
                       <option value="PK">Pakistan</option>
                       <option value="IN">India</option>
@@ -173,6 +173,16 @@ code span {
                      </select>
  
   </div>
+  <div class="form-group" style="margin-top:20px">
+
+   <label for="city" style="color: #fff !important; ">Branch</label>      
+      
+             <select id="city" style="width: 100%;  border: none; outline: none;padding:0.175rem 0.75rem;padding-left:8px;border-radius:0.25rem;" onchange="forFocusCity()">
+                      <option value="0">Select City</option>
+                      
+                     </select>
+ 
+  </div>0
      <div class="form-group" style="margin-top:20px">
    <label for="passwordMain"  style="color: #fff !important; ">Enter Password</label>      
         
@@ -334,6 +344,11 @@ $(function(){
 		 alert("Select a valid Country Name");
 		 return;
 	 }
+	  if($.trim($("#city").val()) == 0 || $.trim($("#city").val()) == "0")
+	 {
+		 alert("Select a valid City Name");
+		 return;
+	 }
 	  if($.trim($("#passwordMain").val())=="")
 	  {
 		  alert("Please Enter Password");
@@ -358,7 +373,7 @@ $(function(){
 	//  alert($.trim($("#firstName").val())); alert($.trim($("#lastName").val())); alert($.trim($("#birthDate").val())); alert($.trim($("#PhoneNo").val())); alert($.trim($("#company").val())); alert($.trim($("#imgdb").val())); alert($.trim($("#passwordMain").val())); 
 	//  return;
 	  $("#loadingggf").show();
-        myajax({"api":"addAdmin","userName":$.trim($("#userName").val()),"firstName":$.trim($("#firstName").val()),"lastName":$.trim($("#lastName").val()),"dateofbirth":$.trim($("#birthDate").val()),"phone":$.trim($("#PhoneNo").val()),"countrycode":$.trim($("#company").val()),"image":$("#imgdb").val(),"password":$.trim($("#passwordMain").val())},function( data, textStatus, jQxhr ){
+        myajax({"api":"addAdmin","userName":$.trim($("#userName").val()),"firstName":$.trim($("#firstName").val()),"lastName":$.trim($("#lastName").val()),"dateofbirth":$.trim($("#birthDate").val()),"phone":$.trim($("#PhoneNo").val()),"countrycode":$.trim($("#company").val()),"cityName":$.trim($("#city").val()),"image":$("#imgdb").val(),"password":$.trim($("#passwordMain").val())},function( data, textStatus, jQxhr ){
           if(data.status=="200"){
             alert("Admin user has been added successfully"); 
 			window.location.href="controller.php";
@@ -392,7 +407,7 @@ $("#loadingggf").hide();
 setInputFilter(document.getElementById("PhoneNo"), function(value) {
   return /^\d*\d*$/.test(value); // Allow digits and '.' only, using a RegExp
 });
-
+window.citysel=0;
 function checkKey(e) {
 
     e = e || window.event;
@@ -417,10 +432,20 @@ function checkKey(e) {
 			$("#birthDate").focus();
 		}else if($('#PhoneNo').is(':focus') && $.trim($("#PhoneNo").val())!=""){ //alert("kk");
 			$("#company").focus();
+			window.citysel=1;
 		}else if($.trim($("#PhoneNo").val())==""){
 			$("#PhoneNo").focus();
 		}else if($.trim($("#company").val()) == 0){
 			$("#company").focus();
+			window.citysel=1;
+		}
+		else if($.trim($("#company").val()) != 0 && window.citysel==1){
+			$("#city").focus();
+			window.citysel=0;
+		}
+		else if($.trim($("#city").val()) == 0){
+			$("#city").focus();
+			window.citysel=0;
 		}else if($('#passwordMain').is(':focus') && $.trim($("#passwordMain").val()) != ""){
 			$("#passwordCon").focus();
 		}else if($.trim($("#passwordMain").val()) == ""){
@@ -438,8 +463,42 @@ function checkKey(e) {
 
 }
 
-function forFocus() { 
-  var x = document.getElementById("company").value; 
+function forFocusCon() { 
+  var x = document.getElementById("company").value;
+
+var html="";
+if(x=="PK")
+{
+	html='<option value="0">Select City</option><option value="Lahore">Lahore</option><option value="Multan">Multan</option><option value="Karachi">Karachi</option>'
+	$("#city").html(html);	
+}
+else if(x=="IN")
+{
+	html='<option value="0">Select City</option><option value="Chandigarh">Chandigarh</option><option value="Mohali">Mohali</option><option value="Delhi">Delhi</option>'
+	$("#city").html(html);
+}
+else if(x=="DU")
+{
+	html='<option value="0">Select City</option><option value="Dubai">Dubai</option><option value="Abu Dhabi">Abu Dhabi</option><option value="Sharjah">Sharjah</option>'
+	$("#city").html(html);
+}else if(x=="UK")
+{
+	html='<option value="0">Select City</option><option value="London">London</option><option value="Birmingham">Birmingham</option><option value="Derby">Derby</option>'
+	$("#city").html(html);
+}else if(x=="TU")
+{
+	html='<option value="0">Select City</option><option value="Istanbul">Istanbul</option><option value="Ankara">Ankara</option><option value="Bursa">Bursa</option>'
+	$("#city").html(html);
+}
+else 
+{
+	html='<option value="0">Select City</option>'
+	$("#city").html(html);
+}
+}
+
+function forFocusCity() { 
+  var x = document.getElementById("city").value; 
 	if(x!=0)
 		$("#passwordMain").focus();
 }
