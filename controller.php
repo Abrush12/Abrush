@@ -171,7 +171,7 @@ session_start();
  .inputs_search img{cursor: pointer;}
  table tr td .fa{cursor:pointer;}
 
-
+.sxdc{cursor: pointer;}
     </style>
 
 
@@ -331,12 +331,12 @@ if(!$(".sxdc").parent().find("input").is(":focus"))
         else{
            _clone+="<td><img style='margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px' src='img/Artboard-10.png'></td>";
         }
-			_clone+='<td><b style="font-size:15px;margin-left:15px">'+y.username+'</td>';
+			_clone+='<td><b style="font-size:15px;">'+y.username+'</td>';
           _clone+='<td><b style="font-size:15px;">'+y.fullname+'</td>';
           _clone+='<td style="font-size:15px"><b>'+y.phone+'</b>';
-          _clone+='<td><b style="font-size:15px;margin-left:15px">'+dateFormat(y.dateofbirth)+'</td>';
-        _clone+='<td><b style="font-size:15px;margin-left:15px">'+y.officeadderss+'</td>';
-		_clone+='<td><b style="font-size:15px;margin-left:15px">'+getCountry(y.countrycode)+'</td>';
+          _clone+='<td><b style="font-size:15px;">'+dateFormat(y.dateofbirth)+'</td>';
+        _clone+='<td><b style="font-size:15px;">'+y.officeadderss+'</td>';
+		_clone+='<td><b style="font-size:15px;">'+getCountry(y.countrycode)+'</td>';
         
 		if(loginUserId == y.id)
 		{
@@ -506,21 +506,7 @@ function dateFormat(date)
       $(function(){
 
        controllerlist();
-        $("#xmkreg").keyup(function(){
-
-          var a=$.trim($(this).val()).toLowerCase();
-          $(".rowaxdriver").hide();
-          if(a.length==0){
-            $(".rowaxdriver").show();
-          }
-          else{
-            $(".rowaxdriver").each(function(){
-              if($(this).attr("data-registration").toLowerCase()==a){
-                $(this).show();
-              }
-            })
-          }
-        });
+        
          $("#namec").keyup(function(){
           var a=$.trim($(this).val()).toLowerCase();
           $(".rowaxcontroller").hide();
@@ -577,143 +563,9 @@ function dateFormat(date)
             })
           }
         });
-          $("#xmkcolour").keyup(function(){
-          var a=$.trim($(this).val()).toLowerCase();
-          $(".rowaxdriver").hide();
-          if(a.length==0){
-            $(".rowaxdriver").show();
-          }
-          else{
-            $(".rowaxdriver").each(function(){
-              if($(this).attr("data-colour").toLowerCase().startsWith(a)){
-                $(this).show();
-              }
-            })
-          }
-        });
-        $("#kkkcallsign").keyup(function(){
-          var a=$.trim($(this).val());
-          $(".rowaxdriver").hide();
-          if(a.length==0){
-            $(".rowaxdriver").show();
-          }
-          else{
-            $(".rowaxdriver").each(function(){
-              if($(this).attr("data-callsign").startsWith(a)){
-                $(this).show();
-              }
-            })
-          }
-        })
-		 $("#jobcallsign").keyup(function(){
-          var a=$.trim($(this).val());
-          $(".rowjobs").hide();
-          if(a.length==0){
-            $(".rowjobs").show();
-          }
-          else{
-            $(".rowjobs").each(function(){
-              if($(this).attr("data-callsign").startsWith(a)){
-                $(this).show();
-              }
-            })
-          }
-        })
-		$("#jobpickup").keyup(function(){
-          var a=$.trim($(this).val());
-          $(".rowjobs").hide();
-          if(a.length==0){
-            $(".rowjobs").show();
-          }
-          else{
-            $(".rowjobs").each(function(){
-              if($(this).attr("data-pickup").startsWith(a)){
-                $(this).show();
-              }
-            })
-          }
-        })
-		$("#jobdropoff").keyup(function(){
-          var a=$.trim($(this).val());
-          $(".rowjobs").hide();
-          if(a.length==0){
-            $(".rowjobs").show();
-          }
-          else{
-            $(".rowjobs").each(function(){
-              if($(this).attr("data-dropoff").startsWith(a)){
-                $(this).show();
-              }
-            })
-          }
-        })
-         $("#kkkcustomer").keyup(function(){
-
-          var a=$.trim($(this).val());
-          $(".rowaxcustomer").hide();
-          if(a.length==0){
-            $(".rowaxcustomer").show();
-          }
-          else{
-            $(".rowaxcustomer").each(function(){
-              if($(this).attr("data-name").startsWith(a)){
-                $(this).show();
-              }
-            })
-          }
-        });
-        $("#kkkname").keyup(function(){
-          var a=$.trim($(this).val());
-          $(".rowaxdriver").hide();
-          if(a.length==0){
-            $(".rowaxdriver").show();
-          }
-          else{
-            $(".rowaxdriver").each(function(){
-              if($(this).attr("data-name").startsWith(a)){
-                $(this).show();
-              }
-            })
-          }
-        });
+       
         
-          $("#kkkcustomerphone").keyup(function(){
-          var a=$.trim($(this).val());
-          $(".rowaxcustomer").hide();
-          if(a.length==0){
-            $(".rowaxcustomer").show();
-          }
-          else{
-            $(".rowaxcustomer").each(function(){
-              if($(this).attr("data-phone") == a){
-                $(this).show();
-              }
-            })
-          }
-        })
-  $("#kkkphonenumber").keyup(function(){
-          var a=$.trim($(this).val());
-          $(".rowaxdriver").hide();
-          if(a.length==0){
-            $(".rowaxdriver").show();
-          }
-          else{
-            $(".rowaxdriver").each(function(){
-              if($(this).attr("data-phone") == a){
-                $(this).show();
-              }
-            })
-          }
-        })
-
-        $(".sxdc").click(function(){
-           $(".sxdc").parent().find("input").val("").hide();
-              $(".sxdc").parent().find("span,img").show();
-          $(this).hide().parent().find("input").show().focus();
-          $(this).parent().find("span").hide();
-
-        });
-	  })
+	  });
 
 </script>
     <!-- Optional JavaScript -->

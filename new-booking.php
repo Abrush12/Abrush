@@ -21,8 +21,9 @@ session_start();
     <!-- JS files 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
      -->
+	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmti5acRN8Yau_csPjnTKmmHdb7Ntk_IY"></script>
     
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUnvPObS9fsbYknCPqDXFcrrWSZa-CVug "></script>
+   <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUnvPObS9fsbYknCPqDXFcrrWSZa-CVug "> -->
   <link rel="stylesheet" type="text/css" href="css/switch.css">
    
 

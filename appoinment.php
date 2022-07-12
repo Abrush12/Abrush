@@ -644,7 +644,7 @@ if(isset($_GET['status'])){
                          </div>
                 </div>
                 </span>
-              </div>-->
+              </div>
       <div class="search_inpt_flx">
                 <span class="labels_search">Earning Amount</span>
                 <span class="inputs_search">
@@ -652,7 +652,7 @@ if(isset($_GET['status'])){
                   <label style="color:#fff;margin-left: 10px">Lowest <input type="radio"   name="earningamount" id="earningamountlowest" ></label> 
                   
                 </span>
-              </div>
+              </div>-->
               
 
                
@@ -827,8 +827,7 @@ if(isset($_GET['status'])){
                  <option value="2">Auto-Rikshaw</option>
                  <option value="3">Motorbike </option>
                </select></span></span></th>
-               <th class=" "><span>Affiliate</span></th>
-              <th class=" "> </th>
+                <th class=" "> </th>
             </tr>
           </thead>  
           <tbody id="tbd" class="tbd-target">  
@@ -935,7 +934,11 @@ if(isset($_GET['status'])){
             <th><span>Pre-Paid</span></th>
                       <th><span>Cash Jobs</span></th>
                       <th><span>Pre-Paid Jobs</span></th> -->                   
-            <th><span>Earnings</span></th>
+            <th><span>Earnings<select style="margin-left:10px" id="mkearning">
+                 <option value="0">None</option>
+                 <option value="1">Highest</option>
+                 <option value="2">Lowest</option>
+               </select></span></th>
                       <th><span>Average</span></th>
                   <!--     <th><span>Owed</span></th>-->
                      
@@ -990,7 +993,7 @@ if(isset($_GET['status'])){
       </div>
        <div id="tabs-8">
  <div class="table-responsive">
-    <table class="table user-list  user-listax ">
+    <table class="table user-list  user-listax" id="custTab">
       <thead>
                     <tr>
            <!--           <th><span>Picture</span></th>-->
@@ -1074,6 +1077,9 @@ window.loaddrivercredit=function(){
     });
 }
 
+
+
+
 window.llcustomer=function(xnj){ 
   var type="2";
 
@@ -1103,9 +1109,9 @@ window.llcustomer=function(xnj){
           _clone+='<td><b style="font-size:15px;margin-left:20px">'+y.name+'</td>';
           _clone+='<td style="font-size:15px"><b>'+crypMobile(y.mobile)+'</b>';
           _clone+='<i style="font-size: 15px;margin-left: 11px;" class="fa fa-phone"><i style="font-size: 17px;margin-left: 10px;" class="fa fa-envelope"></i></td>';
-        _clone+='<td><b style="font-size:15px;margin-left:15px">'+y.used+'</td>';
-        _clone+='<td><b style="font-size:15px;margin-left:15px">'+y.lastused+'</td>';
-        _clone+='<td><b style="font-size:15px;margin-left:15px">Rs '+y.spent+'</td>';
+        _clone+='<td><b style="font-size:15px;">'+y.used+'</td>';
+        _clone+='<td><b style="font-size:15px;">'+y.lastused+'</td>';
+        _clone+='<td><b style="font-size:15px;">Rs '+y.spent+'</td>';
      /*   _clone+='<td><b style="font-size:15px;margin-left:15px"></td>';
          _clone+='<td style="font-size:15px"><b>';
          if(y.isapp=="1") _clone+="App";
@@ -1131,7 +1137,6 @@ window.llcustomer=function(xnj){
      
        
     });
- 
    
     };
     window.transfer=function(ref,id){
@@ -1813,7 +1818,7 @@ if(y.normal=="1")
             $("#opendatepickera2").click(function(){
                  $("#today").datepicker("show");
         });
- $("#opendatepickeraearning").click(function(){
+ $("#opendatepickerearning").click(function(){
                  $("#datetimex").datepicker("show");
         });
 
@@ -1896,7 +1901,7 @@ if(y.normal=="1")
         });
           $("input[name='earningamount']").change(function(){
 
-          nj()
+         
         });
             $("input[name='earningamountall'],#mkkearnings,#mkkvehicletype,#mkcredit").change(function(){
 			if(window.intervalref2!=null)
@@ -1904,6 +1909,10 @@ if(y.normal=="1")
 			  clearInterval(window.intervalref2);
 			}
           ll(1);
+        });
+		
+		$("#mkearning").change(function(){
+		          nj();
         });
            $("input[name='jobbyprice'],#jobvehicletype,#highestjobprice").change(function(){
 
@@ -2263,7 +2272,7 @@ window.ll=function(xnj){
         if(y.normal=="1") _clone+="<b>Normal</b>";
            else if(y.autorikshaw=="1") _clone+="<b>Auto-Rikshaw</b>";
            else if(y.motorbike=="1") _clone+="<b>Motorbike</b>";
-        _clone+='</td><td></td>';
+        _clone+='</td>';
             _clone+='<td style="width: 15%;">';
       if(y.type==2){
        _clone+='<a  href="javascript:void(0)" class="btn-grad _mxicon">Pending</a>';
@@ -2614,7 +2623,7 @@ html+='<td>'+y.bdate+'</td>';
    });
              window.nj=function(){
                var datetimex=$.trim($("#datetimex").val());
-     var fromtime=$.trim($("#fromtime").val());
+ /*    var fromtime=$.trim($("#fromtime").val());
      var totime=$.trim($("#totime").val());
      var ishighest=$("#earningamounthighest").is(":checked")?"1":"0";
      if(fromtime.length!=0){
@@ -2622,7 +2631,17 @@ html+='<td>'+y.bdate+'</td>';
      }
      if(totime.length!=0){
       totime=window.tofulltimedt($.trim(totime))+":00";
-     }
+     }*/
+	 var ishighest ="-1";
+  var mkkearnings=$("#mkearning").val();
+  if(mkkearnings!="0"){
+    if(mkkearnings=="1"){
+      ishighest="1";
+    }
+    else{
+      ishighest="0"
+    }
+  }
       
      if(datetimex.length==0) return;
       const today = new Date();
@@ -2636,11 +2655,11 @@ html+='<td>'+y.bdate+'</td>';
      var yyyy = today.getFullYear();
      $("#datetimex").html(datetimex);
          var dt=datetimex; 
-     lk(dt,fromtime,totime,ishighest); 
+     lk(dt,ishighest); 
              }
-     window.lk=function(dt,fromtime,totime,ishighest){
+     window.lk=function(dt,ishighest){
        $("#tbdearnings .accdd").remove();
-      myajax( {"api":"getdriverearnings","datetime":dt,"fromtime":fromtime,"totime":totime,"ishighest":ishighest,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
+      myajax( {"api":"getdriverearnings","datetime":dt,"ishighest":ishighest,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
         var html="";
     window._joblist=data.data;
     if(data.data.length==0){
@@ -2700,7 +2719,7 @@ html+='<td>'+y.bdate+'</td>';
      var yyyy = today.getFullYear();
          var dt=dd + '-'+mm+"-"+ yyyy+" "+h_ + ":" + m_+":00";
        $("#datetimex").html(dd + '-'+mm+"-"+ yyyy);
-     lk(dt,"","","1");
+     lk(dt,"1");
         })
       window.dddr=function(){
           if($(".timer-box1").is(":visible")){

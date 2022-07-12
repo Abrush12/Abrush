@@ -182,8 +182,8 @@ code span {
                       
                      </select>
  
-  </div>0
-     <div class="form-group" style="margin-top:20px">
+  </div>
+  <div class="form-group" style="margin-top:20px">
    <label for="passwordMain"  style="color: #fff !important; ">Enter Password</label>      
         
              <input type="password" name="passwordMain"  autocomplete="off" class="form-control secure" id="passwordMain"  >
@@ -469,12 +469,12 @@ function forFocusCon() {
 var html="";
 if(x=="PK")
 {
-	html='<option value="0">Select City</option><option value="Lahore">Lahore</option><option value="Multan">Multan</option><option value="Karachi">Karachi</option>'
+	html='<option value="0">Select City</option><option value="Lahore">Lahore</option><option value="Islamabad">Islamabad</option><option value="Azad Kashmir">Azad Kashmir</option><option value="Panjeri">Panjeri</option>'
 	$("#city").html(html);	
 }
 else if(x=="IN")
 {
-	html='<option value="0">Select City</option><option value="Chandigarh">Chandigarh</option><option value="Mohali">Mohali</option><option value="Delhi">Delhi</option>'
+	html='<option value="0">Select City</option><option value="Chandigarh">Chandigarh</option><option value="Mohali">Mohali</option><option value="Delhi">Delhi</option><option value="Noida">Noida</option>'
 	$("#city").html(html);
 }
 else if(x=="DU")
