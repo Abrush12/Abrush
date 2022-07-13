@@ -700,7 +700,7 @@ if(isset($_GET['status'])){
               </div>
                  <div class="search_inpt_flx">
                  
-                  <div class="btns_cnfrm btns_cnfrmcx"  style="margin-left:135px" > 
+                  <div class="btns_cnfrm btns_cnfrmcx"  style="margin-left:135px;margin-top:-7px;" > 
 
                   <button style=" height: 25px; " type="button" class="confrm" id="jobsearch">Search</button>
                   <img src="img/load.gif" id="jobloadinggif" style="width:40px;float: left;margin-top: -7px;display: none;">
@@ -925,21 +925,21 @@ if(isset($_GET['status'])){
     <table class="table user-list  user-listax ">
        <thead>
                     <tr>
-                      <th><span>Call Sign</span> </th>
+                      <th style="width:225px"><span>Call Sign</span> </th>
 
-                      <th><span>Name</span></th>
-                      <th><span>Shift</span></th>
-                      <th><span>Hours</span></th>
+                      <th style="width:225px"><span>Name</span></th>
+                      <th style="width:210px"><span>Shift</span></th>
+                      <th style="width:210px"><span >Hours</span></th>
               <!--        <th><span>Cash</span></th>
             <th><span>Pre-Paid</span></th>
                       <th><span>Cash Jobs</span></th>
                       <th><span>Pre-Paid Jobs</span></th> -->                   
-            <th><span>Earnings<select style="margin-left:10px" id="mkearning">
+            <th style="width:225px"><span>Earnings<select style="margin-left:10px" id="mkearning">
                  <option value="0">None</option>
                  <option value="1">Highest</option>
                  <option value="2">Lowest</option>
                </select></span></th>
-                      <th><span>Average</span></th>
+                      <th style="width:225px"><span>Average</span></th>
                   <!--     <th><span>Owed</span></th>-->
                      
                      
@@ -1911,7 +1911,7 @@ if(y.normal=="1")
           ll(1);
         });
 		
-		$("#mkearning").change(function(){
+		$("#mkearning,#datetimex").change(function(){
 		          nj();
         });
            $("input[name='jobbyprice'],#jobvehicletype,#highestjobprice").change(function(){
@@ -2260,7 +2260,7 @@ window.ll=function(xnj){
  /*_clone+=' <a  href="javascript:void(0)"  data-callsign="'+y.callsign+'" data-owed="'+y.owed +'" data-name="'+y.name+'" onclick="deposit(this,'+y.driverid+')"  class="btn-grad _mxicon btn-grada">Deposit</a>';
          _clone+='<a  href="javascript:void(0)" data-callsign="'+y.callsign+'" data-owed="'+y.owed +'" data-name="'+y.name+'" onclick="transfer(this,'+y.driverid+')" class="btn-grad _mxicon ">Transfer</a>';*/
           _clone+='<td class="_createdate" style="font-size:18px">';
-           _clone+='<b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.creditamount)+'">Rs '+Math.round(y.creditamount)+'</span></b><a  href="javascript:void(0)" data-callsign="'+y.callsign+'"  data-name="'+y.name+'" onclick="credit(this,'+y.driverid+')" class="btn-grad _mxicon " style="margin-right:100px; ">Credit</a>';
+           _clone+='<b class="owed" style="margin-top:6px;float:left"><span style="color:#ffd800;"><span class="creditamount'+y.driverid+'" data-amount="'+Math.round(y.creditamount)+'">Rs '+Math.round(y.creditamount)+'</span></b><a  href="javascript:void(0)" data-callsign="'+y.callsign+'"  data-name="'+y.name+'" onclick="credit(this,'+y.driverid+')" class="btn-grad _mxicon " style="margin-right:150px; ">Credit</a>';
            _clone+=' </td>';
  
         }else{ 
@@ -2691,7 +2691,7 @@ html+='<td>'+y.bdate+'</td>';
       */
 
                html+='<td>Rs '+y.ttlearning+'</td>';
-                html+='<td>0</td></tr><tr  class="accdd" style="height:10px"><td colspan="11"></td></tr>';
+                html+='<td>0</td></tr>';
 //				html+='<td>0</td><td>Rs '+y.owed+'</td></tr><tr  class="accdd" style="height:10px"><td colspan="11"></td></tr>';
         // .append(html);
        });
