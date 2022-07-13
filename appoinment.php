@@ -1006,6 +1006,9 @@ if(isset($_GET['status'])){
     float: right;
     margin-left: 9px;" class="sxdc"></span></th>
                <th ><span>Used</span></th> 
+			     <th ><span>Cancelled</span></th> 
+				   <th ><span>No Fare</span></th> 
+				     <th ><span>Runner</span></th> 
               <th ><span>Last Used</span></th> 
               <th ><span>Spent</span></th> 
              <!-- <th ><span>Affiliate</span></th> 
@@ -1091,14 +1094,14 @@ window.llcustomer=function(xnj){
     type="0";
   }
 } */
-    myajax( {"api":"getcustomersdetails","type":type,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){ 
+    myajax( {"api":"getcustomersdetails","adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){ 
          $(".rowaxcustomer").remove();
          var _clone ="";
          var tbd=$("#tbdcustomers");
      
          $(data.data).each(function(x,y){
          
- if(y.used >0 ){
+ if(y.used >0 || y.cancelled>0 || y.nofare>0 || y.runner>0){
           _clone +='<tr  class="rowaxcustomer" style="height:45px;" data-phone="'+y.mobile+'" data-name="'+y.name+'"> ';
   /*        if(y.image!=""){
           _clone+="<td><img style='margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px' src='http://18.168.83.39/"+y.image+"'></td>";
@@ -1110,7 +1113,11 @@ window.llcustomer=function(xnj){
           _clone+='<td style="font-size:15px"><b>'+crypMobile(y.mobile)+'</b>';
           _clone+='<i style="font-size: 15px;margin-left: 11px;" class="fa fa-phone"><i style="font-size: 17px;margin-left: 10px;" class="fa fa-envelope"></i></td>';
         _clone+='<td><b style="font-size:15px;">'+y.used+'</td>';
+		 _clone+='<td><b style="font-size:15px;">'+y.cancelled+'</td>';
+		  _clone+='<td><b style="font-size:15px;">'+y.nofare+'</td>';
+		   _clone+='<td><b style="font-size:15px;">'+y.runner+'</td>';
         _clone+='<td><b style="font-size:15px;">'+y.lastused+'</td>';
+		
         _clone+='<td><b style="font-size:15px;">Rs '+y.spent+'</td>';
      /*   _clone+='<td><b style="font-size:15px;margin-left:15px"></td>';
          _clone+='<td style="font-size:15px"><b>';
