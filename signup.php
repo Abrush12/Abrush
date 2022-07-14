@@ -469,7 +469,7 @@ function forFocusCon() {
 var html="";
 if(x=="PK")
 {
-	html='<option value="0">Select Branch</option><option value="Mirpur">Mirpur</option><option value="Islamghar">Islamghar</option><option value="Azad Kashmir">Azad Kashmir</option><option value="Jhelum">Jhelum</option><option value="Bhimber">Bhimber</option>'
+	html='<option value="0">Select Branch</option><option value="Islamghar">Islamghar</option><option value="Mirpur Azad Kashmir">Mirpur Azad Kashmir</option><option value="Jhelum">Jhelum</option><option value="Bhimber">Bhimber</option>'
 	$("#city").html(html);	
 }
 else if(x=="IN")

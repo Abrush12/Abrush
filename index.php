@@ -196,7 +196,7 @@ code span {
               <div class="logn_ipt" style="margin:-2px 126px 30px ">
                   <h3 style="color:#000;text-align: center;">Welcome</h3>
               <div class="user_lg" style="margin-top:10px">
-                    <span><img src="img/country.png"></span>
+                    <span><img src="img/countries.png"></span>
                      <select id="company" style="width: 100%;  border: none; outline: none;" onchange="forFocusCon()">
                       <option value="0">Select Country</option>
                       <option value="PK">Pakistan</option>
@@ -312,7 +312,7 @@ function forFocusCon() {
 var html="";
 if(x=="PK")
 {
-	html='<option value="0">Select Branch</option><option value="Mirpur">Mirpur</option><option value="Islamghar">Islamghar</option><option value="Azad Kashmir">Azad Kashmir</option><option value="Jhelum">Jhelum</option><option value="Bhimber">Bhimber</option>'
+	html='<option value="0">Select Branch</option><option value="Islamghar">Islamghar</option><option value="Mirpur Azad Kashmir">Mirpur Azad Kashmir</option><option value="Jhelum">Jhelum</option><option value="Bhimber">Bhimber</option>'
 	$("#city").html(html);	
 }
 else if(x=="IN")
