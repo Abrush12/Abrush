@@ -248,13 +248,15 @@ session_start();
       <thead>
               <tr>
                <th><span>Picture</span></th>
-			   <th ><span>Username</span></th> 
-              <th style="width:250px"><span style="padding:0px !important"><span>Name</span><input onkeyup="firstCapitalAlways(event)"  id='namec' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
-              <th style="width:250px"><span style="padding:0px !important"><span>Phone</span><input onkeyup="firstCapitalAlways(event)"  id='phonec' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right;margin-left: 9px;" class="sxdc"></span></th>
+			   <th style="width:200px"><span style="padding:0px !important"><span>User Name</span><input onkeyup="firstCapitalAlways(event)"  id='unamec' type="text" style="display:none;width: 180px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
+              <th style="width:200px"><span style="padding:0px !important"><span>Name</span><input onkeyup="firstCapitalAlways(event)"  id='namec' type="text" style="display:none;width: 180px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
+              <th style="width:200px"><span style="padding:0px !important"><span>Phone</span><input onkeyup="firstCapitalAlways(event)"  id='phonec' type="text" style="display:none;width: 180px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right;margin-left: 9px;" class="sxdc"></span></th>
                <th ><span>Date of Birth</span></th> 
-			   <th style="width:250px"><span style="padding:0px !important"><span>Branch</span><input onkeyup="firstCapitalAlways(event)"  id='branchc' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
-              <th style="width:250px"><span style="padding:0px !important"><span>Country</span><input onkeyup="firstCapitalAlways(event)"  id='countryc' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
-              
+			   <th style="width:200px"><span style="padding:0px !important"><span>Branch</span><input onkeyup="firstCapitalAlways(event)"  id='branchc' type="text" style="display:none;width: 180px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
+              <th style="width:200px"><span style="padding:0px !important"><span>Country</span><input onkeyup="firstCapitalAlways(event)"  id='countryc' type="text" style="display:none;width: 180px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
+              <th><span>Hours</span></th>
+			  <th><span>Overtime</span></th>
+			  <th><span>Salary</span></th>
 			  <th style="width:300px"></th>
               </tr>
                   </thead>
@@ -324,7 +326,7 @@ if(!$(".sxdc").parent().find("input").is(":focus"))
          $(data.data).each(function(x,y){
          
  
-          _clone +='<tr  class="rowax rowaxcontroller" data-phone="'+y.phone+'" data-name="'+y.fullname+'" data-branch="'+y.officeadderss+'" data-country="'+getCountry(y.countrycode)+'"> ';
+          _clone +='<tr  class="rowax rowaxcontroller" data-phone="'+y.phone+'" data-uname="'+y.username+'" data-name="'+y.fullname+'" data-branch="'+y.officeadderss+'" data-country="'+getCountry(y.countrycode)+'"> ';
           if(y.image!=""){
           _clone+="<td><img style='margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px' src='http://18.168.83.39/files/"+y.image+"'></td>";
         }
@@ -337,6 +339,9 @@ if(!$(".sxdc").parent().find("input").is(":focus"))
           _clone+='<td><b style="font-size:15px;">'+dateFormat(y.dateofbirth)+'</td>';
         _clone+='<td><b style="font-size:15px;">'+y.officeadderss+'</td>';
 		_clone+='<td><b style="font-size:15px;">'+getCountry(y.countrycode)+'</td>';
+		_clone+='<td><b style="font-size:15px;">&nbsp;</td>';
+		_clone+='<td><b style="font-size:15px;">&nbsp;</td>';
+		_clone+='<td><b style="font-size:15px;">&nbsp;</td>';
         
 		if(loginUserId == y.id)
 		{
@@ -521,6 +526,21 @@ function dateFormat(date)
             })
           }
         });
+		$("#unamec").keyup(function(){
+          var a=$.trim($(this).val()).toLowerCase();
+          $(".rowaxcontroller").hide();
+          if(a.length==0){
+            $(".rowaxcontroller").show();
+          }
+          else{
+            $(".rowaxcontroller").each(function(){
+              if($(this).attr("data-uname").toLowerCase().startsWith(a)){
+                $(this).show();
+              }
+            })
+          }
+        });
+		
 		 $("#branchc").keyup(function(){
           var a=$.trim($(this).val()).toLowerCase();
           $(".rowaxcontroller").hide();
