@@ -188,7 +188,7 @@ code span {
             <div class="emara_logo">
                 <img src="img/nametext.png">
               </div> 
-            <div class="login_details_bg" style="border-radius: 100px;padding: 20px;height:650px;background-size:800px;background-image:none;background-color: #039697;">
+            <div class="login_details_bg" style="border-radius: 100px;padding: 20px;background-size:800px;background-image:none;background-color: #039697;">
               
               <div class="upr_details_logo">
                 <img src="img/Artboard-11.png" style="margin-bottom: 2px;height:200px">
@@ -197,13 +197,19 @@ code span {
                   <h3 style="color:#000;text-align: center;">Welcome</h3>
               <div class="user_lg" style="margin-top:10px">
                     <span><img src="img/Artboard-14.png"></span>
-                     <select id="company" style="width: 100%;  border: none; outline: none;">
+                     <select id="company" style="width: 100%;  border: none; outline: none;" onchange="forFocusCon()">
                       <option value="0">Select Country</option>
                       <option value="PK">Pakistan</option>
                       <option value="IN">India </option>
 					 <option value="DU">Dubai </option>
 					 <option value="UK">United Kindom	 </option>
 					 <option value="TU">Turkey </option>
+                     </select>
+                  </div> 
+				   <div class="user_lg" style="margin-top:10px">
+                    <span><img src="img/Artboard-14.png"></span>
+                     <select id="city" style="width: 100%;  border: none; outline: none;">
+                      <option value="0">Select City</option>
                      </select>
                   </div> 
                   <div class="user_lg" style="margin-top:10px">
@@ -256,13 +262,18 @@ code span {
 		 alert("Select a valid Country Name");
 		 return;
 	 }
+	 if($.trim($("#city").val()) == 0 || $.trim($("#city").val()) == "0")
+	 {
+		 alert("Select a valid City Name");
+		 return;
+	 } 
         $.ajax({
 
     url: 'loginapi.php',
     dataType: 'json',
     type: 'post',
     contentType: 'application/json',
-    data: JSON.stringify({"api":"adminlogin","username":username,"password":password,"adminCountryCode":$.trim($("#company").val())}),
+    data: JSON.stringify({"api":"adminlogin","username":username,"password":password,"city":$.trim($("#city").val()),"adminCountryCode":$.trim($("#company").val())}),
     processData: false,
     success: function( data, textStatus, jQxhr ){
       if(data.status=="200"){
@@ -294,7 +305,40 @@ code span {
     }
 });
       }
-	  
+	
+function forFocusCon() { 
+  var x = document.getElementById("company").value;
+
+var html="";
+if(x=="PK")
+{
+	html='<option value="0">Select City</option><option value="Lahore">Lahore</option><option value="Islamabad">Islamabad</option><option value="Azad Kashmir">Azad Kashmir</option><option value="Panjeri">Panjeri</option>'
+	$("#city").html(html);	
+}
+else if(x=="IN")
+{
+	html='<option value="0">Select City</option><option value="Chandigarh">Chandigarh</option><option value="Mohali">Mohali</option><option value="Delhi">Delhi</option><option value="Noida">Noida</option>'
+	$("#city").html(html);
+}
+else if(x=="DU")
+{
+	html='<option value="0">Select City</option><option value="Dubai">Dubai</option><option value="Abu Dhabi">Abu Dhabi</option><option value="Sharjah">Sharjah</option>'
+	$("#city").html(html);
+}else if(x=="UK")
+{
+	html='<option value="0">Select City</option><option value="London">London</option><option value="Birmingham">Birmingham</option><option value="Derby">Derby</option>'
+	$("#city").html(html);
+}else if(x=="TU")
+{
+	html='<option value="0">Select City</option><option value="Istanbul">Istanbul</option><option value="Ankara">Ankara</option><option value="Bursa">Bursa</option>'
+	$("#city").html(html);
+}
+else 
+{
+	html='<option value="0">Select City</option>'
+	$("#city").html(html);
+}
+}	
 window.logout=function(username){
      
         $.ajax({
@@ -339,6 +383,13 @@ window.logout=function(username){
 	  }
     $(function(){
       $("#company").keypress(function(e){
+         
+      }).focus().change(function(){
+        if($(this).val()!="0"){
+          $("#city").focus();
+        }
+      });
+	  $("#city").keypress(function(e){
          
       }).focus().change(function(){
         if($(this).val()!="0"){

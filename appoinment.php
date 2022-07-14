@@ -1001,11 +1001,11 @@ if(isset($_GET['status'])){
       <thead>
                     <tr>
            <!--           <th><span>Picture</span></th>-->
-              <th style="width:350px;"><span style="padding:0px !important;margin-left:20px;"><span>Name</span><input onkeyup="firstCapitalAlways(event)"  id='kkkcustomer' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px;
+              <th style="width:250px;"><span style="padding:0px !important;margin-left:20px;"><span>Name</span><input onkeyup="firstCapitalAlways(event)"  id='kkkcustomer' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px;
     margin-top: 7px;
     float: right;
     margin-left: 9px;" class="sxdc"></span></th>
-              <th style="width:350px"><span style="padding:0px !important"><span>Phone</span><input onkeyup="firstCapitalAlways(event)"  id='kkkcustomerphone' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px;
+              <th style="width:250px"><span style="padding:0px !important"><span>Phone</span><input onkeyup="firstCapitalAlways(event)"  id='kkkcustomerphone' type="text" style="display:none;width: 200px;" /> <img src="searchp.png" style="width: 16px;
     margin-top: 7px;
     float: right;
     margin-left: 9px;" class="sxdc"></span></th>
@@ -1014,9 +1014,21 @@ if(isset($_GET['status'])){
                  <option value="1">Highest</option>
                  <option value="2">Lowest</option>
                </select></span></th> 
-			     <th ><span>Cancelled</span></th> 
-				   <th ><span>No Fare</span></th> 
-				     <th ><span>Runner</span></th> 
+			     <th ><span>Cancelled<select style="margin-left:10px" id="custjobcancel">
+                 <option value="0">None</option>
+                 <option value="1">Highest</option>
+                 <option value="2">Lowest</option>
+               </select></span></th> 
+				   <th ><span>No Fare<select style="margin-left:10px" id="custjobnofare">
+                 <option value="0">None</option>
+                 <option value="1">Highest</option>
+                 <option value="2">Lowest</option>
+               </select></span></th> 
+				     <th ><span>Runner<select style="margin-left:10px" id="custjobrunner">
+                 <option value="0">None</option>
+                 <option value="1">Highest</option>
+                 <option value="2">Lowest</option>
+               </select></span></th> 
               <th ><span>Last Used</span></th> 
               <th ><span>Spent<select style="margin-left:10px" id="custspent">
                  <option value="0">None</option>
@@ -1025,6 +1037,7 @@ if(isset($_GET['status'])){
                </select></span></th> 
              <!-- <th ><span>Affiliate</span></th> 
               <th><span>Type</span></th> -->
+			  <th><span>&nbsp;</span></th>
                     </tr>
                   </thead>
                   <tbody id="tbdcustomers">
@@ -1120,6 +1133,196 @@ function sort_used()
   {
 	   var fv = parseInt($('td:nth-child(3)', b).text());
 	  var sv = parseInt($('td:nth-child(3)', a).text());
+       if(fv==sv)
+	   {
+		   return 0;
+	   }
+	   else if(fv>sv)
+	   {
+		   return 1;
+	   }
+	   else if(fv<sv)
+	   {
+		   return -1;
+	   }
+  }
+  else 
+  {
+	  var fv = parseInt($('td:first', b).attr("data-id"));
+	  var sv = parseInt($('td:first', a).attr("data-id"));
+       if(fv==sv)
+	   {
+		   return 0;
+	   }
+	   else if(fv>sv)
+	   {
+		   return 1;
+	   }
+	   else if(fv<sv)
+	   {
+		   return -1;
+	   }
+  
+  }
+		
+ }).appendTo(tbody);
+	
+}
+
+function sort_cancel()
+{
+ //var table=$('#mytable');
+ var tbody =$('#tbdcustomers');
+
+ tbody.find('tr').sort(function(a, b) 
+ {
+  if($('#custjobcancel').val()=='2') 
+  {
+	  var fv = parseInt($('td:nth-child(4)', a).text());
+	  var sv = parseInt($('td:nth-child(4)', b).text());
+       if(fv==sv)
+	   {
+		   return 0;
+	   }
+	   else if(fv>sv)
+	   {
+		   return 1;
+	   }
+	   else if(fv<sv)
+	   {
+		   return -1;
+	   }
+  }
+  else if($('#custjobcancel').val()=='1') 
+  {
+	   var fv = parseInt($('td:nth-child(4)', b).text());
+	  var sv = parseInt($('td:nth-child(4)', a).text());
+       if(fv==sv)
+	   {
+		   return 0;
+	   }
+	   else if(fv>sv)
+	   {
+		   return 1;
+	   }
+	   else if(fv<sv)
+	   {
+		   return -1;
+	   }
+  }
+  else 
+  {
+	  var fv = parseInt($('td:first', b).attr("data-id"));
+	  var sv = parseInt($('td:first', a).attr("data-id"));
+       if(fv==sv)
+	   {
+		   return 0;
+	   }
+	   else if(fv>sv)
+	   {
+		   return 1;
+	   }
+	   else if(fv<sv)
+	   {
+		   return -1;
+	   }
+  
+  }
+		
+ }).appendTo(tbody);
+	
+}
+function sort_nofare()
+{
+ //var table=$('#mytable');
+ var tbody =$('#tbdcustomers');
+
+ tbody.find('tr').sort(function(a, b) 
+ {
+  if($('#custjobnofare').val()=='2') 
+  {
+	  var fv = parseInt($('td:nth-child(5)', a).text());
+	  var sv = parseInt($('td:nth-child(5)', b).text());
+       if(fv==sv)
+	   {
+		   return 0;
+	   }
+	   else if(fv>sv)
+	   {
+		   return 1;
+	   }
+	   else if(fv<sv)
+	   {
+		   return -1;
+	   }
+  }
+  else if($('#custjobnofare').val()=='1') 
+  {
+	   var fv = parseInt($('td:nth-child(5)', b).text());
+	  var sv = parseInt($('td:nth-child(5)', a).text());
+       if(fv==sv)
+	   {
+		   return 0;
+	   }
+	   else if(fv>sv)
+	   {
+		   return 1;
+	   }
+	   else if(fv<sv)
+	   {
+		   return -1;
+	   }
+  }
+  else 
+  {
+	  var fv = parseInt($('td:first', b).attr("data-id"));
+	  var sv = parseInt($('td:first', a).attr("data-id"));
+       if(fv==sv)
+	   {
+		   return 0;
+	   }
+	   else if(fv>sv)
+	   {
+		   return 1;
+	   }
+	   else if(fv<sv)
+	   {
+		   return -1;
+	   }
+  
+  }
+		
+ }).appendTo(tbody);
+	
+}
+function sort_runner()
+{
+ //var table=$('#mytable');
+ var tbody =$('#tbdcustomers');
+
+ tbody.find('tr').sort(function(a, b) 
+ {
+  if($('#custjobrunner').val()=='2') 
+  {
+	  var fv = parseInt($('td:nth-child(6)', a).text());
+	  var sv = parseInt($('td:nth-child(6)', b).text());
+       if(fv==sv)
+	   {
+		   return 0;
+	   }
+	   else if(fv>sv)
+	   {
+		   return 1;
+	   }
+	   else if(fv<sv)
+	   {
+		   return -1;
+	   }
+  }
+  else if($('#custjobrunner').val()=='1') 
+  {
+	   var fv = parseInt($('td:nth-child(6)', b).text());
+	  var sv = parseInt($('td:nth-child(6)', a).text());
        if(fv==sv)
 	   {
 		   return 0;
@@ -1256,6 +1459,7 @@ window.llcustomer=function(xnj){
 		   _clone+='<td><b style="font-size:15px;">'+y.runner+'</td>';
         _clone+='<td><b style="font-size:15px;">'+y.lastused+'</td>';
 		_clone+='<td data-spent='+y.spent+'><b style="font-size:15px;">Rs '+y.spent+'</td>';
+		_clone+='<td><a  href="javascript:void(0)" class="btn-grad _mxicon">Block</a></td>';
      /*   _clone+='<td><b style="font-size:15px;margin-left:15px"></td>';
          _clone+='<td style="font-size:15px"><b>';
          if(y.isapp=="1") _clone+="App";
@@ -2059,6 +2263,15 @@ if(y.normal=="1")
         });
 		$("#custjobused").change(function(){
 		         sort_used();
+        });
+		$("#custjobcancel").change(function(){
+		         sort_cancel();
+        });
+		$("#custjobnofare").change(function(){
+		         sort_nofare();
+        });
+		$("#custjobrunner").change(function(){
+		         sort_runner();
         });
 		$("#custspent").change(function(){
 		         sort_spent();
