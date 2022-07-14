@@ -178,7 +178,7 @@ code span {
    <label for="city" style="color: #fff !important; ">Branch</label>      
       
              <select id="city" style="width: 100%;  border: none; outline: none;padding:0.175rem 0.75rem;padding-left:8px;border-radius:0.25rem;" onchange="forFocusCity()">
-                      <option value="0">Select City</option>
+                      <option value="0">Select Branch</option>
                       
                      </select>
  
@@ -469,33 +469,33 @@ function forFocusCon() {
 var html="";
 if(x=="PK")
 {
-	html='<option value="0">Select City</option><option value="Lahore">Lahore</option><option value="Islamabad">Islamabad</option><option value="Azad Kashmir">Azad Kashmir</option><option value="Panjeri">Panjeri</option>'
+	html='<option value="0">Select Branch</option><option value="Mirpur">Mirpur</option><option value="Islamghar">Islamghar</option><option value="Azad Kashmir">Azad Kashmir</option><option value="Jhelum">Jhelum</option><option value="Bhimber">Bhimber</option>'
 	$("#city").html(html);	
 }
 else if(x=="IN")
 {
-	html='<option value="0">Select City</option><option value="Chandigarh">Chandigarh</option><option value="Mohali">Mohali</option><option value="Delhi">Delhi</option><option value="Noida">Noida</option>'
+	html='<option value="0">Select Branch</option><option value="Chandigarh">Chandigarh</option><option value="Mohali">Mohali</option><option value="Delhi">Delhi</option><option value="Noida">Noida</option>'
 	$("#city").html(html);
 }
 else if(x=="DU")
 {
-	html='<option value="0">Select City</option><option value="Dubai">Dubai</option><option value="Abu Dhabi">Abu Dhabi</option><option value="Sharjah">Sharjah</option>'
+	html='<option value="0">Select Branch</option><option value="Dubai">Dubai</option><option value="Abu Dhabi">Abu Dhabi</option><option value="Sharjah">Sharjah</option>'
 	$("#city").html(html);
 }else if(x=="UK")
 {
-	html='<option value="0">Select City</option><option value="London">London</option><option value="Birmingham">Birmingham</option><option value="Derby">Derby</option>'
+	html='<option value="0">Select Branch</option><option value="London">London</option><option value="Birmingham">Birmingham</option><option value="Derby">Derby</option>'
 	$("#city").html(html);
 }else if(x=="TU")
 {
-	html='<option value="0">Select City</option><option value="Istanbul">Istanbul</option><option value="Ankara">Ankara</option><option value="Bursa">Bursa</option>'
+	html='<option value="0">Select Branch</option><option value="Istanbul">Istanbul</option><option value="Ankara">Ankara</option><option value="Bursa">Bursa</option>'
 	$("#city").html(html);
 }
 else 
 {
-	html='<option value="0">Select City</option>'
+	html='<option value="0">Select Branch</option>'
 	$("#city").html(html);
 }
-}
+}	
 
 function forFocusCity() { 
   var x = document.getElementById("city").value; 
