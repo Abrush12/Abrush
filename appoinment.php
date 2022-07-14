@@ -312,6 +312,10 @@ if(isset($_GET['status'])){
     margin-top: 3px;
     margin-right: 7px;}
     .sxdc{cursor: pointer;}
+#jobsearch:active {
+  background-color: blue;
+}
+
     </style>
 
 
@@ -1005,12 +1009,20 @@ if(isset($_GET['status'])){
     margin-top: 7px;
     float: right;
     margin-left: 9px;" class="sxdc"></span></th>
-               <th ><span>Used</span></th> 
+               <th ><span>Used<select style="margin-left:10px" id="custjobused">
+                 <option value="0">None</option>
+                 <option value="1">Highest</option>
+                 <option value="2">Lowest</option>
+               </select></span></th> 
 			     <th ><span>Cancelled</span></th> 
 				   <th ><span>No Fare</span></th> 
 				     <th ><span>Runner</span></th> 
               <th ><span>Last Used</span></th> 
-              <th ><span>Spent</span></th> 
+              <th ><span>Spent<select style="margin-left:10px" id="custspent">
+                 <option value="0">None</option>
+                 <option value="1">Highest</option>
+                 <option value="2">Lowest</option>
+               </select></span></th> 
              <!-- <th ><span>Affiliate</span></th> 
               <th><span>Type</span></th> -->
                     </tr>
@@ -1080,7 +1092,133 @@ window.loaddrivercredit=function(){
     });
 }
 
+function sort_used()
+{
+ //var table=$('#mytable');
+ var tbody =$('#tbdcustomers');
 
+ tbody.find('tr').sort(function(a, b) 
+ {
+  if($('#custjobused').val()=='2') 
+  {
+	  var fv = parseInt($('td:nth-child(3)', a).text());
+	  var sv = parseInt($('td:nth-child(3)', b).text());
+       if(fv==sv)
+	   {
+		   return 0;
+	   }
+	   else if(fv>sv)
+	   {
+		   return 1;
+	   }
+	   else if(fv<sv)
+	   {
+		   return -1;
+	   }
+  }
+  else if($('#custjobused').val()=='1') 
+  {
+	   var fv = parseInt($('td:nth-child(3)', b).text());
+	  var sv = parseInt($('td:nth-child(3)', a).text());
+       if(fv==sv)
+	   {
+		   return 0;
+	   }
+	   else if(fv>sv)
+	   {
+		   return 1;
+	   }
+	   else if(fv<sv)
+	   {
+		   return -1;
+	   }
+  }
+  else 
+  {
+	  var fv = parseInt($('td:first', b).attr("data-id"));
+	  var sv = parseInt($('td:first', a).attr("data-id"));
+       if(fv==sv)
+	   {
+		   return 0;
+	   }
+	   else if(fv>sv)
+	   {
+		   return 1;
+	   }
+	   else if(fv<sv)
+	   {
+		   return -1;
+	   }
+  
+  }
+		
+ }).appendTo(tbody);
+	
+}
+
+function sort_spent()
+{
+ //var table=$('#mytable');
+ var tbody =$('#tbdcustomers');
+
+ tbody.find('tr').sort(function(a, b) 
+ {
+  if($('#custspent').val()=='2') 
+  {
+	  var fv = parseInt($('td:nth-child(8)', a).attr("data-spent"));
+	  var sv = parseInt($('td:nth-child(8)', b).attr("data-spent"));
+       if(fv==sv)
+	   {
+		   return 0;
+	   }
+	   else if(fv>sv)
+	   {
+		   return 1;
+	   }
+	   else if(fv<sv)
+	   {
+		   return -1;
+	   }
+  }
+  else if($('#custspent').val()=='1') 
+  {
+	   var fv = parseInt($('td:nth-child(8)', b).attr("data-spent"));
+	  var sv = parseInt($('td:nth-child(8)', a).attr("data-spent"));
+       if(fv==sv)
+	   {
+		   return 0;
+	   }
+	   else if(fv>sv)
+	   {
+		   return 1;
+	   }
+	   else if(fv<sv)
+	   {
+		   return -1;
+	   }
+  }
+  else 
+  {
+	  var fv = parseInt($('td:first', b).attr("data-id"));
+	  var sv = parseInt($('td:first', a).attr("data-id"));
+       if(fv==sv)
+	   {
+		   return 0;
+	   }
+	   else if(fv>sv)
+	   {
+		   return 1;
+	   }
+	   else if(fv<sv)
+	   {
+		   return -1;
+	   }
+  
+  }
+		
+ }).appendTo(tbody);
+	
+}
 
 
 window.llcustomer=function(xnj){ 
@@ -1109,7 +1247,7 @@ window.llcustomer=function(xnj){
         else{
            _clone+="<td><img style='margin-left:20px;height:30px;width:30px;margin-top:0px;border-radius:50px' src='img/Artboard-10.png'></td>";
         }*/
-          _clone+='<td><b style="font-size:15px;margin-left:20px">'+y.name+'</td>';
+          _clone+='<td data-id='+y.id+'><b style="font-size:15px;margin-left:20px">'+y.name+'</td>';
           _clone+='<td style="font-size:15px"><b>'+crypMobile(y.mobile)+'</b>';
           _clone+='<i style="font-size: 15px;margin-left: 11px;" class="fa fa-phone"><i style="font-size: 17px;margin-left: 10px;" class="fa fa-envelope"></i></td>';
         _clone+='<td><b style="font-size:15px;">'+y.used+'</td>';
@@ -1117,21 +1255,19 @@ window.llcustomer=function(xnj){
 		  _clone+='<td><b style="font-size:15px;">'+y.nofare+'</td>';
 		   _clone+='<td><b style="font-size:15px;">'+y.runner+'</td>';
         _clone+='<td><b style="font-size:15px;">'+y.lastused+'</td>';
-		
-        _clone+='<td><b style="font-size:15px;">Rs '+y.spent+'</td>';
+		_clone+='<td data-spent='+y.spent+'><b style="font-size:15px;">Rs '+y.spent+'</td>';
      /*   _clone+='<td><b style="font-size:15px;margin-left:15px"></td>';
          _clone+='<td style="font-size:15px"><b>';
          if(y.isapp=="1") _clone+="App";
          else _clone+="Call";
          _clone+='</b></td>';*/
              
-            _clone+='</tr></tr> </tr>';
+            _clone+='</tr>';
  }
          // tbd.append(_clone);
 		  
          });
-  
-        if(window.oldcustomer==-1){
+          if(window.oldcustomer==-1){
 			window.oldcustomer=_clone;
 			tbd.html(_clone);
 			
@@ -1921,6 +2057,13 @@ if(y.normal=="1")
 		$("#mkearning,#datetimex").change(function(){
 		          nj();
         });
+		$("#custjobused").change(function(){
+		         sort_used();
+        });
+		$("#custspent").change(function(){
+		         sort_spent();
+        });
+		
            $("input[name='jobbyprice'],#jobvehicletype,#highestjobprice").change(function(){
 
           loadjobs();
