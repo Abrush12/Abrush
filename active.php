@@ -1815,7 +1815,8 @@ if(true){
                
                 <div style="color:#fff;width:115px">Allocate driver</div>
                 <div class="col-sm-7">
-                <div id="allocateddriverlist"></div><input autocomplete="off" id="allocatedriver" class="_reddc" onkeyup="searchcallsign(this.value,event)" style="width:140px;padding-left: 2px;" type="text"><div class="ispermanent" style="display:none"><input style="width:9%;float:left;" type="checkbox" id="ispermanent" style="display:none">&nbsp;<span style="float:left;margin-left: 5px;"  >Permanent</span></div><div class="clearfix"></div>
+                <div id="allocateddriverlist"></div><input autocomplete="off" id="allocatedriver" class="_reddc" onkeyup="searchcallsign(this.value,event)" style="width:140px;padding-left: 2px;" type="text">
+				<!--<div class="ispermanent" style="display:none"><input style="width:9%;float:left;" type="checkbox" id="ispermanent" style="display:none">&nbsp;<span style="float:left;margin-left: 5px;"  >Permanent</span></div>--><div class="clearfix"></div>
                 <div class="xallocatedriver xshow " style="width:260px">
                     <div id="loading" class="boldx">Loading...</div>
                     <div id="dxlist">
@@ -2214,7 +2215,7 @@ window.lojob=function(job){
   $("#starter").show();
   $(".creditcardbox").hide();
     var driveridx=job.driverid;
-     $("#ispermanent").prop("checked",(job.ispermanent=="1"));
+   //  $("#ispermanent").prop("checked",(job.ispermanent=="1"));
 if(window._cjob.isbooking=="1"){
   $("#booking").prop("checked",true);
 }
@@ -6013,7 +6014,7 @@ $("#timerx,#timerx1").clockpicker({
        obj["droplng"]=window.droplng;
        obj["currentdatetime"]=crtdatetime;
        obj["controllerid"]=localStorage.getItem("id");
-       obj["ispermanent"]=$("#ispermanent").is(":checked")?"1":"0";
+       obj["ispermanent"]="0";//$("#ispermanent").is(":checked")?"1":"0";
        obj["isblockbooking"]=$("#isblockbooking").is(":checked")?"1":"0";
        obj["blockfromdate"]=$.trim($("#blockfromdate").val());
        obj["blocktodate"]=$.trim($("#blocktodate").val());
@@ -7396,7 +7397,7 @@ window.ccndr=function(){
                     $(window.__jobref).remove();
                      $(".creditcardbox,.driverbox").hide();
     
-     $("#ispermanent").prop("checked",false);
+    // $("#ispermanent").prop("checked",false);
  
   $("#booking").prop("checked",true);
  
