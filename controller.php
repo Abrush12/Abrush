@@ -259,11 +259,34 @@ session_start();
    <section class="inner_s_wrap">
 <div class="fluid-container">   
 <div class="row">
+    <div class=" col-md-4" style="margin-left:55px;">
+            <div class="search_labels alldm">
+                <div class="search_inpt_flx" id="cont">
+                <span class="labels_search">Select Month</span>
+                <span class="inputs_search">
+                 <select id="xmonthname"   style="width:70%"  style="width: 46%;padding:2px;font-size: 14px;">
+				 <option value="0">Select Month</option>
+				 <option value="1">January</option>
+				 <option value="2">February</option>
+				 <option value="3">March</option>
+				 <option value="4">April</option>
+				 <option value="5">May</option>
+				 <option value="6">June</option>
+				 <option value="7">July</option>
+				 <option value="8">August</option>
+				 <option value="9">September</option>
+				 <option value="10">October</option>
+				 <option value="11">November</option>
+				 <option value="12">December</option>
+				 </select>
+                </span>
+              </div>
+			   </div> </div>
   <div class="col-lg-12">
  <!--   <div class="main-box clearfix">
 	<div class=><h1 style="color:white;margin-bottom:20px;margin-left:20px;font-family: Times,serif;" aria-hidden="true">&nbsp;&nbsp;&nbsp;Controller List</h1>
 </div>-->
- <div class="table-responsive" style="margin-left:20px;">
+ <div class="table-responsive" style="margin-left:20px;margin-top:20px;">
    <center><img src="img/load.gif" id="loadingr" style="height:80px;display:none;" /></center>  
     <table class="table user-list  user-listax ">
       <thead>

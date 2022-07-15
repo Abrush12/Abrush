@@ -1933,6 +1933,7 @@ if(true){
           <div class="row" style="justify-content:center;"> <div class="drivercallmsg"></div><div class="btns_dr" style="margin-left: -20px;"  >
                     <button type="button" class="mnddrt" style="font-size: 14px;"><span>Distance : </span><b  >0 m</b></button>
                     <button type="button" style="font-size: 14px;margin-left: -10px;" class="time mnddrt"><span>Time : </span><b  >0 h</b></button>
+					<button type="button" class="mnddrt" style="font-size: 14px;margin-left: 10px;background:blue;" ><span>Update</span></button>
                   </div></div>
 </div>
 </div>
