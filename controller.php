@@ -106,7 +106,7 @@ session_start();
           }
 
 .btn-gradp{margin: 5px;height: 25px;}    
-         .btn-gradp {background-image: linear-gradient(to right, #10c978 0%, #36e99a  51%, #10c978  100%)}
+         .btn-gradp {background-image: linear-gradient(to right, #2fbc7d 0%, #079a59  51%, #2fbc7d  100%)}
          
 
           .btn-gradp:hover {
@@ -135,9 +135,9 @@ session_start();
     color: white; 
     border-radius: 2px;
     display: block;
-    border: 1px solid #10c978;
+    border: 1px solid #2fbc7d;
     font-size: 13px;
-	min-width:110px
+	min-width:80px
 }
    
  .btn-gradb{margin: 5px;height: 25px;}    
@@ -279,7 +279,7 @@ session_start();
               <th><span style="margin-left:20px">Hours</span></th>
 			  <th><span>Overtime</span></th>
 			  <th><span>Salary</span></th>
-			  <th style="width:150px"></th>
+			  <th style="width:110px"></th>
               </tr>
                   </thead>
                   <tbody id="tbd">

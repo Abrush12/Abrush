@@ -533,18 +533,18 @@ window.getprebookingAlarm=function(){
                      </div>
                   </div>
                 </div>
-              <div class="profile_user">  
+           <!--   <div class="profile_user">  
                  
                   <div class="dropdown">
                     <button class="btn btn-secondary  " style="background: transparent;  border: none;padding:4px 12px" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                        <img src="img/Artboard 17.png" style="height:32px;">
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <!--<a class="dropdown-item" href="appoinment.php">Add New Driver</a>-->
+                      <!--<a class="dropdown-item" href="appoinment.php">Add New Driver</a>
 
                      </div>
                   </div>
-                </div>
+                </div>-->
                 <div class="profile_user">  
                   <span>
                     <img id="userImage" src="" style="height:35px;width:35px;">
@@ -559,6 +559,7 @@ window.getprebookingAlarm=function(){
 						 ?>
 						 <a class="dropdown-item" href="signup.php">Sign-up</a>
 						 <a class="dropdown-item" href="controller.php">Controllers</a>
+						 <a class="dropdown-item" href="">Registration/Credit</a>
 						<?php 
 					 }
 						 ?>
