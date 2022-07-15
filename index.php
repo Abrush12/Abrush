@@ -268,7 +268,6 @@ code span {
 		 return;
 	 } 
         $.ajax({
-
     url: 'loginapi.php',
     dataType: 'json',
     type: 'post',
