@@ -21,7 +21,7 @@ session_start();
     <!-- JS files 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
      -->
-	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmti5acRN8Yau_csPjnTKmmHdb7Ntk_IY"></script>
+	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmti5acRN8Yau_csPjnTKmmHdb7Ntk_IY&callback=initMap"></script>
     
    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUnvPObS9fsbYknCPqDXFcrrWSZa-CVug "> -->
   <link rel="stylesheet" type="text/css" href="css/switch.css">
@@ -1391,7 +1391,7 @@ Do you want to remove saloon car as one time or permanently.<br>
     margin-left: -5px; width: auto;display: none;">
     <i class="fa fa-shopping-basket" style="margin-top: 6px; display: inline-block;"></i>
                         <label for="cars" class="mg_tb" style="margin:0px;padding:0px; margin-left:2px">H-Luggage</label>
-                         "
+                         
                     <span  class=" ddrrr" style=" position: absolute;
     width: 26px;background: transparent;right: 0px;"><i id="handluggage" class="_xmsg" style="font-style:normal;">0</i>  <i class="fa fa-sort-desc down_arrow"  ></i> </span>
                       
@@ -1718,7 +1718,7 @@ if(true){
             </div>
                 <button type="button" style="margin-left:10px;padding: 2px;height: 23px;margin-top: 10px;" class="confrm" id="addfixed"  >Confirm</button>
             </div>
-             <div class="ispermanent" style="position:absolute;margin-left: 0px;margin-top: 30px;display: none;"><input style="width:14px;float:left; " type="checkbox" id="ispermanentfixedprice">&nbsp;<span style="float:left;margin-left: 5px;margin-top: 3px;">Permanent</span></div>
+           <!--  <div class="ispermanent" style="position:absolute;margin-left: 0px;margin-top: 30px;display: none;"><input style="width:14px;float:left; " type="checkbox" id="ispermanentfixedprice">&nbsp;<span style="float:left;margin-left: 5px;margin-top: 3px;">Permanent</span></div>-->
               </div>
              
                 </div>
@@ -1821,9 +1821,9 @@ if(true){
                       <th>Distance</th>
                       
                      <th>Driver</th>
-                      <th>Earnings</th>
+                      <th>Price</th>
                       <th>Vehicle</th>
-                      <th>Registration</th>
+                      <th>Time</th>
                      
                       <th>Status</th>
                     </tr>
@@ -1831,18 +1831,20 @@ if(true){
                   <tbody id="driverlist">  </tbody>
                 </table>
               </div>
-                <div class="checkbox_yes amdriverbnv" style="margin-left:15px;color:white;">
+             <!--   <div class="checkbox_yes amdriverbnv" style="margin-left:15px;color:white;">
                 <label class="containerr">
                   <input type="checkbox" id="selectmultiplevehicles" >
                   <span class="checkmark"></span>
                 </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Select Multiple Vehicles
-              </div>
+              </div>-->
               <div class="row amdriverbnv" style="margin-top: 7px;margin-left: 17px;">
                
                 <div   style="color:#fff;width:115px">Allocate driver</div>
                 <div  class="col-sm-7">
-                <div id="allocateddriverlist"></div><input autocomplete="off" id="allocatedriver"  class="_reddc"   onkeyup="return searchcallsign(this.value,event)" style="width:140px;padding-left: 3px;" type="text" autocomplete="off"><div class="ispermanent" style="display: none;"><input style="width:9%;float:left;" type="checkbox" id="ispermanent">&nbsp;<span style="float:left;margin-left: 5px;"  >Permanent</span></div><div class="clearfix"></div>
+                <div id="allocateddriverlist"></div><input autocomplete="off" id="allocatedriver"  class="_reddc"   onkeyup="return searchcallsign(this.value,event)" style="width:140px;padding-left: 3px;" type="text" autocomplete="off">
+				<!--<div class="ispermanent" style="display: none;"><input style="width:9%;float:left;" type="checkbox" id="ispermanent">&nbsp;<span style="float:left;margin-left: 5px;"  >Permanent</span></div>-->
+				<div class="clearfix"></div>
                 <div class="xallocatedriver xshow " style="width:260px;">
                     <div id="loading" class="boldx">Loading...</div>
                     <div id="dxlist">
@@ -1950,11 +1952,11 @@ if(true){
                 
                   <input type="radio" name="paymenttype" class="chkcbrd chkcbvc" id="prepaid"> <span  >Pre-Paid</span>
                 </label> 
-
+<!--
                 <label class="col-sm-2 ccpaymenttype _depositx" >
                 
                   <input type="radio" name="paymenttype" class="chkcbrd chkcbvc" id="deposit"> <span  >Deposit</span>
-                </label> 
+                </label> -->
                  <label class="col-sm-5" style=" padding:0px 0px 0px 5px; margin-left: 5px;display:none"> 
                     <div class="flex_lugge" style=" ">
                   <span class="_dropdown"  style="width:100%;min-width: 150px;margin-top:0px">
@@ -2205,7 +2207,7 @@ window.lojob=function(job){
     }
     window.issalooncheckparmanent=job.issalooncheckparmanent;
     var driveridx=job.driverid;
-     $("#ispermanent").prop("checked",(job.ispermanent=="1")); 
+    // $("#ispermanent").prop("checked",(job.ispermanent=="1")); 
 	  $(".axdcvf,.amdriverbnv").removeClass("hdnn");
 if(window._cjob.isbooking=="1"){
   $("#booking").prop("checked",true);
@@ -2331,9 +2333,9 @@ var yyyy = today.getFullYear();
     }
     else  {
         if(job.isdeposit=="1"){
-            $("#processcreditcard").show();
-            $("#deposit").prop("checked",true);
-            $(".depositamountbox").show();
+        //    $("#processcreditcard").show();
+          //  $("#deposit").prop("checked",true);
+           // $(".depositamountbox").show();
             //$("#depositamount").val(job.prepaidamount);
         }
         else{
@@ -2555,8 +2557,9 @@ $(".driverbox").hide();
 if(ismultiplevehicles=="1"){
      
    
-   $("#allocatedriver,.ispermanent").hide();
-   $("#selectmultiplevehicles").prop("checked",true);
+  // $("#allocatedriver").hide(); 
+   //$("#allocatedriver,.ispermanent").hide();
+  // $("#selectmultiplevehicles").prop("checked",true);
   
  
 }
@@ -2568,7 +2571,7 @@ else{
             $("#allocatedriver").val(job.callsign);
          $(".driverbox,.xstarrating").show();
           }
-        $("#allocatedriver,.ispermanent").show();
+        $("#allocatedriver").show();//$("#allocatedriver,.ispermanent").show();
        
 
 }
@@ -5661,10 +5664,11 @@ $("#errormodal").modal("hide");
             }
 
             var depositamount=$.trim($("#depositamount").val());
-            if(!$("#deposit").is(":checked")){
+			depositamount="5.00";
+        /*    if(!$("#deposit").is(":checked")){
                 depositamount="5.00";
             }
-            else if(depositamount.length==0){
+            else */if(depositamount.length==0){
                 $(".creditcarderror").html("Enter Deposit Amount");
                 return;
             }
@@ -5969,7 +5973,7 @@ $(document).mouseup(function(e)
         $(".creditcardbox").show();
       }
      });
-         $("#deposit").change(function(){
+   /*      $("#deposit").change(function(){
              
               if(window.owedcounter==2){
                 $("#prepaid").prop("checked",true);
@@ -5991,7 +5995,7 @@ $(document).mouseup(function(e)
          $(".depositamountbox").show();
         $(".creditcardbox").show();
       }
-     });
+     });*/
        $('#audiomodal').on('hidden.bs.modal',function (){
            $("#audiotable .adrow").remove();
            });
@@ -6158,7 +6162,7 @@ if(e.keyCode=='13'){
           $(".fixededitbox").toggle();
         });
        
-        $("#selectmultiplevehicles").change(function(){
+   /*     $("#selectmultiplevehicles").change(function(){
             
                             window.ismultipledriver=window.ismultiplevehicles=($(this).is(":checked"));
 
@@ -6166,7 +6170,7 @@ if(e.keyCode=='13'){
                 
             getDrivers();
         });
-        
+        */
         $("#timerx").change(function(){
             getDrivers();
         })
@@ -6496,7 +6500,7 @@ $("#timerx,#timerx1").clockpicker({
        obj["currentdatetime"]=crtdatetime;
 	 
        obj["controllerid"]=localStorage.getItem("id");
-       obj["ispermanent"]=$("#ispermanent").is(":checked")?"1":"0";
+       obj["ispermanent"]="0"//$("#ispermanent").is(":checked")?"1":"0";
        obj["isblockbooking"]=$("#isblockbooking").is(":checked")?"1":"0";
        obj["blockfromdate"]=$.trim($("#blockfromdate").val());
        obj["blocktodate"]=$.trim($("#blocktodate").val());
@@ -6555,8 +6559,8 @@ $("#timerx,#timerx1").clockpicker({
                obj["alphasecond"]=window.alphasecond;
                obj["counter"]=window.counter;
                obj["iscash"]=$("#cash").is(":checked")?"1":"0";
-               obj["isprepaid"]=$("#prepaid").is(":checked")?"1":($("#deposit").is(":checked")?"1":"0");
-               obj["isdeposit"]=$("#deposit").is(":checked")?"1":"0";
+               obj["isprepaid"]=$("#prepaid").is(":checked")?"1":"0";//($("#deposit").is(":checked")?"1":"0");
+               obj["isdeposit"]="0";//$("#deposit").is(":checked")?"1":"0";
                obj["prepaidamount"]=window.prepaidamount;
 			   if(isedit && window.editwhat!=2)
 			   {
@@ -6578,7 +6582,7 @@ $("#timerx,#timerx1").clockpicker({
 				   obj["jobprice"]= obj["fixedprice"];
 			   }
 			   
-             if($("#selectmultiplevehicles").is(":checked")){
+      /*       if($("#selectmultiplevehicles").is(":checked")){
           obj["ismultiplevehicles"]="1";
           var callsignar=[];
           $("._allpoi").each(function(){
@@ -6586,12 +6590,12 @@ $("#timerx,#timerx1").clockpicker({
           });
            obj["callsign"]=callsignar.join(",");
          }
-         else{
+         else{*/
          obj["callsign"]=$.trim($("#allocatedriver").val());
           obj["ismultiplevehicles"]="0";
 
 
-         } 
+        // } 
          $("input").removeClass("errorbx");
          
 
@@ -7249,11 +7253,13 @@ $(".animalsbox").show();
                     if($(this).html()!="Un-Select"){
                  $(".creditcardbox").hide();
                  $("#account").html($(this).html());
-                 $("#cash,#prepaid,#deposit").prop("disabled",true);
+              //   $("#cash,#prepaid,#deposit").prop("disabled",true);
+			   $("#cash,#prepaid").prop("disabled",true);
             }
             else{
                 $("#account").html("Select Account");
-                 $("#cash,#prepaid,#deposit").prop("disabled",false);
+                 //$("#cash,#prepaid,#deposit").prop("disabled",false);
+				 $("#cash,#prepaid").prop("disabled",false);
             }
             }
              else  if($(this).parent().hasClass("xmcash")){
@@ -7619,7 +7625,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
 
         window.ismultipledriver=false;
 
-        if($("#selectmultiplevehicles").is(":checked")){
+    /*    if($("#selectmultiplevehicles").is(":checked")){
             window.ismultipledriver=true;
             var dv=parseFloat(_passengers)/2;
             if(isInt(dv)){
@@ -7631,12 +7637,14 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
             var c = (a-1);
             _passengers=a+","+b+","+c;
             }
-         $("#allocatedriver,.ispermanent").hide();
+			$("#allocatedriver").hide();
+       //  $("#allocatedriver,.ispermanent").hide();
         }
-        else{
-             $("#allocatedriver,.ispermanent").show();
+        else{*/
+			 $("#allocatedriver").show();
+           //  $("#allocatedriver,.ispermanent").show();
 
-        }
+       // }
         var pickdate=$.trim($("#datepicker").val().split(",")[1]);
          var bookingtime=$.trim($("#timerx").val());
          const today = new Date();
@@ -7757,7 +7765,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
       window.getDriversByCallSign=function(callsign,ismultipledriver,_passengers){
          
      window.ismultiplevehicles=ismultipledriver;
-    if($("#selectmultiplevehicles").is(":checked")){
+ /*   if($("#selectmultiplevehicles").is(":checked")){
     
       var dv=parseFloat(_passengers)/2;
       if(isInt(dv)){
@@ -7771,10 +7779,10 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
       }
      $("#allocatedriver").hide();
     }
-    else{
+    else{*/
        $("#allocatedriver").show();
 
-    }
+  //  }
       var pickdate=$.trim($("#datepicker").val().split(",")[1]);
        var bookingtime=$.trim($("#timerx").val());
          const today = new Date();

@@ -1825,9 +1825,8 @@ if(true){
                       <th>Distance</th>
                      
                       <th>Driver</th>
-                      <th>Earnings</th>
+                      <th>Price</th>
                       <th>Vehicle</th>
-                      <th>Registration</th>
                        <th>Time</th>
                       <th>Status</th>
                     </tr>
@@ -1835,13 +1834,13 @@ if(true){
                   <tbody id="driverlist">  <tr class="sectdriver" data-counter="1"><th class="no_bg"> <input type="checkbox" name="driverlists" class="checkboxmcv"><label class="lbl"> </label></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>   </tr><tr class="sectdriver" data-counter="2"><th class="no_bg"> <input type="checkbox" name="driverlists" class="checkboxmcv"><label class="lbl"> </label></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>   </tr><tr class="sectdriver" data-counter="3"><th class="no_bg"> <input type="checkbox" name="driverlists" class="checkboxmcv"><label class="lbl"> </label></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>   </tr><tr class="sectdriver" data-counter="4"><th class="no_bg"> <input type="checkbox" name="driverlists" class="checkboxmcv"><label class="lbl"> </label></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>   </tr></tbody>
                 </table>
               </div>
-               <div class="checkbox_yes amdriverbnv" style="margin-left:15px;color:white;">
+   <!--            <div class="checkbox_yes amdriverbnv" style="margin-left:15px;color:white;">
                 <label class="containerr">
                   <input type="checkbox" id="selectmultiplevehicles" >
                   <span class="checkmark"></span>
                 </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Select Multiple Vehicles
-              </div>
+              </div>-->
               <div class="row" style="margin-top: 7px;margin-left: 17px;">
                
                 <div style="color:#fff;width:115px">Allocate driver</div>
@@ -1954,11 +1953,11 @@ if(true){
                  
                   <input type="radio" name="paymenttype" class="chkcbrd chkcbvc" id="prepaid"> <span  >Pre-Paid</span>
                 </label> 
-
+<!--
                 <label class="col-sm-2 ccpaymenttype" >
                   
                   <input type="radio" name="paymenttype" class="chkcbrd chkcbvc" id="deposit"> <span  >Deposit</span>
-                </label> 
+                </label> -->
                  <label class="col-sm-5" style=" padding:0px 0px 0px 5px; margin-left: 5px;display:none"> 
                    <div class="flex_lugge" style=" ">
                   <span class="_dropdown"  style="width:100%;min-width: 150px;margin-top:0px">
@@ -2565,8 +2564,8 @@ $(".driverbox").hide();
 if(ismultiplevehicles=="1"){
      
    
-   $("#allocatedriver,.ispermanent").hide();
-   $("#selectmultiplevehicles").prop("checked",true);
+  // $("#allocatedriver,.ispermanent").hide();
+  // $("#selectmultiplevehicles").prop("checked",true);
   
  
 }
@@ -5148,10 +5147,11 @@ $("#errormodal").modal("hide");
             var cardcvv=$.trim($("#cardcvv").val());
             var mobile=$.trim($("#mobile").attr("data-mobile"));
             var depositamount=$.trim($("#depositamount").val());
-            if(!$("#deposit").is(":checked")){
+			depositamount="5.00";
+         /**   if(!$("#deposit").is(":checked")){
                 depositamount="5.00";
             }
-            else if(depositamount.length==0){
+            else */if(depositamount.length==0){
                 $(".creditcarderror").html("Enter Deposit Amount");
                 return;
             }
@@ -5498,7 +5498,7 @@ $(document).mouseup(function(e)
         $(".creditcardbox").show();
       }
      });
-         $("#deposit").change(function(){
+       /*  $("#deposit").change(function(){
             if(window._cjob==null){
           alert("Please Select Job");
           return;
@@ -5508,7 +5508,7 @@ $(document).mouseup(function(e)
          $(".depositamountbox").show();
         $(".creditcardbox").show();
       }
-     });
+     });*/
        $('#audiomodal').on('hidden.bs.modal',function (){
            $("#audiotable .adrow").remove();
            });
@@ -5659,14 +5659,15 @@ window.opentimeclockpicker=function(ref,e){
           $(".fixededitbox").toggle();
         });
        
-        $("#selectmultiplevehicles").change(function(){
+     /*   $("#selectmultiplevehicles").change(function(){
             
                             window.ismultipledriver=window.ismultiplevehicles=($(this).is(":checked"));
 
                 $("#allocateddriverlist ._allpoi").remove();
                 
             getDrivers();
-        });
+        });*/
+		
         
         $("#timerx").change(function(){
             getDrivers();
@@ -6060,10 +6061,10 @@ $("#timerx,#timerx1").clockpicker({
                obj["alphasecond"]=window.alphasecond;
                obj["counter"]=window.counter;
                obj["iscash"]=$("#cash").is(":checked")?"1":"0";
-               obj["isprepaid"]=$("#prepaid").is(":checked")?"1":($("#deposit").is(":checked")?"1":"0");
-               obj["isdeposit"]=$("#deposit").is(":checked")?"1":"0";
+               obj["isprepaid"]=$("#prepaid").is(":checked")?"1":"0";//($("#deposit").is(":checked")?"1":"0");
+               obj["isdeposit"]="0";//$("#deposit").is(":checked")?"1":"0";
                obj["prepaidamount"]=window.prepaidamount;
-             if($("#selectmultiplevehicles").is(":checked")){
+       /*      if($("#selectmultiplevehicles").is(":checked")){
           obj["ismultiplevehicles"]="1";
           var callsignar=[];
           $("._allpoi").each(function(){
@@ -6071,12 +6072,12 @@ $("#timerx,#timerx1").clockpicker({
           });
            obj["callsign"]=callsignar.join(",");
          }
-         else{
+         else{*/
          obj["callsign"]=$.trim($("#allocatedriver").val());
           obj["ismultiplevehicles"]="0";
 
 
-         } 
+     //    } 
  
              if(!isDisabled&&lowvehicle=="0"&&highvehicle=="0"&&(wheelchair=="0"||pets=="0"||pram=="0")){
            // alert("Please Select Capability");return;
@@ -6672,11 +6673,13 @@ window.__xcheck=null;
                     if($(this).html()!="Un-Select"){
                  $(".creditcardbox").hide();
                  $("#account").html($(this).html());
-                 $("#cash,#prepaid,#deposit").prop("disabled",true);
+            //     $("#cash,#prepaid,#deposit").prop("disabled",true);
+			$("#cash,#prepaid").prop("disabled",true);
             }
             else{
                 $("#account").html("Select Account");
-                 $("#cash,#prepaid,#deposit").prop("disabled",false);
+         //        $("#cash,#prepaid,#deposit").prop("disabled",false);
+		   $("#cash,#prepaid").prop("disabled",false);
             }
             }
             else  if($(this).parent().hasClass("xmcash")){
@@ -6986,7 +6989,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
     window.getDrivers=function(vf){
         _passengers=$("#passengers").html();
         window.ismultipledriver=false;
-        if($("#selectmultiplevehicles").is(":checked")){
+  /*      if($("#selectmultiplevehicles").is(":checked")){
             window.ismultipledriver=true;
             var dv=parseFloat(_passengers)/2;
             if(isInt(dv)){
@@ -7000,10 +7003,10 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
             }
          $("#allocatedriver,.ispermanent").hide();
         }
-        else{
+        else{*/
              $("#allocatedriver,.ispermanent").show();
 
-        }
+      //  }
         var pickdate=$.trim($("#datepicker").val().split(",")[1]);
          var bookingtime=$.trim($("#timerx").val());
          const today = new Date();
@@ -7115,7 +7118,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
       window.getDriversByCallSign=function(callsign,ismultipledriver,_passengers,lat,lng){
       
      window.ismultiplevehicles=ismultipledriver;
-    if($("#selectmultiplevehicles").is(":checked")){
+  /*  if($("#selectmultiplevehicles").is(":checked")){
     
       var dv=parseFloat(_passengers)/2;
       if(isInt(dv)){
@@ -7129,10 +7132,10 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
       }
      $("#allocatedriver").hide();
     }
-    else{
+    else{*/
        $("#allocatedriver").show();
 
-    }
+   // }
       var pickdate=$.trim($("#datepicker").val().split(",")[1]);
        var bookingtime=$.trim($("#timerx").val());
          const today = new Date();
