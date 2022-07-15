@@ -1264,7 +1264,7 @@ Do you want to remove saloon car as one off or permanently.
                       <div class="col-sm-6" style="padding-right: 0px;flex: 0 0 55%; max-width: 55%;">
                       <div>
                         <div class="lcoptions">
-                        <img src="img/arrow-down.png" class="drpdowncx"  />
+                        <!--   <img src="img/arrow-down.png" class="drpdowncx"  />-->
                         <div class="mapsxboxd">
                         <img src="img/maps.png" class="mapsx pickupmap" />
                     </div>
@@ -1280,7 +1280,7 @@ Do you want to remove saloon car as one off or permanently.
                       <div style="display:inline">
                            
                      <div class="lcoptions">
-                        <img src="img/arrow-down.png" class="drpdowncx"  />
+                      <!--   <img src="img/arrow-down.png" class="drpdowncx"  />-->
                         <div class="mapsxboxd">
                          <img src="img/maps.png" class="mapsx _mapsx" onclick="showviamap(this)"/>
                     </div>
@@ -1298,7 +1298,7 @@ Do you want to remove saloon car as one off or permanently.
                      <div> 
                            
                        <div class="lcoptions">
-                        <img src="img/arrow-down.png" class="drpdowncx"  />
+                       <!--   <img src="img/arrow-down.png" class="drpdowncx"  />-->
                         <div class="mapsxboxd">
                         <img src="img/maps.png" class="mapsx dropmap" />
                     </div>
