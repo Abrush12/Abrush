@@ -264,7 +264,7 @@ code span {
 	 }
 	 if($.trim($("#city").val()) == 0 || $.trim($("#city").val()) == "0")
 	 {
-		 alert("Select a valid City Name");
+		 alert("Select a valid Branch");
 		 return;
 	 } 
         $.ajax({

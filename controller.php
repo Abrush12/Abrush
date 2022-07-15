@@ -105,6 +105,15 @@ session_start();
             text-decoration: none;
           }
 
+.btn-gradp{margin: 5px;height: 25px;}    
+         .btn-gradp {background-image: linear-gradient(to right, #10c978 0%, #36e99a  51%, #10c978  100%)}
+         
+
+          .btn-gradp:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
 	.btn-grada {
     padding: 3px 10px;
     text-align: center;
@@ -115,6 +124,18 @@ session_start();
     border-radius: 2px;
     display: block;
     border: 1px solid #D31027;
+    font-size: 13px;
+	min-width:110px
+}	.btn-gradp {
+    padding: 3px 10px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white; 
+    border-radius: 2px;
+    display: block;
+    border: 1px solid #10c978;
     font-size: 13px;
 	min-width:110px
 }
@@ -247,17 +268,18 @@ session_start();
     <table class="table user-list  user-listax ">
       <thead>
               <tr>
-               <th><span>Picture</span></th>
-			   <th style="width:200px"><span style="padding:0px !important"><span>User Name</span><input onkeyup="firstCapitalAlways(event)"  id='unamec' type="text" style="display:none;width: 180px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
+               <th style="width:75px"><span>Picture</span></th>
+			   <th style="width:150px"><span style="padding:0px !important"><span>User Name</span><input onkeyup="firstCapitalAlways(event)"  id='unamec' type="text" style="display:none;width: 130px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
               <th style="width:200px"><span style="padding:0px !important"><span>Name</span><input onkeyup="firstCapitalAlways(event)"  id='namec' type="text" style="display:none;width: 180px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
-              <th style="width:200px"><span style="padding:0px !important"><span>Phone</span><input onkeyup="firstCapitalAlways(event)"  id='phonec' type="text" style="display:none;width: 180px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right;margin-left: 9px;" class="sxdc"></span></th>
-               <th ><span>Date of Birth</span></th> 
-			   <th style="width:200px"><span style="padding:0px !important"><span>Branch</span><input onkeyup="firstCapitalAlways(event)"  id='branchc' type="text" style="display:none;width: 180px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
-              <th style="width:200px"><span style="padding:0px !important"><span>Country</span><input onkeyup="firstCapitalAlways(event)"  id='countryc' type="text" style="display:none;width: 180px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
-              <th><span>Hours</span></th>
+              <th style="width:150px"><span style="padding:0px !important"><span>Phone</span><input onkeyup="firstCapitalAlways(event)"  id='phonec' type="text" style="display:none;width: 130px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right;margin-left: 9px;" class="sxdc"></span></th>
+               <th style="width:120px"><span >Date of Birth</span></th> 
+			   <th style="width:180px"><span style="padding:0px !important"><span>Branch</span><input onkeyup="firstCapitalAlways(event)"  id='branchc' type="text" style="display:none;width: 150px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
+              <th style="width:180px"><span style="padding:0px !important"><span>Country</span><input onkeyup="firstCapitalAlways(event)"  id='countryc' type="text" style="display:none;width: 150px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
+			  <th style="width:250px;border-right: 5px solid white;"></th>
+              <th><span style="margin-left:20px">Hours</span></th>
 			  <th><span>Overtime</span></th>
 			  <th><span>Salary</span></th>
-			  <th style="width:300px"></th>
+			  <th style="width:150px"></th>
               </tr>
                   </thead>
                   <tbody id="tbd">
@@ -339,22 +361,30 @@ if(!$(".sxdc").parent().find("input").is(":focus"))
           _clone+='<td><b style="font-size:15px;">'+dateFormat(y.dateofbirth)+'</td>';
         _clone+='<td><b style="font-size:15px;">'+y.officeadderss+'</td>';
 		_clone+='<td><b style="font-size:15px;">'+getCountry(y.countrycode)+'</td>';
-		_clone+='<td><b style="font-size:15px;">&nbsp;</td>';
-		_clone+='<td><b style="font-size:15px;">&nbsp;</td>';
-		_clone+='<td><b style="font-size:15px;">&nbsp;</td>';
+
         
 		if(loginUserId == y.id)
 		{
-			_clone+='<td></td>';
+			_clone+='<td style="width:270px;border-right: 5px solid white;">&nbsp;</td>';
 		}
 		else{
 		if(y.blocked == 0)
-			_clone+='<td><a  onclick="blockAlert('+y.id+');" class="btn-grad _mxicon">Block</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  onclick="deleteAlert('+y.id+');" class="btn-grada _mxicon">Delete</a></td>';
+			_clone+='<td style="width:270px;border-right: 5px solid white;"><a  onclick="blockAlert('+y.id+');" class="btn-grad _mxicon">Block</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  onclick="deleteAlert('+y.id+');" class="btn-grada _mxicon">Delete</a></td>';
 		else
-			_clone+='<td><a  onclick="unblockAlert('+y.id+');" class="btn-gradb _mxicon">Un-Block</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  onclick="deleteAlert('+y.id+');" class="btn-grada _mxicon">Delete</a></td>';
+			_clone+='<td style="width:270px;border-right: 5px solid white;"><a  onclick="unblockAlert('+y.id+');" class="btn-gradb _mxicon">Un-Block</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  onclick="deleteAlert('+y.id+');" class="btn-grada _mxicon">Delete</a></td>';
         
         }
-          _clone+='</tr>';
+		_clone+='<td><b style="font-size:15px;">&nbsp;</td>';
+		_clone+='<td><b style="font-size:15px;">&nbsp;</td>';
+		_clone+='<td><b style="font-size:15px;">&nbsp;</td>';
+		 
+		if(loginUserId == y.id)
+		{
+			_clone+='<td>&nbsp;</td>';
+		}else{
+			_clone+='<td><a  onclick="" class="btn-gradp _mxicon">Pay</a></td>';
+		}
+		_clone+='</tr>';
           
 		  
          });
