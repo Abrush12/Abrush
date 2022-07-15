@@ -201,7 +201,7 @@ session_start();
        
   </head>
 
-  <body>
+  <body onload="selMonth()">
 
       <!---header start---------->
    <?php
@@ -265,16 +265,15 @@ session_start();
                 <span class="labels_search">Select Month</span>
                 <span class="inputs_search">
                  <select id="xmonthname"   style="width:70%"  style="width: 46%;padding:2px;font-size: 14px;">
-				 <option value="0">Select Month</option>
-				 <option value="1">January</option>
-				 <option value="2">February</option>
-				 <option value="3">March</option>
-				 <option value="4">April</option>
-				 <option value="5">May</option>
-				 <option value="6">June</option>
-				 <option value="7">July</option>
-				 <option value="8">August</option>
-				 <option value="9">September</option>
+				 <option value="01">January</option>
+				 <option value="02">February</option>
+				 <option value="03">March</option>
+				 <option value="04">April</option>
+				 <option value="05">May</option>
+				 <option value="06">June</option>
+				 <option value="07">July</option>
+				 <option value="08">August</option>
+				 <option value="09">September</option>
 				 <option value="10">October</option>
 				 <option value="11">November</option>
 				 <option value="12">December</option>
@@ -327,6 +326,11 @@ session_start();
   <script>
  window._selectUid=null; 
  var loginUserId=$.trim(<?php echo $_SESSION['ID'];?>);  
+  
+ window.selMonth=function()
+ {
+	 $('#xmonthname option[value="<?php echo date("m"); ?>"]').attr("selected", "selected");
+ }	 
   
  window.firstCapitalAlways= function (event) {
     var val = $(event.target).val();
