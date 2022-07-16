@@ -7389,7 +7389,7 @@ window.ccndr=function(){
             $("#confirmcancelmodal").modal("hide");
                $("#loadingaxd").show();
            $(".btns_cnfrmcx").hide();
-                   myajax({"api":"updatejobstatus","status":"3","jobid":window.jobid},function( data, textStatus, jQxhr ){
+                   myajax({"api":"updatejobstatusweb","status":"3","jobid":window.jobid},function( data, textStatus, jQxhr ){
                                    $("#loadingaxd").hide();
                       // $("#xerrormsgs").html("Success").show();
                      //  window.location.reload();  
