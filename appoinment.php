@@ -777,11 +777,11 @@ if(isset($_GET['status'])){
                 </span>
               </div>
             </div></div>
-          <div class=" col-md-3 " id="creditinfo"><h4 id="xttlpayment" style="color:#fff;text-align: right;margin-right: 50px;margin-top: 29px;">Total Payment : <span style='color:#ffd800;'>Rs 0</span></h4>
+          <div class=" col-md-3 " id="creditinfo"><!--<h4 id="xttlpayment" style="color:#fff;text-align: right;margin-right: 50px;margin-top: 29px;">Total Payment : <span style='color:#ffd800;'>Rs 0</span></h4>
 <h4 id="xttlpaymentcash" style="font-size: 20px;color:#fff;text-align: right;margin-right: 50px;margin-top: 10px;">Cash : <span style='color:#ffd800;'>Rs 0</span></h4>
 <h4 id="xttlpaymentprepaid" style="font-size: 20px;color:#fff;text-align: right;margin-right: 50px;margin-top:10px;">Prepaid : <span style='color:#ffd800;'>Rs 0</span></h4>
 <h4 id="xttlregistration" style="font-size: 20px;color:#fff;text-align: right;margin-right: 50px;margin-top:10px;">Registration : <span style='color:#ffd800;'>Rs 0</span></h4>
-<h4 id="xttlcredit" style="font-size: 20px;color:#fff;text-align: right;margin-right: 50px;margin-top:10px;">Credit : <span style='color:#ffd800;'>Rs 0</span></h4>
+<h4 id="xttlcredit" style="font-size: 20px;color:#fff;text-align: right;margin-right: 50px;margin-top:10px;">Credit : <span style='color:#ffd800;'>Rs 0</span></h4>-->&nbsp;
              </div>
   </div>
 <div class="row">
