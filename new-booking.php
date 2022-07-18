@@ -1810,7 +1810,7 @@ if(true){
            <div class="col-xl-4" style="max-width:39.5%;flex:0 0 39.5%;padding-right: 6px;padding-left: 0px;">
             <div class="atm_card_wrapper">
 
-             <div class="" style="height: 336px;background: #ffffff3c;padding:5px 5px 8px 0px">
+             <div class="" style="height: 336px;background: #ffffff3c;padding:5px 5px 8px 0px;background-image:url('img/Artboard43_2.jpg')">
 
               <div class="table_s table_xd tabledrivers amdriverbnv">
                 <table class="table" style="margin-top:0px">

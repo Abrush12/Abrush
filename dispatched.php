@@ -1814,7 +1814,7 @@ if(true){
             <div class="atm_card_wrapper">
              <div>
              
-<div style="height: 336px;background: #ffffff3c;padding:5px 5px 8px 0px">
+<div style="height: 336px;background: #ffffff3c;padding:5px 5px 8px 0px;background-image:url('img/Artboard43_5.jpg')">
  <!--   
               <div class="table_s table_xd tabledrivers">
                 <table class="table" style="margin-top:0px">
