@@ -461,7 +461,7 @@ if(isset($_GET['status'])){
 <div class="fluid-container">
   <div class="row" style="margin-left:55px;">
     <div class=" col-md-4" >
-            <div class="search_labels alldm">
+            <div class="search_labels alldm" style="display:none">
                
               <div class="search_inpt_flx">
                 <span class="labels_search">Select Date </span>
@@ -2417,7 +2417,7 @@ if(y.normal=="1")
 	$(".alldm2").hide();
 	 $("#VehicleNS, #VehicleR").hide();
     if($(this).html()=="Drivers"){
-		$(".alldm").show();
+		$(".alldm").hide();
 		 $("#cont").show();
 		$(".alldm2").show();
        $(".hlbx").hide();
@@ -2519,11 +2519,13 @@ window.ll=function(xnj){
  window.intervalref2 = setInterval(function(){
   var regdate=$.trim($("#registrationdate").val());
   var ddate=regdate;
-  
+  var xcontrollername = window.xcontrollernamea;
   var xall=xnormal=xautorikshaw=xmotorbike="0";
 
   var kk=$("#mkkvehicletype").val();
  if(window.selectedtab == 0){
+	 regdate="<?php echo date("d-m-Y"); ?>";
+	 xcontrollername="0";
 	 xall="0";
   if(kk=="0"){
     xall="1";
@@ -2538,7 +2540,7 @@ window.ll=function(xnj){
     xmotorbike="1";
   }
  }
-  var xcontrollername = window.xcontrollernamea;// $("#xcontrollername").val();
+  // $("#xcontrollername").val();
 
   var ishighest ="-1";
   var mkkearnings=$("#mkkearnings").val();
