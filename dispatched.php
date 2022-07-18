@@ -5057,7 +5057,7 @@ $("#errormodal").modal("hide");
                  $("#confirmnofare").modal("hide");
                $("#loadingaxd").show();
            $(".btns_cnfrmcx").hide();
-           myajax({"api":"updatejobtype","type":"2","jobid":window.jobid},function( data, textStatus, jQxhr ){
+           myajax({"api":"updatejobtype","type":"0","jobid":window.jobid},function( data, textStatus, jQxhr ){
                       $("#loadingaxd").hide(); 
                       window.resetjobnm();       
            });
