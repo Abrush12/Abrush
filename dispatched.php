@@ -2003,7 +2003,7 @@ if(true){
                   </div></div>
                 </div>
                   </div>
-                <div id="OldOwedshow" class="col-md-12 blink" style="color:red;padding-left:10px;position: absolute;margin-top:25px; margin-left:20px;">
+                <div id="OldOwedshow" class="col-md-12 blink" style="color:red;padding-left:10px;position: absolute;margin-top:50px; margin-left:20px;">
 				
 				</div>
 				<div id="Owedshow" class="col-md-12" style="padding-left: 10px;position: absolute;margin-top:25px;margin-left:20px;">
