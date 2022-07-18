@@ -291,21 +291,13 @@ session_start();
               <th style="width:250px"><span style="padding:0px !important"><span>Name</span><input onkeyup="firstCapitalAlways(event)"  id='namec' type="text" style="display:none;width: 230px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
               <th style="width:250px"><span style="padding:0px !important"><span>Country</span><input onkeyup="firstCapitalAlways(event)"  id='countryc' type="text" style="display:none;width: 230px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
 			   <th style="width:250px"><span style="padding:0px !important"><span>Branch</span><input onkeyup="firstCapitalAlways(event)"  id='branchc' type="text" style="display:none;width: 230px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
-			  <th style="width:250px"><span>Credit <select style="margin-left:10px" id="dlistcr">
+			  <th style="width:250px"><span>Credit </span></th>
+			  <th style="width:250px"><span>Registration</span></th>
+			  <th style="width:250px"><span>Total<!--<select style="margin-left:10px" id="dlisttl">
                  <option value="0">Select Driver</option>
                  <option value="1">A101</option>
                  <option value="2">A102</option>
-               </select></span></th>
-			  <th style="width:250px"><span>Registration<select style="margin-left:10px" id="dlistreg">
-                 <option value="0">Select Driver</option>
-                 <option value="1">A101</option>
-                 <option value="2">A102</option>
-               </select></span></th>
-			  <th style="width:250px"><span>Total<select style="margin-left:10px" id="dlisttl">
-                 <option value="0">Select Driver</option>
-                 <option value="1">A101</option>
-                 <option value="2">A102</option>
-               </select></span></th>
+               </select>--></span></th>
 			   </tr>
                   </thead>
                   <tbody id="tbd">
