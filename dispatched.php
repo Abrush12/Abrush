@@ -1936,7 +1936,20 @@ if(true){
 					<button type="button" class="mnddrt" style="font-size: 14px;margin-left: 110px;background:black;" ><span>Update</span></button>
                   </div></div>
 </div>-->
-<div class="atm_b">
+       
+			<img src="img/load.gif" style="width: 57px;position: absolute;display: none;" id="loadingaxd">
+                <div class="btns_cnfrm btns_cnfrmcx" style="margin-left: 0px; margin-top: 100px;">
+                   <button type="button"   id="resetjob" style="display:none;width:125px">Undo</button>
+                  <button type="button" class="confrm" id="confirm" style=" display:none; font-weight: bold;width:125px">Confirm</button>
+              <button type="button" class="confrm" style="display:none;width:125px"  id="edit">Edit</button>
+               <button type="button" id="cancel_" style="margin-left:5px;display: none;padding:0px;width:125px"  >Delete Job</button>
+                <button type="button" id="free" style="display:none;width:125px;background:rgb(207, 80, 80)">Free</button>
+  <button type="button" id="runner" style="display:none;width:125px;">Tramp</button>
+                  <button type="button" class="confrm" id="nofare" style="display:none;background: #0011db;width:125px;">No Fare</button>
+                   <button type="button"  id="bandriver" style="display:none;width:125px;background:#a514bf">Ban Driver</button>
+                   <button type="button"  id="recover" class="confrm"  style="display:none;width:125px;background:#db0000">Recover</button>
+                </div>
+              <div class="atm_b" style="margin-left: 0px; margin-top: 225px;">
                 <div class="_cover"  style="height: 85px;z-index:-1"></div>
                  <div class="row axdcvf" style=" margin-left:0px;">
                 <label class="col-sm-2 ccpaymenttype dmnkcash" style="flex: 0 0 18.666667%;  max-width: 18.666667%;" >
@@ -2026,7 +2039,7 @@ if(true){
                   </label>
                   <input type="email" autocomplete="off" id="email" disabled="true">
                 </div>
-            </div>
+            </div><!--
 <img src="img/load.gif" style="width: 57px;position: absolute;display: none;" id="loadingaxd">
                 <div class="btns_cnfrm btns_cnfrmcx" style="margin-left: 0px; margin-top: 30px;">
                    <button type="button"   id="resetjob" style="display:none;width:125px">Undo</button>
@@ -2038,125 +2051,13 @@ if(true){
                   <button type="button" class="confrm" id="nofare" style="display:none;background: #0011db;width:125px;">No Fare</button>
                    <button type="button"  id="bandriver" style="display:none;width:125px;background:#a514bf">Ban Driver</button>
                    <button type="button"  id="recover" class="confrm"  style="display:none;width:125px;background:#db0000">Recover</button>
-                </div>
+                </div>-->
                 <span id="xerrormsgs"></span>
               </div>
 
             </div>
           </div>
 </div></div>
-</div>
-              
-<!--
-              <div class="atm_b">
-                <div class="_cover"  style="height: 85px;z-index:-1"></div>
-                 <div class="row axdcvf" style=" margin-left:0px;">
-                <label class="col-sm-2 ccpaymenttype dmnkcash" style="flex: 0 0 18.666667%;  max-width: 18.666667%;" >
-                  <div class="covercashcheck"></div>
-                  <input checked="" type="radio" name="paymenttype" class="chkcbrd chkcbvc" id="cash"> <span  >Cash</span><i class="fa fa-sort-desc down_arrowcash"  ></i>
-              
-                  <ul class="xdropdown xmcash" style="width:100%">
-                    <li>Cash</li>
-                    <li>Money First</li> 
-                  </ul>
-                </label>
-                
-                <label class="col-sm-2 ccpaymenttype" >
-                 
-                  <input type="radio" name="paymenttype" class="chkcbrd chkcbvc" id="prepaid"> <span  >Pre-Paid</span>
-                </label> 
-<!--
-                <label class="col-sm-2 ccpaymenttype" >
-                  
-                  <input type="radio" name="paymenttype" class="chkcbrd chkcbvc" id="deposit"> <span  >Deposit</span>
-                </label> 
-                 <label class="col-sm-5" style=" padding:0px 0px 0px 5px; margin-left: 5px;display:none"> 
-                   <div class="flex_lugge" style=" ">
-                  <span class="_dropdown"  style="width:100%;min-width: 150px;margin-top:0px">
-                     
-                       
-                    <label for="cars" id="account">Select Account</label>
-                    <span  class=" xpassengers ddrrr">   <i class="fa fa-sort-desc down_arrow"  ></i></span>
-                  </span>
-                  <ul class="xdropdown xaccount" style="width:100%">
-                    <li>Richborough Nursing Home</li>
-                    <li>Account 1</li>
-                    <li>Account 2</li>
-                    <li>Account 2</li>
-                    <li>Un-Select</li>
-                  </ul>
-                </div>
-                 </label>
-              </div>
-                <div class="row  axdcvf" style="height:42px;z-index:-1">
-				
-                  <div class="col-md-12 creditcardbox" style="display: none;margin-top:-10px;">
-                    <div style="background: #ffffff4a;padding: 7px;border-radius: 7px;">
-                        
-                        <div class="row"><div class="col-sm-12">
-
-                             <input type="text" class="cardinp depositamountbox" id="depositamount" style="width: 70px; display: none;" placeholder="Amount">
-                             <input type="text" name="ccn" class="cardinp" style="padding-right:4px" maxlength="16" id="cardnumber" placeholder="XXXX XXXX XXXX XXXX" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;">
-                               <input class="cardinp" style="width: 113px" type="text" onkeypress="return  enbname(event)" id="cardname" autocomplete="off" placeholder="Name On Card">
-                             <input class="cardinp" style="width: 65px" maxlength="5" placeholder="MM/YY" type="text" id="cardexpirydate" onkeyup="formatString(event);">
-                               <input class="cardinp" style="width: 45px" type="text" maxlength="3" autocomplete="off" placeholder="cvv" id="cardcvv" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;">
-                               <div class="btns_cnfrm " style="display: inline-block;margin-top: 0px;margin-left: 10px;">
-                        <button type="button" class="confrm" id="processcreditcard" style="font-size:13px;padding:0px;width:100px">Process</button>
-                        <span class="pre-paid creditcarderror"></span>
-                        <img src="img/load.gif" id="creditcardloading" style="width: 41px; margin-top: -25px;  position: absolute;display:none;">
-                      </div>
-                     
-                </div>
-             <div class="col-sm-3">
-                    <div class="postn_bb">
-                      
-                      
-                    </div>
-                  </div></div>
-                </div>
-                  </div>
-                <div id="OldOwedshow" class="col-md-12 blink" style="color:red;padding-left:10px;position: absolute;margin-top:25px; margin-left:20px;">
-				
-				</div>
-				<div id="Owedshow" class="col-md-12" style="padding-left: 10px;position: absolute;margin-top:25px;margin-left:20px;">
-				
-				</div>
-                </div>
-                
-              </div>
-
-              <div class="left_s_apacing" style="display:none">
-                <div class="alocat_d lst">
-                  <label class=" " style="width:110px">
-                    <input type="checkbox" class="chkcb chkcbvc _am sms"> <span class="_bm">SMS</span>
-                  </label>
-                  <input type="text" autocomplete="off" id="sms" disabled="true">
-                </div>
-                <div class="alocat_d lst">
-                  <label class=" " style="width:110px">
-                    <input type="checkbox" class="chkcb chkcbvc _am email"> <span class="_bm">Email</span>
-                  </label>
-                  <input type="email" autocomplete="off" id="email" disabled="true">
-                </div>
-            </div>
-<img src="img/load.gif" style="width: 57px;position: absolute;display: none;" id="loadingaxd">
-                <div class="btns_cnfrm btns_cnfrmcx" style="margin-left: 0px; margin-top: 30px;">
-                   <button type="button"   id="resetjob" style="display:none;width:125px">Undo</button>
-                  <button type="button" class="confrm" id="confirm" style=" display:none; font-weight: bold;width:125px">Confirm</button>
-              <button type="button" class="confrm" style="display:none;width:125px"  id="edit">Edit</button>
-               <button type="button" id="cancel_" style="margin-left:5px;display: none;padding:0px;width:125px"  >Delete Job</button>
-                <button type="button" id="free" style="display:none;width:125px;background:rgb(207, 80, 80)">Free</button>
-  <button type="button" id="runner" style="display:none;width:125px;">Tramp</button>
-                  <button type="button" class="confrm" id="nofare" style="display:none;background: #0011db;width:125px;">No Fare</button>
-                   <button type="button"  id="bandriver" style="display:none;width:125px;background:#a514bf">Ban Driver</button>
-                   <button type="button"  id="recover" class="confrm"  style="display:none;width:125px;background:#db0000">Recover</button>
-                </div>
-                <span id="xerrormsgs"></span>
-              </div>
-
-            </div>
-          </div>
-</div></div>-->
       <div class="container-fluid" style="margin-top:-25px" >
         <div class="row" >
          <div class="clearfix"></div>

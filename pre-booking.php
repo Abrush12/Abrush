@@ -1750,7 +1750,7 @@ if(true){
                       
                       <th>Driver</th>
                       <th>Price</th>
-                      <th>Vehicle</th>
+                      <th>Type</th>
                       <th>Time</th>
                      
                       <th>Status</th>
