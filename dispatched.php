@@ -1944,12 +1944,12 @@ if(true){
               <button type="button" class="confrm" style="display:none;width:125px"  id="edit">Edit</button>
                <button type="button" id="cancel_" style="margin-left:5px;display: none;padding:0px;width:125px"  >Delete Job</button>
                 <button type="button" id="free" style="display:none;width:125px;background:rgb(207, 80, 80)">Free</button>
-  <button type="button" id="runner" style="display:none;width:125px;">Tramp</button>
+				<button type="button" id="runner" style="display:none;width:125px;">Tramp</button>
                   <button type="button" class="confrm" id="nofare" style="display:none;background: #0011db;width:125px;">No Fare</button>
                    <button type="button"  id="bandriver" style="display:none;width:125px;background:#a514bf">Ban Driver</button>
                    <button type="button"  id="recover" class="confrm"  style="display:none;width:125px;background:#db0000">Recover</button>
                 </div>
-              <div class="atm_b" style="margin-left: 0px; margin-top: 225px;">
+              <div class="atm_b" style="margin-left: 0px; margin-top: 250px;">
                 <div class="_cover"  style="height: 85px;z-index:-1"></div>
                  <div class="row axdcvf" style=" margin-left:0px;">
                 <label class="col-sm-2 ccpaymenttype dmnkcash" style="flex: 0 0 18.666667%;  max-width: 18.666667%;" >
@@ -2245,6 +2245,7 @@ window.lojob=function(job){
     }
         window.issalooncheckparmanent=job.issalooncheckparmanent;
     window.isedit=false;
+	$(".atm_b").css({"margin-top": "225px"});
     $("#confirm").hide();
     $("#edit,#cancel,.audiobutton,._cover,#recover,#nofare,#runner,#bandriver,#free").show();
   $("._temprmpl").remove();

@@ -881,7 +881,7 @@ if(isset($_GET['status'])){
               <th class=" "><span>Amount</span></th> 
 			  <th class=" "><span>Registration Time</span></th> 
               <th class=" "><span>Vehicle Type</span></th>
-               <th class=" "><span>Affiliate</span></th>
+             <!--  <th class=" "><span>Affiliate</span></th>-->
               <th class=" "> </th>
             </tr>
           </thead> 
@@ -2643,7 +2643,7 @@ window.ll=function(xnj){
        _clone+='<a  href="javascript:void(0)" class="btn-grad _mxicon">Pending</a>';
       }
       else if(y.type==3){
-         _clone+='<a  href="drivers.php?id='+y.uid+'&isedit=1" class="btn-grad _mxicon btn-grada">View</a>';
+         _clone+='<a  onclick="" class="btn-grad _mxicon">Block</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="drivers.php?id='+y.uid+'&isedit=1" class="btn-grad _mxicon btn-grada">View</a>';
          //_clone+='<a  href="drivers.php?id='+y.uid+'&isview=1" class="btn-grad _mxicon ">View</a>';
       }
       else{
@@ -2757,7 +2757,7 @@ window.ll=function(xnj){
         if(y.normal=="1") _clone+="<b>Normal</b>";
            else if(y.autorikshaw=="1") _clone+="<b>Auto-Rikshaw</b>";
            else if(y.motorbike=="1") _clone+="<b>Motorbike</b>";
-        _clone+='</td><td>&nbsp;</td>';
+        _clone+='</td>';
             _clone+='<td style="width: 15%;">';
       if(y.type==2){
        _clone+='<a  href="javascript:void(0)" class="btn-grad _mxicon">Pending</a>';

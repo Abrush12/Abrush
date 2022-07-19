@@ -268,7 +268,31 @@ session_start();
               <input type="text" style="width:70%" id="registrationdate" value="<?php echo date("d-m-Y"); ?>" value="" class="hlf_f  "> 
                <img src="img/Artboard 17 copy.png" style=" width: 22px;  position: absolute; margin-left: -29px;" id="opendatepicker">
                 </span>
-              </div> </div> </div>
+              </div> 
+			   <div class="search_inpt_flx" id="cont">
+                <span class="labels_search">Country</span>
+                <span class="inputs_search">
+                 <select id="company"   style="width:70%"  style="width: 46%;padding:2px;font-size: 14px;" onchange="forFocusCon()">
+                      <option value="0">All</option>
+                      <option value="PK">Pakistan</option>
+                      <option value="IN">India</option>
+					 <option value="DU">Dubai</option>
+					 <option value="UK">United Kindom</option>
+					 <option value="TU">Turkey </option>
+                     </select>
+                </span>
+              </div>
+			   <div class="search_inpt_flx" id="cont">
+                <span class="labels_search">Branch</span>
+                <span class="inputs_search">
+                 <select id="city"   style="width:70%"  style="width: 46%;padding:2px;font-size: 14px;">
+                      <option value="0">All</option>
+                      
+                     </select>
+                </span>
+              </div>
+			  
+			  </div> </div>
 			  <div class=" col-md-4 ">&nbsp;
 			  </div>
              <div class=" col-md-3 " id="creditinfo"><h4 id="xttlpayment" style="color:#fff;text-align: right;margin-right: 50px;margin-top: 29px;">Total Payment : <span style='color:#ffd800;'>Rs 0</span></h4>
@@ -405,6 +429,41 @@ if(!$(".sxdc").parent().find("input").is(":focus"))
     });
   
     }
+
+function forFocusCon() { 
+  var x = document.getElementById("company").value;
+
+var html="";
+if(x=="PK")
+{
+	html='<option value="0">All</option><option value="Islamghar">Islamghar</option><option value="Mirpur Azad Kashmir">Mirpur Azad Kashmir</option><option value="Jhelum">Jhelum</option><option value="Bhimber">Bhimber</option>'
+	$("#city").html(html);	
+}
+else if(x=="IN")
+{
+	html='<option value="0">All</option><option value="Chandigarh">Chandigarh</option><option value="Mohali">Mohali</option><option value="Delhi">Delhi</option><option value="Noida">Noida</option>'
+	$("#city").html(html);
+}
+else if(x=="DU")
+{
+	html='<option value="0">All</option><option value="Dubai">Dubai</option><option value="Abu Dhabi">Abu Dhabi</option><option value="Sharjah">Sharjah</option>'
+	$("#city").html(html);
+}else if(x=="UK")
+{
+	html='<option value="0">All</option><option value="London">London</option><option value="Birmingham">Birmingham</option><option value="Derby">Derby</option>'
+	$("#city").html(html);
+}else if(x=="TU")
+{
+	html='<option value="0">All</option><option value="Istanbul">Istanbul</option><option value="Ankara">Ankara</option><option value="Bursa">Bursa</option>'
+	$("#city").html(html);
+}
+else 
+{
+	html='<option value="0">All</option>'
+	$("#city").html(html);
+}
+}	
+
 function blockAlert(id){
 	window._selectUid = id;
 $("#blockuser").modal("show");
