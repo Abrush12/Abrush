@@ -273,7 +273,7 @@ session_start();
                 <span class="labels_search">Country</span>
                 <span class="inputs_search">
                  <select id="company"   style="width:70%"  style="width: 46%;padding:2px;font-size: 14px;" onchange="forFocusCon()">
-                      <option value="0">All</option>
+                      <option value="All">All</option>
                       <option value="PK">Pakistan</option>
                       <option value="IN">India</option>
 					 <option value="DU">Dubai</option>
@@ -286,7 +286,7 @@ session_start();
                 <span class="labels_search">Branch</span>
                 <span class="inputs_search">
                  <select id="city"   style="width:70%"  style="width: 46%;padding:2px;font-size: 14px;">
-                      <option value="0">All</option>
+                      <option value="All">All</option>
                       
                      </select>
                 </span>
@@ -313,8 +313,8 @@ session_start();
                <th style="width:75px"><span>Picture</span></th>
 			   <th style="width:250px"><span style="padding:0px !important"><span>User Name</span><input onkeyup="firstCapitalAlways(event)"  id='unamec' type="text" style="display:none;width: 230px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
               <th style="width:250px"><span style="padding:0px !important"><span>Name</span><input onkeyup="firstCapitalAlways(event)"  id='namec' type="text" style="display:none;width: 230px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
-              <th style="width:250px"><span style="padding:0px !important"><span>Country</span><input onkeyup="firstCapitalAlways(event)"  id='countryc' type="text" style="display:none;width: 230px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
-			   <th style="width:250px"><span style="padding:0px !important"><span>Branch</span><input onkeyup="firstCapitalAlways(event)"  id='branchc' type="text" style="display:none;width: 230px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span></th>
+              <th style="width:250px"><span style="padding:0px !important"><span>Country</span><!--<input onkeyup="firstCapitalAlways(event)"  id='countryc' type="text" style="display:none;width: 230px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span>--></th>
+			   <th style="width:250px"><span style="padding:0px !important"><span>Branch</span><!--<input onkeyup="firstCapitalAlways(event)"  id='branchc' type="text" style="display:none;width: 230px;" /> <img src="searchp.png" style="width: 16px; margin-top: 7px;float: right; margin-left: 9px;" class="sxdc"></span>--></th>
 			  <th style="width:250px"><span>Credit </span></th>
 			  <th style="width:250px"><span>Registration</span></th>
 			  <th style="width:250px"><span>Total<!--<select style="margin-left:10px" id="dlisttl">
@@ -358,7 +358,7 @@ session_start();
         todayHighlight: true
     }).change(function(e){
        window.isdatechange=true;
-      
+      controllerlist();
     }); 
  window.firstCapitalAlways= function (event) {
     var val = $(event.target).val();
@@ -394,9 +394,19 @@ if(!$(".sxdc").parent().find("input").is(":focus"))
   return i;
 }
 
+$("#company").change(function(){
+		         controllerlist();
+        });
+		
+$("#city").change(function(){
+		         controllerlist();
+        });
+
  window.controllerlist=function(){
  
-    myajax( {"api":"getcontrollerlist","adminCountryCode":"All"},function( data, textStatus, jQxhr ){ 
+  var countrycode = $("#company").val();
+  var citycode = $("#city").val();
+ myajax( {"api":"getcontrollerlistcredit","adminCountryCode":countrycode,"city":citycode},function( data, textStatus, jQxhr ){ 
          $(".rowaxcustomer").remove();
          var _clone="";
          var tbd=$("#tbd"); 
@@ -436,30 +446,30 @@ function forFocusCon() {
 var html="";
 if(x=="PK")
 {
-	html='<option value="0">All</option><option value="Islamghar">Islamghar</option><option value="Mirpur Azad Kashmir">Mirpur Azad Kashmir</option><option value="Jhelum">Jhelum</option><option value="Bhimber">Bhimber</option>'
+	html='<option value="All">All</option><option value="Islamghar">Islamghar</option><option value="Mirpur Azad Kashmir">Mirpur Azad Kashmir</option><option value="Jhelum">Jhelum</option><option value="Bhimber">Bhimber</option>'
 	$("#city").html(html);	
 }
 else if(x=="IN")
 {
-	html='<option value="0">All</option><option value="Chandigarh">Chandigarh</option><option value="Mohali">Mohali</option><option value="Delhi">Delhi</option><option value="Noida">Noida</option>'
+	html='<option value="All">All</option><option value="Chandigarh">Chandigarh</option><option value="Mohali">Mohali</option><option value="Delhi">Delhi</option><option value="Noida">Noida</option>'
 	$("#city").html(html);
 }
 else if(x=="DU")
 {
-	html='<option value="0">All</option><option value="Dubai">Dubai</option><option value="Abu Dhabi">Abu Dhabi</option><option value="Sharjah">Sharjah</option>'
+	html='<option value="All">All</option><option value="Dubai">Dubai</option><option value="Abu Dhabi">Abu Dhabi</option><option value="Sharjah">Sharjah</option>'
 	$("#city").html(html);
 }else if(x=="UK")
 {
-	html='<option value="0">All</option><option value="London">London</option><option value="Birmingham">Birmingham</option><option value="Derby">Derby</option>'
+	html='<option value="All">All</option><option value="London">London</option><option value="Birmingham">Birmingham</option><option value="Derby">Derby</option>'
 	$("#city").html(html);
 }else if(x=="TU")
 {
-	html='<option value="0">All</option><option value="Istanbul">Istanbul</option><option value="Ankara">Ankara</option><option value="Bursa">Bursa</option>'
+	html='<option value="All">All</option><option value="Istanbul">Istanbul</option><option value="Ankara">Ankara</option><option value="Bursa">Bursa</option>'
 	$("#city").html(html);
 }
 else 
 {
-	html='<option value="0">All</option>'
+	html='<option value="All">All</option>'
 	$("#city").html(html);
 }
 }	
