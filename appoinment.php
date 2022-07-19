@@ -98,7 +98,29 @@ if(isset($_GET['status'])){
 
   .table td, .table th{padding:0px !important;}
 
+ .btn-gradbl{margin: 5px;height: 25px;}    
+         .btn-gradbl {background-image: linear-gradient(to right, #d4a211 0%, #e7bb39  51%, #d4a211  100%)}
+         
 
+          .btn-gradbl:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+
+	.btn-gradbl {
+    padding: 3px 10px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white; 
+    border-radius: 2px;
+    display: block;
+    border: 1px solid #d4a211;
+    font-size: 13px;
+	min-width:90px
+} 
          .btn-grad {background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%)}
          .btn-grad {
            margin: 10px;
@@ -112,6 +134,7 @@ if(isset($_GET['status'])){
     display: block;
     border: 1px solid #02AAB0;
     font-size: 13px;
+	min-width:90px
 }
       
 
@@ -398,7 +421,38 @@ if(isset($_GET['status'])){
     </div>
   </div>
 </div>
- 
+ <div class="modal" id="confirmblockdriver" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document" style="max-width: 700px; float: right; right: 100px; margin-top: 360px;">
+    <div class="modal-content">
+       
+      <div class="modal-body">
+        <h4>Are you sure you want to block the driver?</h4>
+      
+      </div>
+      <div class="modal-footer" style="justify-content:center;">
+        
+        <button type="button" class="btn btn-secondary" id="blockdriverno" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" id="blockdriveryes">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+ <div class="modal" id="confirmunblockdriver" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document" style="max-width: 700px; float: right; right: 100px; margin-top: 360px;">
+    <div class="modal-content">
+       
+      <div class="modal-body">
+        <h4>Are you sure you want to un-block the driver?</h4>
+      
+      </div>
+      <div class="modal-footer" style="justify-content:center;">
+        
+        <button type="button" class="btn btn-secondary" id="unblockdriverno" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" id="unblockdriveryes">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
  <div class="modal" id="erromodal" tabindex="-1" role="dialog">
   <div class="modal-dialog" style="max-width:600px;margin-top:140px" role="document">
     <div class="modal-content">
@@ -1105,7 +1159,42 @@ window.loaddrivercredit=function(){
         
     });
 }
+window.blockId=0;
+window.blockdriver=function(id){
+	window.blockId=id;
+	  $("#confirmblockdriver").modal("show");
+                setTimeout(function(){
+                    $("#blockdriveryes").focus();
+                },500);
+}
 
+      $("#blockdriveryes").click(function(){
+         
+           $("#confirmblockdriver").modal("hide");
+           myajax({"api":"blockdriver","flag":"1","userid":window.blockId},function( data, textStatus, jQxhr ){
+            
+           }); 
+
+         
+      }); 
+window.unblockId=0;
+window.unblockdriver=function(id){
+	window.unblockId=id;
+	  $("#confirmunblockdriver").modal("show");
+                setTimeout(function(){
+                    $("#unblockdriveryes").focus();
+                },500);
+}
+
+      $("#unblockdriveryes").click(function(){
+         
+           $("#confirmunblockdriver").modal("hide");
+           myajax({"api":"blockdriver","flag":"0","userid":window.unblockId},function( data, textStatus, jQxhr ){
+            
+           }); 
+
+         
+      }); 
 function sort_used()
 {
  //var table=$('#mytable');
@@ -2643,8 +2732,14 @@ window.ll=function(xnj){
       if(y.type==2){
        _clone+='<a  href="javascript:void(0)" class="btn-grad _mxicon">Pending</a>';
       }
-      else if(y.type==3){
-         _clone+='<a  onclick="" class="btn-grad _mxicon">Block</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="drivers.php?id='+y.uid+'&isedit=1" class="btn-grad _mxicon btn-grada">View</a>';
+      else if(y.type==3){ 
+		  if(y.isblocked==0){
+		  _clone+='<a  onclick="blockdriver('+y.uid+')" class="btn-grad _mxicon" style="cursor:pointer">Block</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="drivers.php?id='+y.uid+'&isedit=1" class="btn-grad _mxicon btn-grada">View</a>';
+		  }
+		  else
+		  {
+			   _clone+='<a  onclick="unblockdriver('+y.uid+')" class="btn-gradbl _mxicon" style="cursor:pointer">Un-Block</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="drivers.php?id='+y.uid+'&isedit=1" class="btn-grad _mxicon btn-grada">View</a>';
+		  }
          //_clone+='<a  href="drivers.php?id='+y.uid+'&isview=1" class="btn-grad _mxicon ">View</a>';
       }
       else{
