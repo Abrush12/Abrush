@@ -1145,7 +1145,7 @@ Do you want to remove saloon car as one off or permanently.
                     <div class="form-group">
                       <div class="input-group date">
                  <img src="img/Artboard 17 copy.png" id="opendatepicker">
-                        <input style="margin-top:0px;font-size: 15px;font-weight: bold;" autocomplete="off" id="datepicker" placeholder="Select Booking Date" class="hasDatepicker">
+                        <input style="margin-top:0px;font-size: 15px;font-weight: bold;" autocomplete="off" id="datepicker" placeholder="Select Booking Date" >
                       </div>
                     </div>
                   </div>
@@ -2708,7 +2708,7 @@ window.getcutomerowedamount= function(mobile,job_id){
 $("#OldOwedshow").html("&nbsp;");
 $("#OldOwedshow").hide();
 	 window.intervalref2 =  setInterval(function() {
-	myajax( {"api":"getcutomerowedamount","mobile":mobile,"jobid":job_id},function( data, textStatus, jQxhr ){ 
+	myajax( {"api":"getcutomerowedamount","mobile":mobile,"jobid":job_id,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){ 
             
                 if(data.data!=0){
 					 
