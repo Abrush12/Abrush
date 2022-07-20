@@ -7755,7 +7755,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                     html+='<td>4.5</td>';
 					if(y.normal=="1") extras="N";
      else if(y.autorikshaw=="1")  extras="A";
-     else if(y.motorcycle=="1")  extras="M";
+     else if(y.motorbike=="1")  extras="M";
 
                      html+='<td>'+extras+'</td>';
           html+='<td>'+y.registration+'</td><td></td>';
