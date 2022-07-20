@@ -7139,7 +7139,10 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                    
                     html+='<td>'+y.callsign+'</td>';
                     html+='<td>4.5</td>';
-                     html+='<td>'+y.make+'</td>';
+						if(y.normal=="1") extras="N";
+     else if(y.autorikshaw=="1")  extras="A";
+     else if(y.motorcycle=="1")  extras="M";
+			html+='<td>'+extras+'</td>';
           html+='<td>'+y.registration+'</td><td></td>';
            //html+='<td>'+secondsToHms(y.time).toLowerCase()+'</td>';
           html+='  </tr>';
@@ -7234,7 +7237,10 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                    
                     html+='<td>'+y.callsign+'</td>';
                     html+='<td>4.5</td>';
-                     html+='<td>'+y.make+'</td>';
+                    			if(y.normal=="1") extras="N";
+     else if(y.autorikshaw=="1")  extras="A";
+     else if(y.motorcycle=="1")  extras="M";
+			html+='<td>'+extras+'</td>';
           html+='<td>'+y.registration+'</td><td></td>';
           // html+='<td>'+secondsToHms(y.time).toLowerCase()+'</td>';
           html+='  </tr>';

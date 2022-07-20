@@ -769,7 +769,12 @@ window.randomIntFromInterval=function(min, max) { // min and max included
 window._xmrandomid=randomIntFromInterval(100000,999999);
     window.mklccall=function(ref,e){
           if(e.keyCode == '38'||e.keyCode == '40'||e.keyCode == '13') return true;
-       
+        var dropref=$(this).parent().find(".lcdropdown");
+		   if(e.keyCode == '8')
+		   { 
+			dropref.find("p").remove();
+		    dropref.hide();
+		   }
          
         window.amaddressref=$(ref).parent();
          var q=$.trim(ref.value);
@@ -783,7 +788,7 @@ window._xmrandomid=randomIntFromInterval(100000,999999);
     $(event.target).val(val);
     q=val;
 	 if(q.length<5) return;
-          var dropref=$(ref).parent().find(".lcdropdown");
+         
           var loadingref =  dropref.find(".allloading");
           clearTimeout(window.timeoutref);
           if(q.length!=0){
@@ -5722,11 +5727,17 @@ $("#errormodal").modal("hide");
        $("#droplocation").keyup(function(e){
         window.amaddressref=$(this).parent();
            if(e.keyCode == '38'||e.keyCode == '40'||e.keyCode == '13') return true;
+		    var dropref=$(this).parent().find(".lcdropdown");
+		   if(e.keyCode == '8')
+		   { 
+			dropref.find("p").remove();
+		    dropref.hide();
+		   }
            window.isdropvalid=false;
            window.__xsetaddr="";
           var q=$.trim($(this).val());
 		  if(q.length<5) return;
-          var dropref=$(this).parent().find(".lcdropdown");
+         
           var loadingref =  dropref.find(".allloading");
              clearTimeout(window.timeoutref);
           if(q.length!=0){
@@ -5771,11 +5782,17 @@ $("#errormodal").modal("hide");
        $("#pickuplocation").keyup(function(e){
         window.amaddressref=$(this).parent();
            if(e.keyCode == '38'||e.keyCode == '40'||e.keyCode == '13') return true;
+		    var dropref=$(this).parent().find(".lcdropdown");
+		   if(e.keyCode == '8')
+		   { 
+			dropref.find("p").remove();
+		    dropref.hide();
+		   }
            window.ispickuplcvalid=false;
             window.__xsetaddr="";
           var q=$.trim($(this).val());
 		   if(q.length<5) return;
-          var dropref=$(this).parent().find(".lcdropdown");
+          
           var loadingref =  dropref.find(".allloading");
           
             clearTimeout(window.timeoutref);
@@ -7736,7 +7753,11 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                    
                     html+='<td>'+y.callsign+'</td>';
                     html+='<td>4.5</td>';
-                     html+='<td>'+y.make+'</td>';
+					if(y.normal=="1") extras="N";
+     else if(y.autorikshaw=="1")  extras="A";
+     else if(y.motorcycle=="1")  extras="M";
+
+                     html+='<td>'+extras+'</td>';
           html+='<td>'+y.registration+'</td><td></td>';
           // html+='<td>'+secondsToHms(y.time).toLowerCase()+'</td>';
           html+='   </tr>';
@@ -7827,7 +7848,11 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                    
                     html+='<td>'+y.callsign+'</td>';
                     html+='<td>4.5</td>';
-                     html+='<td>'+y.make+'</td>';
+                    	if(y.normal=="1") extras="N";
+     else if(y.autorikshaw=="1")  extras="A";
+     else if(y.motorcycle=="1")  extras="M";
+
+                     html+='<td>'+extras+'</td>';
           html+='<td>'+y.registration+'</td><td></td>';
           // html+='<td>'+secondsToHms(y.time).toLowerCase()+'</td>';
           html+='   </tr>';
