@@ -76,6 +76,13 @@ $ovcountrycode= ip_info()["country_code"];
 body{   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important; } .xmcash li,.xaccount  li{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif, sans-serif !important;} .xmcash li,.xaccount li{font-weight: normal;} .xaccount  li:last-child{font-weight: bold;}
 #ntmessages a{border-bottom: 1px solid #eaeaea;}
 
+#timer {
+    font-size:15px;
+    margin:0 auto;
+    color:white;
+  }
+
+
 #modalContainer {
     background-color:rgba(0, 0, 0, 0.3);
     position:absolute;
@@ -197,6 +204,37 @@ h1,h2 {
  window.listlen_alarm=-1;
 var userImagesrc ="<?php echo $_SESSION['IMAGE']?>";
 window._baseurl_H ="http://18.168.83.39/";
+
+var t_hours =0;
+var t_mins =0;
+var t_seconds =0;
+
+function startTimer(){
+  timex = setTimeout(function(){
+      t_seconds++;
+    if(t_seconds >59){t_seconds=0;t_mins++;
+       if(t_mins>59) {
+       t_mins=0;t_hours++;
+         if(t_hours <10) {$("#hours").text('0'+t_hours+':')} else $("#hours").text(t_hours+':');
+        }
+                       
+    if(t_mins<10){                     
+      $("#mins").text('0'+t_mins+':');}       
+       else $("#mins").text(t_mins+':');
+                   }    
+    if(t_seconds <10) {
+      $("#seconds").text('0'+t_seconds);} else {
+      $("#seconds").text(t_seconds);
+      }
+     
+    
+      startTimer();
+  },1000);
+}
+
+
+
+
  $(function(){
 	 
 	 $("#userImage").attr("src",window._baseurl_H+"files/"+userImagesrc);
@@ -229,6 +267,8 @@ $("#yeswecall").click(function(){
     checknoti();
   });
 })
+
+startTimer();
  });
  window._lllid=0;
  window._llljobid=0;
@@ -520,6 +560,11 @@ window.getprebookingAlarm=function(){
                     </li>
                   </ul>
                 </div>
+				<div id="timer">
+      <span id="hours">00:</span>
+      <span id="mins">00:</span>
+      <span id="seconds">00</span>  
+    </div>
                <!--<a class="navbar-brand" href="appointmenta.php"> <span style="display:none;position:absolute;margin-top: -10px;margin-left: 20px;" class="badge badge-light notificationax">0</span><img src="img/callcenter.png" alt=""></a> 
                      <a class="navbar-brand" href="#"><img src="img/Artboard 17.png" alt=""></a>-->
               <div class="profile_user">  
