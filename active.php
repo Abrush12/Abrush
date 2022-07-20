@@ -7130,10 +7130,20 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                  window.driverlist=data.data.all;
                  var remaindrivers=4-window.driverlist.length;
                  var counter=1;
+				 var tt=0;
                  $(data.data.all).each(function(x,y){
+					 if(tt==0){
                     html='<tr class="sectdriver" data-counter="'+counter+'"  onclick="selectdriver(this)" data-driverid="'+y.driverid+'">';
+          html+='<th class="no_bg"> <input type="checkbox" checked name="driverlists" data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'" class="checkboxmcv checkboxmcv'+y.driverid+'"><label class="lbl"> ';
+					 html+=' </label></th>';}
+					 else{
+					html='<tr class="sectdriver" data-counter="'+counter+'"  onclick="selectdriver(this)" data-driverid="'+y.driverid+'">';
           html+='<th class="no_bg"> <input type="checkbox" name="driverlists" data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'" class="checkboxmcv checkboxmcv'+y.driverid+'"><label class="lbl"> ';
-          html+=' </label></th>';
+					 html+=' </label></th>';	 
+						 
+						 
+					 }
+					 tt++;
           html+='<td>'+secondsToHms(parseInt(y.waitingtime)*60).toLowerCase()+'</td>';
                     html+='<td>'+metersToMiles(y.distance).toFixed(2)+' m</td>';
                    
@@ -7226,12 +7236,19 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
          var remaindrivers=4-data.data.driverlist.length;
          remaindrivers=(remaindrivers<0?0:remaindrivers);
            var counter=1;
+		   var tt=0;
                  $(data.data.driverlist).each(function(x,y){
                     if(x<=3){
+						if(tt==0){
+                    html='<tr class="sectdriver" data-counter="'+counter+'"  onclick="selectdriver(this)" data-driverid="'+y.driverid+'">';
+          html+='<th class="no_bg"> <input type="checkbox" checked name="driverlists" data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'" class="checkboxmcv checkboxmcv'+y.driverid+'" '+(callsign==y.driverid?"checked":"")+'><label class="lbl"> ';
+						html+=' </label></th>';}
+						else
+          {
                     html='<tr class="sectdriver" data-counter="'+counter+'"  onclick="selectdriver(this)" data-driverid="'+y.driverid+'">';
           html+='<th class="no_bg"> <input type="checkbox" name="driverlists" data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'" class="checkboxmcv checkboxmcv'+y.driverid+'" '+(callsign==y.driverid?"checked":"")+'><label class="lbl"> ';
-          html+=' </label></th>';
-          
+						html+=' </label></th>';}
+						tt++;
           html+='<td>'+secondsToHms(parseInt(y.waitingtime)*60).toLowerCase()+'</td>';
                          html+='<td>'+metersToMiles(y.distance).toFixed(2)+' m</td>';
                    
