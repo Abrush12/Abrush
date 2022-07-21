@@ -3406,7 +3406,10 @@ $(".sectdriver").each(function(){
         }
         else{
             checkbox.prop("checked",!checkbox.is(":checked"));
+			if(checkbox.is(":checked"))
 			$(this).addClass("sectdriversel");
+		else
+			$(this).removeClass("sectdriversel");
 
         }
     });
