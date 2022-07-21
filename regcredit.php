@@ -344,6 +344,12 @@ session_start();
   
 </script>
   <script>
+ window.totalpayment=0;
+ window.totalcash=0;
+ window.totalprepaid =0;
+ window.totalregistration =0;
+ window.totalcredit = 0;
+
  window._selectUid=null; 
  var loginUserId=$.trim(<?php echo $_SESSION['ID'];?>);  
    $("#opendatepicker").click(function(){
@@ -406,7 +412,13 @@ $("#city").change(function(){
  
   var countrycode = $("#company").val();
   var citycode = $("#city").val();
- myajax( {"api":"getcontrollerlistcredit","adminCountryCode":countrycode,"city":citycode},function( data, textStatus, jQxhr ){ 
+  var ddate = $("#registrationdate").val();
+   window.totalpayment=0;
+ window.totalcash=0;
+ window.totalprepaid =0;
+ window.totalregistration =0;
+ window.totalcredit = 0;
+ myajax( {"api":"getcontrollerlistcredit","adminCountryCode":countrycode,"city":citycode,"ddate":ddate},function( data, textStatus, jQxhr ){ 
          $(".rowaxcustomer").remove();
          var _clone="";
          var tbd=$("#tbd"); 
@@ -426,15 +438,24 @@ $("#city").change(function(){
         _clone+='<td><b style="font-size:15px;">'+y.officeadderss+'</td>';
 
 
-		_clone+='<td><b style="font-size:15px;">&nbsp;</td>';
-		_clone+='<td><b style="font-size:15px;">&nbsp;</td>';
-		_clone+='<td><b style="font-size:15px;">&nbsp;</td>';
+		_clone+='<td><b style="font-size:15px;">'+y.creditamount+'</td>';
+		_clone+='<td><b style="font-size:15px;">'+y.registration+'</td>';
+		_clone+='<td><b style="font-size:15px;">'+y.total+'</td>';
 
-		  
+			window.totalpayment+=parseInt(y.total);
+			window.totalcash+=parseInt(y.registration)+parseInt(y.creditamount);
+			window.totalprepaid +=parseInt(y.prepaidamount);
+			window.totalregistration +=parseInt(y.registration);
+			window.totalcredit += parseInt(y.creditamount);
          });
 		tbd.html(_clone);
      
-     
+         $("#xttlpayment").html("Total Payment : <span style='color:#ffd800;'>Rs "+window.totalpayment+"</span>").attr("data-amount",window.totalpayment);
+      $("#xttlpaymentcash").html("Cash : <span style='color:#ffd800;'>Rs "+window.totalcash+"</span>").attr("data-amount",window.totalcash);
+       $("#xttlpaymentprepaid").html("Prepaid : <span style='color:#ffd800;'>Rs "+window.totalprepaid+"</span>").attr("data-amount",window.totalprepaid);
+        $("#xttlcredit").html("Credit : <span style='color:#ffd800;'>Rs "+window.totalcredit+"</span>").attr("data-amount",window.totalcredit);
+      
+	  $("#xttlregistration").html("Registration : <span style='color:#ffd800;'>Rs "+window.totalregistration+"</span>");
        
     });
   
