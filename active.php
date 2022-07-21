@@ -21,7 +21,7 @@ session_start();
     <!-- JS files  -->
       <link rel="stylesheet" type="text/css" href="css/switch.css">
       <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUnvPObS9fsbYknCPqDXFcrrWSZa-CVug "></script>
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPrnFPqvzhPKCnQswXrQYbVqSsciH3AkQ"></script>
      <style type="text/css">
      body{overflow: hidden;   font-family: 'Almarai' !important; }
      
@@ -7164,6 +7164,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                     $("#driverlist").append(html);
                      counter++;
                  });
+				 if(tt>0)
 				 selectdriver($(".sectdriversel"));
                  for(var i = 0;i<remaindrivers;i++){
 
@@ -7274,6 +7275,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                      counter++;
                  }
                  });
+				 if(tt>0)
 				 selectdriver($(".sectdriversel"));
           for(var i = 0;i<remaindrivers;i++){
 

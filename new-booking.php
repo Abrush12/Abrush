@@ -35,7 +35,7 @@ session_start();
   color: #fff;
   border-radius: 4px;
   padding: 0px 20px;
-  cursor: pointer;
+  cursor: point
  	   }
 		   
 @-webkit-keyframes blinker {
@@ -7775,6 +7775,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                     $("#driverlist").append(html);
                      counter++;
                  });
+				 if(tt>0)
 				 selectdriver($(".sectdriversel"));
                  for(var i = 0;i<remaindrivers;i++){
 
@@ -7878,6 +7879,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                     $("#driverlist").append(html);
                      counter++;
                  });
+				 if(tt>0)
 				 selectdriver($(".sectdriversel"));
           for(var i = 0;i<remaindrivers;i++){
 
