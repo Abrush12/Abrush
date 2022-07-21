@@ -454,6 +454,7 @@ input#timaerx1::-webkit-calendar-picker-indicator{
     position: relative!important;
     float: left!important;
 }
+.sectdriversel td{background:#8b8989 !important;cursor:pointer;}
 .mtr-datepicker .mtr-input-slider .arrow {
     height: 20px!important;
     line-height: 20px!important;
@@ -3400,10 +3401,12 @@ setTimeout(function(){
     if(!window.ismultipledriver){
 $(".sectdriver").each(function(){
         if($(this).attr("data-counter")!=$(ref).attr("data-counter")){
-            $(this).find(".checkboxmcv").prop("checked",false);
+            $(this).find(".checkboxmcv").prop("checked",false); alert("here");
+			$(this).removeClass("sectdriversel");
         }
         else{
-            checkbox.prop("checked",!checkbox.is(":checked"));
+            checkbox.prop("checked",!checkbox.is(":checked"));alert("here2");
+			$(this).addClass("sectdriversel");
 
         }
     });
@@ -7133,9 +7136,11 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
 				 var tt=0;
                  $(data.data.all).each(function(x,y){
 					 if(tt==0){
-                    html='<tr class="sectdriver" data-counter="'+counter+'"  onclick="selectdriver(this)" data-driverid="'+y.driverid+'">';
-          html+='<th class="no_bg"> <input type="checkbox" checked name="driverlists" data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'" class="checkboxmcv checkboxmcv'+y.driverid+'"><label class="lbl"> ';
-					 html+=' </label></th>';}
+                    html='<tr class="sectdriver sectdriversel" data-counter="'+counter+'"  onclick="selectdriver(this)" data-driverid="'+y.driverid+'">';
+          html+='<th class="no_bg"> <input type="checkbox" name="driverlists" data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'" class="checkboxmcv checkboxmcv'+y.driverid+'"><label class="lbl"> ';
+					 html+=' </label></th>';
+					 
+					 }
 					 else{
 					html='<tr class="sectdriver" data-counter="'+counter+'"  onclick="selectdriver(this)" data-driverid="'+y.driverid+'">';
           html+='<th class="no_bg"> <input type="checkbox" name="driverlists" data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'" class="checkboxmcv checkboxmcv'+y.driverid+'"><label class="lbl"> ';
@@ -7159,6 +7164,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                     $("#driverlist").append(html);
                      counter++;
                  });
+				 selectdriver($(".sectdriversel"));
                  for(var i = 0;i<remaindrivers;i++){
 
                         html='<tr class="sectdriver" data-counter="'+counter+'"  >';
@@ -7240,9 +7246,12 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                  $(data.data.driverlist).each(function(x,y){
                     if(x<=3){
 						if(tt==0){
-                    html='<tr class="sectdriver" data-counter="'+counter+'"  onclick="selectdriver(this)" data-driverid="'+y.driverid+'">';
-          html+='<th class="no_bg"> <input type="checkbox" checked name="driverlists" data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'" class="checkboxmcv checkboxmcv'+y.driverid+'" '+(callsign==y.driverid?"checked":"")+'><label class="lbl"> ';
-						html+=' </label></th>';}
+                    html='<tr class="sectdriver sectdriversel" data-counter="'+counter+'"  onclick="selectdriver(this)" data-driverid="'+y.driverid+'">';
+          html+='<th class="no_bg"> <input type="checkbox" name="driverlists" data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'" class="checkboxmcv checkboxmcv'+y.driverid+'" '+(callsign==y.driverid?"checked":"")+'><label class="lbl"> ';
+						html+=' </label></th>';
+		
+						
+						}
 						else
           {
                     html='<tr class="sectdriver" data-counter="'+counter+'"  onclick="selectdriver(this)" data-driverid="'+y.driverid+'">';
@@ -7265,6 +7274,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                      counter++;
                  }
                  });
+				 selectdriver($(".sectdriversel"));
           for(var i = 0;i<remaindrivers;i++){
 
                         html='<tr class="sectdriver" data-counter="'+counter+'"  >';
@@ -7281,7 +7291,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                   counter++;
 
                  }
-         
+    
 if(!isdriver){
  
     var driver=data.data.drivers[0];

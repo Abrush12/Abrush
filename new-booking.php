@@ -110,6 +110,7 @@ body{overflow: hidden;   font-family: 'Almarai' !important; }
     margin-top: 3px;}
 .no_bg,.no_bg *,.ispermanent,#datepicker,#datepicker1,#timerx,#timerx1,#clockx,#clockx1,#booking,#quotation,.left_ic img,.ccpaymenttype input[type='radio'],.date img,#fixedbx,.days_selected.selected span{cursor: pointer;}
 .sectdriver:hover td{background:#8b8989 !important;cursor:pointer;}
+.sectdriversel td{background:#8b8989 !important;cursor:pointer;}
 ._am{position:absolute;}
 ._bm{margin-left:30px;}
 .driverbox{display:none;}
@@ -7747,8 +7748,8 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
 				 var tt=0;
                  $(data.data.all).each(function(x,y){
 				if(tt==0){
-                    html='<tr class="sectdriver" data-counter="'+counter+'"  onclick="selectdriver(this)" data-driverid="'+y.driverid+'">';
-          html+='<th class="no_bg"> <input type="checkbox" checked name="driverlists" data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'" class="checkboxmcv checkboxmcv'+y.driverid+'"><label class="lbl"> ';
+                    html='<tr class="sectdriver sectdriversel" data-counter="'+counter+'"  onclick="selectdriver(this)" data-driverid="'+y.driverid+'">';
+          html+='<th class="no_bg"> <input type="checkbox" name="driverlists" data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'" class="checkboxmcv checkboxmcv'+y.driverid+'"><label class="lbl"> ';
 				html+=' </label></th>';}
 				else{
 					{
@@ -7773,6 +7774,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                     $("#driverlist").append(html);
                      counter++;
                  });
+				 selectdriver($(".sectdriversel"));
                  for(var i = 0;i<remaindrivers;i++){
 
                         html='<tr class="sectdriver" data-counter="'+counter+'"  >';
@@ -7850,8 +7852,8 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
 		   var tt=0;
                  $(data.data.all).each(function(x,y){
 					 if(tt==0){
-                    html='<tr class="sectdriver" data-counter="'+counter+'"  onclick="selectdriver(this)" data-driverid="'+y.driverid+'">'; 
-          html+='<th class="no_bg"> <input type="checkbox" checked name="driverlists" data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'" class="checkboxmcv checkboxmcv'+y.driverid+'"><label class="lbl"> ';
+                    html='<tr class="sectdriver sectdriversel" data-counter="'+counter+'" onclick="selectdriver(this)" data-driverid="'+y.driverid+'">'; 
+          html+='<th class="no_bg"> <input type="checkbox" name="driverlists" data-driverid="'+y.driverid+'" data-callsign="'+y.callsign+'" class="checkboxmcv checkboxmcv'+y.driverid+'"><label class="lbl"> ';
 					 html+=' </label></th>';}
 					 else
 					 {
@@ -7875,6 +7877,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
                     $("#driverlist").append(html);
                      counter++;
                  });
+				 selectdriver($(".sectdriversel"));
           for(var i = 0;i<remaindrivers;i++){
 
                         html='<tr class="sectdriver" data-counter="'+counter+'"  >';
