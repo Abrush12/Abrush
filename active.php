@@ -3401,11 +3401,11 @@ setTimeout(function(){
     if(!window.ismultipledriver){
 $(".sectdriver").each(function(){
         if($(this).attr("data-counter")!=$(ref).attr("data-counter")){
-            $(this).find(".checkboxmcv").prop("checked",false); alert("here");
+            $(this).find(".checkboxmcv").prop("checked",false);
 			$(this).removeClass("sectdriversel");
         }
         else{
-            checkbox.prop("checked",!checkbox.is(":checked"));alert("here2");
+            checkbox.prop("checked",!checkbox.is(":checked"));
 			$(this).addClass("sectdriversel");
 
         }

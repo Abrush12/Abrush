@@ -3929,10 +3929,11 @@ window.selectdriver=function(ref){
 $(".sectdriver").each(function(){
         if($(this).attr("data-counter")!=$(ref).attr("data-counter")){
             $(this).find(".checkboxmcv").prop("checked",false);
+			$(this).removeClass("sectdriversel");
         }
         else{
             checkbox.prop("checked",!checkbox.is(":checked"));
-
+			$(this).addClass("sectdriversel");
         }
     });
     }
