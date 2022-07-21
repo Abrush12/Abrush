@@ -408,6 +408,12 @@ $("#city").change(function(){
 		         controllerlist();
         });
 
+
+window.showdriver=function(){
+	
+	
+}
+
  window.controllerlist=function(){
  
   var countrycode = $("#company").val();
@@ -437,8 +443,8 @@ $("#city").change(function(){
 		_clone+='<td><b style="font-size:15px;">'+getCountry(y.countrycode)+'</td>';
         _clone+='<td><b style="font-size:15px;">'+y.officeadderss+'</td>';
 
-
-		_clone+='<td><b style="font-size:15px;"><span style="color:#ffd800;">Rs '+y.creditamount+'</span></td>';
+         var t_credit = parseInt(y.creditamount)+parseInt(y.prepaidamount);
+		_clone+='<td><b style="font-size:15px;"><span style="color:#ffd800;">Rs '+t_credit+'</span></td>';
 		_clone+='<td><b style="font-size:15px;"><span style="color:#ffd800;">Rs '+y.registration+'</span></td>';
 		_clone+='<td><b style="font-size:15px;"><span style="color:#ffd800;">Rs '+y.total+'</span></td>';
 
@@ -446,7 +452,7 @@ $("#city").change(function(){
 			window.totalcash+=parseInt(y.registration)+parseInt(y.creditamount);
 			window.totalprepaid +=parseInt(y.prepaidamount);
 			window.totalregistration +=parseInt(y.registration);
-			window.totalcredit += parseInt(y.creditamount);
+			window.totalcredit += parseInt(y.creditamount)+parseInt(y.prepaidamount);
          });
 		tbd.html(_clone);
      
