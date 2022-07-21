@@ -438,9 +438,9 @@ $("#city").change(function(){
         _clone+='<td><b style="font-size:15px;">'+y.officeadderss+'</td>';
 
 
-		_clone+='<td><b style="font-size:15px;">'+y.creditamount+'</td>';
-		_clone+='<td><b style="font-size:15px;">'+y.registration+'</td>';
-		_clone+='<td><b style="font-size:15px;">'+y.total+'</td>';
+		_clone+='<td><b style="font-size:15px;"><span style="color:#ffd800;">Rs '+y.creditamount+'</span></td>';
+		_clone+='<td><b style="font-size:15px;"><span style="color:#ffd800;">Rs '+y.registration+'</span></td>';
+		_clone+='<td><b style="font-size:15px;"><span style="color:#ffd800;">Rs '+y.total+'</span></td>';
 
 			window.totalpayment+=parseInt(y.total);
 			window.totalcash+=parseInt(y.registration)+parseInt(y.creditamount);
