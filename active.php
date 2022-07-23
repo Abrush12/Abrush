@@ -2725,7 +2725,7 @@ $("#OldOwedshow").hide();
 
      window._crrvia++;
          
-          $('<div class="_lothervia axtempl"><div style="display:inline">  <div class="lcoptions">  <img src="img/arrow-down.png" class="drpdowncx"  /> <div class="mapsxboxd"> <img src="img/maps.png" class="mapsx _mapsx" onclick="showviamap(this)"/> </div> </div><div class="plholder viazdkk"><span>Drop Location</span></div><div class="resulttry" onclick="showinpfld(this)"></div><input  style="margin-top:2px"  onblur="reinitdbc(this,event)"  onfocus="onviafocus(this)" onkeyup="mklccall(this,event)"  type="text" class="viaaz via'+window._crrvia+' " autocomplete="off" placeholder="Via"> <div class="lcdropdown"><div class="boldx allloading" style="display: none;">Loading...</div></div></div> </div>').insertBefore("#_startervia");
+          $('<div class="_lothervia axtempl"><div style="display:inline">  <div class="lcoptions">  <!-- <img src="img/arrow-down.png" class="drpdowncx"  />  --> <div class="mapsxboxd"> <img src="img/maps.png" class="mapsx _mapsx" onclick="showviamap(this)"/> </div> </div><div class="plholder viazdkk"><span>Drop Location</span></div><div class="resulttry" onclick="showinpfld(this)"></div><input  style="margin-top:2px"  onblur="reinitdbc(this,event)"  onfocus="onviafocus(this)" onkeyup="mklccall(this,event)"  type="text" class="viaaz via'+window._crrvia+' " autocomplete="off" placeholder="Via"> <div class="lcdropdown"><div class="boldx allloading" style="display: none;">Loading...</div></div></div> </div>').insertBefore("#_startervia");
          
          $('<div class="_ikmn  axtempl"><img src="img/closenew.png" class="one_rab addcloseaclose" onclick="removevia(this,'+window._crrvia+')" ></div>').insertBefore(".firstlcf");
            $('<div class="_ikmnp  axtempl"> <input type="text"  onkeyup="firstCapitalAlways(event);"  autocomplete="off"   placeholder="Enter Note"> </div>').insertBefore(".mnjjxz");
@@ -4939,12 +4939,18 @@ window.errortype="0";
         window.__iscard="0";
           window.ispickuplcvalid=false;
         window.isdropvalid=false;
-        window.openctrledlist=function(ref,e){
+        window.openctrledlist=function(ref,e,id){
             e.stopPropagation();
-            var jobid=$(ref).parent().parent().attr("data-jobid");
-            var job=window._joblist.filter(function (entry) {  return entry.id == jobid; })[0];
+			//selectjob(ref,id);
+			if(!$(ref).parent().parent().parent().hasClass("trselected"))
+			{
+				selectjob($(ref).parent().parent().parent(),id);
+				return;
+			}
+            var jobid=$(ref).parent().parent().parent().attr("data-jobid");
+		    var job=window._joblist.filter(function (entry) {  return entry.id == jobid; })[0];
             $(".ctrlytable tbody tr").remove();
-            $(window._cjob.controllereditarray).each(function(x,y){
+            $(job.controllereditarray).each(function(x,y){
                  $(".ctrlytable tbody").append("<tr><td>"+y.dayname.substr(0,3)+"</td><td>"+y.datex+"</td><td>"+y.timex+"</td><td>"+y.controllername+"</td></tr>");
             });
 
@@ -6958,7 +6964,7 @@ window.__xcheck=null;
              
             window._crrvia++;
          
-          $('<div class="_lothervia  axtempl"> <div style="display:inline">  <div class="lcoptions"> <img src="img/arrow-down.png" class="drpdowncx"  />  <div class="mapsxboxd">  <img src="img/maps.png" class="mapsx _mapsx" onclick="showviamap(this)"/> </div> </div><div class="plholder viazdkk"><span>Drop Location</span></div><div class="resulttry" onclick="showinpfld(this)"></div><input  onblur="reinitdbc(this,event)" onkeyup="mklccall(this,event)"  onfocus="onviafocus(this)" type="text" class="viaaz via'+window._crrvia+' " autocomplete="off" placeholder="Via"><div class="lcdropdown"><div class="boldx allloading" style="display: none;">Loading...</div></div></div></div>').appendTo($(".vias"));
+          $('<div class="_lothervia  axtempl"> <div style="display:inline">  <div class="lcoptions"> <!-- <img src="img/arrow-down.png" class="drpdowncx"  />  -->  <div class="mapsxboxd">  <img src="img/maps.png" class="mapsx _mapsx" onclick="showviamap(this)"/> </div> </div><div class="plholder viazdkk"><span>Drop Location</span></div><div class="resulttry" onclick="showinpfld(this)"></div><input  onblur="reinitdbc(this,event)" onkeyup="mklccall(this,event)"  onfocus="onviafocus(this)" type="text" class="viaaz via'+window._crrvia+' " autocomplete="off" placeholder="Via"><div class="lcdropdown"><div class="boldx allloading" style="display: none;">Loading...</div></div></div></div>').appendTo($(".vias"));
           $('<div class="_ikmn  axtempl"><img src="img/closenew.png" class="one_rab addcloseaclose" onclick="removevia(this,'+window._crrvia+')" ></div>').insertBefore(".firstlcf");
            $('<div class="_ikmnp  axtempl"> <input type="text" onkeyup="firstCapitalAlways(event);"  autocomplete="off"   placeholder="Enter Note"> </div>').appendTo($(".mnjjxz").parent());
            $('<div class="_ikmnpl  axtempl"> <img src="img/substract.png" class="minusbn" onclick="minusbn(this)"> <input type="text" style="margin-top: 2px; margin-left: 9px;" autocomplete="off" value="5"> <img src="img/Artboard 17 copy 4.png" class="plusbn" onclick="plusbn(this)"  > </div>').appendTo($(".mnjjxzl").parent());
@@ -7498,7 +7504,8 @@ window.activebooking = function()
          var mm = String(today.getMonth() + 1).padStart(2, '0');  
          var yyyy = today.getFullYear();
          var dt=dd + '-'+mm+"-"+ yyyy+" "+h_ + ":" + m_+":00";
-      myajax( {"api":"getactivebooking","datetime":dt,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
+		 var status="";
+      myajax( {"api":"getactivebooking","datetime":dt,"status":status,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
         var html="";
 		var tbd=$("#tbd");
         window._joblist=data.data;
@@ -7567,7 +7574,7 @@ window.activebooking = function()
                html+=' <td>'+y.callsign+'</td><td><div> ';
                 if(y.isbookingedit=="1"){
                     
-               html+='<i class="fa fa-sort-desc" onclick="openctrledlist(this,event)"></i>';
+               html+='<i class="fa fa-sort-desc" onclick="openctrledlist(this,event,'+x+')"></i>';
                }
                html+=(y.controllername==null?"":y.controllername)+'&nbsp;&nbsp;';
                if(y.isbookingedit=="1"){
