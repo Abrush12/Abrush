@@ -55,6 +55,27 @@ session_start();
        color:#fff;
        bprder:none;
      }
+	 
+.xdropdown,.xallocatedriver,.xbandriver,.lcdropdown{z-index: 999;
+    position: absolute;
+    width: 158px;display: none;
+    background: #fff;
+    border: 1px solid #eaeaea;padding: 0px;max-height: 260px;
+    overflow-y: auto;}
+    .lcdropdown{width:calc(100% - 33px);margin-top:-15px;z-index: 9999}
+    .xdropdown{width: 177px;}
+    .xdropdown li{font-weight: bold;}
+    .xdropdown li,.xallocatedriver p,.xbandriver p,.lcdropdown p{display: block;
+    border-bottom: 1px solid #eaeaea;
+    padding: 1px 5px;cursor: pointer;font-size:15px;
+    list-style-type: none;margin:0px;}
+    .xdropdown li:hover,.xallocatedriver p:hover,.xbandriver p:hover, .pac-item:hover,.lcdropdown p:hover,.lcdropdown p.active,.xmapassengers li.active,.xallocatedriver p.active,.xbandriver p.active{background-color:#d9d9d9 !important;}
+    .xallocatedriver{margin-top:0px;display: none;}
+	.xbandriver{margin-top:0px;display: none;}
+    .xallocatedriver .boldx,.lcdropdown .boldx{width: 100%;text-align: center;padding:10px;color:#000;font-weight: bold; display: none;}
+    .xallocatedriver  p span{font-size: 13px;font-weight: bold;
+    float: right;
+    margin-top: 3px;}
      .pagination a{color:#fff !important;}
     .ui-widget-header{border-color: #000;
     background: #000;}
@@ -89,7 +110,11 @@ session_start();
     font-size: 13px;
 	min-width:110px
 }
-    
+    .credit{width: 140px;
+    height: 14px;
+	position: absolute;
+    margin-top: 2px;
+    margin-left: 50px;}
 	.btn-grad:hover {
             background-position: right center; /* change the direction of the change here */
             color: #fff;
@@ -208,6 +233,7 @@ session_start();
     include "header.php";
    ?>
    <!--------header end-------->
+
 <div class="modal" id="blockuser" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document" style="max-width: 700px;float:left;left: 40%;top: 40%; ">
     <div class="modal-content">
@@ -301,10 +327,27 @@ session_start();
 <h4 id="xttlregistration" style="font-size: 20px;color:#fff;text-align: right;margin-right: 50px;margin-top:10px;">Registration : <span style='color:#ffd800;'>Rs 0</span></h4>
 <h4 id="xttlcredit" style="font-size: 20px;color:#fff;text-align: right;margin-right: 50px;margin-top:10px;">Credit : <span style='color:#ffd800;'>Rs 0</span></h4>
              </div>
+</div>
+                
+
+<div class="row">
+<div class="xallocatedriver xshow " style="width:260px;">
+                    <div id="loading" class="boldx">Loading...</div>
+                    <div id="dxlist">
+                    <p>1</p>
+                    <p>2</p>
+                    <p>3</p>
+                    <p>4</p>
+                    <p>5</p>
+                    <p>6</p>
+                     </div>
+
+                  </div>
   <div class="col-lg-12" style="margin-top:20px;">
  <!--   <div class="main-box clearfix">
 	<div class=><h1 style="color:white;margin-bottom:20px;margin-left:20px;font-family: Times,serif;" aria-hidden="true">&nbsp;&nbsp;&nbsp;Controller List</h1>
 </div>-->
+
  <div class="table-responsive" style="margin-left:20px;">
    <center><img src="img/load.gif" id="loadingr" style="height:80px;display:none;" /></center>  
     <table class="table user-list  user-listax ">
@@ -334,8 +377,22 @@ session_start();
         </div>
    
 </div>
-</div>
+
     </section>
+	<div class="row">
+<div class="xallocatedriver xshow " style="width:260px;">
+                    <div id="loading" class="boldx">Loading...</div>
+                    <div id="dxlist">
+                    <p>1</p>
+                    <p>2</p>
+                    <p>3</p>
+                    <p>4</p>
+                    <p>5</p>
+                    <p>6</p>
+                     </div>
+
+                  </div>
+                  </div>
     <div style="display:none">
     </div>
     
@@ -407,11 +464,81 @@ $("#company").change(function(){
 $("#city").change(function(){
 		         controllerlist();
         });
+$( document ).on( "mousedown", function( event ) {
+	//alert(event.pageY);
+		//alert(event.pageX);
+		$(".xallocatedriver").hide();
+$( ".xallocatedriver" ).css( {"top" : (event.pageY+5)+"px" ,"margin-left" : (event.pageX+5)+"px" });
+});
+
+window.showdriver=function(id){
+	$(".xallocatedriver").show().find("p").remove();
+	$(".xallocatedriver").show();
+	//alert(event.pageY);
+		//alert(event.pageX);
+		var ddate = $("#registrationdate").val();
+	//$( ".xallocatedriver" ).css( {"margin-top" : event.pageY+"px" ,"margin-left" : event.pageX+"px" });
+	myajax( {"api":"getdriverlistcredit","controllerid":id,"ddate":ddate,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
+        $("#loadinggif").hide();
+		
+	if(data.data.creditlist.length>0){
+                $(".xallocatedriver #loading").hide();
+
+        $(data.data.creditlist).each(function(x,y){
+			var dlist_sign= "<p>"+y.callsign;
+		/*	if(y.isonline == "1")
+				dlist_sign+= "<span class='greenccr'></span>";
+			else
+				dlist_sign+= "<span class='redccr'></span>";*/
+		
+				dlist_sign+= "<span class='credit'>(Rs. "+y.amount+")</span>";
+				
+
+			dlist_sign+="<span>"+y.name+"</span></p>";
+            $("#dxlist").append(dlist_sign);
+     //   <span class='redccra'></span>
+        });
+    }
+    else{
+         $(".xallocatedriver #loading").show().html("No Driver Found !!");
+    
+
+    }
+});
+}
+window.showdriverreg=function(id){
+	$(".xallocatedriver").show().find("p").remove();
+	$(".xallocatedriver").show();
+	//alert(event.pageY);
+		//alert(event.pageX);
+		var ddate = $("#registrationdate").val(); 
+	//$( ".xallocatedriver" ).css( {"margin-top" : event.pageY+"px" ,"margin-left" : event.pageX+"px" });
+	myajax( {"api":"getdriverlistreg","controllerid":id,"ddate":ddate,"adminCountryCode":"<?php echo $_SESSION['COUNTRYCODE']; ?>"},function( data, textStatus, jQxhr ){
+        $("#loadinggif").hide();
+	if(data.data.reglist.length>0){
+                $(".xallocatedriver #loading").hide();
+
+        $(data.data.reglist).each(function(x,y){
+			var dlist_sign= "<p>"+y.callsign;
+		/*	if(y.isonline == "1")
+				dlist_sign+= "<span class='greenccr'></span>";
+			else
+				dlist_sign+= "<span class='redccr'></span>";*/
+		
+				dlist_sign+= "<span class='credit'>(Rs. "+y.paymentgiven+")</span>";
+				
+
+			dlist_sign+="<span>"+y.name+"</span></p>";
+            $("#dxlist").append(dlist_sign);
+     //   <span class='redccra'></span>
+        });
+    }
+    else{
+         $(".xallocatedriver #loading").show().html("No Driver Found !!");
 
 
-window.showdriver=function(){
-	
-	
+    }
+});
 }
 
  window.controllerlist=function(){
@@ -444,8 +571,21 @@ window.showdriver=function(){
         _clone+='<td><b style="font-size:15px;">'+y.officeadderss+'</td>';
 
          var t_credit = parseInt(y.creditamount)+parseInt(y.prepaidamount);
-		_clone+='<td><b style="font-size:15px;"><span style="color:#ffd800;">Rs '+t_credit+'</span></td>';
-		_clone+='<td><b style="font-size:15px;"><span style="color:#ffd800;">Rs '+y.registration+'</span></td>';
+		 if(t_credit>0){
+			_clone+='<td><b style="font-size:15px;"><span style="color:#ffd800;">Rs '+t_credit+'</span><i class="fa fa-caret-down" style="font-size:24px;color:white;float:right;margin-right:50px;" onclick="showdriver('+y.id+');"></i></td>';
+			}
+		 else
+		 {
+			  _clone+='<td><b style="font-size:15px;"><span style="color:#ffd800;">Rs '+t_credit+'</span></td>';
+		 }
+		 if(y.registration>0){
+			  _clone+='<td><b style="font-size:15px;"><span style="color:#ffd800;">Rs '+y.registration+'</span><i class="fa fa-caret-down" style="font-size:24px;color:white;float:right;margin-right:50px;" onclick="showdriverreg('+y.id+');"></i></td>';
+		 }
+		 else
+		 {
+			 _clone+='<td><b style="font-size:15px;"><span style="color:#ffd800;">Rs '+y.registration+'</span></td>';
+		 }
+		 
 		_clone+='<td><b style="font-size:15px;"><span style="color:#ffd800;">Rs '+y.total+'</span></td>';
 
 			window.totalpayment+=parseInt(y.total);
@@ -705,21 +845,7 @@ function dateFormat(date)
             })
           }
         });
-          $("#phonec").keyup(function(){
-          var a=$.trim($(this).val()).toLowerCase();
-          $(".rowaxcontroller").hide();
-          if(a.length==0){
-            $(".rowaxcontroller").show();
-          }
-          else{
-            $(".rowaxcontroller").each(function(){
-              if($(this).attr("data-phone").toLowerCase().startsWith(a)){
-                $(this).show();
-              }
-            })
-          }
-        });
-       
+     
         
 	  });
 
