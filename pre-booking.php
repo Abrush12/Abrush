@@ -20,7 +20,7 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
       <link rel="stylesheet" type="text/css" href="css/switch.css">
       <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUnvPObS9fsbYknCPqDXFcrrWSZa-CVug "></script>
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPrnFPqvzhPKCnQswXrQYbVqSsciH3AkQ"></script>
     <!-- JS files  -->
      <style type="text/css">
        @font-face {
@@ -1867,7 +1867,7 @@ if(true){
 
               <div class="atm_b">
                 <div class="_cover" style="height: 85px;z-index:-1;"></div>
-                 <div class="row axdcvf" style=" margin-left:0px;">
+                 <div class="row axdcvf" style=" margin-left:0px;margin-top:-10px;">
                 <label class="col-sm-2 ccpaymenttype dmnkcash"  style="flex: 0 0 18.666667%;  max-width: 18.666667%;" >
                   <div class="covercashcheck"></div>
                   <input checked="" type="radio" name="paymenttype" class="chkcbrd chkcbvc" id="cash"> <span  >Cash</span><i class="fa fa-sort-desc down_arrowcash"  ></i>

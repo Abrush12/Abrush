@@ -21,7 +21,7 @@ session_start();
     <!-- JS files  -->
       <link rel="stylesheet" type="text/css" href="css/switch.css">
       <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUnvPObS9fsbYknCPqDXFcrrWSZa-CVug "></script>
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPrnFPqvzhPKCnQswXrQYbVqSsciH3AkQ"></script>
      <style type="text/css">
      body{overflow: hidden;   font-family: 'Almarai' !important; }
      
@@ -1951,7 +1951,7 @@ if(true){
                 </div>
               <div class="atm_b" style="margin-left: 0px; margin-top: 250px;">
                 <div class="_cover"  style="height: 85px;z-index:-1"></div>
-                 <div class="row axdcvf" style=" margin-left:0px;">
+                 <div class="row axdcvf" style=" margin-left:0px;margin-top:-10px;">
                 <label class="col-sm-2 ccpaymenttype dmnkcash" style="flex: 0 0 18.666667%;  max-width: 18.666667%;" >
                   <div class="covercashcheck"></div>
                   <input checked="" type="radio" name="paymenttype" class="chkcbrd chkcbvc" id="cash"> <span  >Cash</span><i class="fa fa-sort-desc down_arrowcash"  ></i>

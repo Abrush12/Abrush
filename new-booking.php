@@ -1820,17 +1820,17 @@ if(true){
              <div class="" style="height: 336px;background: #ffffff3c;padding:5px 5px 8px 0px;background-image:url('img/Artboard43_2.jpg')">
 
               <div class="table_s table_xd tabledrivers amdriverbnv">
-                <table class="table" style="margin-top:0px">
+                <table class="table" style="margin-top:0px;">
                   <thead>
                     <tr>
                       <th class="no_bg"></th>
                        <th>Waiting</th>
                       <th>Distance</th>
-                      
+                      <th>Time</th>
                      <th>Driver</th>
                       <th>Price</th>
                       <th>Type</th>
-                      <th>Time</th>
+                      
                      
                       <th>Status</th>
                     </tr>
@@ -1944,7 +1944,7 @@ if(true){
 
               <div class="atm_b">
                 <div class="_cover" style="height: 85px;z-index:-1;"></div>
-                <div class="row axdcvf" style=" margin-left:0px;">
+                <div class="row axdcvf" style=" margin-left:0px;margin-top:-10px;">
                  <label class="col-sm-2 ccpaymenttype dmnkcash" style="flex: 0 0 18.666667%;  max-width: 18.666667%;" >
                   <div class="covercashcheck"></div>
                   <input checked="" type="radio" name="paymenttype" class="chkcbrd chkcbvc" id="cash"> <span  >Cash</span><i class="fa fa-sort-desc down_arrowcash"  ></i>
@@ -7764,7 +7764,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
 				tt++;
           html+='<td>'+secondsToHms(parseInt(y.waitingtime)*60).toLowerCase()+'</td>';
                     html+='<td>'+metersToMiles(y.distance).toFixed(2)+' m</td>';
-                   
+                   html+='<td>'+secondsToHms(y.time).toLowerCase()+'</td>';
                     html+='<td>'+y.callsign+'</td>';
                     html+='<td>4.5</td>';
 					if(y.normal=="1") extras="N";
@@ -7772,7 +7772,8 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
      else if(y.motorbike=="1")  extras="M";
 
                      html+='<td>'+extras+'</td>';
-          html+='<td>'+y.registration+'</td><td></td>';
+         //html+='<td>'+y.registration+'</td>';
+		  html+='<td></td>';
           // html+='<td>'+secondsToHms(y.time).toLowerCase()+'</td>';
           html+='   </tr>';
                     $("#driverlist").append(html);
@@ -7868,7 +7869,7 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
           tt++;
           html+='<td>'+secondsToHms(parseInt(y.waitingtime)*60).toLowerCase()+'</td>';
                      html+='<td>'+metersToMiles(y.distance).toFixed(2)+' m</td>';
-                   
+                   html+='<td>'+secondsToHms(y.time).toLowerCase()+'</td>';
                     html+='<td>'+y.callsign+'</td>';
                     html+='<td>4.5</td>';
                     	if(y.normal=="1") extras="N";
@@ -7876,7 +7877,8 @@ window._cxcdate=yyyy + '-'+mm+"-"+ dd;
      else if(y.motorcycle=="1")  extras="M";
 
                      html+='<td>'+extras+'</td>';
-          html+='<td>'+y.registration+'</td><td></td>';
+         //html+='<td>'+y.registration+'</td>';
+		  html+='<td></td>';
           // html+='<td>'+secondsToHms(y.time).toLowerCase()+'</td>';
           html+='   </tr>';
                     $("#driverlist").append(html);

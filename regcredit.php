@@ -73,7 +73,7 @@ session_start();
     .xallocatedriver{margin-top:0px;display: none;}
 	.xbandriver{margin-top:0px;display: none;}
     .xallocatedriver .boldx,.lcdropdown .boldx{width: 100%;text-align: center;padding:10px;color:#000;font-weight: bold; display: none;}
-    .xallocatedriver  p span{font-size: 13px;font-weight: bold;
+    .xallocatedriver  p span{font-size: 13px;
     float: right;
     margin-top: 3px;}
      .pagination a{color:#fff !important;}
@@ -113,7 +113,7 @@ session_start();
     .credit{width: 140px;
     height: 14px;
 	position: absolute;
-    margin-top: 2px;
+    margin-top: 0px;
     margin-left: 50px;}
 	.btn-grad:hover {
             background-position: right center; /* change the direction of the change here */
@@ -323,7 +323,7 @@ session_start();
 			  </div>
              <div class=" col-md-3 " id="creditinfo"><h4 id="xttlpayment" style="color:#fff;text-align: right;margin-right: 50px;margin-top: 29px;">Total Payment : <span style='color:#ffd800;'>Rs 0</span></h4>
 <h4 id="xttlpaymentcash" style="font-size: 20px;color:#fff;text-align: right;margin-right: 50px;margin-top: 10px;">Cash : <span style='color:#ffd800;'>Rs 0</span></h4>
-<h4 id="xttlpaymentprepaid" style="font-size: 20px;color:#fff;text-align: right;margin-right: 50px;margin-top:10px;">Prepaid : <span style='color:#ffd800;'>Rs 0</span></h4>
+<h4 id="xttlpaymentprepaid" style="font-size: 20px;color:#fff;text-align: right;margin-right: 50px;margin-top:10px;">Online : <span style='color:#ffd800;'>Rs 0</span></h4>
 <h4 id="xttlregistration" style="font-size: 20px;color:#fff;text-align: right;margin-right: 50px;margin-top:10px;">Registration : <span style='color:#ffd800;'>Rs 0</span></h4>
 <h4 id="xttlcredit" style="font-size: 20px;color:#fff;text-align: right;margin-right: 50px;margin-top:10px;">Credit : <span style='color:#ffd800;'>Rs 0</span></h4>
              </div>
@@ -519,7 +519,7 @@ window.showdriverreg=function(id){
                 $(".xallocatedriver #loading").hide();
 
         $(data.data.reglist).each(function(x,y){
-			var dlist_sign= "<p>"+y.callsign;
+			var dlist_sign= "<p>"+y.name;
 		/*	if(y.isonline == "1")
 				dlist_sign+= "<span class='greenccr'></span>";
 			else
@@ -528,7 +528,7 @@ window.showdriverreg=function(id){
 				dlist_sign+= "<span class='credit'>(Rs. "+y.paymentgiven+")</span>";
 				
 
-			dlist_sign+="<span>"+y.name+"</span></p>";
+			dlist_sign+="<span>"+y.callsign+"</span></p>";
             $("#dxlist").append(dlist_sign);
      //   <span class='redccra'></span>
         });
@@ -598,7 +598,7 @@ window.showdriverreg=function(id){
      
          $("#xttlpayment").html("Total Payment : <span style='color:#ffd800;'>Rs "+window.totalpayment+"</span>").attr("data-amount",window.totalpayment);
       $("#xttlpaymentcash").html("Cash : <span style='color:#ffd800;'>Rs "+window.totalcash+"</span>").attr("data-amount",window.totalcash);
-       $("#xttlpaymentprepaid").html("Prepaid : <span style='color:#ffd800;'>Rs "+window.totalprepaid+"</span>").attr("data-amount",window.totalprepaid);
+       $("#xttlpaymentprepaid").html("Online : <span style='color:#ffd800;'>Rs "+window.totalprepaid+"</span>").attr("data-amount",window.totalprepaid);
         $("#xttlcredit").html("Credit : <span style='color:#ffd800;'>Rs "+window.totalcredit+"</span>").attr("data-amount",window.totalcredit);
       
 	  $("#xttlregistration").html("Registration : <span style='color:#ffd800;'>Rs "+window.totalregistration+"</span>");

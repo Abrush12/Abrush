@@ -605,7 +605,7 @@ window.getprebookingAlarm=function(){
 						 <a class="dropdown-item" href="signup.php">Sign-up</a>
 						 <a class="dropdown-item" href="controller.php">Controllers</a>
 						 <a class="dropdown-item" href="regcredit.php">Registration/Credit</a>
-						 <a class="dropdown-item" href="">Price</a>
+						 <a class="dropdown-item" href="">Miscellaneous</a>
 						<?php 
 					 }
 						 ?>
@@ -631,7 +631,7 @@ window.getprebookingAlarm=function(){
 var ALERT_BUTTON_TEXT = "Ok";
 
 if(document.getElementById) {
-    window.alert = function(txt) {
+   window.alert = function(txt) {
         createCustomAlert(txt);
     }
 	window.confirm = function(txt) {
